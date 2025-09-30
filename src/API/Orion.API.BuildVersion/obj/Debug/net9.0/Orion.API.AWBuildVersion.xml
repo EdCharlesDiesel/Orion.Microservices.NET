@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orion.API.AWBuildVersion</name>
+    </assembly>
+    <members>
+        <member name="F:Orion.API.AWBuildVersion.ActionFilters.HttpRequesterClass._clientKey">
+            <summary>
+            Store the client key to be used through the program
+            </summary>
+        </member>
+        <member name="M:Orion.API.AWBuildVersion.ActionFilters.HttpRequesterClass.HttpRequester(System.String,System.String)">
+            <summary>
+            Method to make HTTP calls to TradingEconomics API
+            </summary>
+            <param name="url">The URL to fetch</param>
+            <param name="baseUrl">The base path, the default is 'https://api.tradingeconomics.com/'</param>
+            <returns>A task tha will be resolved in a string with the content of the response</returns>
+        </member>
+    </members>
+</doc>

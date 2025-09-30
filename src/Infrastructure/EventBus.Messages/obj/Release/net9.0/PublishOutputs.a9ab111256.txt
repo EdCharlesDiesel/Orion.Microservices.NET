@@ -1,0 +1,3 @@
+C:\x\Orion.API.Microservices.NET\out\Orion.EventBus.Messages.dll
+C:\x\Orion.API.Microservices.NET\out\Orion.EventBus.Messages.deps.json
+C:\x\Orion.API.Microservices.NET\out\Orion.EventBus.Messages.pdb

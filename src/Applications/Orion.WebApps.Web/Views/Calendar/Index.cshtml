@@ -1,0 +1,43 @@
+@* @model List<Orion.DataAccess.Postgres.Entities.Common.CalendarEvent> *@
+@* *@
+@* *@
+@* <h2>Upcoming Calendar Events</h2> *@
+@* *@
+@* @if (!Model.Any()) *@
+@* { *@
+@*     <p>No events found.</p> *@
+@* } *@
+@* else *@
+@* { *@
+@*     <table class="table table-striped"> *@
+@*         <thead> *@
+@*         <tr> *@
+@*             <th>Date</th> *@
+@*             <th>Country</th> *@
+@*             <th>Event</th> *@
+@*             <th>Category</th> *@
+@*             <th>Actual</th> *@
+@*             <th>Forecast</th> *@
+@*             <th>Previous</th> *@
+@*             <th>Importance</th> *@
+@*             <th>Source</th> *@
+@*         </tr> *@
+@*         </thead> *@
+@*         <tbody> *@
+@*         @foreach (var item in Model) *@
+@*         { *@
+@*             <tr> *@
+@*                 <td>@item.Date?.ToString("yyyy-MM-dd HH:mm")</td> *@
+@*                 <td>@item.Country</td> *@
+@*                 <td>@item.Event</td> *@
+@*                 <td>@item.Category</td> *@
+@*                 <td>@item.Actual</td> *@
+@*                 <td>@item.Forecast</td> *@
+@*                 <td>@item.Previous</td> *@
+@*                 <td>@item.Importance</td> *@
+@*                 <td><a href="@item.SourceURL" target="_blank">@item.Source</a></td> *@
+@*             </tr> *@
+@*         } *@
+@*         </tbody> *@
+@*     </table> *@
+@* } *@

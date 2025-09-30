@@ -1,0 +1,60 @@
+﻿namespace Orion.Helpers.FamousAlgorithms
+{
+    public class KnuthMorrisPrattClass
+    {
+        // O(n + m) time | O(m) space
+        public static bool KnuthMorrisPrattAlgorithm(string str, string substring)
+        {
+            int[] pattern = BuildPattern(substring);
+            return DoesMatch(str, substring, pattern);
+        }
+        public static int[] BuildPattern(string substring)
+        {
+            int[] pattern = new int[substring.Length];
+            Array.Fill(pattern, -1);
+            int j = 0;
+            int i = 1;
+            while (i < substring.Length)
+            {
+                if (substring[i] == substring[j])
+                {
+                    pattern[i] = j;
+                    i++;
+                    j++;
+                }
+                else if (j > 0)
+                {
+                    j = pattern[j - 1] + 1;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            return pattern;
+        }
+        public static bool DoesMatch(string str, string substring, int[] pattern)
+        {
+            int i = 0;
+            int j = 0;
+            while (i + substring.Length - j <= str.Length)
+            {
+                if (str[i] == substring[j])
+                {
+                    if (j == substring.Length - 1) return true;
+                    i++;
+                    j++;
+                }
+                else if (j > 0)
+                {
+                    j = pattern[j - 1] + 1;
+                }
+                else
+                {
+                    i++;
+                }
+            }
+            return false;
+        }
+    }
+}

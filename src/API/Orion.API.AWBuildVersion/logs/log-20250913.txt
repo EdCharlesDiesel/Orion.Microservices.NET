@@ -1,0 +1,44 @@
+2025-09-13 11:31:19.664 +02:00 [ERR] Failed to save ErrorLog: {"ErrorLogID":null,"ErrorTime":"2025-09-13T09:30:44.2731578+00:00","UserName":"System","ErrorNumber":-2146233079,"ErrorSeverity":null,"ErrorState":null,"ErrorProcedure":"ThrowIfKeyChanged","ErrorLine":216,"ErrorMessage":"The property 'AWBuildVersion.SystemInformationID' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.","$type":"ErrorLog"}
+System.InvalidOperationException: The property 'AWBuildVersion.SystemInformationID' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.ThrowIfKeyChanged(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectValueChange(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.LocalDetectChanges(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectChanges(IStateManager stateManager)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.TryDetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Orion.DataAccess.Postgres.Data.OrionDbContext.SaveChangesAsync(CancellationToken cancellationToken) in C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\Data\OrionDbContext.cs:line 216
+   at Orion.DataAccess.Postgres.Repositories.UnitOfWork.SaveErrorsAsync(ErrorLog errorLog) in C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\Repositories\UnitOfWork.cs:line 44
+2025-09-13 11:36:16.804 +02:00 [ERR] Failed to save ErrorLog: {"ErrorLogID":null,"ErrorTime":"2025-09-13T09:36:16.6940607+00:00","UserName":"System","ErrorNumber":-2146233079,"ErrorSeverity":null,"ErrorState":null,"ErrorProcedure":"ThrowIfKeyChanged","ErrorLine":216,"ErrorMessage":"The property 'AWBuildVersion.SystemInformationID' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.","$type":"ErrorLog"}
+System.InvalidOperationException: The property 'AWBuildVersion.SystemInformationID' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.ThrowIfKeyChanged(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectValueChange(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.LocalDetectChanges(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectChanges(IStateManager stateManager)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.TryDetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Orion.DataAccess.Postgres.Data.OrionDbContext.SaveChangesAsync(CancellationToken cancellationToken) in C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\Data\OrionDbContext.cs:line 216
+   at Orion.DataAccess.Postgres.Repositories.UnitOfWork.SaveErrorsAsync(ErrorLog errorLog) in C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\Repositories\UnitOfWork.cs:line 44
+2025-09-13 12:52:13.981 +02:00 [ERR] Failed to save ErrorLog: {"ErrorLogID":null,"ErrorTime":"2025-09-13T09:37:41.9681371+00:00","UserName":"System","ErrorNumber":-2146233079,"ErrorSeverity":null,"ErrorState":null,"ErrorProcedure":"ThrowIfKeyChanged","ErrorLine":216,"ErrorMessage":"The property 'AWBuildVersion.SystemInformationID' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.","$type":"ErrorLog"}
+System.InvalidOperationException: The property 'AWBuildVersion.SystemInformationID' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.ThrowIfKeyChanged(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectValueChange(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.LocalDetectChanges(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectChanges(IStateManager stateManager)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.TryDetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Orion.DataAccess.Postgres.Data.OrionDbContext.SaveChangesAsync(CancellationToken cancellationToken) in C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\Data\OrionDbContext.cs:line 216
+   at Orion.DataAccess.Postgres.Repositories.UnitOfWork.SaveErrorsAsync(ErrorLog errorLog) in C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\Repositories\UnitOfWork.cs:line 44
+2025-09-13 13:00:06.444 +02:00 [ERR] Failed to save ErrorLog: {"ErrorLogID":22,"ErrorTime":"2025-09-13T10:59:51.7458569+00:00","UserName":"System","ErrorNumber":-2146233079,"ErrorSeverity":null,"ErrorState":null,"ErrorProcedure":"ThrowIfKeyChanged","ErrorLine":216,"ErrorMessage":"The property 'AWBuildVersion.SystemInformationID' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.","$type":"ErrorLog"}
+System.InvalidOperationException: The property 'AWBuildVersion.SystemInformationID' is part of a key and so cannot be modified or marked as modified. To change the principal of an existing entity with an identifying foreign key, first delete the dependent and invoke 'SaveChanges', and then associate the dependent with the new principal.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.ThrowIfKeyChanged(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectValueChange(InternalEntityEntry entry, IProperty property)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.LocalDetectChanges(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectChanges(IStateManager stateManager)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.TryDetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Orion.DataAccess.Postgres.Data.OrionDbContext.SaveChangesAsync(CancellationToken cancellationToken) in C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\Data\OrionDbContext.cs:line 216
+   at Orion.DataAccess.Postgres.Repositories.UnitOfWork.SaveErrorsAsync(ErrorLog errorLog) in C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\Repositories\UnitOfWork.cs:line 44

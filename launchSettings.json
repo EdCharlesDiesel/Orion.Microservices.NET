@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Docker Compose": {
+      "commandName": "DockerCompose",
+      "commandVersion": "1.0",
+      "serviceActions": {
+        "orion.services.stockanalyzer.api": "StartDebugging",
+        "orion.webapps.healthcheck": "StartDebugging"
+      }
+    }
+  }
+}

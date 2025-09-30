@@ -1,0 +1,22 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.4"
+services:
+  orion.services.stockanalyzer.api-1:
+    build:
+      context: "C:\\x\\Orion.API.Microservices.NET"
+      dockerfile: "src/Services/StockAnalyzer/StockAnalyzer.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/Orion.Services.StockAnalyzer.API.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "orion.services.stockanalyzer.api-1:dev"
+    ports: []
+    volumes:
+    - "C:\\x\\Orion.API.Microservices.NET\\src\\Services\\StockAnalyzer\\StockAnalyzer.API:/app:rw"
+    - "C:\\x\\Orion.API.Microservices.NET:/src:rw"
+    - "C:\\Users\\PC\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Orion.OcelotApiGw.props" />
+</Project>

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "nh/I9q/ifnJ+rZU75GHpt92oCdkYnJbnPDSq4KNPDNA=",
+  "Source": "Orion.Services.StockAnalyzer.API",
+  "BasePath": "_content/Orion.Services.StockAnalyzer.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

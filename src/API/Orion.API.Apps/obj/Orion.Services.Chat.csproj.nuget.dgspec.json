@@ -1,0 +1,163 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\x\\Orion.API.Microservices.NET\\src\\Services\\Orion.Services.Chat\\Orion.Services.Chat.csproj": {}
+  },
+  "projects": {
+    "C:\\x\\Orion.API.Microservices.NET\\src\\Core\\Orion.Core.Chat\\Orion.Core.Chat.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\x\\Orion.API.Microservices.NET\\src\\Core\\Orion.Core.Chat\\Orion.Core.Chat.csproj",
+        "projectName": "Orion.Core.Chat",
+        "projectPath": "C:\\x\\Orion.API.Microservices.NET\\src\\Core\\Orion.Core.Chat\\Orion.Core.Chat.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.API.Microservices.NET\\src\\Core\\Orion.Core.Chat\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\x\\Orion.API.Microservices.NET\\src\\Services\\Orion.Services.Chat\\Orion.Services.Chat.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\x\\Orion.API.Microservices.NET\\src\\Services\\Orion.Services.Chat\\Orion.Services.Chat.csproj",
+        "projectName": "Orion.Services.Chat",
+        "projectPath": "C:\\x\\Orion.API.Microservices.NET\\src\\Services\\Orion.Services.Chat\\Orion.Services.Chat.csproj",
+        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.API.Microservices.NET\\src\\Services\\Orion.Services.Chat\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {
+              "C:\\x\\Orion.API.Microservices.NET\\src\\Core\\Orion.Core.Chat\\Orion.Core.Chat.csproj": {
+                "projectPath": "C:\\x\\Orion.API.Microservices.NET\\src\\Core\\Orion.Core.Chat\\Orion.Core.Chat.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        },
+        "SdkAnalysisLevel": "9.0.300"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[15.0.1, )"
+            },
+            "Azure.AI.Agents.Persistent": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Azure.AI.Projects": {
+              "target": "Package",
+              "version": "[1.0.0-beta.10, )"
+            },
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.14.2, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Negotiate": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.7, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

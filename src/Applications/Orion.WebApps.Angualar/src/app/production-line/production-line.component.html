@@ -1,0 +1,98 @@
+<br />
+<div class="row">
+  <div class="col-lx-3 col-lg-3 col-md-6 col-sm-12 col-12" *ngFor="let item of AssemblyLineDataSet">
+    <div class="arrow_box arrow_color1 mx-auto align-middle" (click)="AssemblyLineNameClick(item.LocationID,item.AssemblyName)">
+      <h5><span class="badge">{{ item.AssemblyName}}</span></h5>
+      <h2><span class="badge badge-light">{{item.CountWorkOrder}}</span></h2>
+    </div>
+  </div>
+</div>
+<br />
+
+<div class="card">
+  <div class="card-header text-light bg-secondary">
+    Work Order Details
+  </div>
+  <div class="card-body">
+    <p *ngIf="WorkOrderReceivedDataSet?.length<=0">There is some problem in loading data</p>
+    <div class="row">
+      <div class="col-lx-3 col-lg-3 col-md-6 col-sm-12 col-12">
+        <h5 class="card-title">Received</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <ngx-charts-number-card [view]="[150, 150]" [results]="WorkOrderReceivedDataSet" cardColor='skyblue'
+              bandColor='#b52d30'>
+            </ngx-charts-number-card>
+          </li>
+          <li class="list-group-item">
+            <button class="btn btn-info" (click)="WorkOrderBtnClick('Received')">Oder Routing</button>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lx-3 col-lg-3 col-md-6 col-sm-12 col-12">
+        <h5 class="card-title">Completed</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <ngx-charts-number-card [view]="[150, 150]" [results]="WorkOrderCompletedDataSet" cardColor='olive'
+              bandColor='#b52d30'>
+            </ngx-charts-number-card>
+          </li>
+          <li class="list-group-item">
+            <button class="btn btn-info" (click)="WorkOrderBtnClick('Completed')">Start Shipping</button>
+          </li>
+        </ul>
+      </div>
+      <div class="col-lx-3 col-lg-3 col-md-6 col-sm-12 col-12">
+        <h5 class="card-title">Delayed</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <ngx-charts-number-card [view]="[150, 150]" [results]="WorkOrderDelayedDataSet" cardColor='orange'
+              bandColor='#b52d30'>
+            </ngx-charts-number-card>
+          </li>
+          <li class="list-group-item">
+             <button class="btn btn-info" (click)="WorkOrderBtnClick('Delayed')">View Reasons</button>
+            </li>
+        </ul>
+      </div>
+      <div class="col-lx-3 col-lg-3 col-md-6 col-sm-12 col-12">
+        <h5 class="card-title">Scraped</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <ngx-charts-number-card [view]="[150, 150]" [results]="WorkOrderScrappedDataSet" cardColor='#ffc107'
+              bandColor='#b52d30'>
+            </ngx-charts-number-card>
+          </li>
+          <li class="list-group-item">
+            <button class="btn btn-info" (click)="WorkOrderBtnClick('Scraped')">View Reasons</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="card">
+  <div class="card-header text-light bg-secondary">
+    Stock & Inventory
+  </div>
+  <div class="card-body">
+      <p *ngIf="StockInventoryDataSet?.length<=0">There is some problem in loading data</p>
+    <div class="row">
+      <div class="col-lx-12 col-lg-12 col-md-12 d-none d-sm-none d-md-block d-lg-block d-lx-block ">
+        <ngx-charts-number-card [results]="StockInventoryDataSet">
+        </ngx-charts-number-card>
+        <!-- <ul class="list-group list-group">
+          <li class="list-group-item"> <a href="#" class="btn btn-info">Place Purchase Order</a></li>
+          <li class="list-group-item"> <a href="#" class="btn btn-info">Place Purchase Order</a></li>
+          <li class="list-group-item"> <a href="#" class="btn btn-info">Place Purchase Order</a></li>
+          <li class="list-group-item"> <a href="#" class="btn btn-info">Place Purchase Order</a></li>
+          <li class="list-group-item"> <a href="#" class="btn btn-info">Place Purchase Order</a></li>
+        </ul> -->
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br /><br />

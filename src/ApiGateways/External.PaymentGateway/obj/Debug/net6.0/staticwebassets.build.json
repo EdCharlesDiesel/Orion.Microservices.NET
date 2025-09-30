@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "V1e0YQWIelK1XU42X7FsBP08QssWWlhZb0tkziQfsho=",
+  "Source": "Orion.External.PaymentGateway",
+  "BasePath": "_content/Orion.External.PaymentGateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

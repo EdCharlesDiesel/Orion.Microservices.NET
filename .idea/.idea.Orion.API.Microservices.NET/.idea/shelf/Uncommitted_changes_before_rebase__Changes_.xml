@@ -1,0 +1,599 @@
+<changelist name="Uncommitted_changes_before_rebase_[Changes]" date="1757576216663" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before rebase [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/refint/Orion.DataAccess.Postgres.dll" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/refint/Orion.DataAccess.Postgres.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.UserProfile/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.UserProfile/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.DataAccess.Postgres.pdb" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.DataAccess.Postgres.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain.UnitTests/obj/Debug/net9.0/Orion.Domain.UnitTests.assets.cache" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain.UnitTests/obj/Debug/net9.0/Orion.Domain.UnitTests.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain.UnitTests.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.HealthCheckUI/obj/Debug/net9.0/Orion.WebApps.HealthCheckUI.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.HealthCheckUI/obj/Debug/net9.0/Orion.WebApps.HealthCheckUI.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.WebApps.HealthCheckUI.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/UnitTests/Orion.API.UnitTests/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/UnitTests/Orion.API.UnitTests/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget1.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget2.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/ApiGateways/OcelotApiGw/obj/Debug/net9.0/Orion.OcelotApiGw.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/ApiGateways/OcelotApiGw/obj/Debug/net9.0/Orion.OcelotApiGw.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.OcelotApiGw.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.HumanResources/obj/Debug/net8.0/Orion.API.HumanResources.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.HumanResources/obj/Debug/net8.0/Orion.API.HumanResources.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.HumanResources.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Chat/obj/Debug/net9.0/Orion.API.Chat.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Chat/obj/Debug/net9.0/Orion.API.Chat.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Chat.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.API.AWBuildVersion.pdb" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.API.AWBuildVersion.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Basket/obj/Debug/net9.0/Orion.API.Basket.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Basket/obj/Debug/net9.0/Orion.API.Basket.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Basket.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/apphost.exe" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/apphost.exe" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/apphost.exe" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/UnitTests/Orion.Helpers.UnitTests/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/UnitTests/Orion.Helpers.UnitTests/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget3.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.UserProfile/obj/Debug/net9.0/Orion.API.UserProfile.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.UserProfile/obj/Debug/net9.0/Orion.API.UserProfile.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.UserProfile.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Catalog/obj/Debug/net9.0/Orion.API.Catalog.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Catalog/obj/Debug/net9.0/Orion.API.Catalog.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Catalog.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Discount/obj/Debug/net9.0/Orion.API.Discount.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Discount/obj/Debug/net9.0/Orion.API.Discount.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Discount.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/ApiGateways/External.PaymentGateway/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/ApiGateways/External.PaymentGateway/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget4.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.CompetitionScorecard/obj/Debug/net9.0/Orion.API.CompetitionScorecard.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.CompetitionScorecard/obj/Debug/net9.0/Orion.API.CompetitionScorecard.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.CompetitionScorecard.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/ApiGateways/External.PaymentGateway/obj/Debug/net9.0/Orion.External.PaymentGateway.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/ApiGateways/External.PaymentGateway/obj/Debug/net9.0/Orion.External.PaymentGateway.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.External.PaymentGateway.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/Orion.Domain.pdb" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/Orion.Domain.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Admin/obj/Debug/net9.0/Orion.Admin.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/Admin/obj/Debug/net9.0/Orion.Admin.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Admin.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Helpers/obj/Debug/net9.0/Orion.Helpers.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/Helpers/obj/Debug/net9.0/Orion.Helpers.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Helpers.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.TradingEconomics/obj/Debug/net9.0/Orion.API.TradingEconomics.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.TradingEconomics/obj/Debug/net9.0/Orion.API.TradingEconomics.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.TradingEconomics.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.DatabaseLog/obj/Debug/net9.0/Orion.API.DatabaseLog.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.DatabaseLog/obj/Debug/net9.0/Orion.API.DatabaseLog.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.DatabaseLog.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.Web/obj/Debug/net9.0/Orion.WebApps.Web.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.Web/obj/Debug/net9.0/Orion.WebApps.Web.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.WebApps.Web.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/UnitTests/Orion.API.UnitTests/obj/Debug/net9.0/Orion.API.UnitTests.assets.cache" />
+    <option name="AFTER_PATH" value="src/UnitTests/Orion.API.UnitTests/obj/Debug/net9.0/Orion.API.UnitTests.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.UnitTests.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Basket/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Basket/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget5.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.CompetitionScorecard/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.CompetitionScorecard/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget6.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain.UnitTests/obj/Debug/net9.0/Orion.Domain.UnitTests.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain.UnitTests/obj/Debug/net9.0/Orion.Domain.UnitTests.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain.UnitTests.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/ref/Orion.DataAccess.Postgres.dll" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/ref/Orion.DataAccess.Postgres.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres1.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Order/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Order/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget7.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/ApiGateways/OcelotApiGw/obj/Debug/net9.0/Orion.OcelotApiGw.assets.cache" />
+    <option name="AFTER_PATH" value="src/ApiGateways/OcelotApiGw/obj/Debug/net9.0/Orion.OcelotApiGw.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.OcelotApiGw.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/ApiGateways/Shopping.Aggregator/obj/Debug/net9.0/Orion.Shopping.Aggregator.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/ApiGateways/Shopping.Aggregator/obj/Debug/net9.0/Orion.Shopping.Aggregator.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Shopping.Aggregator.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.DataAccess.Postgres.exe" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.DataAccess.Postgres.exe" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres.exe" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain.UnitTests/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain.UnitTests/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget8.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.DataAccess.Postgres.pdb" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.DataAccess.Postgres.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres1.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain/bin/Debug/net9.0/Orion.Domain.dll" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain/bin/Debug/net9.0/Orion.Domain.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/Orion.Domain.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/Orion.Domain.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/ApiGateways/External.PaymentGateway/obj/Debug/net9.0/Orion.External.PaymentGateway.assets.cache" />
+    <option name="AFTER_PATH" value="src/ApiGateways/External.PaymentGateway/obj/Debug/net9.0/Orion.External.PaymentGateway.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.External.PaymentGateway.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/ref/Orion.API.AWBuildVersion.dll" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/ref/Orion.API.AWBuildVersion.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Chat/obj/Debug/net9.0/Orion.API.Chat.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Chat/obj/Debug/net9.0/Orion.API.Chat.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Chat.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Chat/obj/Debug/net9.0/Orion.API.Chat.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Chat/obj/Debug/net9.0/Orion.API.Chat.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Chat.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain.UnitTests/obj/Debug/net9.0/Orion.Domain.UnitTests.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain.UnitTests/obj/Debug/net9.0/Orion.Domain.UnitTests.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain.UnitTests.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.Domain.pdb" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.Domain.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain1.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Basket/obj/Debug/net9.0/Orion.API.Basket.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Basket/obj/Debug/net9.0/Orion.API.Basket.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Basket.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.UserProfile/obj/Debug/net9.0/Orion.API.UserProfile.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.UserProfile/obj/Debug/net9.0/Orion.API.UserProfile.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.UserProfile.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Order/obj/Debug/net9.0/Orion.API.Order.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Order/obj/Debug/net9.0/Orion.API.Order.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Order.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/refint/Orion.API.AWBuildVersion.dll" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/refint/Orion.API.AWBuildVersion.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion1.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.DataAccess.Postgres.dll" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.DataAccess.Postgres.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres2.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/UnitTests/Orion.API.UnitTests/obj/Debug/net9.0/Orion.API.UnitTests.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/UnitTests/Orion.API.UnitTests/obj/Debug/net9.0/Orion.API.UnitTests.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.UnitTests.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget9.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/UnitTests/Orion.Helpers.UnitTests/obj/Debug/net9.0/Orion.Helpers.UnitTests.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/UnitTests/Orion.Helpers.UnitTests/obj/Debug/net9.0/Orion.Helpers.UnitTests.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Helpers.UnitTests.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.HumanResources/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.HumanResources/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget10.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.Web/obj/Debug/net9.0/Orion.WebApps.Web.assets.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.Web/obj/Debug/net9.0/Orion.WebApps.Web.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.WebApps.Web.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Catalog/obj/Debug/net9.0/Orion.API.Catalog.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Catalog/obj/Debug/net9.0/Orion.API.Catalog.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Catalog.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.DataAccess.Postgres.dll" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.DataAccess.Postgres.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres3.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Infrastructure/Common.Logging/obj/Debug/net9.0/Orion.Common.Logging.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/Infrastructure/Common.Logging/obj/Debug/net9.0/Orion.Common.Logging.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Common.Logging.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain/bin/Debug/net9.0/Orion.Domain.pdb" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain/bin/Debug/net9.0/Orion.Domain.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain2.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.DataAccess.Postgres.exe" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.DataAccess.Postgres.exe" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres1.exe" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Discount/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Discount/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget11.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Admin/obj/Debug/net9.0/Orion.Admin.assets.cache" />
+    <option name="AFTER_PATH" value="src/Admin/obj/Debug/net9.0/Orion.Admin.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Admin.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Basket/obj/Debug/net9.0/Orion.API.Basket.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Basket/obj/Debug/net9.0/Orion.API.Basket.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Basket.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.dll" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres4.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.Domain.dll" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.Domain.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain1.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Helpers/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/Helpers/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget12.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.CompetitionScorecard/obj/Debug/net9.0/Orion.API.CompetitionScorecard.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.CompetitionScorecard/obj/Debug/net9.0/Orion.API.CompetitionScorecard.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.CompetitionScorecard.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.API.AWBuildVersion.dll" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.API.AWBuildVersion.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion2.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/ApiGateways/Shopping.Aggregator/obj/Debug/net9.0/Orion.Shopping.Aggregator.assets.cache" />
+    <option name="AFTER_PATH" value="src/ApiGateways/Shopping.Aggregator/obj/Debug/net9.0/Orion.Shopping.Aggregator.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Shopping.Aggregator.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.Web/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.Web/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget13.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Infrastructure/Common.Logging/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/Infrastructure/Common.Logging/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget14.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Order/obj/Debug/net9.0/Orion.API.Order.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Order/obj/Debug/net9.0/Orion.API.Order.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Order.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/ApiGateways/Shopping.Aggregator/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/ApiGateways/Shopping.Aggregator/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget15.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Order/obj/Debug/net9.0/Orion.API.Order.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Order/obj/Debug/net9.0/Orion.API.Order.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Order.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.API.AWBuildVersion.exe" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.API.AWBuildVersion.exe" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion.exe" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/Orion.Domain.assets.cache" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/Orion.Domain.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Infrastructure/Common.Logging/obj/Debug/net9.0/Orion.Common.Logging.assets.cache" />
+    <option name="AFTER_PATH" value="src/Infrastructure/Common.Logging/obj/Debug/net9.0/Orion.Common.Logging.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Common.Logging.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Discount/obj/Debug/net9.0/Orion.API.Discount.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Discount/obj/Debug/net9.0/Orion.API.Discount.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Discount.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/refint/Orion.Domain.dll" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/refint/Orion.Domain.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain2.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.HumanResources/obj/Debug/net8.0/Orion.API.HumanResources.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.HumanResources/obj/Debug/net8.0/Orion.API.HumanResources.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.HumanResources.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.dll" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion3.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.DatabaseLog/obj/Debug/net9.0/Orion.API.DatabaseLog.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.DatabaseLog/obj/Debug/net9.0/Orion.API.DatabaseLog.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.DatabaseLog.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.TradingEconomics/obj/Debug/net9.0/Orion.API.TradingEconomics.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.TradingEconomics/obj/Debug/net9.0/Orion.API.TradingEconomics.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.TradingEconomics.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/Orion.Domain.dll" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/Orion.Domain.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain3.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Catalog/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Catalog/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget16.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.Domain.pdb" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/bin/Debug/net9.0/Orion.Domain.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain3.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Infrastructure/EventBus.Messages/obj/Debug/net9.0/Orion.EventBus.Messages.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/Infrastructure/EventBus.Messages/obj/Debug/net9.0/Orion.EventBus.Messages.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.EventBus.Messages.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Chat/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Chat/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget17.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Discount/obj/Debug/net9.0/Orion.API.Discount.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Discount/obj/Debug/net9.0/Orion.API.Discount.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Discount.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/apphost.exe" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/apphost.exe" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/apphost1.exe" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.pdb" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres2.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.TradingEconomics/obj/Debug/net9.0/Orion.API.TradingEconomics.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.TradingEconomics/obj/Debug/net9.0/Orion.API.TradingEconomics.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.TradingEconomics.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.StockAnalyzer.Web/obj/Debug/net6.0/Orion.WebApps.StockAnalyzer.Web.assets.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.StockAnalyzer.Web/obj/Debug/net6.0/Orion.WebApps.StockAnalyzer.Web.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.WebApps.StockAnalyzer.Web.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/ApiGateways/OcelotApiGw/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/ApiGateways/OcelotApiGw/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget18.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.Domain.dll" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/bin/Debug/net9.0/Orion.Domain.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain4.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.Web/obj/Debug/net9.0/Orion.WebApps.Web.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.Web/obj/Debug/net9.0/Orion.WebApps.Web.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.WebApps.Web.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.Catalog/obj/Debug/net9.0/Orion.API.Catalog.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.Catalog/obj/Debug/net9.0/Orion.API.Catalog.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.Catalog.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.UserProfile/obj/Debug/net9.0/Orion.API.UserProfile.assets.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.UserProfile/obj/Debug/net9.0/Orion.API.UserProfile.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.UserProfile.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.StockAnalyzer.Web/obj/Debug/net6.0/Orion.WebApps.StockAnalyzer.Web.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.StockAnalyzer.Web/obj/Debug/net6.0/Orion.WebApps.StockAnalyzer.Web.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.WebApps.StockAnalyzer.Web.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Helpers/obj/Debug/net9.0/Orion.Helpers.assets.cache" />
+    <option name="AFTER_PATH" value="src/Helpers/obj/Debug/net9.0/Orion.Helpers.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Helpers.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.genruntimeconfig.cache" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.genruntimeconfig.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres.genruntimeconfig.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Admin/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/Admin/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget19.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.CompetitionScorecard/obj/Debug/net9.0/Orion.API.CompetitionScorecard.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.CompetitionScorecard/obj/Debug/net9.0/Orion.API.CompetitionScorecard.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.CompetitionScorecard.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/ref/Orion.Domain.dll" />
+    <option name="AFTER_PATH" value="src/Domain/Orion.Domain/obj/Debug/net9.0/ref/Orion.Domain.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Domain5.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget20.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/UnitTests/Orion.API.UnitTests/obj/Debug/net9.0/Orion.API.UnitTests.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="src/UnitTests/Orion.API.UnitTests/obj/Debug/net9.0/Orion.API.UnitTests.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.UnitTests.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.HealthCheckUI/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.HealthCheckUI/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget21.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.assets.cache" />
+    <option name="AFTER_PATH" value="src/DataAccess/Orion.DataAccess.Postgres/obj/Debug/net9.0/Orion.DataAccess.Postgres.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.DataAccess.Postgres.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.TradingEconomics/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.TradingEconomics/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget22.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.StockAnalyzer.Web/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.StockAnalyzer.Web/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/project.nuget23.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Admin/obj/Debug/net9.0/ORION.Admin.AssemblyInfoInputs.cache" />
+    <option name="AFTER_PATH" value="src/Admin/obj/Debug/net9.0/ORION.Admin.AssemblyInfoInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/ORION.Admin.AssemblyInfoInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/Applications/Orion.WebApps.HealthCheckUI/obj/Debug/net9.0/Orion.WebApps.HealthCheckUI.assets.cache" />
+    <option name="AFTER_PATH" value="src/Applications/Orion.WebApps.HealthCheckUI/obj/Debug/net9.0/Orion.WebApps.HealthCheckUI.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.WebApps.HealthCheckUI.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.pdb" />
+    <option name="AFTER_PATH" value="src/API/Orion.API.AWBuildVersion/obj/Debug/net9.0/Orion.API.AWBuildVersion.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.API.AWBuildVersion1.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/UnitTests/Orion.Helpers.UnitTests/obj/Debug/net9.0/Orion.Helpers.UnitTests.assets.cache" />
+    <option name="AFTER_PATH" value="src/UnitTests/Orion.Helpers.UnitTests/obj/Debug/net9.0/Orion.Helpers.UnitTests.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.Orion.API.Microservices.NET/.idea/shelf/Uncommitted_changes_before_rebase_[Changes]/Orion.Helpers.UnitTests.assets.cache" />
+  </binary>
+</changelist>

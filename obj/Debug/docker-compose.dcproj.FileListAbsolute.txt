@@ -1,0 +1,17 @@
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\Orion.Services.StockAnalyzer.API.deps.json
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\Orion.Services.StockAnalyzer.API.runtimeconfig.json
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\appsettings.Development.json
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\appsettings.json
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\Orion.Services.StockAnalyzer.API.exe
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\Orion.Services.StockAnalyzer.API.dll
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\Swashbuckle.AspNetCore.Swagger.dll
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\Microsoft.OpenApi.dll
+C:\x\Orion.API.Microservices.NET.v1.0.1\bin\Debug\Orion.Services.StockAnalyzer.API.pdb
+C:\x\Orion.API.Microservices.NET.v1.0.1\obj\Debug\docker-compose.dcproj.AssemblyReference.cache
+C:\x\Orion.API.Microservices.NET.v1.0.1\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
+C:\x\Orion.API.Microservices.NET.v1.0.1\obj\Debug\docker-compose.dcproj.CopyComplete
+C:\x\Orion.API.Microservices.NET\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
+C:\x\Orion.Microservices.NET\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache
+C:\x\RealWorld\Orion.Microservices.NET\obj\Debug\docker-compose.dcproj.CoreCompileInputs.cache

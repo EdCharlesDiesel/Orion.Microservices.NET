@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "Gj1DDv11RpBIHuZGx3ocH0gNsp1Vvd1zcoz/ENOimuI=",
+  "Source": "Orion.OcelotApiGw",
+  "BasePath": "_content/Orion.OcelotApiGw",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

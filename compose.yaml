@@ -1,0 +1,42 @@
+﻿services:
+
+  orion.access.postgres:
+    image: orion.access.postgres
+    build:
+      context: .
+      dockerfile: Orion.Access.Postgres/Dockerfile
+
+  orion.api.BuildVersion:
+    image: orion.api.BuildVersion
+    build:
+      context: .
+      dockerfile: src/API/Orion.API.BuildVersion/Dockerfile
+
+  orion.api.databaselog:
+    image: orion.api.databaselog
+    build:
+      context: .
+      dockerfile: src/API/Orion.API.DatabaseLog/Dockerfile
+      
+  postgres:
+    image: postgres:17
+    container_name: OrionProductionDatabase
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: $ta99Ath0
+      POSTGRES_DB: OrionProductionDatabase
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  api:
+      build: .
+      container_name: Orion.API.BuildVersion
+      environment:
+        # Use service name 'postgres' as host
+        ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0"
+      depends_on:
+        - postgres
+      ports:
+        - "8080:5000"

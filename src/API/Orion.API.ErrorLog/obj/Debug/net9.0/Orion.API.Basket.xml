@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orion.API.Basket</name>
+    </assembly>
+    <members>
+        <member name="M:Orion.API.Basket.Controllers.BasketController.GetAllBaskets">
+            <summary>
+            Get all baskets.
+            </summary>
+        </member>
+        <member name="M:Orion.API.Basket.Controllers.BasketController.CreateBasket(Orion.DataAccess.Postgres.Entities.Common.Basket)">
+            <summary>
+            Create a new basket.
+            </summary>
+        </member>
+        <member name="M:Orion.API.Basket.Controllers.BasketController.GetBasketById(System.Guid)">
+            <summary>
+            Get a basket by ID.
+            </summary>
+        </member>
+        <member name="M:Orion.API.Basket.Controllers.BasketController.UpdateBasket(System.Guid,Orion.DataAccess.Postgres.Entities.Common.Basket)">
+            <summary>
+            Update an existing basket.
+            </summary>
+        </member>
+        <member name="M:Orion.API.Basket.Controllers.BasketController.PatchBasket(System.Guid,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{Orion.DataAccess.Postgres.Entities.Common.Basket})">
+            <summary>
+            Partially update a basket (e.g. patch one or two fields).
+            </summary>
+        </member>
+        <member name="M:Orion.API.Basket.Controllers.BasketController.DeleteBasket(System.Guid)">
+            <summary>
+            Delete a basket by ID.
+            </summary>
+        </member>
+    </members>
+</doc>

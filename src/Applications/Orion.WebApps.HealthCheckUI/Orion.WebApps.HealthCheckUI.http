@@ -1,0 +1,6 @@
+@Orion.WebApps.HealthCheckUI_HostAddress = http://localhost:5237
+
+GET {{Orion.WebApps.HealthCheckUI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

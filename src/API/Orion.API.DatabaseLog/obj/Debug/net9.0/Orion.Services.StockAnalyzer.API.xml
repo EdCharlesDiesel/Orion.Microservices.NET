@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orion.Services.StockAnalyzer.API</name>
+    </assembly>
+    <members>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.CalendarController.GetAllEvents">
+            <summary>
+            Get all comtrade categories
+            </summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.ComtradeController.GetComCategories">
+            <summary>Get all comtrade categories</summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.ComtradeController.GetComCountries">
+            <summary>Get all comtrade countries</summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.ComtradeController.GetComCountryPage(System.String,System.Int32)">
+            <summary>Get comtrade by country and page</summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.ComtradeController.GetComBetweenCountries(System.String,System.String,System.Int32)">
+            <summary>Get comtrade between two countries with pagination</summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.ComtradeController.GetComHistorical(System.String)">
+            <summary>Get historical comtrade data by symbol</summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.EarningsController.GetEarnings">
+            <summary>
+            get earnings calendar
+            </summary>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.EarningsController.GetEarningsByDate(System.Nullable{System.DateTime})">
+            <summary>
+            Filter earnings by date
+            </summary>
+            <param name="startDate">Start date if needed</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.EarningsController.GetEarningsByMarketDate(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Get earnings by market, and start date
+            </summary>
+            <param name="symbol">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.EarningsController.GetEarningsMarketBetweenDates(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Get earnings by market, start and end date
+            </summary>
+            <param name="symbol">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.EarningsController.GetEarningsByCountry(System.String)">
+            <summary>
+            Get earnings by country
+            </summary>
+            <param name="country">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.EarningsController.GetEarningsByType(System.String)">
+            <summary>
+            Get earnings by type
+            </summary>
+            <param name="type">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.ForecastController.GetAllForecasts">
+            <summary>
+            Get all comtrade categories
+            </summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.LatestController.getLatestUpdates">
+            <summary>
+            Get the latest news from trading economics
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.LatestController.getLatestUpdatesByDate(System.DateTime)">
+            <summary>
+            Get latest updates since a specific date
+            </summary>        
+            <returns></returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.LatestController.GetLatestUpdates">
+            <summary>
+            Get latest updates with no filters
+            </summary>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.LatestController.GetLatestUpdatesByDate(System.DateTime)">
+            <summary>
+            Get latest updates by date
+            </summary>
+            <param name="startDate">Start date if needed</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.MarketsIntradayController.GetIntradaySymbol(System.String)">
+            <summary>
+            Get intraday prices for a single market symbol.
+            </summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.MarketsIntradayController.GetIntradayDateHour(System.String,System.DateTime)">
+            <summary>
+            Get intraday prices by symbol and start date (hour).
+            </summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Controllers.MarketsIntradayController.GetIntradaySymbolDates(System.String,System.DateTime,System.DateTime)">
+            <summary>
+            Get intraday data between two dates.
+            </summary>
+        </member>
+        <member name="T:Orion.Services.StockAnalyzer.API.Data.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Data.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Data.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Data.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Orion.Services.StockAnalyzer.API.Data.Migrations.UpdatingEntityCalendarevent">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Data.Migrations.UpdatingEntityCalendarevent.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Data.Migrations.UpdatingEntityCalendarevent.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Data.Migrations.UpdatingEntityCalendarevent.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Orion.Services.StockAnalyzer.API.Data.Migrations.AddingForecastendpoint">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Data.Migrations.AddingForecastendpoint.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Data.Migrations.AddingForecastendpoint.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Data.Migrations.AddingForecastendpoint.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="F:Orion.Services.StockAnalyzer.API.Helper.HttpRequesterClass._clientKey">
+            <summary>
+            Store the client key to be used through the program
+            </summary>
+        </member>
+        <member name="M:Orion.Services.StockAnalyzer.API.Helper.HttpRequesterClass.HttpRequester(System.String,System.String)">
+            <summary>
+            Method to make HTTP calls to TradingEconomics API
+            </summary>
+            <param name="url">The URL to fetch</param>
+            <param name="baseUrl">The base path, the default is 'https://api.tradingeconomics.com/'</param>
+            <returns>A task tha will be resolved in a string with the content of the response</returns>
+        </member>
+    </members>
+</doc>

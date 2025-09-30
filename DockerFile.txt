@@ -1,0 +1,137 @@
+version: '3.8'
+
+services:
+  # SQL Server Database
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: orion-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong@Passw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+    networks:
+      - orion-network
+
+  # Redis Cache
+  redis:
+    image: redis:alpine
+    container_name: orion-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - orion-network
+
+  # Dashboard API
+  dashboard-api:
+    build:
+      context: ./Orion.Dashboard
+      dockerfile: Dockerfile
+    container_name: orion-dashboard-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=OrionDashboard;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true
+      - JwtSettings__SecretKey=YourSuperSecretKeyForJWTTokenGeneration123456
+      - JwtSettings__Issuer=OrionSystem
+      - JwtSettings__Audience=OrionClients
+      - Redis__ConnectionString=redis:6379
+    ports:
+      - "5001:80"
+    depends_on:
+      - sqlserver
+      - redis
+    networks:
+      - orion-network
+
+  # User Management API
+  usermanagement-api:
+    build:
+      context: ./Orion.UserManagement
+      dockerfile: Dockerfile
+    container_name: orion-usermanagement-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=OrionUserManagement;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true
+      - JwtSettings__SecretKey=YourSuperSecretKeyForJWTTokenGeneration123456
+      - JwtSettings__Issuer=OrionSystem
+      - JwtSettings__Audience=OrionClients
+    ports:
+      - "5002:80"
+    depends_on:
+      - sqlserver
+    networks:
+      - orion-network
+
+  # Profile API
+  profile-api:
+    build:
+      context: ./Orion.Profile
+      dockerfile: Dockerfile
+    container_name: orion-profile-api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=OrionProfile;User Id=sa;Password=YourStrong@Passw0rd;TrustServerCertificate=true
+      - JwtSettings__SecretKey=YourSuperSecretKeyForJWTTokenGeneration123456
+      - JwtSettings__Issuer=OrionSystem
+      - JwtSettings__Audience=OrionClients
+    ports:
+      - "5003:80"
+    depends_on:
+      - sqlserver
+    networks:
+      - orion-network
+
+  # Ocelot API Gateway
+  ocelot-gateway:
+    build:
+      context: ./Orion.OcelotApiGw
+      dockerfile: Dockerfile
+    container_name: orion-ocelot-gateway
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - JwtSettings__SecretKey=YourSuperSecretKeyForJWTTokenGeneration123456
+      - JwtSettings__Issuer=OrionSystem
+      - JwtSettings__Audience=OrionClients
+    ports:
+      - "5000:80"
+    depends_on:
+      - dashboard-api
+      - usermanagement-api
+      - profile-api
+    networks:
+      - orion-network
+
+  # Health Check UI
+  healthcheck-ui:
+    build:
+      context: ./Orion.WebApps.HealthCheckUI
+      dockerfile: Dockerfile
+    container_name: orion-healthcheck-ui
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - HealthChecksUI__HealthChecks__0__Name=Dashboard API
+      - HealthChecksUI__HealthChecks__0__Uri=http://dashboard-api/health
+      - HealthChecksUI__HealthChecks__1__Name=UserManagement API
+      - HealthChecksUI__HealthChecks__1__Uri=http://usermanagement-api/health
+      - HealthChecksUI__HealthChecks__2__Name=Profile API
+      - HealthChecksUI__HealthChecks__2__Uri=http://profile-api/health
+      - HealthChecksUI__HealthChecks__3__Name=Ocelot Gateway
+      - HealthChecksUI__HealthChecks__3__Uri=http://ocelot-gateway/health
+    ports:
+      - "5004:80"
+    depends_on:
+      - dashboard-api
+      - usermanagement-api
+      - profile-api
+      - ocelot-gateway
+    networks:
+      - orion-network
+
+volumes:
+  sqlserver_data:
+
+networks:
+  orion-network:
+    driver: bridge

@@ -1,0 +1,16 @@
+<br />
+<div class="row">
+  <div class="col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <ngb-alert [dismissible]="false" *ngIf="!LocationID">
+      <strong>Assembly Line not Selected..!!</strong>
+    </ngb-alert>
+    <div class="card" *ngIf="LocationID">
+      <div class="card-header">
+        <h3>{{ AssemblyName }}</h3>
+      </div>
+      <jqxGrid #IDAssemblyLineGrid [auto-create]='false'>
+      </jqxGrid>
+    </div>
+  </div>
+</div>
+<br /><br /><br /><br />

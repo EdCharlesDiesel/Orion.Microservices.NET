@@ -1,0 +1,54 @@
+name: .NET Build, Test, and Coverage
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+
+      - name: Restore dependencies
+        run: dotnet restore Orion.API.Microservices.NET.sln
+
+      - name: Build solution
+        run: dotnet build Orion.API.Microservices.NET.sln --no-restore --configuration Release
+
+      - name: Run tests with coverage (per test project)
+        run: |
+          mkdir -p TestResults
+          for proj in $(find . -type f -name '*.csproj' -path '*Tests*'); do
+            echo "Testing $proj"
+            name=$(basename $proj .csproj)
+            dotnet test "$proj" \
+              --no-build \
+              --configuration Release \
+              /p:CollectCoverage=true \
+              /p:CoverletOutputFormat=cobertura \
+              /p:CoverletOutput=TestResults/$name/
+          done
+
+      - name: Install ReportGenerator
+        run: dotnet tool install -g dotnet-reportgenerator-globaltool
+
+      - name: Add .NET tools to PATH
+        run: echo "${HOME}/.dotnet/tools" >> $GITHUB_PATH
+
+
+
+      - name: Upload coverage report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage-report

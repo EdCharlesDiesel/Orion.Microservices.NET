@@ -1,0 +1,12 @@
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\bin\Release\net9.0\Orion.EventBus.Messages.deps.json
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\bin\Release\net9.0\Orion.EventBus.Messages.dll
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\bin\Release\net9.0\Orion.EventBus.Messages.pdb
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Release\net9.0\Orion.EventBus.Messages.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Release\net9.0\Orion.EventBus.Messages.AssemblyInfoInputs.cache
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Release\net9.0\Orion.EventBus.Messages.AssemblyInfo.cs
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Release\net9.0\Orion.EventBus.Messages.csproj.CoreCompileInputs.cache
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Release\net9.0\Orion.EventBus.Messages.sourcelink.json
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Release\net9.0\Orion.EventBus.Messages.dll
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Release\net9.0\refint\Orion.EventBus.Messages.dll
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Release\net9.0\Orion.EventBus.Messages.pdb
+C:\x\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Release\net9.0\ref\Orion.EventBus.Messages.dll
