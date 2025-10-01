@@ -7,6 +7,7 @@ using Microsoft.Extensions.Caching.Distributed;
 using Orion.API.Dashboard;
 using Orion.API.Dashboard.Models;
 using Orion.DataAccess.Postgres.Services;
+using Orion.DataAccess.Postgres.Tools;
 using ServiceCollectionExtensions = Orion.DataAccess.Postgres.Services.ServiceCollectionExtensions;
 
 var builder = WebApplication.CreateBuilder(args);

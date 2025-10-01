@@ -1,3 +1,4 @@
+using Orion.DataAccess.Postgres.Services;
 using Orion.DataAccess.Postgres.Tools;
 
 namespace Orion.DataAccess.Postgres.Aggregates

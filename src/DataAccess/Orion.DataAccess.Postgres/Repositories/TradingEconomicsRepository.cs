@@ -1,6 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text;
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.TradingEconomics;
 
 namespace Orion.DataAccess.Postgres.Repositories;
 public class TradingEconomicsService

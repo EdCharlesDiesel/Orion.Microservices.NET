@@ -394,42 +394,42 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                             AddressTypeId = 1,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Billing",
-                            Rowguid = new Guid("8bbc151b-91a9-4a1d-85db-f3acea447212")
+                            Rowguid = new Guid("343bd53e-1672-4cee-8f60-f8bf6abd9795")
                         },
                         new
                         {
                             AddressTypeId = 2,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Home",
-                            Rowguid = new Guid("7f4253a9-d592-45b6-bcfb-c8d9e2c32efa")
+                            Rowguid = new Guid("cde665cc-f315-42ae-aaaa-81c1e0212eed")
                         },
                         new
                         {
                             AddressTypeId = 3,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Main Office",
-                            Rowguid = new Guid("55887fc7-7e01-4d4f-9925-17da232bc76f")
+                            Rowguid = new Guid("400d97ac-2a0d-476b-b30b-c09ec652aeec")
                         },
                         new
                         {
                             AddressTypeId = 4,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Primary",
-                            Rowguid = new Guid("ad8d4585-03ae-4181-b6a7-590fd1e25fe6")
+                            Rowguid = new Guid("86ed0d82-2c97-4de4-a55f-c0b9191a8b29")
                         },
                         new
                         {
                             AddressTypeId = 5,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Shipping",
-                            Rowguid = new Guid("0067d018-8098-488e-814c-6ec3ec3957a6")
+                            Rowguid = new Guid("c1630112-8124-496c-a86b-ff7ec3bc6e55")
                         },
                         new
                         {
                             AddressTypeId = 6,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Archive",
-                            Rowguid = new Guid("d5207496-eea9-4c2a-a356-da5f7c8b32e7")
+                            Rowguid = new Guid("3de0b1a7-3316-4fb9-838e-f77b82588aa0")
                         });
                 });
 
@@ -553,7 +553,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         {
                             BusinessEntityID = 1,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Rowguid = new Guid("b208f49e-e0a6-420a-b969-139390ed6492")
+                            Rowguid = new Guid("515372af-b2c7-4d64-a738-0e9faadc0fdd")
                         });
                 });
 
@@ -1807,9 +1807,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.Property<DateTime>("HireDate")
                         .HasColumnType("date")
                         .HasColumnName("HireDate");
-
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uuid");
 
                     b.Property<int>("JobLevel")
                         .HasColumnType("integer");

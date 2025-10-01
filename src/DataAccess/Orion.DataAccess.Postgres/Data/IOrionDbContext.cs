@@ -2,7 +2,8 @@
 
 using Microsoft.EntityFrameworkCore;
 using Orion.DataAccess.Postgres.Entities;
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.Shared;
+using Orion.DataAccess.Postgres.Entities.TradingEconomics;
 using Orion.DataAccess.Postgres.Tools;
 
 namespace Orion.DataAccess.Postgres.Data

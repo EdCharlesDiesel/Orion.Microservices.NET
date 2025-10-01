@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
+    
     [Table("Production.BillOfMaterials")]
     [Description("Items required to make bicycles and bicycle subassemblies. It identifies the heirarchical relationship between a parent product and its components.")]
     public class BillOfMaterials

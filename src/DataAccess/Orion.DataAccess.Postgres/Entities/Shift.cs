@@ -4,7 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("HumanResources.Shift")]
+
+    [Table("HumanResources.Shift", Schema = "HumanResources")]
     [Description("Work shift lookup table.")]
     public class Shift
     {

@@ -1,5 +1,5 @@
 using Orion.API.UserProfileManagement.Models;
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.Shared;
 using LoginRequest = Orion.API.UserProfileManagement.Models.LoginRequest;
 
 namespace Orion.API.UserProfileManagement.Services;

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
+using Orion.DataAccess.Postgres.Entities.Shared;
 using Orion.DataAccess.Postgres.Services;
 using Orion.Domain.DTO;
 
@@ -102,7 +103,7 @@ public class ProfileController : ControllerBase
             var profile = await _profileService.GetUserProfileAsync(userId);
             if (profile == null)
             {
-                profile = new DataAccess.Postgres.Entities.Common.UserProfile { UserId = userId };
+                profile = new UserProfile { UserId = userId };
             }
 
             profile.Phone = request.Phone;
@@ -182,7 +183,7 @@ public class ProfileController : ControllerBase
             var profile = await _profileService.GetUserProfileAsync(userId);
             if (profile == null)
             {
-                profile = new DataAccess.Postgres.Entities.Common.UserProfile { UserId = userId };
+                profile = new UserProfile { UserId = userId };
             }
 
             // Delete old avatar if exists
@@ -241,7 +242,7 @@ public class ProfileController : ControllerBase
 
             if (profile == null)
             {
-                profile = new DataAccess.Postgres.Entities.Common.UserProfile { UserId = userId };
+                profile = new UserProfile { UserId = userId };
             }
 
             profile.NotificationSettings = settings;
@@ -268,7 +269,7 @@ public class ProfileController : ControllerBase
 
             if (profile == null)
             {
-                profile = new DataAccess.Postgres.Entities.Common.UserProfile { UserId = userId };
+                profile = new UserProfile { UserId = userId };
             }
 
             profile.PrivacySettings = settings;

@@ -1,7 +1,7 @@
 using AutoMapper;
 using Orion.API.TradingEconomics.DTO;
 using Orion.DataAccess.Postgres.Entities;
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.TradingEconomics;
 
 namespace Orion.API.TradingEconomics.Mappings;
 

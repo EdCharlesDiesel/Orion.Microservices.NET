@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Orion.API.UserProfileManagement.Models;
 using Orion.DataAccess.Postgres.Data;
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.Shared;
 using Orion.DataAccess.Postgres.Services;
 using LoginRequest = Orion.API.UserProfileManagement.Models.LoginRequest;
 

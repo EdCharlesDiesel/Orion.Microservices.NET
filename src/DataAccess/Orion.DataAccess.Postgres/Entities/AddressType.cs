@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("Person.AddressType")]
+    [Table("Person.AddressType", Schema = "Person")]
     [Description("Types of addresses stored in the Address table. ")]
     public class AddressType(string name)
     {

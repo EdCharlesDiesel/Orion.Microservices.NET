@@ -114,7 +114,7 @@ namespace Orion.DataAccess.Postgres.Entities
         public DateTime? ModifiedDate { get; set; } // datetime
 
         // HumanResources.Employee.BusinessEntityID -> Person.Person.BusinessEntityID (FK_Employee_Person_BusinessEntityID)
-        [ForeignKey("BusinessEntityID")]
+       // [ForeignKey("BusinessEntityID")]
         public Person? Person { get; set; }
         // HumanResources.EmployeeDepartmentHistory.BusinessEntityID -> HumanResources.Employee.BusinessEntityID (FK_EmployeeDepartmentHistory_Employee_BusinessEntityID)
         public IEnumerable<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }
@@ -134,7 +134,7 @@ namespace Orion.DataAccess.Postgres.Entities
         public int SuggestedBonus { get; set; }
         public int Salary { get; set; }
         public bool MinimumRaiseGiven { get; set; }
-        public Guid Id { get; set; }
+        
         public int EntityVersion { get; set; }
     }
 }

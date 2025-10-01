@@ -1,4 +1,4 @@
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.Shared;
 
 namespace Orion.DataAccess.Postgres.Services;
 

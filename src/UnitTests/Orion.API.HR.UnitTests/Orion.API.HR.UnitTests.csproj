@@ -20,6 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\..\ApiGateways\External.PaymentGateway\Orion.External.PaymentGateway.csproj" />
       <ProjectReference Include="..\..\API\Orion.API.HumanResources\Orion.API.HumanResources.csproj" />
       <ProjectReference Include="..\..\DataAccess\Orion.DataAccess.Postgres\Orion.DataAccess.Postgres.csproj" />
     </ItemGroup>

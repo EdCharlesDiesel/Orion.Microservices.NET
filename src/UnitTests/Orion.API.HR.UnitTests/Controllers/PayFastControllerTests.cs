@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Orion.API.HumanResources.Controllers;
+using Orion.External.PaymentGateway.Controllers;
 
 namespace Orion.API.HR.UnitTests.Controllers
 {

@@ -53,9 +53,6 @@ public class AuthController : ControllerBase
             {
                 UserName = request.Email,
                 Email = request.Email,
-                // Name = request.Name,
-                // CreatedAt = DateTime.UtcNow,
-                // IsActive = true,
                 EmailConfirmed = false
             };
 
@@ -80,9 +77,7 @@ public class AuthController : ControllerBase
             var token = await GenerateJwtToken(user);
             var refreshToken = GenerateRefreshToken();
 
-            // Save refresh token
-            // user.RefreshToken = refreshToken;
-            // user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+            // Note: Refresh token storage would require custom IdentityUser extension
             await _userManager.UpdateAsync(user);
 
             _logger.LogInformation("User {Email} registered successfully", request.Email);
@@ -120,9 +115,6 @@ public class AuthController : ControllerBase
             if (user == null)
                 return BadRequest(new { message = "Invalid email or password" });
 
-            // if (!user.IsActive)
-            //     return BadRequest(new { message = "Account has been deactivated" });
-
             var result = await _signInManager.CheckPasswordSignInAsync(user, request.Password, true);
             if (!result.Succeeded)
             {
@@ -135,18 +127,14 @@ public class AuthController : ControllerBase
                 return BadRequest(new { message = "Invalid email or password" });
             }
 
-            // Update login statistics
-            // user.LastLoginAt = DateTime.UtcNow;
-            // user.LoginCount++;
+            // Update user (for any future tracking needs)
             await _userManager.UpdateAsync(user);
 
             // Generate tokens
             var token = await GenerateJwtToken(user);
             var refreshToken = GenerateRefreshToken();
 
-            // Save refresh token
-            // user.RefreshToken = refreshToken;
-            // user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+            // Note: Refresh token storage would require custom IdentityUser extension
             await _userManager.UpdateAsync(user);
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -186,8 +174,7 @@ public class AuthController : ControllerBase
                 var user = await _userManager.FindByIdAsync(userId);
                 if (user != null)
                 {
-                    // user.RefreshToken = null;
-                    // user.RefreshTokenExpiryTime = null;
+                    // Note: Refresh token clearing would require custom IdentityUser extension
                     await _userManager.UpdateAsync(user);
                 }
             }
@@ -207,46 +194,7 @@ public class AuthController : ControllerBase
     [HttpPost("refresh")]
     public async Task<ActionResult<AuthResponseDto>> RefreshToken([FromBody] RefreshTokenRequestDto request)
     {
-        throw new NotImplementedException();
-        // try
-        // {
-        //     if (string.IsNullOrEmpty(request.RefreshToken))
-        //         return BadRequest(new { message = "Refresh token is required" });
-
-        // var user = _userManager.Users.FirstOrDefault(u => u.RefreshToken == request.RefreshToken);
-        // if (user == null || user.RefreshTokenExpiryTime <= DateTime.UtcNow)
-        //     return BadRequest(new { message = "Invalid or expired refresh token" });
-
-        // Generate new tokens
-        // var token = await GenerateJwtToken(user);
-        // var refreshToken = GenerateRefreshToken();
-        //
-        // // Update refresh token
-        // // user.RefreshToken = refreshToken;
-        // // user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
-        // await _userManager.UpdateAsync(user);
-        //
-        // var roles = await _userManager.GetRolesAsync(user);
-
-        // return Ok(new AuthResponseDto
-        // {
-        //     User = new Models.UserDto
-        //     {
-        //         Id = user.Id,
-        //         Name = user.UserName,
-        //         Email = user.Email,
-        //         Role = roles.FirstOrDefault() ?? "User",
-        //         EmailConfirmed = user.EmailConfirmed
-        //     },
-        //     Token = token,
-        //     RefreshToken = refreshToken
-        // });
-        // }
-        // catch (Exception ex)
-        // {
-        //     _logger.LogError(ex, "Error during token refresh");
-        //     return StatusCode(500, new { message = "An error occurred during token refresh" });
-        // }
+        return StatusCode(501, new { message = "Refresh token functionality not implemented. Requires custom IdentityUser extension to store refresh tokens." });
     }
 
     [HttpPost("forgot-password")]
@@ -265,7 +213,8 @@ public class AuthController : ControllerBase
             var resetLink = Url.Action(nameof(ResetPassword), "Auth",
                 new { email = user.Email, token }, Request.Scheme);
 
-         //   await _emailService.SendPasswordResetAsync(user.Email, user.Name, resetLink);
+            // Note: Uncomment when email service method is available
+            // await _emailService.SendPasswordResetAsync(user.Email, user.UserName, resetLink);
 
             _logger.LogInformation("Password reset email sent to {Email}", request.Email);
             return Ok(new { message = "Password reset instructions have been sent to your email" });
@@ -295,9 +244,7 @@ public class AuthController : ControllerBase
                 return BadRequest(new { message = string.Join(", ", result.Errors.Select(e => e.Description)) });
             }
 
-            // Clear refresh token
-            // user.RefreshToken = null;
-            // user.RefreshTokenExpiryTime = null;
+            // Note: Refresh token clearing would require custom IdentityUser extension
             await _userManager.UpdateAsync(user);
 
             _logger.LogInformation("Password reset successfully for user {Email}", request.Email);
@@ -370,33 +317,7 @@ public class AuthController : ControllerBase
     [HttpPost("verify-email")]
     public async Task<IActionResult> VerifyEmail([FromBody] VerifyEmailRequestDto request)
     {
-        throw new NotImplementedException();
-        // try
-        // {
-        //     if (!ModelState.IsValid)
-        //         return BadRequest(ModelState);
-
-        // var user = _userManager.Users.FirstOrDefault(u => u.UserName, new IdentityUser()
-        //     // u.EmailConfirmationToken == request.Token &&
-        //     // u.EmailConfirmationTokenExpiry > DateTime.UtcNow
-        //     );
-        //
-        // if (user == null)
-        //     return BadRequest(new { message = "Invalid or expired verification token" });
-        //
-        // user.EmailConfirmed = true;
-        // // user.EmailConfirmationToken = null;
-        // // user.EmailConfirmationTokenExpiry = null;
-        // await _userManager.UpdateAsync(user);
-        //
-        // _logger.LogInformation("Email verified for user {Email}", user.Email);
-        // return Ok(new { message = "Email verified successfully" });
-    // }
-    //     catch (Exception ex)
-    //     {
-    //         _logger.LogError(ex, "Error during email verification");
-    //         return StatusCode(500, new { message = "An error occurred during email verification" });
-    //     }
+        return StatusCode(501, new { message = "Email verification functionality not implemented. Use confirm-email endpoint instead." });
     }
 
     // Private helper methods

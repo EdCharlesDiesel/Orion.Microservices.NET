@@ -3,7 +3,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.SqlServer.Types;
 using Orion.DataAccess.Postgres.Entities;
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.Shared;
+using Orion.DataAccess.Postgres.Entities.TradingEconomics;
 
 namespace Orion.DataAccess.Postgres.Data
 {

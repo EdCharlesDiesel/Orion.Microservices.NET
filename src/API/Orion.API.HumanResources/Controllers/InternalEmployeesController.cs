@@ -1,95 +1,156 @@
-﻿using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Orion.API.HumanResources.Business;
-using Orion.API.HumanResources.MapperProfiles;
-using Orion.API.HumanResources.Models;
-using Orion.DataAccess.Postgres.IRepositories;
-using Orion.Domain.DTO;
+﻿using Microsoft.AspNetCore.Mvc;
+using Orion.DataAccess.Postgres.Entities;
+using Orion.DataAccess.Postgres.Tools;
+using Orion.Domain.Tools;
 
 namespace Orion.API.HumanResources.Controllers
 {
     //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class InternalEmployeesController : ControllerBase
+    public class InternalEmployeesController(IUnitOfWork unitOfWork) : ControllerBase
     {
-        private readonly IEmployeeService _employeeService;
-        private readonly IEmployeeRepository _employee;
-        private readonly IMapper _mapper;
-        
-        public InternalEmployeesController(IEmployeeService employeeService, 
-            IMapper mapper)
-        {
-            _employeeService = employeeService;
-            _mapper = mapper;
-        }
-        
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<OrionCalendarEventDto>>> GetCalendars()
+        public async Task<IActionResult> GetAll()
         {
-            //TODO: Need to fix this the logic has not yet made sense.
-            var employeeID = 1;
-            var calendars = await _employeeService.FetchOrionCalendarEventsAsync(1);
-            
-            // Manual mapping
-            var dtos = calendars.Select(e => new OrionCalendarEventDto
-            {
-                Id = e.Id,
-                FirstName = e.FirstName,
-                LastName = e.LastName,
-                Salary = e.Salary,
-                SuggestedBonus = e.SuggestedBonus,
-                YearsInService = e.YearsInService
-            });
-            
-            return Ok(dtos);
+            var versions = await unitOfWork.ExternalEmployees.GetAllAsync();
+            return Ok(versions);
         }
 
-        
-        [HttpGet("{employeeId}", Name = "GetCalendar")]
-        public async Task<ActionResult<OrionCalendarEventDto>> GetCalendar(
-            int? employeeId)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
         {
-            if (!employeeId.HasValue)
-            { 
-                return NotFound(); 
-            }
-        
-            var Calendar = await _employeeService.FetchOrionCalendarEventAsync(employeeId);
-            if (Calendar == null)
-            { 
-                return NotFound();
-            }             
-        
-            return Ok(_mapper.Map<OrionCalendarEventDto>(Calendar));
+            var version = await unitOfWork.ExternalEmployees.GetByIdAsync(id);
+            if (version == null) return NotFound();
+            return Ok(version);
         }
-        
-        
+
         [HttpPost]
-        public async Task<ActionResult<OrionCalendarEventDto>> CreateCalendar(
-            CalendarForCreationDto CalendarForCreation)
-        { 
-            // create an internal employee entity with default values filled out
-            // and the values inputted via the POST request
-            var Calendar =
-                    await _employeeService.CreateCalendarAsync(
-                        CalendarForCreation.FirstName, CalendarForCreation.LastName,CalendarForCreation.Company,CalendarForCreation.EmployeeNumber);
-        
-            // persist it
-            await _employeeService.CreateOrionCalendarEventAsync(Calendar);
-        
-            // return created employee after mapping to a DTO
-            return CreatedAtAction("GetCalendar",
-                _mapper.Map<OrionCalendarEventDto>(Calendar),
-                new { employeeId = Calendar.Id } );
+        public async Task<IActionResult> Create([FromBody] Employee version)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                await unitOfWork.ExternalEmployees.AddAsync(version);
+                await unitOfWork.CompleteAsync();
+
+                return CreatedAtAction(nameof(GetById), new { id = version.BusinessEntityID }, version);
+            }
+            catch (Exception exception)
+            {
+                try
+                {
+                    var error = new ErrorLog()
+                    {
+                        ErrorTime = DateTimeOffset.UtcNow,
+                        UserName = HttpContext?.User?.Identity?.Name ?? "System",
+                        ErrorMessage = exception.Message,
+                        ErrorNumber = exception.HResult,
+                        ErrorProcedure = exception.TargetSite?.Name,
+                        ErrorLine = StaticTools.TryGetErrorLine(exception)
+                    };
+                    await unitOfWork.SaveErrorsAsync(error);
+                }
+                catch
+                {
+                    /* prevent secondary failure */
+                }
+
+                await unitOfWork.RollbackAsync();
+                return StatusCode(500, "An internal error occurred while processing your request.");
+            }
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] Employee version)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var existing = await unitOfWork.ExternalEmployees.GetByIdAsync(id);
+                if (existing == null)
+                {
+                    return NotFound($"Record with ID {id} not found.");
+                }
+
+                // Map fields (manual or via AutoMapper)
+
+                existing.EmployeeDepartmentHistories = new List<EmployeeDepartmentHistory>();
+                existing.ModifiedDate = version.ModifiedDate;
+
+                unitOfWork.ExternalEmployees.Update(existing);
+                await unitOfWork.CompleteAsync();
+
+                return Ok(existing);
+            }
+            catch (Exception exception)
+            {
+                try
+                {
+                    var error = new ErrorLog()
+                    {
+                        ErrorTime = DateTimeOffset.UtcNow,
+                        UserName = HttpContext?.User?.Identity?.Name ?? "System",
+                        ErrorMessage = exception.Message,
+                        ErrorNumber = exception.HResult,
+                        ErrorProcedure = exception.TargetSite?.Name,
+                        ErrorLine = StaticTools.TryGetErrorLine(exception)
+                    };
+
+                    await unitOfWork.SaveErrorsAsync(error);
+                }
+                catch
+                {
+                }
+
+                await unitOfWork.RollbackAsync();
+                return StatusCode(500, "An internal error occurred while updating the record.");
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                var existing = await unitOfWork.ExternalEmployees.GetByIdAsync(id);
+                if (existing == null)
+                {
+                    return NotFound($"Record with ID {id} not found.");
+                }
+
+                unitOfWork.ExternalEmployees.Delete(existing);
+                await unitOfWork.CompleteAsync();
+
+                return NoContent();
+            }
+            catch (Exception exception)
+            {
+
+                var error = new ErrorLog()
+                {
+                    ErrorLogID = 22,
+                    ErrorTime = DateTimeOffset.UtcNow,
+                    UserName = HttpContext?.User?.Identity?.Name ?? "System",
+                    ErrorMessage = exception.Message,
+                    ErrorNumber = exception.HResult,
+                    ErrorProcedure = exception.TargetSite?.Name,
+                    ErrorLine = StaticTools.TryGetErrorLine(exception)
+                };
+
+                await unitOfWork.SaveErrorsAsync(error);
+                await unitOfWork.RollbackAsync();
+                return StatusCode(500, "An internal error occurred while deleting the record.");
+            }
         }
     }
 
-    public class CalendarForCreationDto
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Company { get; set; }
-        public string EmployeeNumber { get; set; }
-    }
 }

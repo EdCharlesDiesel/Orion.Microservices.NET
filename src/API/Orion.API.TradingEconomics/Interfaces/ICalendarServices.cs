@@ -1,4 +1,4 @@
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.TradingEconomics;
 
 namespace Orion.API.TradingEconomics.Interfaces;
 

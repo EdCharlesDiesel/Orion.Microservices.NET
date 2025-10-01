@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("Person.Address")]
+    [Table("Person.Address", Schema = "Person")]
     [Description("Street address information for customers, employees, and vendors.")]
     public class Address
     {

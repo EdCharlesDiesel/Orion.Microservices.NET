@@ -1,4 +1,5 @@
 using Orion.API.Apps.Controllers;
+using Orion.DataAccess.Postgres.Entities.Shared;
 using Orion.DataAccess.Postgres.Tools;
 
 namespace Orion.Shopping.Aggregator.Models;

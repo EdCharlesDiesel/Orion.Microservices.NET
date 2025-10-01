@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("Production.ScrapReason")]
+    [Table("Production.ScrapReason", Schema = "Production")]
     [Description("Manufacturing failure reasons lookup table.")]
     public class ScrapReason
     {

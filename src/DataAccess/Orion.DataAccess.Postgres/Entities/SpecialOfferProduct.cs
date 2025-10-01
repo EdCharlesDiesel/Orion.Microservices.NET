@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("Sales.SpecialOfferProduct")]
+    [Table("Person.SpecialOfferProduct", Schema = "Person")]
     [Description("Cross-reference table mapping products to special offer discounts.")]
     public class SpecialOfferProduct
     {

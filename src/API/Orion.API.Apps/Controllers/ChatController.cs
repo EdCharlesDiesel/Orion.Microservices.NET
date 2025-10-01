@@ -2,7 +2,7 @@ using Azure.AI.Projects;
 using Azure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.Shared;
 
 namespace Orion.API.Apps.Controllers;
 

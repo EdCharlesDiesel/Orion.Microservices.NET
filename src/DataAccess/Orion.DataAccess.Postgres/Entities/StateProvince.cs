@@ -6,7 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("Person.StateProvince")]
+  
+    [Table("Person.StateProvince", Schema = "Person")]
     [Description("State and province lookup table.")]
     public class StateProvince
     {

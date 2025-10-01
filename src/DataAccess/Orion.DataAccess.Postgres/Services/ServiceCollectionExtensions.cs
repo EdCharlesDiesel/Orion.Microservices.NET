@@ -2,6 +2,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
+using Orion.DataAccess.Postgres.Tools;
 
 namespace Orion.DataAccess.Postgres.Services;
 

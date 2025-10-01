@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Orion.DataAccess.Postgres.Entities;
-using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Entities.TradingEconomics;
 using Orion.WebApps.TradingEconomics.Helper;
 
 namespace Orion.WebApps.TradingEconomics.Controllers;

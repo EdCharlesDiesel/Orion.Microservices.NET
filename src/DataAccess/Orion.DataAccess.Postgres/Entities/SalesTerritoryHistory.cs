@@ -6,7 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("Sales.SalesTerritoryHistory")]
+
+    [Table("Sales.SalesTerritoryHistory", Schema = "Sales")]
     [Description("Sales representative transfers to other sales territories.")]
     public class SalesTerritoryHistory
     {

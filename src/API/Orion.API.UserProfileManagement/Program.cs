@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Orion.API.UserProfileManagement;
 using Orion.API.UserProfileManagement.Services;
 using Orion.DataAccess.Postgres.Data;
-using Orion.DataAccess.Postgres.Entities.Common;
 using Orion.DataAccess.Postgres.Services;
+using Orion.DataAccess.Postgres.Tools;
 
 var builder = WebApplication.CreateBuilder(args);
 
