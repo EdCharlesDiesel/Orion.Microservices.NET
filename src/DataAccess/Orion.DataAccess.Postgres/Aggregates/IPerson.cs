@@ -1,6 +1,4 @@
 ﻿using Orion.DataAccess.Postgres.Services;
-using Orion.DataAccess.Postgres.Tools;
-using Orion.Domain.DTOs;
 
 namespace Orion.DataAccess.Postgres.Aggregates
 {
@@ -12,7 +10,11 @@ namespace Orion.DataAccess.Postgres.Aggregates
 
         string LastName { get; set; }
         
-    }   
+    }
+
+    public interface IPersonFullEditDto
+    {
+    }
 }
 
  

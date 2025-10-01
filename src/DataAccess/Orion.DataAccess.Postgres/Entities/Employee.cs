@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("HumanResources.Employee")]
+    [Table("HumanResources.Employee", Schema = "HumanResources")]
     [Description("Employee information such as salary, department, and title.")]
     public class Employee
     {
@@ -114,7 +114,7 @@ namespace Orion.DataAccess.Postgres.Entities
         public DateTime? ModifiedDate { get; set; } // datetime
 
         // HumanResources.Employee.BusinessEntityID -> Person.Person.BusinessEntityID (FK_Employee_Person_BusinessEntityID)
-       // [ForeignKey("BusinessEntityID")]
+        [ForeignKey("BusinessEntityID")]
         public Person? Person { get; set; }
         // HumanResources.EmployeeDepartmentHistory.BusinessEntityID -> HumanResources.Employee.BusinessEntityID (FK_EmployeeDepartmentHistory_Employee_BusinessEntityID)
         public IEnumerable<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }

@@ -12,6 +12,7 @@
           "Moq": "4.20.69",
           "Orion.API.HumanResources": "1.0.0",
           "Orion.DataAccess.Postgres": "1.0.0",
+          "Orion.External.PaymentGateway": "1.0.0",
           "coverlet.collector": "6.0.2",
           "xunit": "2.9.2",
           "xunit.runner.visualstudio": "2.8.2",
@@ -618,6 +619,19 @@
           }
         }
       },
+      "Microsoft.Extensions.Logging.Debug/9.0.7": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.9",
+          "Microsoft.Extensions.Logging": "9.0.9",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.9"
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.Extensions.Logging.Debug.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "9.0.725.31616"
+          }
+        }
+      },
       "Microsoft.Extensions.Options/9.0.9": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.9",
@@ -749,9 +763,24 @@
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
-      "Microsoft.OpenApi/1.6.25": {
+      "Microsoft.OpenApi/2.2.0": {
+        "dependencies": {
+          "System.Text.Json": "9.0.8"
+        },
         "runtime": {
-          "lib/netstandard2.0/Microsoft.OpenApi.dll": {
+          "lib/net8.0/Microsoft.OpenApi.dll": {
+            "assemblyVersion": "2.2.0.0",
+            "fileVersion": "2.2.0.0"
+          }
+        }
+      },
+      "Microsoft.OpenApi.Readers/1.6.25": {
+        "dependencies": {
+          "Microsoft.OpenApi": "2.2.0",
+          "SharpYaml": "2.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.OpenApi.Readers.dll": {
             "assemblyVersion": "1.6.25.0",
             "fileVersion": "1.6.25.0"
           }
@@ -1353,6 +1382,14 @@
           }
         }
       },
+      "SharpYaml/2.1.1": {
+        "runtime": {
+          "lib/netstandard2.0/SharpYaml.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.1.1.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/9.0.4": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "9.0.0",
@@ -1363,7 +1400,7 @@
       },
       "Swashbuckle.AspNetCore.Swagger/9.0.4": {
         "dependencies": {
-          "Microsoft.OpenApi": "1.6.25"
+          "Microsoft.OpenApi": "2.2.0"
         },
         "runtime": {
           "lib/net9.0/Swashbuckle.AspNetCore.Swagger.dll": {
@@ -1918,6 +1955,26 @@
           }
         }
       },
+      "Orion.External.PaymentGateway/1.0.0": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "9.0.9",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.9",
+          "Microsoft.Extensions.Logging": "9.0.9",
+          "Microsoft.Extensions.Logging.Debug": "9.0.7",
+          "Microsoft.Extensions.Primitives": "9.0.9",
+          "Microsoft.OpenApi": "2.2.0",
+          "Microsoft.OpenApi.Readers": "1.6.25",
+          "Swashbuckle.AspNetCore": "9.0.4",
+          "Swashbuckle.AspNetCore.Swagger": "9.0.4",
+          "Swashbuckle.AspNetCore.SwaggerUI": "9.0.4"
+        },
+        "runtime": {
+          "Orion.External.PaymentGateway.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Orion.Services.TradingEconomics.API/1.0.0": {
         "dependencies": {
           "AutoMapper": "15.0.1",
@@ -2308,6 +2365,13 @@
       "path": "microsoft.extensions.logging.abstractions/9.0.9",
       "hashPath": "microsoft.extensions.logging.abstractions.9.0.9.nupkg.sha512"
     },
+    "Microsoft.Extensions.Logging.Debug/9.0.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MxzZj7XbsYJwfjclVTjJym2/nVIkksu7l7tC/4HYy+YRdDmpE4B+hTzCXu3BNfLNhdLPZsWpyXuYe6UGgWDm3g==",
+      "path": "microsoft.extensions.logging.debug/9.0.7",
+      "hashPath": "microsoft.extensions.logging.debug.9.0.7.nupkg.sha512"
+    },
     "Microsoft.Extensions.Options/9.0.9": {
       "type": "package",
       "serviceable": true,
@@ -2406,12 +2470,19 @@
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
     },
-    "Microsoft.OpenApi/1.6.25": {
+    "Microsoft.OpenApi/2.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZahSqNGtNV7N0JBYS/IYXPkLVexL/AZFxo6pqxv6A7Uli7Q7zfitNjkaqIcsV73Ukzxi4IlJdyDgcQiMXiH8cw==",
-      "path": "microsoft.openapi/1.6.25",
-      "hashPath": "microsoft.openapi.1.6.25.nupkg.sha512"
+      "sha512": "sha512-zLDoSPmxIHtEfvR9WaoN4zEFSR+qVxV9gEQbdLjCUUMYTQJh7YOozSd9R5pXm7NYxTAKyOWqQikm7s+gEXOysw==",
+      "path": "microsoft.openapi/2.2.0",
+      "hashPath": "microsoft.openapi.2.2.0.nupkg.sha512"
+    },
+    "Microsoft.OpenApi.Readers/1.6.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-QsiJrhk+5BiH8/YKdIUWkGdhLpftMhok+urTi0S2i+xTIQhoDLJQ6QMNJQ2/g4oLYftID5v5LNqKUZSIXTjGeg==",
+      "path": "microsoft.openapi.readers/1.6.25",
+      "hashPath": "microsoft.openapi.readers.1.6.25.nupkg.sha512"
     },
     "Microsoft.SqlServer.Server/1.0.0": {
       "type": "package",
@@ -2622,6 +2693,13 @@
       "sha512": "sha512-fKL7mXv7qaiNBUC71ssvn/dU0k9t0o45+qm2XgKAlSt19xF+ijjxyA3R6HmCgfKEKwfcfkwWjayuQtRueZFkYw==",
       "path": "serilog.sinks.file/7.0.0",
       "hashPath": "serilog.sinks.file.7.0.0.nupkg.sha512"
+    },
+    "SharpYaml/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BISoFuW2AwZYXxrZGaBnedo21BvrdgC4kkWd6QYrOdhOGSsZB0RSqcBw09l9caUE1g3sykJoRfSbtSzZS6tYig==",
+      "path": "sharpyaml/2.1.1",
+      "hashPath": "sharpyaml.2.1.1.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/9.0.4": {
       "type": "package",
@@ -3068,6 +3146,11 @@
       "sha512": ""
     },
     "Orion.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Orion.External.PaymentGateway/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

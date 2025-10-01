@@ -18,10 +18,25 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "Person");
 
             migrationBuilder.EnsureSchema(
+                name: "Shared");
+
+            migrationBuilder.EnsureSchema(
                 name: "public");
 
             migrationBuilder.EnsureSchema(
+                name: "TradingEconomics");
+
+            migrationBuilder.EnsureSchema(
                 name: "HumanResources");
+
+            migrationBuilder.EnsureSchema(
+                name: "Production");
+
+            migrationBuilder.EnsureSchema(
+                name: "Purchasing");
+
+            migrationBuilder.EnsureSchema(
+                name: "Sales");
 
             migrationBuilder.CreateTable(
                 name: "AddressType",
@@ -80,6 +95,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Basket",
+                schema: "Shared",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -173,6 +189,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ComtradeCategories",
+                schema: "TradingEconomics",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
@@ -291,7 +308,8 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Features",
+                name: "Feature",
+                schema: "Shared",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -306,11 +324,12 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Features", x => x.Id);
+                    table.PrimaryKey("PK_Feature", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Forecasts",
+                name: "Forecast",
+                schema: "TradingEconomics",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -337,7 +356,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Forecasts", x => x.Id);
+                    table.PrimaryKey("PK_Forecast", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -574,6 +593,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Production.ScrapReason",
+                schema: "Production",
                 columns: table => new
                 {
                     ScrapReasonID = table.Column<short>(type: "smallint", nullable: false)
@@ -588,6 +608,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Production.TransactionHistoryArchive",
+                schema: "Production",
                 columns: table => new
                 {
                     TransactionID = table.Column<int>(type: "int", nullable: false)
@@ -608,6 +629,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Production.UnitMeasure",
+                schema: "Production",
                 columns: table => new
                 {
                     UnitMeasureCode = table.Column<string>(type: "nchar", maxLength: 3, nullable: false),
@@ -621,6 +643,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Purchasing.ShipMethod",
+                schema: "Purchasing",
                 columns: table => new
                 {
                     ShipMethodID = table.Column<int>(type: "int", nullable: false)
@@ -683,6 +706,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Sales.SpecialOffer",
+                schema: "Sales",
                 columns: table => new
                 {
                     SpecialOfferID = table.Column<int>(type: "int", nullable: false)
@@ -734,6 +758,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "TradingEconomicsCalendar",
+                schema: "TradingEconomics",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -924,6 +949,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "BasketItem",
+                schema: "Shared",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
@@ -941,6 +967,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_BasketItem_Basket_BasketId",
                         column: x => x.BasketId,
+                        principalSchema: "Shared",
                         principalTable: "Basket",
                         principalColumn: "Id");
                 });
@@ -1001,6 +1028,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Sales.SalesTerritory",
+                schema: "Sales",
                 columns: table => new
                 {
                     TerritoryID = table.Column<int>(type: "int", nullable: false)
@@ -1027,7 +1055,8 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserProfiles",
+                name: "UserProfile",
+                schema: "Shared",
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "text", nullable: false),
@@ -1060,21 +1089,21 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserProfiles", x => x.Id);
+                    table.PrimaryKey("PK_UserProfile", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserProfiles_AspNetUsers_UserId",
+                        name: "FK_UserProfile_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserProfiles_NotificationSettings_NotificationSettingsId",
+                        name: "FK_UserProfile_NotificationSettings_NotificationSettingsId",
                         column: x => x.NotificationSettingsId,
                         principalTable: "NotificationSettings",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_UserProfiles_PrivacySettings_PrivacySettingsId",
+                        name: "FK_UserProfile_PrivacySettings_PrivacySettingsId",
                         column: x => x.PrivacySettingsId,
                         principalTable: "PrivacySettings",
                         principalColumn: "Id",
@@ -1217,6 +1246,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "HumanResources.Employee",
+                schema: "HumanResources",
                 columns: table => new
                 {
                     BusinessEntityID = table.Column<int>(type: "int", nullable: false),
@@ -1380,6 +1410,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Person.StateProvince",
+                schema: "Person",
                 columns: table => new
                 {
                     StateProvinceID = table.Column<int>(type: "int", nullable: false)
@@ -1403,6 +1434,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Person.StateProvince_Sales.SalesTerritory_TerritoryID",
                         column: x => x.TerritoryID,
+                        principalSchema: "Sales",
                         principalTable: "Sales.SalesTerritory",
                         principalColumn: "TerritoryID",
                         onDelete: ReferentialAction.Cascade);
@@ -1459,12 +1491,14 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Production.Product_Production.UnitMeasure_SizeUnitMeasureCo~",
                         column: x => x.SizeUnitMeasureCode,
+                        principalSchema: "Production",
                         principalTable: "Production.UnitMeasure",
                         principalColumn: "UnitMeasureCode",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Production.Product_Production.UnitMeasure_WeightUnitMeasure~",
                         column: x => x.WeightUnitMeasureCode,
+                        principalSchema: "Production",
                         principalTable: "Production.UnitMeasure",
                         principalColumn: "UnitMeasureCode",
                         onDelete: ReferentialAction.Cascade);
@@ -1491,6 +1525,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Courses_HumanResources.Employee_EmployeeBusinessEntityID",
                         column: x => x.EmployeeBusinessEntityID,
+                        principalSchema: "HumanResources",
                         principalTable: "HumanResources.Employee",
                         principalColumn: "BusinessEntityID");
                 });
@@ -1519,6 +1554,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_HumanResources.EmployeeDepartmentHistory_HumanResources.Emp~",
                         column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
                         principalTable: "HumanResources.Employee",
                         principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
@@ -1547,6 +1583,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_HumanResources.EmployeePayHistory_HumanResources.Employee_B~",
                         column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
                         principalTable: "HumanResources.Employee",
                         principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
@@ -1568,6 +1605,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_HumanResources.JobCandidate_HumanResources.Employee_Busines~",
                         column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
                         principalTable: "HumanResources.Employee",
                         principalColumn: "BusinessEntityID");
                 });
@@ -1596,6 +1634,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Production.Document_HumanResources.Employee_BusinessEntityID",
                         column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
                         principalTable: "HumanResources.Employee",
                         principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
@@ -1627,12 +1666,14 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Purchasing.PurchaseOrderHeader_HumanResources.Employee_Busi~",
                         column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
                         principalTable: "HumanResources.Employee",
                         principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Purchasing.PurchaseOrderHeader_Purchasing.ShipMethod_ShipMe~",
                         column: x => x.ShipMethodID,
+                        principalSchema: "Purchasing",
                         principalTable: "Purchasing.ShipMethod",
                         principalColumn: "ShipMethodID",
                         onDelete: ReferentialAction.Cascade);
@@ -1664,18 +1705,21 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Sales.SalesPerson_HumanResources.Employee_BusinessEntityID",
                         column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
                         principalTable: "HumanResources.Employee",
                         principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sales.SalesPerson_Sales.SalesTerritory_TerritoryID",
                         column: x => x.TerritoryID,
+                        principalSchema: "Sales",
                         principalTable: "Sales.SalesTerritory",
                         principalColumn: "TerritoryID");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Person.Address",
+                schema: "Person",
                 columns: table => new
                 {
                     AddressID = table.Column<int>(type: "int", nullable: false)
@@ -1694,6 +1738,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Person.Address_Person.StateProvince_StateProvinceID",
                         column: x => x.StateProvinceID,
+                        principalSchema: "Person",
                         principalTable: "Person.StateProvince",
                         principalColumn: "StateProvinceID",
                         onDelete: ReferentialAction.Cascade);
@@ -1701,6 +1746,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Sales.SalesTaxRate",
+                schema: "Sales",
                 columns: table => new
                 {
                     SalesTaxRateID = table.Column<int>(type: "int", nullable: false)
@@ -1718,8 +1764,37 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Sales.SalesTaxRate_Person.StateProvince_StateProvinceID",
                         column: x => x.StateProvinceID,
+                        principalSchema: "Person",
                         principalTable: "Person.StateProvince",
                         principalColumn: "StateProvinceID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Person.SpecialOfferProduct",
+                schema: "Person",
+                columns: table => new
+                {
+                    SpecialOfferID = table.Column<int>(type: "int", nullable: false),
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Person.SpecialOfferProduct", x => new { x.SpecialOfferID, x.ProductID });
+                    table.ForeignKey(
+                        name: "FK_Person.SpecialOfferProduct_Production.Product_ProductID",
+                        column: x => x.ProductID,
+                        principalTable: "Production.Product",
+                        principalColumn: "ProductID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Person.SpecialOfferProduct_Sales.SpecialOffer_SpecialOfferID",
+                        column: x => x.SpecialOfferID,
+                        principalSchema: "Sales",
+                        principalTable: "Sales.SpecialOffer",
+                        principalColumn: "SpecialOfferID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -1758,6 +1833,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Production.BillOfMaterials_Production.UnitMeasure_UnitMeasu~",
                         column: x => x.UnitMeasureCode,
+                        principalSchema: "Production",
                         principalTable: "Production.UnitMeasure",
                         principalColumn: "UnitMeasureCode",
                         onDelete: ReferentialAction.Cascade);
@@ -1886,6 +1962,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Production.TransactionHistory",
+                schema: "Production",
                 columns: table => new
                 {
                     TransactionID = table.Column<int>(type: "int", nullable: false)
@@ -1912,6 +1989,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Production.WorkOrder",
+                schema: "Production",
                 columns: table => new
                 {
                     WorkOrderID = table.Column<int>(type: "int", nullable: false)
@@ -1938,6 +2016,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Production.WorkOrder_Production.ScrapReason_ScrapReasonID",
                         column: x => x.ScrapReasonID,
+                        principalSchema: "Production",
                         principalTable: "Production.ScrapReason",
                         principalColumn: "ScrapReasonID");
                 });
@@ -1970,6 +2049,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Purchasing.ProductVendor_Production.UnitMeasure_UnitMeasure~",
                         column: x => x.UnitMeasureCode,
+                        principalSchema: "Production",
                         principalTable: "Production.UnitMeasure",
                         principalColumn: "UnitMeasureCode",
                         onDelete: ReferentialAction.Cascade);
@@ -1983,6 +2063,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Sales.ShoppingCartItem",
+                schema: "Sales",
                 columns: table => new
                 {
                     ShoppingCartItemID = table.Column<int>(type: "int", nullable: false)
@@ -2001,32 +2082,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         column: x => x.ProductID,
                         principalTable: "Production.Product",
                         principalColumn: "ProductID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sales.SpecialOfferProduct",
-                columns: table => new
-                {
-                    SpecialOfferID = table.Column<int>(type: "int", nullable: false),
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sales.SpecialOfferProduct", x => new { x.SpecialOfferID, x.ProductID });
-                    table.ForeignKey(
-                        name: "FK_Sales.SpecialOfferProduct_Production.Product_ProductID",
-                        column: x => x.ProductID,
-                        principalTable: "Production.Product",
-                        principalColumn: "ProductID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Sales.SpecialOfferProduct_Sales.SpecialOffer_SpecialOfferID",
-                        column: x => x.SpecialOfferID,
-                        principalTable: "Sales.SpecialOffer",
-                        principalColumn: "SpecialOfferID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -2113,6 +2168,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Sales.SalesTerritoryHistory",
+                schema: "Sales",
                 columns: table => new
                 {
                     BusinessEntityID = table.Column<int>(type: "int", nullable: false),
@@ -2134,6 +2190,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Sales.SalesTerritoryHistory_Sales.SalesTerritory_TerritoryID",
                         column: x => x.TerritoryID,
+                        principalSchema: "Sales",
                         principalTable: "Sales.SalesTerritory",
                         principalColumn: "TerritoryID",
                         onDelete: ReferentialAction.Cascade);
@@ -2184,12 +2241,14 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_EmployeeAddresses_HumanResources.Employee_EmployeeId",
                         column: x => x.EmployeeId,
+                        principalSchema: "HumanResources",
                         principalTable: "HumanResources.Employee",
                         principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_EmployeeAddresses_Person.Address_AddressId",
                         column: x => x.AddressId,
+                        principalSchema: "Person",
                         principalTable: "Person.Address",
                         principalColumn: "AddressID",
                         onDelete: ReferentialAction.Cascade);
@@ -2225,6 +2284,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Person.BusinessEntityAddress_Person.Address_AddressID",
                         column: x => x.AddressID,
+                        principalSchema: "Person",
                         principalTable: "Person.Address",
                         principalColumn: "AddressID",
                         onDelete: ReferentialAction.Cascade);
@@ -2232,6 +2292,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Production.WorkOrderRouting",
+                schema: "Production",
                 columns: table => new
                 {
                     WorkOrderID = table.Column<int>(type: "int", nullable: false),
@@ -2259,6 +2320,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Production.WorkOrderRouting_Production.WorkOrder_WorkOrderID",
                         column: x => x.WorkOrderID,
+                        principalSchema: "Production",
                         principalTable: "Production.WorkOrder",
                         principalColumn: "WorkOrderID",
                         onDelete: ReferentialAction.Cascade);
@@ -2290,6 +2352,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Sales.Customer_Sales.SalesTerritory_TerritoryID",
                         column: x => x.TerritoryID,
+                        principalSchema: "Sales",
                         principalTable: "Sales.SalesTerritory",
                         principalColumn: "TerritoryID");
                     table.ForeignKey(
@@ -2338,18 +2401,21 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Sales.SalesOrderHeader_Person.Address_BillToAddressID",
                         column: x => x.BillToAddressID,
+                        principalSchema: "Person",
                         principalTable: "Person.Address",
                         principalColumn: "AddressID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sales.SalesOrderHeader_Person.Address_ShipToAddressID",
                         column: x => x.ShipToAddressID,
+                        principalSchema: "Person",
                         principalTable: "Person.Address",
                         principalColumn: "AddressID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Sales.SalesOrderHeader_Purchasing.ShipMethod_ShipMethodID",
                         column: x => x.ShipMethodID,
+                        principalSchema: "Purchasing",
                         principalTable: "Purchasing.ShipMethod",
                         principalColumn: "ShipMethodID",
                         onDelete: ReferentialAction.Cascade);
@@ -2378,6 +2444,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Sales.SalesOrderHeader_Sales.SalesTerritory_TerritoryID",
                         column: x => x.TerritoryID,
+                        principalSchema: "Sales",
                         principalTable: "Sales.SalesTerritory",
                         principalColumn: "TerritoryID");
                 });
@@ -2403,16 +2470,17 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 {
                     table.PrimaryKey("PK_Sales.SalesOrderDetail", x => new { x.SalesOrderID, x.SalesOrderDetailID });
                     table.ForeignKey(
+                        name: "FK_Sales.SalesOrderDetail_Person.SpecialOfferProduct_SpecialOf~",
+                        columns: x => new { x.SpecialOfferID, x.ProductID },
+                        principalSchema: "Person",
+                        principalTable: "Person.SpecialOfferProduct",
+                        principalColumns: new[] { "SpecialOfferID", "ProductID" },
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Sales.SalesOrderDetail_Sales.SalesOrderHeader_SalesOrderID",
                         column: x => x.SalesOrderID,
                         principalTable: "Sales.SalesOrderHeader",
                         principalColumn: "SalesOrderID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Sales.SalesOrderDetail_Sales.SpecialOfferProduct_SpecialOff~",
-                        columns: x => new { x.SpecialOfferID, x.ProductID },
-                        principalTable: "Sales.SpecialOfferProduct",
-                        principalColumns: new[] { "SpecialOfferID", "ProductID" },
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -2447,19 +2515,19 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 columns: new[] { "AddressTypeID", "ModifiedDate", "Name", "rowguid" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Billing", new Guid("343bd53e-1672-4cee-8f60-f8bf6abd9795") },
-                    { 2, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Home", new Guid("cde665cc-f315-42ae-aaaa-81c1e0212eed") },
-                    { 3, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Main Office", new Guid("400d97ac-2a0d-476b-b30b-c09ec652aeec") },
-                    { 4, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Primary", new Guid("86ed0d82-2c97-4de4-a55f-c0b9191a8b29") },
-                    { 5, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Shipping", new Guid("c1630112-8124-496c-a86b-ff7ec3bc6e55") },
-                    { 6, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Archive", new Guid("3de0b1a7-3316-4fb9-838e-f77b82588aa0") }
+                    { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Billing", new Guid("50912377-d8d2-4b2e-b3db-235c17b9cfa7") },
+                    { 2, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Home", new Guid("063a4422-dd27-44ee-9377-be9b499fa9cb") },
+                    { 3, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Main Office", new Guid("5a451ec3-25b8-4c2a-b53d-7643db76a83c") },
+                    { 4, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Primary", new Guid("1345f4e7-c98e-4b92-bfe3-ef1f68619c19") },
+                    { 5, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Shipping", new Guid("e1b8d5e7-e4ca-4d6a-aeff-655f115f9e40") },
+                    { 6, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Archive", new Guid("01f67ced-59c8-4b94-b1a5-d71bf8697b5b") }
                 });
 
             migrationBuilder.InsertData(
                 schema: "Person",
                 table: "BusinessEntity",
                 columns: new[] { "BusinessEntityID", "ModifiedDate", "rowguid" },
-                values: new object[] { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new Guid("515372af-b2c7-4d64-a738-0e9faadc0fdd") });
+                values: new object[] { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new Guid("827392fa-9d0d-428f-ac19-a2fec696d8a3") });
 
             migrationBuilder.InsertData(
                 schema: "HumanResources",
@@ -2535,6 +2603,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_BasketItem_BasketId",
+                schema: "Shared",
                 table: "BasketItem",
                 column: "BasketId");
 
@@ -2575,6 +2644,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Person.Address_StateProvinceID",
+                schema: "Person",
                 table: "Person.Address",
                 column: "StateProvinceID");
 
@@ -2599,12 +2669,20 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 column: "PhoneNumberTypeID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Person.SpecialOfferProduct_ProductID",
+                schema: "Person",
+                table: "Person.SpecialOfferProduct",
+                column: "ProductID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Person.StateProvince_CountryRegionCode",
+                schema: "Person",
                 table: "Person.StateProvince",
                 column: "CountryRegionCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Person.StateProvince_TerritoryID",
+                schema: "Person",
                 table: "Person.StateProvince",
                 column: "TerritoryID");
 
@@ -2690,21 +2768,25 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Production.TransactionHistory_ProductID",
+                schema: "Production",
                 table: "Production.TransactionHistory",
                 column: "ProductID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Production.WorkOrder_ProductID",
+                schema: "Production",
                 table: "Production.WorkOrder",
                 column: "ProductID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Production.WorkOrder_ScrapReasonID",
+                schema: "Production",
                 table: "Production.WorkOrder",
                 column: "ScrapReasonID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Production.WorkOrderRouting_LocationID",
+                schema: "Production",
                 table: "Production.WorkOrderRouting",
                 column: "LocationID");
 
@@ -2825,42 +2907,44 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sales.SalesTaxRate_StateProvinceID",
+                schema: "Sales",
                 table: "Sales.SalesTaxRate",
                 column: "StateProvinceID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sales.SalesTerritory_CountryRegionCode",
+                schema: "Sales",
                 table: "Sales.SalesTerritory",
                 column: "CountryRegionCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sales.SalesTerritoryHistory_TerritoryID",
+                schema: "Sales",
                 table: "Sales.SalesTerritoryHistory",
                 column: "TerritoryID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Sales.ShoppingCartItem_ProductID",
+                schema: "Sales",
                 table: "Sales.ShoppingCartItem",
                 column: "ProductID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Sales.SpecialOfferProduct_ProductID",
-                table: "Sales.SpecialOfferProduct",
-                column: "ProductID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_UserProfiles_NotificationSettingsId",
-                table: "UserProfiles",
+                name: "IX_UserProfile_NotificationSettingsId",
+                schema: "Shared",
+                table: "UserProfile",
                 column: "NotificationSettingsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProfiles_PrivacySettingsId",
-                table: "UserProfiles",
+                name: "IX_UserProfile_PrivacySettingsId",
+                schema: "Shared",
+                table: "UserProfile",
                 column: "PrivacySettingsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserProfiles_UserId",
-                table: "UserProfiles",
+                name: "IX_UserProfile_UserId",
+                schema: "Shared",
+                table: "UserProfile",
                 column: "UserId");
         }
 
@@ -2883,7 +2967,8 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "BasketItem");
+                name: "BasketItem",
+                schema: "Shared");
 
             migrationBuilder.DropTable(
                 name: "BuildVersion",
@@ -2896,7 +2981,8 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "CompetitionMatches");
 
             migrationBuilder.DropTable(
-                name: "ComtradeCategories");
+                name: "ComtradeCategories",
+                schema: "TradingEconomics");
 
             migrationBuilder.DropTable(
                 name: "ContactCreditCards");
@@ -2923,10 +3009,12 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "ErrorLog");
 
             migrationBuilder.DropTable(
-                name: "Features");
+                name: "Feature",
+                schema: "Shared");
 
             migrationBuilder.DropTable(
-                name: "Forecasts");
+                name: "Forecast",
+                schema: "TradingEconomics");
 
             migrationBuilder.DropTable(
                 name: "HumanResources.EmployeeDepartmentHistory");
@@ -2989,13 +3077,16 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "Production.ProductReview");
 
             migrationBuilder.DropTable(
-                name: "Production.TransactionHistory");
+                name: "Production.TransactionHistory",
+                schema: "Production");
 
             migrationBuilder.DropTable(
-                name: "Production.TransactionHistoryArchive");
+                name: "Production.TransactionHistoryArchive",
+                schema: "Production");
 
             migrationBuilder.DropTable(
-                name: "Production.WorkOrderRouting");
+                name: "Production.WorkOrderRouting",
+                schema: "Production");
 
             migrationBuilder.DropTable(
                 name: "Purchasing.ProductVendor");
@@ -3022,22 +3113,27 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "Sales.SalesPersonQuotaHistory");
 
             migrationBuilder.DropTable(
-                name: "Sales.SalesTaxRate");
+                name: "Sales.SalesTaxRate",
+                schema: "Sales");
 
             migrationBuilder.DropTable(
-                name: "Sales.SalesTerritoryHistory");
+                name: "Sales.SalesTerritoryHistory",
+                schema: "Sales");
 
             migrationBuilder.DropTable(
-                name: "Sales.ShoppingCartItem");
+                name: "Sales.ShoppingCartItem",
+                schema: "Sales");
 
             migrationBuilder.DropTable(
                 name: "StoreContacts");
 
             migrationBuilder.DropTable(
-                name: "TradingEconomicsCalendar");
+                name: "TradingEconomicsCalendar",
+                schema: "TradingEconomics");
 
             migrationBuilder.DropTable(
-                name: "UserProfiles");
+                name: "UserProfile",
+                schema: "Shared");
 
             migrationBuilder.DropTable(
                 name: "VendorAddresses");
@@ -3049,7 +3145,8 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Basket");
+                name: "Basket",
+                schema: "Shared");
 
             migrationBuilder.DropTable(
                 name: "Department",
@@ -3088,13 +3185,15 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "Production.Location");
 
             migrationBuilder.DropTable(
-                name: "Production.WorkOrder");
+                name: "Production.WorkOrder",
+                schema: "Production");
 
             migrationBuilder.DropTable(
                 name: "Purchasing.PurchaseOrderHeader");
 
             migrationBuilder.DropTable(
-                name: "Sales.SpecialOfferProduct");
+                name: "Person.SpecialOfferProduct",
+                schema: "Person");
 
             migrationBuilder.DropTable(
                 name: "Sales.SalesOrderHeader");
@@ -3112,7 +3211,8 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "PrivacySettings");
 
             migrationBuilder.DropTable(
-                name: "Production.ScrapReason");
+                name: "Production.ScrapReason",
+                schema: "Production");
 
             migrationBuilder.DropTable(
                 name: "Vendor");
@@ -3121,13 +3221,16 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "Production.Product");
 
             migrationBuilder.DropTable(
-                name: "Sales.SpecialOffer");
+                name: "Sales.SpecialOffer",
+                schema: "Sales");
 
             migrationBuilder.DropTable(
-                name: "Person.Address");
+                name: "Person.Address",
+                schema: "Person");
 
             migrationBuilder.DropTable(
-                name: "Purchasing.ShipMethod");
+                name: "Purchasing.ShipMethod",
+                schema: "Purchasing");
 
             migrationBuilder.DropTable(
                 name: "Sales.CreditCard");
@@ -3148,10 +3251,12 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "Production.ProductSubcategory");
 
             migrationBuilder.DropTable(
-                name: "Production.UnitMeasure");
+                name: "Production.UnitMeasure",
+                schema: "Production");
 
             migrationBuilder.DropTable(
-                name: "Person.StateProvince");
+                name: "Person.StateProvince",
+                schema: "Person");
 
             migrationBuilder.DropTable(
                 name: "Sales.Currency");
@@ -3166,10 +3271,12 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "Sales.SalesPerson");
 
             migrationBuilder.DropTable(
-                name: "HumanResources.Employee");
+                name: "HumanResources.Employee",
+                schema: "HumanResources");
 
             migrationBuilder.DropTable(
-                name: "Sales.SalesTerritory");
+                name: "Sales.SalesTerritory",
+                schema: "Sales");
 
             migrationBuilder.DropTable(
                 name: "Person");
