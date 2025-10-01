@@ -491,3 +491,12 @@ C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\obj\
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\obj\Debug\net9.0\Orion.AP.D35A5D21.Up2Date
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\obj\Debug\net9.0\Orion.API.HR.UnitTests.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\obj\Debug\net9.0\ref\Orion.API.HR.UnitTests.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Orion.External.PaymentGateway.deps.json
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Orion.External.PaymentGateway.runtimeconfig.json
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Orion.External.PaymentGateway.staticwebassets.endpoints.json
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Orion.External.PaymentGateway.exe
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Microsoft.Extensions.Logging.Debug.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Microsoft.OpenApi.Readers.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\SharpYaml.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Orion.External.PaymentGateway.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Orion.External.PaymentGateway.pdb

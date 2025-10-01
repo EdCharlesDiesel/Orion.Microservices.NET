@@ -12,7 +12,7 @@ using Orion.DataAccess.Postgres.Data;
 namespace Orion.DataAccess.Postgres.Data.Migrations
 {
     [DbContext(typeof(OrionDbContext))]
-    [Migration("20251001081058_Initial")]
+    [Migration("20251001231354_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -273,6 +273,19 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.ToTable("Individuals");
                 });
 
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Data.OrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("Orion.DataAccess.Postgres.Data.StoreContact", b =>
                 {
                     b.Property<int>("Id")
@@ -361,7 +374,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("StateProvinceID");
 
-                    b.ToTable("Person.Address");
+                    b.ToTable("Person.Address", "Person");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.AddressType", b =>
@@ -397,42 +410,42 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                             AddressTypeId = 1,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Billing",
-                            Rowguid = new Guid("343bd53e-1672-4cee-8f60-f8bf6abd9795")
+                            Rowguid = new Guid("50912377-d8d2-4b2e-b3db-235c17b9cfa7")
                         },
                         new
                         {
                             AddressTypeId = 2,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Home",
-                            Rowguid = new Guid("cde665cc-f315-42ae-aaaa-81c1e0212eed")
+                            Rowguid = new Guid("063a4422-dd27-44ee-9377-be9b499fa9cb")
                         },
                         new
                         {
                             AddressTypeId = 3,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Main Office",
-                            Rowguid = new Guid("400d97ac-2a0d-476b-b30b-c09ec652aeec")
+                            Rowguid = new Guid("5a451ec3-25b8-4c2a-b53d-7643db76a83c")
                         },
                         new
                         {
                             AddressTypeId = 4,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Primary",
-                            Rowguid = new Guid("86ed0d82-2c97-4de4-a55f-c0b9191a8b29")
+                            Rowguid = new Guid("1345f4e7-c98e-4b92-bfe3-ef1f68619c19")
                         },
                         new
                         {
                             AddressTypeId = 5,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Shipping",
-                            Rowguid = new Guid("c1630112-8124-496c-a86b-ff7ec3bc6e55")
+                            Rowguid = new Guid("e1b8d5e7-e4ca-4d6a-aeff-655f115f9e40")
                         },
                         new
                         {
                             AddressTypeId = 6,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Archive",
-                            Rowguid = new Guid("3de0b1a7-3316-4fb9-838e-f77b82588aa0")
+                            Rowguid = new Guid("01f67ced-59c8-4b94-b1a5-d71bf8697b5b")
                         });
                 });
 
@@ -556,7 +569,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         {
                             BusinessEntityID = 1,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Rowguid = new Guid("515372af-b2c7-4d64-a738-0e9faadc0fdd")
+                            Rowguid = new Guid("827392fa-9d0d-428f-ac19-a2fec696d8a3")
                         });
                 });
 
@@ -624,579 +637,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.HasIndex("ContactTypeID");
 
                     b.ToTable("Person.BusinessEntityContact");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.Basket", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Currency")
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsCheckedOut")
-                        .HasColumnType("boolean");
-
-                    b.Property<decimal?>("TotalPrice")
-                        .HasColumnType("numeric");
-
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Basket");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.BasketItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("BasketId")
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("ProductName")
-                        .HasColumnType("text");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("UnitPrice")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BasketId");
-
-                    b.ToTable("BasketItem");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("character varying(30)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<byte[]>("Picture")
-                        .IsRequired()
-                        .HasColumnType("bytea");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.ChatRequest", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("LastUpdate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("ReferenceDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ChatRequests");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.CompetitionMatch", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("LeagueCode")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("PlayerTwo")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CompetitionMatches");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.ComtradeCategories", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("ParentId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("PrettyName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ComtradeCategories");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.Coupon", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("Amount")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Coupons");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.EmployeeAddress", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("ModifiedDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("Rowguid")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AddressId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.ToTable("EmployeeAddresses");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.Feature", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("FeatureName")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("IsEnabled")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Features");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.Forecast", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("ForecastLastUpdate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<double?>("ForecastValue1")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("ForecastValue1Q")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("ForecastValue2")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("ForecastValue2Q")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("ForecastValue3")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("ForecastValue3Q")
-                        .HasColumnType("double precision");
-
-                    b.Property<double?>("ForecastValue4Q")
-                        .HasColumnType("double precision");
-
-                    b.Property<string>("Frequency")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("HistoricalDataSymbol")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<double?>("LatestValue")
-                        .HasColumnType("double precision");
-
-                    b.Property<DateTime?>("LatestValueDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("Q1Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("Q2Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("Q3Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("Q4Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Forecasts");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.OrderDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.RefreshToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("ExpiryDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<bool>("IsRevoked")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("RefreshTokens");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.TradingEconomicsCalendar", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Actual")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("CalendarId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreateDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("Date")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("DateSpan")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("DeleteDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Event")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Forecast")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Importance")
-                        .HasColumnType("integer");
-
-                    b.Property<DateTime?>("LastUpdate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Previous")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Reference")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("ReferenceDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Revised")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Source")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("SourceUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Symbol")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("TeForecast")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Ticker")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TradingEconomicsCalendar");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.UserProfile", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("text");
-
-                    b.Property<string>("AvatarUrl")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Bio")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Company")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("IsLoggedIn")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Language")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime?>("LastLoginAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("text");
-
-                    b.Property<int>("LoginCount")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Nickname")
-                        .HasColumnType("text");
-
-                    b.Property<int>("NotificationSettingsId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Position")
-                        .HasColumnType("text");
-
-                    b.Property<int>("PrivacySettingsId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Role")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Subscription")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Timezone")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserTypeId")
-                        .HasColumnType("text");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("Website")
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NotificationSettingsId");
-
-                    b.HasIndex("PrivacySettingsId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("UserProfiles");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.ContactType", b =>
@@ -1873,7 +1313,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasKey("BusinessEntityID");
 
-                    b.ToTable("HumanResources.Employee");
+                    b.ToTable("HumanResources.Employee", "HumanResources");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.EmployeeDepartmentHistory", b =>
@@ -3442,7 +2882,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("StateProvinceID");
 
-                    b.ToTable("Sales.SalesTaxRate");
+                    b.ToTable("Sales.SalesTaxRate", "Sales");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.SalesTerritory", b =>
@@ -3500,7 +2940,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("CountryRegionCode");
 
-                    b.ToTable("Sales.SalesTerritory");
+                    b.ToTable("Sales.SalesTerritory", "Sales");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.SalesTerritoryHistory", b =>
@@ -3536,7 +2976,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("TerritoryID");
 
-                    b.ToTable("Sales.SalesTerritoryHistory");
+                    b.ToTable("Sales.SalesTerritoryHistory", "Sales");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.ScrapReason", b =>
@@ -3560,7 +3000,361 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasKey("ScrapReasonID");
 
-                    b.ToTable("Production.ScrapReason");
+                    b.ToTable("Production.ScrapReason", "Production");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.Basket", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsCheckedOut")
+                        .HasColumnType("boolean");
+
+                    b.Property<decimal?>("TotalPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Basket", "Shared");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.BasketItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("BasketId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ProductName")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("UnitPrice")
+                        .HasColumnType("numeric");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BasketId");
+
+                    b.ToTable("BasketItem", "Shared");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("character varying(30)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<byte[]>("Picture")
+                        .IsRequired()
+                        .HasColumnType("bytea");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.ChatRequest", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("LastUpdate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("ReferenceDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ChatRequests");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.CompetitionMatch", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("LeagueCode")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("PlayerTwo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CompetitionMatches");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.Coupon", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ProductName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Coupons");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.EmployeeAddress", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("AddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("EmployeeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ModifiedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("Rowguid")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("EmployeeAddresses");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.Feature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FeatureName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Feature", "Shared");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.RefreshToken", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiryDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("IsRevoked")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Token")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("RefreshTokens");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.UserProfile", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AvatarUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Bio")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Company")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("IsLoggedIn")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Language")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("LastLoginAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("text");
+
+                    b.Property<int>("LoginCount")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Nickname")
+                        .HasColumnType("text");
+
+                    b.Property<int>("NotificationSettingsId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PrivacySettingsId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Role")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Subscription")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Timezone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserTypeId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Website")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NotificationSettingsId");
+
+                    b.HasIndex("PrivacySettingsId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserProfile", "Shared");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shift", b =>
@@ -3654,7 +3448,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasKey("ShipMethodID");
 
-                    b.ToTable("Purchasing.ShipMethod");
+                    b.ToTable("Purchasing.ShipMethod", "Purchasing");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.ShoppingCartItem", b =>
@@ -3692,7 +3486,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("Sales.ShoppingCartItem");
+                    b.ToTable("Sales.ShoppingCartItem", "Sales");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.SpecialOffer", b =>
@@ -3752,7 +3546,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasKey("SpecialOfferID");
 
-                    b.ToTable("Sales.SpecialOffer");
+                    b.ToTable("Sales.SpecialOffer", "Sales");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.SpecialOfferProduct", b =>
@@ -3779,7 +3573,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("Sales.SpecialOfferProduct");
+                    b.ToTable("Person.SpecialOfferProduct", "Person");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.StateProvince", b =>
@@ -3827,7 +3621,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("TerritoryID");
 
-                    b.ToTable("Person.StateProvince");
+                    b.ToTable("Person.StateProvince", "Person");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Store", b =>
@@ -3862,6 +3656,212 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.HasKey("BusinessEntityID");
 
                     b.ToTable("Store", (string)null);
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.TradingEconomics.ComtradeCategories", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ParentId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PrettyName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ComtradeCategories", "TradingEconomics");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.TradingEconomics.Forecast", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("ForecastLastUpdate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<double?>("ForecastValue1")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("ForecastValue1Q")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("ForecastValue2")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("ForecastValue2Q")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("ForecastValue3")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("ForecastValue3Q")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("ForecastValue4Q")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Frequency")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("HistoricalDataSymbol")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double?>("LatestValue")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime?>("LatestValueDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Q1Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Q2Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Q3Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("Q4Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Forecast", "TradingEconomics");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.TradingEconomics.TradingEconomicsCalendar", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Actual")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("CalendarId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Currency")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("Date")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("DateSpan")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("DeleteDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Event")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Forecast")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Importance")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("LastUpdate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Previous")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Reference")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("ReferenceDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Revised")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Source")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("SourceUrl")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Symbol")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("TeForecast")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Ticker")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Unit")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TradingEconomicsCalendar", "TradingEconomics");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.TransactionHistory", b =>
@@ -3911,7 +3911,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("ProductID");
 
-                    b.ToTable("Production.TransactionHistory");
+                    b.ToTable("Production.TransactionHistory", "Production");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.TransactionHistoryArchive", b =>
@@ -3959,7 +3959,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasKey("TransactionID");
 
-                    b.ToTable("Production.TransactionHistoryArchive");
+                    b.ToTable("Production.TransactionHistoryArchive", "Production");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.UnitMeasure", b =>
@@ -3981,7 +3981,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasKey("UnitMeasureCode");
 
-                    b.ToTable("Production.UnitMeasure");
+                    b.ToTable("Production.UnitMeasure", "Production");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Vendor", b =>
@@ -4073,7 +4073,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("ScrapReasonID");
 
-                    b.ToTable("Production.WorkOrder");
+                    b.ToTable("Production.WorkOrder", "Production");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.WorkOrderRouting", b =>
@@ -4133,7 +4133,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("LocationID");
 
-                    b.ToTable("Production.WorkOrderRouting");
+                    b.ToTable("Production.WorkOrderRouting", "Production");
                 });
 
             modelBuilder.Entity("Orion.Domain.DTO.NotificationSettings", b =>
@@ -4324,70 +4324,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.Navigation("ContactType");
 
                     b.Navigation("Person");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.BasketItem", b =>
-                {
-                    b.HasOne("Orion.DataAccess.Postgres.Entities.Common.Basket", null)
-                        .WithMany("Items")
-                        .HasForeignKey("BasketId");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.EmployeeAddress", b =>
-                {
-                    b.HasOne("Orion.DataAccess.Postgres.Entities.Address", "Address")
-                        .WithMany()
-                        .HasForeignKey("AddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Orion.DataAccess.Postgres.Entities.Employee", "Employee")
-                        .WithMany()
-                        .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Address");
-
-                    b.Navigation("Employee");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.RefreshToken", b =>
-                {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.UserProfile", b =>
-                {
-                    b.HasOne("Orion.Domain.DTO.NotificationSettings", "NotificationSettings")
-                        .WithMany()
-                        .HasForeignKey("NotificationSettingsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Orion.Domain.DTO.PrivacySettings", "PrivacySettings")
-                        .WithMany()
-                        .HasForeignKey("PrivacySettingsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("NotificationSettings");
-
-                    b.Navigation("PrivacySettings");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.CountryRegionCurrency", b =>
@@ -4602,7 +4538,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Product", b =>
                 {
-                    b.HasOne("Orion.DataAccess.Postgres.Entities.Common.Category", null)
+                    b.HasOne("Orion.DataAccess.Postgres.Entities.Shared.Category", null)
                         .WithMany("Products")
                         .HasForeignKey("CategoryId");
 
@@ -5025,6 +4961,70 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.Navigation("SalesTerritory");
                 });
 
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.BasketItem", b =>
+                {
+                    b.HasOne("Orion.DataAccess.Postgres.Entities.Shared.Basket", null)
+                        .WithMany("Items")
+                        .HasForeignKey("BasketId");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.EmployeeAddress", b =>
+                {
+                    b.HasOne("Orion.DataAccess.Postgres.Entities.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Orion.DataAccess.Postgres.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.RefreshToken", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.UserProfile", b =>
+                {
+                    b.HasOne("Orion.Domain.DTO.NotificationSettings", "NotificationSettings")
+                        .WithMany()
+                        .HasForeignKey("NotificationSettingsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Orion.Domain.DTO.PrivacySettings", "PrivacySettings")
+                        .WithMany()
+                        .HasForeignKey("PrivacySettingsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("NotificationSettings");
+
+                    b.Navigation("PrivacySettings");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.ShoppingCartItem", b =>
                 {
                     b.HasOne("Orion.DataAccess.Postgres.Entities.Product", "Product")
@@ -5170,16 +5170,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.Navigation("BusinessEntityAddress");
 
                     b.Navigation("BusinessEntityContact");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.Basket", b =>
-                {
-                    b.Navigation("Items");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Common.Category", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.ContactType", b =>
@@ -5392,6 +5382,16 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.ScrapReason", b =>
                 {
                     b.Navigation("WorkOrders");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.Basket", b =>
+                {
+                    b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shared.Category", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Shift", b =>

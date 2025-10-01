@@ -1,6 +1,5 @@
 ﻿using Orion.DataAccess.Postgres.Services;
-using Orion.DataAccess.Postgres.Tools;
-using Orion.Domain.DTOs;
+
 
 namespace Orion.DataAccess.Postgres.Aggregates
 {
@@ -13,7 +12,11 @@ namespace Orion.DataAccess.Postgres.Aggregates
         int ToPersonId { get;}     
 
         string RelationshipType { get;}
-    }   
+    }
+
+    public interface IRelationshipFullEditDto
+    {
+    }
 }
 
  

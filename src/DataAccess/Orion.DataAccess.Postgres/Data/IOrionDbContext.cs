@@ -101,6 +101,10 @@ namespace Orion.DataAccess.Postgres.Data
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
     }
 
+    public class OrderDetail: Entity<int>
+    {
+    }
+
     public class ContactCreditCard: Entity<int>
     {
     }
