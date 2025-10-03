@@ -341,3 +341,11 @@ C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\o
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\obj\Debug\net9.0\Orion.API.UserProfileManagement.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\obj\Debug\net9.0\Orion.API.UserProfileManagement.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\obj\Debug\net9.0\ref\Orion.API.UserProfileManagement.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.HealthChecks.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\bin\Debug\net9.0\Microsoft.Extensions.Hosting.Abstractions.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.UserProfileManagement\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
