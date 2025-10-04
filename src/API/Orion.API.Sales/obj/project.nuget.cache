@@ -181,6 +181,15 @@
       "targetGraphs": [
         "net9.0"
       ]
+    },
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.Sales\\Orion.API.Sales.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.Sales\\Orion.API.Sales.csproj",
+      "targetGraphs": []
     }
   ]
 }

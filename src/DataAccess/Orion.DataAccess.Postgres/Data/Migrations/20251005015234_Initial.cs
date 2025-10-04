@@ -288,6 +288,37 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Employee",
+                schema: "HumanResources",
+                columns: table => new
+                {
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    NationalIDNumber = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    LoginID = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    OrganizationLevel = table.Column<short>(type: "smallint", nullable: true),
+                    JobTitle = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    BirthDate = table.Column<DateTime>(type: "date", nullable: false),
+                    MaritalStatus = table.Column<string>(type: "nchar", maxLength: 1, nullable: false),
+                    Gender = table.Column<string>(type: "nchar", maxLength: 1, nullable: false),
+                    HireDate = table.Column<DateTime>(type: "date", nullable: false),
+                    VacationHours = table.Column<short>(type: "smallint", nullable: false),
+                    SickLeaveHours = table.Column<short>(type: "smallint", nullable: false),
+                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    JobLevel = table.Column<int>(type: "integer", nullable: false),
+                    YearsInService = table.Column<int>(type: "integer", nullable: false),
+                    SuggestedBonus = table.Column<int>(type: "integer", nullable: false),
+                    Salary = table.Column<int>(type: "integer", nullable: false),
+                    MinimumRaiseGiven = table.Column<bool>(type: "boolean", nullable: false),
+                    EntityVersion = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employee", x => x.BusinessEntityID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ErrorLog",
                 columns: table => new
                 {
@@ -973,37 +1004,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Person",
-                columns: table => new
-                {
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    PersonType = table.Column<string>(type: "nchar", maxLength: 2, nullable: false),
-                    Title = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
-                    FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    MiddleName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Suffix = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
-                    EmailPromotion = table.Column<int>(type: "int", nullable: false),
-                    AdditionalContactInfo = table.Column<string>(type: "xml", nullable: false),
-                    Demographics = table.Column<string>(type: "xml", nullable: false),
-                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    BusinessEntityID1 = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Person", x => x.BusinessEntityID);
-                    table.ForeignKey(
-                        name: "FK_Person_BusinessEntity_BusinessEntityID1",
-                        column: x => x.BusinessEntityID1,
-                        principalSchema: "Person",
-                        principalTable: "BusinessEntity",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Vendor",
                 columns: table => new
                 {
@@ -1022,6 +1022,145 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         column: x => x.BusinessEntityID,
                         principalSchema: "Person",
                         principalTable: "BusinessEntity",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Courses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
+                    DurationInMinutes = table.Column<int>(type: "integer", nullable: false),
+                    IsMandatory = table.Column<bool>(type: "boolean", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
+                    EmployeeBusinessEntityID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Courses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Courses_Employee_EmployeeBusinessEntityID",
+                        column: x => x.EmployeeBusinessEntityID,
+                        principalSchema: "HumanResources",
+                        principalTable: "Employee",
+                        principalColumn: "BusinessEntityID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "EmployeePayHistory",
+                schema: "HumanResources",
+                columns: table => new
+                {
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
+                    RateChangeDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    Rate = table.Column<decimal>(type: "money", nullable: false),
+                    PayFrequency = table.Column<byte>(type: "smallint", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EmployeePayHistory", x => x.BusinessEntityID);
+                    table.ForeignKey(
+                        name: "FK_EmployeePayHistory_Employee_BusinessEntityID",
+                        column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
+                        principalTable: "Employee",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "JobCandidate",
+                schema: "HumanResources",
+                columns: table => new
+                {
+                    JobCandidateID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: true),
+                    Resume = table.Column<string>(type: "text", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_JobCandidate", x => x.JobCandidateID);
+                    table.ForeignKey(
+                        name: "FK_JobCandidate_Employee_BusinessEntityID",
+                        column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
+                        principalTable: "Employee",
+                        principalColumn: "BusinessEntityID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Person",
+                columns: table => new
+                {
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PersonType = table.Column<string>(type: "nchar", maxLength: 2, nullable: false),
+                    Title = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
+                    FirstName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    MiddleName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Suffix = table.Column<string>(type: "character varying(10)", maxLength: 10, nullable: false),
+                    EmailPromotion = table.Column<int>(type: "int", nullable: false),
+                    AdditionalContactInfo = table.Column<string>(type: "xml", nullable: false),
+                    Demographics = table.Column<string>(type: "xml", nullable: false),
+                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    BusinessEntityID1 = table.Column<int>(type: "int", nullable: false),
+                    EmployeeBusinessEntityID = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Person", x => x.BusinessEntityID);
+                    table.ForeignKey(
+                        name: "FK_Person_BusinessEntity_BusinessEntityID1",
+                        column: x => x.BusinessEntityID1,
+                        principalSchema: "Person",
+                        principalTable: "BusinessEntity",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Person_Employee_EmployeeBusinessEntityID",
+                        column: x => x.EmployeeBusinessEntityID,
+                        principalSchema: "HumanResources",
+                        principalTable: "Employee",
+                        principalColumn: "BusinessEntityID");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Production.Document",
+                columns: table => new
+                {
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
+                    DocumentLevel = table.Column<short>(type: "smallint", nullable: true),
+                    Title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Owner = table.Column<int>(type: "int", nullable: false),
+                    FileName = table.Column<string>(type: "character varying(400)", maxLength: 400, nullable: false),
+                    FileExtension = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
+                    Revision = table.Column<string>(type: "nchar", maxLength: 5, nullable: false),
+                    ChangeNumber = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<byte>(type: "smallint", nullable: false),
+                    DocumentSummary = table.Column<string>(type: "text", nullable: false),
+                    Document = table.Column<byte[]>(type: "bytea", nullable: false),
+                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Production.Document", x => x.BusinessEntityID);
+                    table.ForeignKey(
+                        name: "FK_Production.Document_Employee_BusinessEntityID",
+                        column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
+                        principalTable: "Employee",
                         principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1245,37 +1384,84 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HumanResources.Employee",
+                name: "EmployeeDepartmentHistory",
                 schema: "HumanResources",
                 columns: table => new
                 {
                     BusinessEntityID = table.Column<int>(type: "int", nullable: false),
-                    NationalIDNumber = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
-                    LoginID = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    OrganizationLevel = table.Column<short>(type: "smallint", nullable: true),
-                    JobTitle = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    BirthDate = table.Column<DateTime>(type: "date", nullable: false),
-                    MaritalStatus = table.Column<string>(type: "nchar", maxLength: 1, nullable: false),
-                    Gender = table.Column<string>(type: "nchar", maxLength: 1, nullable: false),
-                    HireDate = table.Column<DateTime>(type: "date", nullable: false),
-                    VacationHours = table.Column<short>(type: "smallint", nullable: false),
-                    SickLeaveHours = table.Column<short>(type: "smallint", nullable: false),
-                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    JobLevel = table.Column<int>(type: "integer", nullable: false),
-                    YearsInService = table.Column<int>(type: "integer", nullable: false),
-                    SuggestedBonus = table.Column<int>(type: "integer", nullable: false),
-                    Salary = table.Column<int>(type: "integer", nullable: false),
-                    MinimumRaiseGiven = table.Column<bool>(type: "boolean", nullable: false),
-                    EntityVersion = table.Column<int>(type: "integer", nullable: false)
+                    StartDate = table.Column<DateTime>(type: "date", nullable: true),
+                    DepartmentID = table.Column<short>(type: "smallint", nullable: false),
+                    ShiftID = table.Column<int>(type: "integer", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "date", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HumanResources.Employee", x => x.BusinessEntityID);
+                    table.PrimaryKey("PK_EmployeeDepartmentHistory", x => x.BusinessEntityID);
                     table.ForeignKey(
-                        name: "FK_HumanResources.Employee_Person_BusinessEntityID",
+                        name: "FK_EmployeeDepartmentHistory_Department_DepartmentID",
+                        column: x => x.DepartmentID,
+                        principalSchema: "HumanResources",
+                        principalTable: "Department",
+                        principalColumn: "DepartmentID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeDepartmentHistory_Employee_BusinessEntityID",
                         column: x => x.BusinessEntityID,
-                        principalTable: "Person",
+                        principalSchema: "HumanResources",
+                        principalTable: "Employee",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeDepartmentHistory_Shift_ShiftID",
+                        column: x => x.ShiftID,
+                        principalSchema: "HumanResources",
+                        principalTable: "Shift",
+                        principalColumn: "ShiftID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Purchasing.PurchaseOrderHeader",
+                columns: table => new
+                {
+                    PurchaseOrderID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    RevisionNumber = table.Column<byte>(type: "smallint", nullable: false),
+                    Status = table.Column<byte>(type: "smallint", nullable: false),
+                    EmployeeID = table.Column<int>(type: "int", nullable: false),
+                    VendorID = table.Column<int>(type: "int", nullable: false),
+                    ShipMethodID = table.Column<int>(type: "int", nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ShipDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    SubTotal = table.Column<decimal>(type: "money", nullable: false),
+                    TaxAmt = table.Column<decimal>(type: "money", nullable: false),
+                    Freight = table.Column<decimal>(type: "money", nullable: false),
+                    TotalDue = table.Column<decimal>(type: "money", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Purchasing.PurchaseOrderHeader", x => x.PurchaseOrderID);
+                    table.ForeignKey(
+                        name: "FK_Purchasing.PurchaseOrderHeader_Employee_BusinessEntityID",
+                        column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
+                        principalTable: "Employee",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Purchasing.PurchaseOrderHeader_Purchasing.ShipMethod_ShipMe~",
+                        column: x => x.ShipMethodID,
+                        principalSchema: "Purchasing",
+                        principalTable: "Purchasing.ShipMethod",
+                        principalColumn: "ShipMethodID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Purchasing.PurchaseOrderHeader_Vendor_BusinessEntityID",
+                        column: x => x.BusinessEntityID,
+                        principalTable: "Vendor",
                         principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1441,6 +1627,38 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sales.SalesPerson",
+                columns: table => new
+                {
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
+                    TerritoryID = table.Column<int>(type: "int", nullable: true),
+                    SalesQuota = table.Column<decimal>(type: "money", nullable: true),
+                    Bonus = table.Column<decimal>(type: "money", nullable: false),
+                    CommissionPct = table.Column<decimal>(type: "numeric", nullable: false),
+                    SalesYTD = table.Column<decimal>(type: "money", nullable: false),
+                    SalesLastYear = table.Column<decimal>(type: "money", nullable: false),
+                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales.SalesPerson", x => x.BusinessEntityID);
+                    table.ForeignKey(
+                        name: "FK_Sales.SalesPerson_Employee_BusinessEntityID",
+                        column: x => x.BusinessEntityID,
+                        principalSchema: "HumanResources",
+                        principalTable: "Employee",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Sales.SalesPerson_Sales.SalesTerritory_TerritoryID",
+                        column: x => x.TerritoryID,
+                        principalSchema: "Sales",
+                        principalTable: "Sales.SalesTerritory",
+                        principalColumn: "TerritoryID");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Production.Product",
                 columns: table => new
                 {
@@ -1505,220 +1723,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Courses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: true),
-                    DurationInMinutes = table.Column<int>(type: "integer", nullable: false),
-                    IsMandatory = table.Column<bool>(type: "boolean", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    IsActive = table.Column<bool>(type: "boolean", nullable: false),
-                    EmployeeBusinessEntityID = table.Column<int>(type: "int", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Courses", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Courses_HumanResources.Employee_EmployeeBusinessEntityID",
-                        column: x => x.EmployeeBusinessEntityID,
-                        principalSchema: "HumanResources",
-                        principalTable: "HumanResources.Employee",
-                        principalColumn: "BusinessEntityID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HumanResources.EmployeeDepartmentHistory",
-                columns: table => new
-                {
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "date", nullable: false),
-                    DepartmentID = table.Column<short>(type: "smallint", nullable: false),
-                    ShiftID = table.Column<int>(type: "integer", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "date", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HumanResources.EmployeeDepartmentHistory", x => new { x.BusinessEntityID, x.DepartmentID, x.StartDate });
-                    table.ForeignKey(
-                        name: "FK_HumanResources.EmployeeDepartmentHistory_Department_Departm~",
-                        column: x => x.DepartmentID,
-                        principalSchema: "HumanResources",
-                        principalTable: "Department",
-                        principalColumn: "DepartmentID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_HumanResources.EmployeeDepartmentHistory_HumanResources.Emp~",
-                        column: x => x.BusinessEntityID,
-                        principalSchema: "HumanResources",
-                        principalTable: "HumanResources.Employee",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_HumanResources.EmployeeDepartmentHistory_Shift_ShiftID",
-                        column: x => x.ShiftID,
-                        principalSchema: "HumanResources",
-                        principalTable: "Shift",
-                        principalColumn: "ShiftID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HumanResources.EmployeePayHistory",
-                columns: table => new
-                {
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
-                    RateChangeDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Rate = table.Column<decimal>(type: "money", nullable: false),
-                    PayFrequency = table.Column<byte>(type: "smallint", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HumanResources.EmployeePayHistory", x => new { x.BusinessEntityID, x.RateChangeDate });
-                    table.ForeignKey(
-                        name: "FK_HumanResources.EmployeePayHistory_HumanResources.Employee_B~",
-                        column: x => x.BusinessEntityID,
-                        principalSchema: "HumanResources",
-                        principalTable: "HumanResources.Employee",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HumanResources.JobCandidate",
-                columns: table => new
-                {
-                    JobCandidateID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: true),
-                    Resume = table.Column<string>(type: "xml", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HumanResources.JobCandidate", x => x.JobCandidateID);
-                    table.ForeignKey(
-                        name: "FK_HumanResources.JobCandidate_HumanResources.Employee_Busines~",
-                        column: x => x.BusinessEntityID,
-                        principalSchema: "HumanResources",
-                        principalTable: "HumanResources.Employee",
-                        principalColumn: "BusinessEntityID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Production.Document",
-                columns: table => new
-                {
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
-                    DocumentLevel = table.Column<short>(type: "smallint", nullable: true),
-                    Title = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Owner = table.Column<int>(type: "int", nullable: false),
-                    FileName = table.Column<string>(type: "character varying(400)", maxLength: 400, nullable: false),
-                    FileExtension = table.Column<string>(type: "character varying(8)", maxLength: 8, nullable: false),
-                    Revision = table.Column<string>(type: "nchar", maxLength: 5, nullable: false),
-                    ChangeNumber = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<byte>(type: "smallint", nullable: false),
-                    DocumentSummary = table.Column<string>(type: "text", nullable: false),
-                    Document = table.Column<byte[]>(type: "bytea", nullable: false),
-                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Production.Document", x => x.BusinessEntityID);
-                    table.ForeignKey(
-                        name: "FK_Production.Document_HumanResources.Employee_BusinessEntityID",
-                        column: x => x.BusinessEntityID,
-                        principalSchema: "HumanResources",
-                        principalTable: "HumanResources.Employee",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Purchasing.PurchaseOrderHeader",
-                columns: table => new
-                {
-                    PurchaseOrderID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    RevisionNumber = table.Column<byte>(type: "smallint", nullable: false),
-                    Status = table.Column<byte>(type: "smallint", nullable: false),
-                    EmployeeID = table.Column<int>(type: "int", nullable: false),
-                    VendorID = table.Column<int>(type: "int", nullable: false),
-                    ShipMethodID = table.Column<int>(type: "int", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ShipDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    SubTotal = table.Column<decimal>(type: "money", nullable: false),
-                    TaxAmt = table.Column<decimal>(type: "money", nullable: false),
-                    Freight = table.Column<decimal>(type: "money", nullable: false),
-                    TotalDue = table.Column<decimal>(type: "money", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Purchasing.PurchaseOrderHeader", x => x.PurchaseOrderID);
-                    table.ForeignKey(
-                        name: "FK_Purchasing.PurchaseOrderHeader_HumanResources.Employee_Busi~",
-                        column: x => x.BusinessEntityID,
-                        principalSchema: "HumanResources",
-                        principalTable: "HumanResources.Employee",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Purchasing.PurchaseOrderHeader_Purchasing.ShipMethod_ShipMe~",
-                        column: x => x.ShipMethodID,
-                        principalSchema: "Purchasing",
-                        principalTable: "Purchasing.ShipMethod",
-                        principalColumn: "ShipMethodID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Purchasing.PurchaseOrderHeader_Vendor_BusinessEntityID",
-                        column: x => x.BusinessEntityID,
-                        principalTable: "Vendor",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sales.SalesPerson",
-                columns: table => new
-                {
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
-                    TerritoryID = table.Column<int>(type: "int", nullable: true),
-                    SalesQuota = table.Column<decimal>(type: "money", nullable: true),
-                    Bonus = table.Column<decimal>(type: "money", nullable: false),
-                    CommissionPct = table.Column<decimal>(type: "numeric", nullable: false),
-                    SalesYTD = table.Column<decimal>(type: "money", nullable: false),
-                    SalesLastYear = table.Column<decimal>(type: "money", nullable: false),
-                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sales.SalesPerson", x => x.BusinessEntityID);
-                    table.ForeignKey(
-                        name: "FK_Sales.SalesPerson_HumanResources.Employee_BusinessEntityID",
-                        column: x => x.BusinessEntityID,
-                        principalSchema: "HumanResources",
-                        principalTable: "HumanResources.Employee",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Sales.SalesPerson_Sales.SalesTerritory_TerritoryID",
-                        column: x => x.TerritoryID,
-                        principalSchema: "Sales",
-                        principalTable: "Sales.SalesTerritory",
-                        principalColumn: "TerritoryID");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Person.Address",
+                name: "Address",
                 schema: "Person",
                 columns: table => new
                 {
@@ -1728,15 +1733,15 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     AddressLine2 = table.Column<string>(type: "character varying(60)", maxLength: 60, nullable: false),
                     City = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
                     StateProvinceID = table.Column<int>(type: "int", nullable: false),
-                    PostalCode = table.Column<string>(type: "character varying(15)", maxLength: 15, nullable: false),
+                    PostalCode = table.Column<int>(type: "integer", nullable: false),
                     rowguid = table.Column<Guid>(type: "uuid", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Person.Address", x => x.AddressID);
+                    table.PrimaryKey("PK_Address", x => x.AddressID);
                     table.ForeignKey(
-                        name: "FK_Person.Address_Person.StateProvince_StateProvinceID",
+                        name: "FK_Address_Person.StateProvince_StateProvinceID",
                         column: x => x.StateProvinceID,
                         principalSchema: "Person",
                         principalTable: "Person.StateProvince",
@@ -1767,6 +1772,86 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         principalSchema: "Person",
                         principalTable: "Person.StateProvince",
                         principalColumn: "StateProvinceID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sales.SalesPersonQuotaHistory",
+                columns: table => new
+                {
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
+                    QuotaDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    SalesQuota = table.Column<decimal>(type: "money", nullable: false),
+                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales.SalesPersonQuotaHistory", x => new { x.BusinessEntityID, x.QuotaDate });
+                    table.ForeignKey(
+                        name: "FK_Sales.SalesPersonQuotaHistory_Sales.SalesPerson_BusinessEnt~",
+                        column: x => x.BusinessEntityID,
+                        principalTable: "Sales.SalesPerson",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sales.SalesTerritoryHistory",
+                schema: "Sales",
+                columns: table => new
+                {
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    TerritoryID = table.Column<int>(type: "int", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sales.SalesTerritoryHistory", x => new { x.BusinessEntityID, x.TerritoryID });
+                    table.ForeignKey(
+                        name: "FK_Sales.SalesTerritoryHistory_Sales.SalesPerson_BusinessEntit~",
+                        column: x => x.BusinessEntityID,
+                        principalTable: "Sales.SalesPerson",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Sales.SalesTerritoryHistory_Sales.SalesTerritory_TerritoryID",
+                        column: x => x.TerritoryID,
+                        principalSchema: "Sales",
+                        principalTable: "Sales.SalesTerritory",
+                        principalColumn: "TerritoryID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Store",
+                columns: table => new
+                {
+                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    SalesPersonID = table.Column<int>(type: "int", nullable: true),
+                    Demographics = table.Column<string>(type: "xml", nullable: false),
+                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Store", x => x.BusinessEntityID);
+                    table.ForeignKey(
+                        name: "FK_Store_BusinessEntity_BusinessEntityID",
+                        column: x => x.BusinessEntityID,
+                        principalSchema: "Person",
+                        principalTable: "BusinessEntity",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Store_Sales.SalesPerson_BusinessEntityID",
+                        column: x => x.BusinessEntityID,
+                        principalTable: "Sales.SalesPerson",
+                        principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -1854,6 +1939,32 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     table.PrimaryKey("PK_Production.ProductCostHistory", x => new { x.ProductID, x.StartDate });
                     table.ForeignKey(
                         name: "FK_Production.ProductCostHistory_Production.Product_ProductID",
+                        column: x => x.ProductID,
+                        principalTable: "Production.Product",
+                        principalColumn: "ProductID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Production.ProductDocument",
+                columns: table => new
+                {
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    DocumentNode = table.Column<string>(type: "text", nullable: false),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DocumentBusinessEntityID = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Production.ProductDocument", x => new { x.ProductID, x.DocumentNode });
+                    table.ForeignKey(
+                        name: "FK_Production.ProductDocument_Production.Document_DocumentBusi~",
+                        column: x => x.DocumentBusinessEntityID,
+                        principalTable: "Production.Document",
+                        principalColumn: "BusinessEntityID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Production.ProductDocument_Production.Product_ProductID",
                         column: x => x.ProductID,
                         principalTable: "Production.Product",
                         principalColumn: "ProductID",
@@ -2062,56 +2173,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sales.ShoppingCartItem",
-                schema: "Sales",
-                columns: table => new
-                {
-                    ShoppingCartItemID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ShoppingCartID = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false),
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sales.ShoppingCartItem", x => x.ShoppingCartItemID);
-                    table.ForeignKey(
-                        name: "FK_Sales.ShoppingCartItem_Production.Product_ProductID",
-                        column: x => x.ProductID,
-                        principalTable: "Production.Product",
-                        principalColumn: "ProductID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Production.ProductDocument",
-                columns: table => new
-                {
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    DocumentNode = table.Column<string>(type: "text", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DocumentBusinessEntityID = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Production.ProductDocument", x => new { x.ProductID, x.DocumentNode });
-                    table.ForeignKey(
-                        name: "FK_Production.ProductDocument_Production.Document_DocumentBusi~",
-                        column: x => x.DocumentBusinessEntityID,
-                        principalTable: "Production.Document",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Production.ProductDocument_Production.Product_ProductID",
-                        column: x => x.ProductID,
-                        principalTable: "Production.Product",
-                        principalColumn: "ProductID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Purchasing.PurchaseOrderDetail",
                 columns: table => new
                 {
@@ -2146,82 +2207,26 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Sales.SalesPersonQuotaHistory",
-                columns: table => new
-                {
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
-                    QuotaDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    SalesQuota = table.Column<decimal>(type: "money", nullable: false),
-                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Sales.SalesPersonQuotaHistory", x => new { x.BusinessEntityID, x.QuotaDate });
-                    table.ForeignKey(
-                        name: "FK_Sales.SalesPersonQuotaHistory_Sales.SalesPerson_BusinessEnt~",
-                        column: x => x.BusinessEntityID,
-                        principalTable: "Sales.SalesPerson",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Sales.SalesTerritoryHistory",
+                name: "Sales.ShoppingCartItem",
                 schema: "Sales",
                 columns: table => new
                 {
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    TerritoryID = table.Column<int>(type: "int", nullable: false),
-                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
+                    ShoppingCartItemID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ShoppingCartID = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    DateCreated = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Sales.SalesTerritoryHistory", x => new { x.BusinessEntityID, x.TerritoryID });
+                    table.PrimaryKey("PK_Sales.ShoppingCartItem", x => x.ShoppingCartItemID);
                     table.ForeignKey(
-                        name: "FK_Sales.SalesTerritoryHistory_Sales.SalesPerson_BusinessEntit~",
-                        column: x => x.BusinessEntityID,
-                        principalTable: "Sales.SalesPerson",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Sales.SalesTerritoryHistory_Sales.SalesTerritory_TerritoryID",
-                        column: x => x.TerritoryID,
-                        principalSchema: "Sales",
-                        principalTable: "Sales.SalesTerritory",
-                        principalColumn: "TerritoryID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Store",
-                columns: table => new
-                {
-                    BusinessEntityID = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
-                    SalesPersonID = table.Column<int>(type: "int", nullable: true),
-                    Demographics = table.Column<string>(type: "xml", nullable: false),
-                    rowguid = table.Column<Guid>(type: "uuid", nullable: false),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Store", x => x.BusinessEntityID);
-                    table.ForeignKey(
-                        name: "FK_Store_BusinessEntity_BusinessEntityID",
-                        column: x => x.BusinessEntityID,
-                        principalSchema: "Person",
-                        principalTable: "BusinessEntity",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Store_Sales.SalesPerson_BusinessEntityID",
-                        column: x => x.BusinessEntityID,
-                        principalTable: "Sales.SalesPerson",
-                        principalColumn: "BusinessEntityID",
+                        name: "FK_Sales.ShoppingCartItem_Production.Product_ProductID",
+                        column: x => x.ProductID,
+                        principalTable: "Production.Product",
+                        principalColumn: "ProductID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -2239,18 +2244,18 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 {
                     table.PrimaryKey("PK_EmployeeAddresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_EmployeeAddresses_HumanResources.Employee_EmployeeId",
-                        column: x => x.EmployeeId,
-                        principalSchema: "HumanResources",
-                        principalTable: "HumanResources.Employee",
-                        principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_EmployeeAddresses_Person.Address_AddressId",
+                        name: "FK_EmployeeAddresses_Address_AddressId",
                         column: x => x.AddressId,
                         principalSchema: "Person",
-                        principalTable: "Person.Address",
+                        principalTable: "Address",
                         principalColumn: "AddressID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_EmployeeAddresses_Employee_EmployeeId",
+                        column: x => x.EmployeeId,
+                        principalSchema: "HumanResources",
+                        principalTable: "Employee",
+                        principalColumn: "BusinessEntityID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -2275,54 +2280,18 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         principalColumn: "AddressTypeID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
+                        name: "FK_Person.BusinessEntityAddress_Address_AddressID",
+                        column: x => x.AddressID,
+                        principalSchema: "Person",
+                        principalTable: "Address",
+                        principalColumn: "AddressID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Person.BusinessEntityAddress_BusinessEntity_BusinessEntityID",
                         column: x => x.BusinessEntityID,
                         principalSchema: "Person",
                         principalTable: "BusinessEntity",
                         principalColumn: "BusinessEntityID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Person.BusinessEntityAddress_Person.Address_AddressID",
-                        column: x => x.AddressID,
-                        principalSchema: "Person",
-                        principalTable: "Person.Address",
-                        principalColumn: "AddressID",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Production.WorkOrderRouting",
-                schema: "Production",
-                columns: table => new
-                {
-                    WorkOrderID = table.Column<int>(type: "int", nullable: false),
-                    ProductID = table.Column<int>(type: "int", nullable: false),
-                    OperationSequence = table.Column<short>(type: "smallint", nullable: true),
-                    LocationID = table.Column<short>(type: "smallint", nullable: false),
-                    ScheduledStartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ScheduledEndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ActualStartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    ActualEndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    ActualResourceHrs = table.Column<decimal>(type: "decimal", nullable: true),
-                    PlannedCost = table.Column<decimal>(type: "money", nullable: false),
-                    ActualCost = table.Column<decimal>(type: "money", nullable: true),
-                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Production.WorkOrderRouting", x => new { x.WorkOrderID, x.ProductID });
-                    table.ForeignKey(
-                        name: "FK_Production.WorkOrderRouting_Production.Location_LocationID",
-                        column: x => x.LocationID,
-                        principalTable: "Production.Location",
-                        principalColumn: "LocationID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Production.WorkOrderRouting_Production.WorkOrder_WorkOrderID",
-                        column: x => x.WorkOrderID,
-                        principalSchema: "Production",
-                        principalTable: "Production.WorkOrder",
-                        principalColumn: "WorkOrderID",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -2364,6 +2333,42 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Production.WorkOrderRouting",
+                schema: "Production",
+                columns: table => new
+                {
+                    WorkOrderID = table.Column<int>(type: "int", nullable: false),
+                    ProductID = table.Column<int>(type: "int", nullable: false),
+                    OperationSequence = table.Column<short>(type: "smallint", nullable: true),
+                    LocationID = table.Column<short>(type: "smallint", nullable: false),
+                    ScheduledStartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ScheduledEndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ActualStartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    ActualEndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    ActualResourceHrs = table.Column<decimal>(type: "decimal", nullable: true),
+                    PlannedCost = table.Column<decimal>(type: "money", nullable: false),
+                    ActualCost = table.Column<decimal>(type: "money", nullable: true),
+                    ModifiedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Production.WorkOrderRouting", x => new { x.WorkOrderID, x.ProductID });
+                    table.ForeignKey(
+                        name: "FK_Production.WorkOrderRouting_Production.Location_LocationID",
+                        column: x => x.LocationID,
+                        principalTable: "Production.Location",
+                        principalColumn: "LocationID",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Production.WorkOrderRouting_Production.WorkOrder_WorkOrderID",
+                        column: x => x.WorkOrderID,
+                        principalSchema: "Production",
+                        principalTable: "Production.WorkOrder",
+                        principalColumn: "WorkOrderID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Sales.SalesOrderHeader",
                 columns: table => new
                 {
@@ -2399,17 +2404,17 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 {
                     table.PrimaryKey("PK_Sales.SalesOrderHeader", x => x.SalesOrderID);
                     table.ForeignKey(
-                        name: "FK_Sales.SalesOrderHeader_Person.Address_BillToAddressID",
+                        name: "FK_Sales.SalesOrderHeader_Address_BillToAddressID",
                         column: x => x.BillToAddressID,
                         principalSchema: "Person",
-                        principalTable: "Person.Address",
+                        principalTable: "Address",
                         principalColumn: "AddressID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Sales.SalesOrderHeader_Person.Address_ShipToAddressID",
+                        name: "FK_Sales.SalesOrderHeader_Address_ShipToAddressID",
                         column: x => x.ShipToAddressID,
                         principalSchema: "Person",
-                        principalTable: "Person.Address",
+                        principalTable: "Address",
                         principalColumn: "AddressID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -2511,23 +2516,29 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.InsertData(
                 schema: "Person",
+                table: "Address",
+                columns: new[] { "AddressID", "AddressLine1", "AddressLine2", "City", "ModifiedDate", "PostalCode", "StateProvinceID", "rowguid" },
+                values: new object[] { 1, "3345 Heaven Avenue", "3345 Heaven Avenue", "Northen Pole", new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 4456, 1, new Guid("d46b0446-9032-4951-93a7-156eb02736c4") });
+
+            migrationBuilder.InsertData(
+                schema: "Person",
                 table: "AddressType",
                 columns: new[] { "AddressTypeID", "ModifiedDate", "Name", "rowguid" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Billing", new Guid("50912377-d8d2-4b2e-b3db-235c17b9cfa7") },
-                    { 2, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Home", new Guid("063a4422-dd27-44ee-9377-be9b499fa9cb") },
-                    { 3, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Main Office", new Guid("5a451ec3-25b8-4c2a-b53d-7643db76a83c") },
-                    { 4, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Primary", new Guid("1345f4e7-c98e-4b92-bfe3-ef1f68619c19") },
-                    { 5, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Shipping", new Guid("e1b8d5e7-e4ca-4d6a-aeff-655f115f9e40") },
-                    { 6, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Archive", new Guid("01f67ced-59c8-4b94-b1a5-d71bf8697b5b") }
+                    { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Billing", new Guid("aada830a-482c-40f2-86b3-bb1c30d94ffb") },
+                    { 2, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Home", new Guid("1ea2e6d8-f07c-482f-86cd-72883b07b690") },
+                    { 3, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Main Office", new Guid("8e80b880-d559-424f-8cf0-91d5590293dd") },
+                    { 4, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Primary", new Guid("e2b18555-06a0-4851-b9d8-6bc7d8a0f430") },
+                    { 5, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Shipping", new Guid("e2bb217d-3f9a-4583-b85e-bf71f24a2917") },
+                    { 6, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Archive", new Guid("27e625ce-f9da-4e66-837f-bddfe8ecfbfc") }
                 });
 
             migrationBuilder.InsertData(
                 schema: "Person",
                 table: "BusinessEntity",
                 columns: new[] { "BusinessEntityID", "ModifiedDate", "rowguid" },
-                values: new object[] { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new Guid("827392fa-9d0d-428f-ac19-a2fec696d8a3") });
+                values: new object[] { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new Guid("0155bdcc-680f-48e0-8612-8f6eb4f97409") });
 
             migrationBuilder.InsertData(
                 schema: "HumanResources",
@@ -2555,6 +2566,22 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
             migrationBuilder.InsertData(
                 schema: "HumanResources",
+                table: "Employee",
+                columns: new[] { "BusinessEntityID", "BirthDate", "EntityVersion", "Gender", "HireDate", "JobLevel", "JobTitle", "LoginID", "MaritalStatus", "MinimumRaiseGiven", "ModifiedDate", "NationalIDNumber", "rowguid", "Salary", "SickLeaveHours", "SuggestedBonus", "VacationHours", "YearsInService" },
+                values: new object[] { 1, new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, "M", new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, "Chief Executive Officer", "adventure-works\\ken0", "S", false, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "295847284", new Guid("6e3a1a8d-43ab-410b-96ac-4dc77a6e0ad9"), 5000, (short)3, 200, (short)0, 10 });
+
+            migrationBuilder.InsertData(
+                schema: "HumanResources",
+                table: "JobCandidate",
+                columns: new[] { "JobCandidateID", "BusinessEntityID", "ModifiedDate", "Resume" },
+                values: new object[,]
+                {
+                    { 1, null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "LinkedIn" },
+                    { 2, null, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "LinkedIn" }
+                });
+
+            migrationBuilder.InsertData(
+                schema: "HumanResources",
                 table: "Shift",
                 columns: new[] { "ShiftID", "EndTime", "ModifiedDate", "Name", "StartTime" },
                 values: new object[,]
@@ -2563,6 +2590,24 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     { 2, new TimeSpan(0, 23, 0, 0, 0), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Evening", new TimeSpan(0, 15, 0, 0, 0) },
                     { 3, new TimeSpan(0, 7, 0, 0, 0), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), "Night", new TimeSpan(0, 23, 0, 0, 0) }
                 });
+
+            migrationBuilder.InsertData(
+                schema: "HumanResources",
+                table: "EmployeeDepartmentHistory",
+                columns: new[] { "BusinessEntityID", "DepartmentID", "EndDate", "ModifiedDate", "ShiftID", "StartDate" },
+                values: new object[] { 1, (short)16, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) });
+
+            migrationBuilder.InsertData(
+                schema: "HumanResources",
+                table: "EmployeePayHistory",
+                columns: new[] { "BusinessEntityID", "ModifiedDate", "PayFrequency", "Rate", "RateChangeDate" },
+                values: new object[] { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc), (byte)2, 125.5m, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc) });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Address_StateProvinceID",
+                schema: "Person",
+                table: "Address",
+                column: "StateProvinceID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -2623,18 +2668,21 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 column: "EmployeeId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HumanResources.EmployeeDepartmentHistory_DepartmentID",
-                table: "HumanResources.EmployeeDepartmentHistory",
+                name: "IX_EmployeeDepartmentHistory_DepartmentID",
+                schema: "HumanResources",
+                table: "EmployeeDepartmentHistory",
                 column: "DepartmentID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HumanResources.EmployeeDepartmentHistory_ShiftID",
-                table: "HumanResources.EmployeeDepartmentHistory",
+                name: "IX_EmployeeDepartmentHistory_ShiftID",
+                schema: "HumanResources",
+                table: "EmployeeDepartmentHistory",
                 column: "ShiftID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HumanResources.JobCandidate_BusinessEntityID",
-                table: "HumanResources.JobCandidate",
+                name: "IX_JobCandidate_BusinessEntityID",
+                schema: "HumanResources",
+                table: "JobCandidate",
                 column: "BusinessEntityID");
 
             migrationBuilder.CreateIndex(
@@ -2643,10 +2691,9 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 column: "BusinessEntityID1");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Person.Address_StateProvinceID",
-                schema: "Person",
-                table: "Person.Address",
-                column: "StateProvinceID");
+                name: "IX_Person_EmployeeBusinessEntityID",
+                table: "Person",
+                column: "EmployeeBusinessEntityID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Person.BusinessEntityAddress_AddressID",
@@ -3006,6 +3053,14 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "EmployeeAddresses");
 
             migrationBuilder.DropTable(
+                name: "EmployeeDepartmentHistory",
+                schema: "HumanResources");
+
+            migrationBuilder.DropTable(
+                name: "EmployeePayHistory",
+                schema: "HumanResources");
+
+            migrationBuilder.DropTable(
                 name: "ErrorLog");
 
             migrationBuilder.DropTable(
@@ -3017,16 +3072,11 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 schema: "TradingEconomics");
 
             migrationBuilder.DropTable(
-                name: "HumanResources.EmployeeDepartmentHistory");
-
-            migrationBuilder.DropTable(
-                name: "HumanResources.EmployeePayHistory");
-
-            migrationBuilder.DropTable(
-                name: "HumanResources.JobCandidate");
-
-            migrationBuilder.DropTable(
                 name: "Individuals");
+
+            migrationBuilder.DropTable(
+                name: "JobCandidate",
+                schema: "HumanResources");
 
             migrationBuilder.DropTable(
                 name: "Orders");
@@ -3225,7 +3275,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 schema: "Sales");
 
             migrationBuilder.DropTable(
-                name: "Person.Address",
+                name: "Address",
                 schema: "Person");
 
             migrationBuilder.DropTable(
@@ -3262,16 +3312,23 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 name: "Sales.Currency");
 
             migrationBuilder.DropTable(
+                name: "Person");
+
+            migrationBuilder.DropTable(
                 name: "Store");
 
             migrationBuilder.DropTable(
                 name: "Production.ProductCategory");
 
             migrationBuilder.DropTable(
+                name: "BusinessEntity",
+                schema: "Person");
+
+            migrationBuilder.DropTable(
                 name: "Sales.SalesPerson");
 
             migrationBuilder.DropTable(
-                name: "HumanResources.Employee",
+                name: "Employee",
                 schema: "HumanResources");
 
             migrationBuilder.DropTable(
@@ -3279,14 +3336,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                 schema: "Sales");
 
             migrationBuilder.DropTable(
-                name: "Person");
-
-            migrationBuilder.DropTable(
                 name: "Person.CountryRegion");
-
-            migrationBuilder.DropTable(
-                name: "BusinessEntity",
-                schema: "Person");
         }
     }
 }

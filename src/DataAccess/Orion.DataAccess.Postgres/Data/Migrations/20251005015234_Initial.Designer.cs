@@ -12,7 +12,7 @@ using Orion.DataAccess.Postgres.Data;
 namespace Orion.DataAccess.Postgres.Data.Migrations
 {
     [DbContext(typeof(OrionDbContext))]
-    [Migration("20251001231354_Initial")]
+    [Migration("20251005015234_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -221,110 +221,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Data.Contact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contacts");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Data.ContactCreditCard", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ContactCreditCards");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Data.CustomerAddress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CustomerAddresses");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Data.Individual", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Individuals");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Data.OrderDetail", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Data.StoreContact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("StoreContacts");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Data.VendorAddress", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("VendorAddresses");
-                });
-
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Data.VendorContact", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.HasKey("Id");
-
-                    b.ToTable("VendorContacts");
-                });
-
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Address", b =>
                 {
                     b.Property<int>("AddressID")
@@ -356,10 +252,8 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("ModifiedDate");
 
-                    b.Property<string>("PostalCode")
-                        .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("character varying(15)")
+                    b.Property<int>("PostalCode")
+                        .HasColumnType("integer")
                         .HasColumnName("PostalCode");
 
                     b.Property<int>("StateProvinceID")
@@ -374,7 +268,20 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.HasIndex("StateProvinceID");
 
-                    b.ToTable("Person.Address", "Person");
+                    b.ToTable("Address", "Person");
+
+                    b.HasData(
+                        new
+                        {
+                            AddressID = 1,
+                            AddressLine1 = "3345 Heaven Avenue",
+                            AddressLine2 = "3345 Heaven Avenue",
+                            City = "Northen Pole",
+                            ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PostalCode = 4456,
+                            StateProvinceID = 1,
+                            rowguid = new Guid("d46b0446-9032-4951-93a7-156eb02736c4")
+                        });
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.AddressType", b =>
@@ -410,42 +317,42 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                             AddressTypeId = 1,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Billing",
-                            Rowguid = new Guid("50912377-d8d2-4b2e-b3db-235c17b9cfa7")
+                            Rowguid = new Guid("aada830a-482c-40f2-86b3-bb1c30d94ffb")
                         },
                         new
                         {
                             AddressTypeId = 2,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Home",
-                            Rowguid = new Guid("063a4422-dd27-44ee-9377-be9b499fa9cb")
+                            Rowguid = new Guid("1ea2e6d8-f07c-482f-86cd-72883b07b690")
                         },
                         new
                         {
                             AddressTypeId = 3,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Main Office",
-                            Rowguid = new Guid("5a451ec3-25b8-4c2a-b53d-7643db76a83c")
+                            Rowguid = new Guid("8e80b880-d559-424f-8cf0-91d5590293dd")
                         },
                         new
                         {
                             AddressTypeId = 4,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Primary",
-                            Rowguid = new Guid("1345f4e7-c98e-4b92-bfe3-ef1f68619c19")
+                            Rowguid = new Guid("e2b18555-06a0-4851-b9d8-6bc7d8a0f430")
                         },
                         new
                         {
                             AddressTypeId = 5,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Shipping",
-                            Rowguid = new Guid("e1b8d5e7-e4ca-4d6a-aeff-655f115f9e40")
+                            Rowguid = new Guid("e2bb217d-3f9a-4583-b85e-bf71f24a2917")
                         },
                         new
                         {
                             AddressTypeId = 6,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
                             Name = "Archive",
-                            Rowguid = new Guid("01f67ced-59c8-4b94-b1a5-d71bf8697b5b")
+                            Rowguid = new Guid("27e625ce-f9da-4e66-837f-bddfe8ecfbfc")
                         });
                 });
 
@@ -569,7 +476,7 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         {
                             BusinessEntityID = 1,
                             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
-                            Rowguid = new Guid("827392fa-9d0d-428f-ac19-a2fec696d8a3")
+                            Rowguid = new Guid("0155bdcc-680f-48e0-8612-8f6eb4f97409")
                         });
                 });
 
@@ -637,6 +544,32 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.HasIndex("ContactTypeID");
 
                     b.ToTable("Person.BusinessEntityContact");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Contact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Contacts");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.ContactCreditCard", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactCreditCards");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.ContactType", b =>
@@ -926,6 +859,19 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.HasIndex("TerritoryID");
 
                     b.ToTable("Sales.Customer");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.CustomerAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CustomerAddresses");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.DatabaseLog", b =>
@@ -1231,8 +1177,11 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Employee", b =>
                 {
                     b.Property<int>("BusinessEntityID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("BusinessEntityID");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("BusinessEntityID"));
 
                     b.Property<DateTime>("BirthDate")
                         .HasColumnType("date")
@@ -1290,6 +1239,10 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("OrganizationLevel");
 
+                    b.Property<Guid>("Rowguid")
+                        .HasColumnType("uuid")
+                        .HasColumnName("rowguid");
+
                     b.Property<int>("Salary")
                         .HasColumnType("integer");
 
@@ -1307,13 +1260,33 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.Property<int>("YearsInService")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("rowguid")
-                        .HasColumnType("uuid")
-                        .HasColumnName("rowguid");
-
                     b.HasKey("BusinessEntityID");
 
-                    b.ToTable("HumanResources.Employee", "HumanResources");
+                    b.ToTable("Employee", "HumanResources");
+
+                    b.HasData(
+                        new
+                        {
+                            BusinessEntityID = 1,
+                            BirthDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            EntityVersion = 1,
+                            Gender = "M",
+                            HireDate = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            JobLevel = 1,
+                            JobTitle = "Chief Executive Officer",
+                            LoginID = "adventure-works\\ken0",
+                            MaritalStatus = "S",
+                            MinimumRaiseGiven = false,
+                            ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            NationalIDNumber = "295847284",
+                            OrganizationLevel = (short)1,
+                            Rowguid = new Guid("6e3a1a8d-43ab-410b-96ac-4dc77a6e0ad9"),
+                            Salary = 5000,
+                            SickLeaveHours = (short)3,
+                            SuggestedBonus = 200,
+                            VacationHours = (short)0,
+                            YearsInService = 10
+                        });
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.EmployeeDepartmentHistory", b =>
@@ -1328,11 +1301,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         .HasColumnName("DepartmentID")
                         .HasColumnOrder(3);
 
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("date")
-                        .HasColumnName("StartDate")
-                        .HasColumnOrder(2);
-
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("date")
                         .HasColumnName("EndDate");
@@ -1346,13 +1314,29 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         .HasColumnName("ShiftID")
                         .HasColumnOrder(4);
 
-                    b.HasKey("BusinessEntityID", "DepartmentID", "StartDate");
+                    b.Property<DateTime?>("StartDate")
+                        .HasColumnType("date")
+                        .HasColumnName("StartDate")
+                        .HasColumnOrder(2);
+
+                    b.HasKey("BusinessEntityID");
 
                     b.HasIndex("DepartmentID");
 
                     b.HasIndex("ShiftID");
 
-                    b.ToTable("HumanResources.EmployeeDepartmentHistory");
+                    b.ToTable("EmployeeDepartmentHistory", "HumanResources");
+
+                    b.HasData(
+                        new
+                        {
+                            BusinessEntityID = 1,
+                            DepartmentID = (short)16,
+                            EndDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            ShiftID = 1,
+                            StartDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        });
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.EmployeePayHistory", b =>
@@ -1361,11 +1345,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("BusinessEntityID")
                         .HasColumnOrder(1);
-
-                    b.Property<DateTime>("RateChangeDate")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("RateChangeDate")
-                        .HasColumnOrder(2);
 
                     b.Property<DateTime>("ModifiedDate")
                         .HasColumnType("timestamp with time zone")
@@ -1379,9 +1358,24 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         .HasColumnType("money")
                         .HasColumnName("Rate");
 
-                    b.HasKey("BusinessEntityID", "RateChangeDate");
+                    b.Property<DateTime?>("RateChangeDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("RateChangeDate")
+                        .HasColumnOrder(2);
 
-                    b.ToTable("HumanResources.EmployeePayHistory");
+                    b.HasKey("BusinessEntityID");
+
+                    b.ToTable("EmployeePayHistory", "HumanResources");
+
+                    b.HasData(
+                        new
+                        {
+                            BusinessEntityID = 1,
+                            ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            PayFrequency = (byte)2,
+                            Rate = 125.5m,
+                            RateChangeDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc)
+                        });
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.ErrorLog", b =>
@@ -1458,6 +1452,19 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.ToTable("Production.Illustration");
                 });
 
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Individual", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Individuals");
+                });
+
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.JobCandidate", b =>
                 {
                     b.Property<int>("JobCandidateID")
@@ -1477,14 +1484,28 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
 
                     b.Property<string>("Resume")
                         .IsRequired()
-                        .HasColumnType("xml")
+                        .HasColumnType("text")
                         .HasColumnName("Resume");
 
                     b.HasKey("JobCandidateID");
 
                     b.HasIndex("BusinessEntityID");
 
-                    b.ToTable("HumanResources.JobCandidate");
+                    b.ToTable("JobCandidate", "HumanResources");
+
+                    b.HasData(
+                        new
+                        {
+                            JobCandidateID = 1,
+                            ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Resume = "LinkedIn"
+                        },
+                        new
+                        {
+                            JobCandidateID = 2,
+                            ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc),
+                            Resume = "LinkedIn"
+                        });
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Location", b =>
@@ -1517,6 +1538,19 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.HasKey("LocationID");
 
                     b.ToTable("Production.Location");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.OrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.OrionCalendarEvent", b =>
@@ -1645,6 +1679,9 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         .HasColumnType("int")
                         .HasColumnName("EmailPromotion");
 
+                    b.Property<int?>("EmployeeBusinessEntityID")
+                        .HasColumnType("int");
+
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -1692,6 +1729,8 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.HasKey("BusinessEntityID");
 
                     b.HasIndex("BusinessEntityID1");
+
+                    b.HasIndex("EmployeeBusinessEntityID");
 
                     b.ToTable("Person", (string)null);
                 });
@@ -3658,6 +3697,19 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.ToTable("Store", (string)null);
                 });
 
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.StoreContact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StoreContacts");
+                });
+
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.TradingEconomics.ComtradeCategories", b =>
                 {
                     b.Property<string>("Id")
@@ -4019,6 +4071,32 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.HasKey("BusinessEntityID");
 
                     b.ToTable("Vendor", (string)null);
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.VendorAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VendorAddresses");
+                });
+
+            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.VendorContact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VendorContacts");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.WorkOrder", b =>
@@ -4418,17 +4496,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.Navigation("Person");
                 });
 
-            modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.Employee", b =>
-                {
-                    b.HasOne("Orion.DataAccess.Postgres.Entities.Person", "Person")
-                        .WithOne("Employee")
-                        .HasForeignKey("Orion.DataAccess.Postgres.Entities.Employee", "BusinessEntityID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Person");
-                });
-
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.EmployeeDepartmentHistory", b =>
                 {
                     b.HasOne("Orion.DataAccess.Postgres.Entities.Employee", "Employee")
@@ -4495,7 +4562,13 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Orion.DataAccess.Postgres.Entities.Employee", "Employee")
+                        .WithMany()
+                        .HasForeignKey("EmployeeBusinessEntityID");
+
                     b.Navigation("BusinessEntity");
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Orion.DataAccess.Postgres.Entities.PersonCreditCard", b =>
@@ -5263,8 +5336,6 @@ namespace Orion.DataAccess.Postgres.Data.Migrations
                     b.Navigation("Customers");
 
                     b.Navigation("EmailAddresses");
-
-                    b.Navigation("Employee");
 
                     b.Navigation("Password");
 
