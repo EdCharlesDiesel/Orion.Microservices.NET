@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("HumanResources.EmployeeDepartmentHistory")]
+    [Table("EmployeeDepartmentHistory",Schema = "HumanResources")]
     [Description("Employee department transfers.")]
     public class EmployeeDepartmentHistory
     {

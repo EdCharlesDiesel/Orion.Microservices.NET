@@ -121,5 +121,15 @@
     "C:\\Users\\PC\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
+      "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.UserProfileManagement\\Orion.API.UserProfileManagement.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.UserProfileManagement\\Orion.API.UserProfileManagement.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

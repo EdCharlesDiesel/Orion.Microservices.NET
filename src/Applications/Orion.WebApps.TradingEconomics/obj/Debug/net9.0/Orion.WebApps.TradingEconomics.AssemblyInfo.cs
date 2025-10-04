@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Orion.WebApps.TradingEconomics")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e7eb1aabe47b8fd04be78ca9a5c2af2e27f42fef")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cc79dc3978489cb34d21d3b19d4e01943742b3d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("Orion.WebApps.TradingEconomics")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Orion.WebApps.TradingEconomics")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

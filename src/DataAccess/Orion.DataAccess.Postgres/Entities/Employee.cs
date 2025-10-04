@@ -39,11 +39,12 @@ namespace Orion.DataAccess.Postgres.Entities
         [Display(Name = "Login ID")]
         [Description("Network login.")]
         public string LoginID { get; set; } // nvarchar(256)
-        [Column(name : "OrganizationNode", TypeName = "hierarchyid")]
+
+        [Column(name: "OrganizationNode", TypeName = "hierarchyid")]
         [Display(Name = "Organization Node")]
         [Description("Where the employee is located in corporate hierarchy.")]
         [NotMapped]
-        public SqlHierarchyId OrganizationNode { get; set; } // hierarchyid
+        public string OrganizationNode { get; set; } = null;
         [Column(name : "OrganizationLevel", TypeName = "smallint")]
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Display(Name = "Organization Level")]
@@ -106,16 +107,20 @@ namespace Orion.DataAccess.Postgres.Entities
         [Required(ErrorMessage = "rowguid is required")]
         [Display(Name = "rowguid")]
         [Description("ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.")]
-        public Guid? rowguid { get; set; } // uniqueidentifier
+        public Guid? Rowguid { get; set; } // uniqueidentifier
         [Column(name : "ModifiedDate")]
         [Required(ErrorMessage = "Modified Date is required")]
         [Display(Name = "Modified Date")]
         [Description("Date and time the record was last updated.")]
         public DateTime? ModifiedDate { get; set; } // datetime
+        public SalesPerson? SalesPerson { get; set; }
+        public int JobLevel { get; set; }
+        public int YearsInService { get; set; }
+        public int SuggestedBonus { get; set; }
+        public int Salary { get; set; }
+        public bool MinimumRaiseGiven { get; set; }
+        public IEnumerable<Course> AttendedCourses { get; set; }
 
-        // HumanResources.Employee.BusinessEntityID -> Person.Person.BusinessEntityID (FK_Employee_Person_BusinessEntityID)
-        [ForeignKey("BusinessEntityID")]
-        public Person? Person { get; set; }
         // HumanResources.EmployeeDepartmentHistory.BusinessEntityID -> HumanResources.Employee.BusinessEntityID (FK_EmployeeDepartmentHistory_Employee_BusinessEntityID)
         public IEnumerable<EmployeeDepartmentHistory> EmployeeDepartmentHistories { get; set; }
         // HumanResources.EmployeePayHistory.BusinessEntityID -> HumanResources.Employee.BusinessEntityID (FK_EmployeePayHistory_Employee_BusinessEntityID)
@@ -127,14 +132,10 @@ namespace Orion.DataAccess.Postgres.Entities
         // Purchasing.PurchaseOrderHeader.EmployeeID -> HumanResources.Employee.BusinessEntityID (FK_PurchaseOrderHeader_Employee_EmployeeID)
         public IEnumerable<PurchaseOrderHeader> PurchaseOrderHeaders { get; set; }
         // Sales.SalesPerson.BusinessEntityID -> HumanResources.Employee.BusinessEntityID (FK_SalesPerson_Employee_BusinessEntityID)
-        public SalesPerson? SalesPerson { get; set; }
-        public int JobLevel { get; set; }
-        public int YearsInService { get; set; }
-        public IEnumerable<Course> AttendedCourses { get; set; }
-        public int SuggestedBonus { get; set; }
-        public int Salary { get; set; }
-        public bool MinimumRaiseGiven { get; set; }
         
         public int EntityVersion { get; set; }
+        //TODO: Uncomment this
+        // [ForeignKey("BusinessEntityID")]
+        // public Person? Person { get; set; }
     }
 }

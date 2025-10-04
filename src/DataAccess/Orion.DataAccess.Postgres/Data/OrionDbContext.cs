@@ -341,7 +341,7 @@ namespace Orion.DataAccess.Postgres.Data
                         DepartmentID = 16,
                         Name = "Executive",
                         GroupName = "Executive General and Administration",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
                     }
                     
                 );
@@ -366,24 +366,178 @@ namespace Orion.DataAccess.Postgres.Data
 
                 modelBuilder.Entity<BusinessEntity>()
                     .ToTable("BusinessEntity");
-                
-                
-            // ✅ Seed default BusinessEntity data 
-            modelBuilder.Entity<BusinessEntity>(entity =>
+         
+
+            #region Human-resources
+
+            // ✅ Seed Shift data 
+            modelBuilder.Entity<Shift>(entity =>
             {
-                entity.ToTable("BusinessEntity", "Person");
-        
-                entity.HasKey(e => e.BusinessEntityID);
-        
+                entity.ToTable("Shift", "HumanResources");
+
+                entity.HasKey(e => e.ShiftID);
+
+                entity.Property(e => e.StartTime)
+                    .IsRequired();
+
+                entity.Property(e => e.EndTime)
+                    .IsRequired();
+
+                entity.Property(e => e.ModifiedDate)
+                    .IsRequired();
+
                 // ✅ Seed data
                 entity.HasData(
-                    new BusinessEntity( )
+                    new Shift()
+                    {
+                        ShiftID = 1,
+                        Name = "Day",
+                        StartTime = TimeSpan.Parse("07:00:00.0000000"),
+                        EndTime = TimeSpan.Parse("15:00:00.0000000"),
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                    },
+                    new Shift()
+                    {
+                        ShiftID = 2,
+                        Name = "Evening",
+                        StartTime = TimeSpan.Parse("15:00:00.0000000"),
+                        EndTime = TimeSpan.Parse("23:00:00.0000000"),
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                    },
+                    new Shift()
+                    {
+                        ShiftID = 3,
+                        Name = "Night",
+                        StartTime = TimeSpan.Parse("23:00:00.0000000"),
+                        EndTime = TimeSpan.Parse("07:00:00.0000000"),
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                    }
+                );
+            });
+            
+            // ✅ Seed Job Candidate data 
+            modelBuilder.Entity<JobCandidate>(entity =>
+            {
+                entity.ToTable("JobCandidate", "HumanResources");
+                entity.HasKey(e => e.JobCandidateID);
+
+                // ✅ Seed data
+                entity.HasData(
+                    new JobCandidate()
+                    {
+                        JobCandidateID = 1,
+                        BusinessEntityID = null,
+                        Resume = "LinkedIn",
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                    },
+                    new JobCandidate()
+                    {
+                        JobCandidateID = 2,
+                        BusinessEntityID = null,
+                        Resume = "LinkedIn",
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                    }
+                );
+            });
+            
+            // ✅ Seed Job Employee data 
+            modelBuilder.Entity<Employee>(entity =>
+            {
+                entity.ToTable("Employee", "HumanResources");
+                entity.HasKey(e => e.BusinessEntityID);
+            
+                // ✅ Seed data
+                entity.HasData(
+                    new Employee()
                     {
                         BusinessEntityID = 1,
+                        NationalIDNumber = "295847284",
+                        LoginID = "adventure-works\\ken0",
+                        OrganizationNode = null,
+                        OrganizationLevel = 1,
+                        JobTitle = "Chief Executive Officer",
+                        BirthDate = new DateTime(2000, 01, 01, 0, 0, 0, DateTimeKind.Utc),
+                        MaritalStatus = "S",
+                        Gender = "M",
+                        HireDate = new DateTime(2000, 01, 01, 0, 0, 0, DateTimeKind.Utc),
+                        Salary = 5000,
+                        VacationHours = 0,
+                        SickLeaveHours = 3,
+                        CurrentFlag = true,
                         Rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
-                        BusinessEntityContact = new List<BusinessEntityContact> {},
-                        BusinessEntityAddress = new List<BusinessEntityAddress>{}
+                        EntityVersion = 1,
+                        SuggestedBonus = 200,
+                        JobLevel = 1,
+                        SalariedFlag = false,
+                        YearsInService = 10,
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                    }
+                );
+            });
+            
+            // ✅ Seed Job Employee Department History data 
+            modelBuilder.Entity<EmployeeDepartmentHistory>(entity =>
+            {
+                entity.ToTable("EmployeeDepartmentHistory", "HumanResources");
+                entity.HasKey(e => e.BusinessEntityID);
+
+                // ✅ Seed data
+                entity.HasData(
+                    new EmployeeDepartmentHistory()
+                    {
+                        BusinessEntityID = 1,
+                        DepartmentID = 16,
+                        ShiftID = 1,
+                        StartDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
+                        EndDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                    }
+                );
+            });
+            
+            // ✅ Seed Job Employee Pay History data 
+            modelBuilder.Entity<EmployeePayHistory>(entity =>
+            {
+                entity.ToTable("EmployeePayHistory", "HumanResources");
+                entity.HasKey(e => e.BusinessEntityID);
+
+                // ✅ Seed data
+                entity.HasData(
+                    new EmployeePayHistory()
+                    {
+                        BusinessEntityID = 1,
+                        RateChangeDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
+                        Rate = Convert.ToDecimal(125.50),
+                        PayFrequency = 2,
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                    }
+                );
+            });
+
+            #endregion
+
+            #region Person
+            
+                  // ✅ Seed Address data
+            modelBuilder.Entity<Address>(entity =>
+            {
+                entity.ToTable("Address", "Person");
+
+                entity.HasKey(e => e.AddressID);
+
+                // ✅ Seed data
+                entity.HasData(
+                    new Address()
+                    {
+                        AddressID = 1,
+                        AddressLine1 = "3345 Heaven Avenue",
+                        AddressLine2 = "3345 Heaven Avenue",
+                        City = "Northen Pole",
+                        PostalCode = 4456,
+                        rowguid = Guid.NewGuid(),
+                        SpatialLocation = "dfsdf",
+                        StateProvinceID = 1,
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
                     }
                 );
             });
@@ -452,50 +606,27 @@ namespace Orion.DataAccess.Postgres.Data
                 );
             });
             
-            // ✅ Seed Shift data 
-            modelBuilder.Entity<Shift>(entity =>
+            // ✅ Seed default BusinessEntity data 
+            modelBuilder.Entity<BusinessEntity>(entity =>
             {
-                entity.ToTable("Shift", "HumanResources");
-
-                entity.HasKey(e => e.ShiftID);
-
-                entity.Property(e => e.StartTime)
-                    .IsRequired();
-
-                entity.Property(e => e.EndTime)
-                    .IsRequired();
-
-                entity.Property(e => e.ModifiedDate)
-                    .IsRequired();
-
+                entity.ToTable("BusinessEntity", "Person");
+        
+                entity.HasKey(e => e.BusinessEntityID);
+        
                 // ✅ Seed data
                 entity.HasData(
-                    new Shift()
+                    new BusinessEntity( )
                     {
-                        ShiftID = 1,
-                        Name = "Day",
-                        StartTime = TimeSpan.Parse("07:00:00.0000000"),
-                        EndTime = TimeSpan.Parse("15:00:00.0000000"),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Shift()
-                    {
-                        ShiftID = 2,
-                        Name = "Evening",
-                        StartTime = TimeSpan.Parse("15:00:00.0000000"),
-                        EndTime = TimeSpan.Parse("23:00:00.0000000"),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Shift()
-                    {
-                        ShiftID = 3,
-                        Name = "Night",
-                        StartTime = TimeSpan.Parse("23:00:00.0000000"),
-                        EndTime = TimeSpan.Parse("07:00:00.0000000"),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+                        BusinessEntityID = 1,
+                        Rowguid = Guid.NewGuid(),
+                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
+                        BusinessEntityContact = new List<BusinessEntityContact> {},
+                        BusinessEntityAddress = new List<BusinessEntityAddress>{}
                     }
                 );
             });
+
+            #endregion
             
             // Configure RefreshToken
             modelBuilder.Entity<RefreshToken>(entity =>
