@@ -20,10 +20,10 @@ jobs:
           dotnet-version: 9.0.x
 
       - name: Restore dependencies
-        run: dotnet restore Orion.API.Microservices.NET.sln
+        run: dotnet restore Orion.Microservices.NET.sln
 
       - name: Build solution
-        run: dotnet build Orion.API.Microservices.NET.sln --no-restore --configuration Release
+        run: dotnet build Orion.Microservices.NET.sln --no-restore --configuration Release
 
       - name: Run tests with coverage (per test project)
         run: |
