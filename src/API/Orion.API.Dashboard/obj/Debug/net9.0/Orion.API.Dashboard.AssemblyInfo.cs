@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Orion.API.Dashboard")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1cc12b9e531c12b46fc07628c33c334593a735ff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7730c2c53785654e3808405629b91d87d419014")]
 [assembly: System.Reflection.AssemblyProductAttribute("Orion.API.Dashboard")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Orion.API.Dashboard")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

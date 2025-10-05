@@ -9,15 +9,5 @@
     "C:\\Users\\PC\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\system.diagnostics.diagnosticsource\\5.0.0\\system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json.",
-      "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj",
-      "warningLevel": 1,
-      "filePath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }
