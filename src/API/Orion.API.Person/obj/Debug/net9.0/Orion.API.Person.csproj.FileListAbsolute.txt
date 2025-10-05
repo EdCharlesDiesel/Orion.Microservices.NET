@@ -427,3 +427,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Person\obj\Debug\net9.0
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Person\obj\Debug\net9.0\Orion.API.Person.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Person\obj\Debug\net9.0\Orion.API.Person.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Person\obj\Debug\net9.0\ref\Orion.API.Person.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Person\obj\Debug\net9.0\Orion.API.Person.sourcelink.json

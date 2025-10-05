@@ -247,3 +247,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Production\obj\Debug\ne
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Production\obj\Debug\net9.0\Orion.API.Production.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Production\obj\Debug\net9.0\Orion.API.Production.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Production\obj\Debug\net9.0\ref\Orion.API.Production.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Production\obj\Debug\net9.0\Orion.API.Production.sourcelink.json

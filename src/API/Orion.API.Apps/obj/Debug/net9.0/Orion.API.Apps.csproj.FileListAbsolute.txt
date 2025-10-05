@@ -295,3 +295,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\r
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\Orion.API.Apps.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\Orion.API.Apps.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\ref\Orion.API.Apps.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\Orion.API.Apps.sourcelink.json

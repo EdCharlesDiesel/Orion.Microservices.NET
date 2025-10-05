@@ -500,3 +500,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\SharpYaml.dll
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Orion.External.PaymentGateway.dll
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\bin\Debug\net9.0\Orion.External.PaymentGateway.pdb
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.HR.UnitTests\obj\Debug\net9.0\Orion.API.HR.UnitTests.sourcelink.json

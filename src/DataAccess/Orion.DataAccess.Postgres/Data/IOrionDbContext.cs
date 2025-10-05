@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using Orion.DataAccess.Postgres.Entities;
 using Orion.DataAccess.Postgres.Entities.Shared;
 using Orion.DataAccess.Postgres.Entities.TradingEconomics;
-using Orion.DataAccess.Postgres.Tools;
 
 namespace Orion.DataAccess.Postgres.Data
 {
@@ -99,37 +98,5 @@ namespace Orion.DataAccess.Postgres.Data
         DbSet<Forecast> Forecasts  { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-    }
-
-    public class OrderDetail: Entity<int>
-    {
-    }
-
-    public class ContactCreditCard: Entity<int>
-    {
-    }
-
-    public class CustomerAddress: Entity<int>
-    {
-    }
-
-    public class StoreContact: Entity<int>
-    {
-    }
-
-    public class VendorContact: Entity<int>
-    {
-    }
-
-    public class VendorAddress: Entity<int>
-    {
-    }
-
-    public class Individual: Entity<int>
-    {
-    }
-
-    public class Contact: Entity<int>
-    {
     }
 }
