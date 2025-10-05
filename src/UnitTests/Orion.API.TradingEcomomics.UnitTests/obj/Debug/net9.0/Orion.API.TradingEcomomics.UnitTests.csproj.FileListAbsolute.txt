@@ -288,3 +288,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.TradingEcomomics.
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.TradingEcomomics.UnitTests\obj\Debug\net9.0\Orion.API.TradingEcomomics.UnitTests.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.TradingEcomomics.UnitTests\obj\Debug\net9.0\Orion.API.TradingEcomomics.UnitTests.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.TradingEcomomics.UnitTests\obj\Debug\net9.0\ref\Orion.API.TradingEcomomics.UnitTests.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.TradingEcomomics.UnitTests\obj\Debug\net9.0\Orion.API.TradingEcomomics.UnitTests.sourcelink.json

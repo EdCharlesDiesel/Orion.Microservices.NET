@@ -265,3 +265,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\Orion.API.ErrorLog.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\ref\Orion.API.ErrorLog.dll
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\scopedcss\bundle\Orion.API.BuildVersion.styles.css
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\Orion.API.ErrorLog.sourcelink.json

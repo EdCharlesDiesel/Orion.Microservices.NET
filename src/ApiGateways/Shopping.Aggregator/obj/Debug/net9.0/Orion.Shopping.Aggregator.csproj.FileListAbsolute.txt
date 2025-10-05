@@ -328,3 +328,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\Shopping.Aggregator\bin\D
 C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\Shopping.Aggregator\bin\Debug\net9.0\Orion.DataAccess.Postgres.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\Shopping.Aggregator\bin\Debug\net9.0\Orion.Domain.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\Shopping.Aggregator\bin\Debug\net9.0\Orion.Helpers.pdb
+C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.sourcelink.json
