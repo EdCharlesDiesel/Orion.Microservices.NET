@@ -10123,9 +10123,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Shopping.Aggregator.csproj",
-      "projectName": "Orion.Shopping.Aggregator",
-      "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Shopping.Aggregator.csproj",
+      "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Aggregator.csproj",
+      "projectName": "Orion.Aggregator",
+      "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Aggregator.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
       "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\obj\\",
       "projectStyle": "PackageReference",

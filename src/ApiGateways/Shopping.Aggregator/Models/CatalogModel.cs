@@ -1,4 +1,4 @@
-﻿namespace Orion.Shopping.Aggregator.Models
+﻿namespace Orion.Aggregator.Models
 {
     public abstract class CatalogModel
     {

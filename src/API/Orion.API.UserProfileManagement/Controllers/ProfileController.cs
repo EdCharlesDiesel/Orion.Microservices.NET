@@ -36,7 +36,7 @@ public class ProfileController : ControllerBase
         try
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(userId ?? throw new InvalidOperationException());
 
             if (user == null)
                 return NotFound(new { message = "User not found" });
@@ -60,9 +60,9 @@ public class ProfileController : ControllerBase
                 Language = profile?.Language ?? "en",
                 Role = roles.FirstOrDefault() ?? "User",
                 EmailConfirmed = user.EmailConfirmed,
-                // CreatedAt = user.CreatedAt,
-                // LastLoginAt = user.LastLoginAt,
-                // LoginCount = user.LoginCount,
+              
+                LockoutEnabled = user.LockoutEnabled,
+                AccessFailedCount = user.AccessFailedCount,
                 NotificationSettings = profile?.NotificationSettings ?? new NotificationSettings(),
                 PrivacySettings = profile?.PrivacySettings ?? new PrivacySettings()
             };
