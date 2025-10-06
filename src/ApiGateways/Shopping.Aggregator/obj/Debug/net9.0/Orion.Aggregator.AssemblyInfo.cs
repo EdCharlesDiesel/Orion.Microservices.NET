@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Orion.Aggregator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1737ea0bd25342307a605f559fecfe37e8e1b4d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28fb26a9c1c5a9f982af3a5861abc5269609696d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Orion.Aggregator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Orion.Aggregator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

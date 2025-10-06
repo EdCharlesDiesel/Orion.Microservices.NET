@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Orion.API.UserProfileManagement")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0753729d5a47528197ceb28b8c9a88277f87d1e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28fb26a9c1c5a9f982af3a5861abc5269609696d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Orion.API.UserProfileManagement")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Orion.API.UserProfileManagement")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
