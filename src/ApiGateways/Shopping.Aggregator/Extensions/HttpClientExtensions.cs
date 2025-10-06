@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Orion.Shopping.Aggregator.Extensions
+namespace Orion.Aggregator.Extensions
 {
     public static class HttpClientExtensions
     {

@@ -2,10 +2,10 @@
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Orion.Shopping.Aggregator.Models;
-using Orion.Shopping.Aggregator.Services;
+using Orion.Aggregator.Models;
+using Orion.Aggregator.Services;
 
-namespace Orion.Shopping.Aggregator.Controllers
+namespace Orion.Aggregator.Controllers
 {
     [ApiController]
     [Route("api/v1/[controller]")]

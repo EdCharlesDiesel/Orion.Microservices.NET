@@ -23,3 +23,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\
 C:\x\RealWorld\Orion.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\refint\Orion.Domain.dll
 C:\x\RealWorld\Orion.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\Orion.Domain.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\ref\Orion.Domain.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\Orion.Domain.sourcelink.json

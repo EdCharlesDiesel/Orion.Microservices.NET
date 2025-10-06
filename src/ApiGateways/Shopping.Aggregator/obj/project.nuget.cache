@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "P27LnCktJrM=",
+  "dgSpecHash": "R6qHABNs30g=",
   "success": true,
-  "projectFilePath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Shopping.Aggregator.csproj",
+  "projectFilePath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Aggregator.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\aspnetcore.healthchecks.ui.client\\5.0.1\\aspnetcore.healthchecks.ui.client.5.0.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\aspnetcore.healthchecks.ui.core\\5.0.1\\aspnetcore.healthchecks.ui.core.5.0.1.nupkg.sha512",

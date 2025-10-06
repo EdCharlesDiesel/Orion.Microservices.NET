@@ -1,4 +1,4 @@
-namespace Orion.Shopping.Aggregator.Services;
+namespace Orion.Aggregator.Services;
 
 public class RevenueStreamAggregatorService
 {
