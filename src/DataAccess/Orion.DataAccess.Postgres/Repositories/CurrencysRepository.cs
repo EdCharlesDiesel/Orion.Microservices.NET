@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Orion.DataAccess.Postgres.Data;
 using Orion.DataAccess.Postgres.Entities;
+using Orion.DataAccess.Postgres.IRepositories;
 using Orion.DataAccess.Postgres.Tools;
 
 namespace Orion.DataAccess.Postgres.Repositories;
@@ -11,7 +12,7 @@ public class CurrencysRepository(OrionDbContext context) : ICurrencysRepository
     public async Task<IEnumerable<Currency>> GetAllAsync() =>
         await context.Currencies.ToListAsync();
 
-    public async Task<Currency?> GetByIdAsync(int id) =>
+    public async Task<Currency?> GetByIdAsync(string id) =>
         await context.Currencies.FindAsync(id);
 
     public async Task AddAsync(Currency entity) =>

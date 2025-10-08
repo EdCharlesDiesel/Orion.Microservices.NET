@@ -18,7 +18,7 @@ namespace Orion.API.Sales.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetById(string id)
         {
             var version = await unitOfWork.Currencys.GetByIdAsync(id);
             if (version == null) return NotFound();
@@ -26,7 +26,7 @@ namespace Orion.API.Sales.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] DataAccess.Postgres.Entities.Currency version)
+        public async Task<IActionResult> Create([FromBody] Currency version)
         {
             if (!ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace Orion.API.Sales.Controllers
         }
         
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] DataAccess.Postgres.Entities.Currency version)
+        public async Task<IActionResult> Update(string id, [FromBody] Currency version)
         {
             if (!ModelState.IsValid)
             {
@@ -77,11 +77,7 @@ namespace Orion.API.Sales.Controllers
                 {
                     return NotFound($"Record with ID {id} not found.");
                 }
-
-                // Map fields (manual or via AutoMapper)
-                // existing.Name = version.Name;
-                // existing.GroupName = version.GroupName;
-                // existing.EmployeeCurrencyHistories = new List<EmployeeCurrencyHistory>();
+                existing.Name = version.Name;
                 existing.ModifiedDate = version.ModifiedDate;
 
                 unitOfWork.Currencys.Update(existing);
@@ -113,7 +109,7 @@ namespace Orion.API.Sales.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(string id)
         {
             try
             {
@@ -147,8 +143,5 @@ namespace Orion.API.Sales.Controllers
                 return StatusCode(500, "An internal error occurred while deleting the record.");
             }
         }
-
-        
-        
     }
 }

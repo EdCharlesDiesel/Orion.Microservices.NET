@@ -516,176 +516,193 @@ namespace Orion.DataAccess.Postgres.Data
             #endregion
             
             #region Sales
-
-            // ✅ Seed Address data
-            modelBuilder.Entity<SalesTerritory>(entity =>
+                  // ✅ Seed Currency data
+            modelBuilder.Entity<Currency>(entity =>
             {
-                entity.ToTable("SalesTerritory", "Sales");
+                entity.ToTable("Currency", "Sales");
 
-                entity.HasKey(e => e.TerritoryID);
+                entity.HasKey(e => e.CurrencyCode);
 
                 // ✅ Seed data
                 entity.HasData(
-                    new SalesTerritory()
+                    new Currency()
                     {
-                        TerritoryID = 1,
-                        Name = "Northwest",
-                        CountryRegionCode = "US",
-                        Group = "North America",
-                        SalesYTD = Convert.ToDecimal(7887186.7882),
-                        SalesLastYear = Convert.ToDecimal(3298694.4938),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new SalesTerritory()
-                    {
-                        TerritoryID = 2,
-                        Name = "Northwest",
-                        CountryRegionCode = "US",
-                        Group = "North America",
-                        SalesYTD = Convert.ToDecimal(2402176.8476),
-                        SalesLastYear = Convert.ToDecimal(3607148.9371),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new SalesTerritory()
-                    {
-                        TerritoryID = 3,
-                        Name = "Central",
-                        CountryRegionCode = "US",
-                        Group = "North America",
-                        SalesYTD = Convert.ToDecimal(3072175.118),
-                        SalesLastYear = Convert.ToDecimal(3205014.0767),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new SalesTerritory()
-                    {
-                        TerritoryID = 4,
-                        Name = "Southwest",
-                        CountryRegionCode = "US",
-                        Group = "North America",
-                        SalesYTD = Convert.ToDecimal(10510853.8739),
-                        SalesLastYear = Convert.ToDecimal(5366575.7098),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new SalesTerritory()
-                    {
-                        TerritoryID = 5,
-                        Name = "Southwest",
-                        CountryRegionCode = "US",
-                        Group = "North America",
-                        SalesYTD = Convert.ToDecimal(2538667.2515),
-                        SalesLastYear = Convert.ToDecimal(3925071.4318),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new SalesTerritory()
-                    {
-                        TerritoryID = 6,
-                        Name = "Canada",
-                        CountryRegionCode = "CA",
-                        Group = "North America",
-                        SalesYTD = Convert.ToDecimal(6771829.1376),
-                        SalesLastYear = Convert.ToDecimal(5693988.86),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new SalesTerritory()
-                    {
-                        TerritoryID = 7,
-                        Name = "France",
-                        CountryRegionCode = "FR",
-                        Group = "Europe",
-                        SalesYTD = Convert.ToDecimal(4772398.3078),
-                        SalesLastYear = Convert.ToDecimal(2396539.7601),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new SalesTerritory()
-                    {
-                        TerritoryID = 8,
-                        Name = "Germany",
-                        CountryRegionCode = "DE",
-                        Group = "Europe",
-                        SalesYTD = Convert.ToDecimal(3805202.3478),
-                        SalesLastYear = Convert.ToDecimal(1307949.7917),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new SalesTerritory()
-                    {
-                        TerritoryID = 9,
-                        Name = "Australia",
-                        CountryRegionCode = "AU",
-                        Group = "Pacific",
-                        SalesYTD = Convert.ToDecimal(5977814.9154),
-                        SalesLastYear = Convert.ToDecimal(2278548.9776),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new SalesTerritory()
-                    {
-                        TerritoryID = 10,
-                        Name = "United Kingdom",
-                        CountryRegionCode = "GB",
-                        Group = "Europe",
-                        SalesYTD = Convert.ToDecimal(5012905.3656),
-                        SalesLastYear = Convert.ToDecimal(1635823.3967),
-                        CostYTD = Convert.ToDecimal(0.00),
-                        CostLastYear = Convert.ToDecimal(0.00),
-                        rowguid = Guid.NewGuid(),
+                        CurrencyCode = "ZAR",
+                        Name = "Rand",
                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
                     }
                 );
             });
+            
+            // ✅ Seed Address data
+            // modelBuilder.Entity<SalesTerritory>(entity =>
+            // {
+            //     entity.ToTable("SalesTerritory", "Sales");
+            //
+            //     entity.HasKey(e => e.TerritoryID);
+            //
+            //     // ✅ Seed data
+            //     entity.HasData(
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 1,
+            //             Name = "Northwest",
+            //             CountryRegionCode = "US",
+            //             Group = "North America",
+            //             SalesYTD = Convert.ToDecimal(7887186.7882),
+            //             SalesLastYear = Convert.ToDecimal(3298694.4938),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         },
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 2,
+            //             Name = "Northwest",
+            //             CountryRegionCode = "US",
+            //             Group = "North America",
+            //             SalesYTD = Convert.ToDecimal(2402176.8476),
+            //             SalesLastYear = Convert.ToDecimal(3607148.9371),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         },
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 3,
+            //             Name = "Central",
+            //             CountryRegionCode = "US",
+            //             Group = "North America",
+            //             SalesYTD = Convert.ToDecimal(3072175.118),
+            //             SalesLastYear = Convert.ToDecimal(3205014.0767),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         },
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 4,
+            //             Name = "Southwest",
+            //             CountryRegionCode = "US",
+            //             Group = "North America",
+            //             SalesYTD = Convert.ToDecimal(10510853.8739),
+            //             SalesLastYear = Convert.ToDecimal(5366575.7098),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         },
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 5,
+            //             Name = "Southwest",
+            //             CountryRegionCode = "US",
+            //             Group = "North America",
+            //             SalesYTD = Convert.ToDecimal(2538667.2515),
+            //             SalesLastYear = Convert.ToDecimal(3925071.4318),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         },
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 6,
+            //             Name = "Canada",
+            //             CountryRegionCode = "CA",
+            //             Group = "North America",
+            //             SalesYTD = Convert.ToDecimal(6771829.1376),
+            //             SalesLastYear = Convert.ToDecimal(5693988.86),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         },
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 7,
+            //             Name = "France",
+            //             CountryRegionCode = "FR",
+            //             Group = "Europe",
+            //             SalesYTD = Convert.ToDecimal(4772398.3078),
+            //             SalesLastYear = Convert.ToDecimal(2396539.7601),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         },
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 8,
+            //             Name = "Germany",
+            //             CountryRegionCode = "DE",
+            //             Group = "Europe",
+            //             SalesYTD = Convert.ToDecimal(3805202.3478),
+            //             SalesLastYear = Convert.ToDecimal(1307949.7917),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         },
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 9,
+            //             Name = "Australia",
+            //             CountryRegionCode = "AU",
+            //             Group = "Pacific",
+            //             SalesYTD = Convert.ToDecimal(5977814.9154),
+            //             SalesLastYear = Convert.ToDecimal(2278548.9776),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         },
+            //         new SalesTerritory()
+            //         {
+            //             TerritoryID = 10,
+            //             Name = "United Kingdom",
+            //             CountryRegionCode = "GB",
+            //             Group = "Europe",
+            //             SalesYTD = Convert.ToDecimal(5012905.3656),
+            //             SalesLastYear = Convert.ToDecimal(1635823.3967),
+            //             CostYTD = Convert.ToDecimal(0.00),
+            //             CostLastYear = Convert.ToDecimal(0.00),
+            //             rowguid = Guid.NewGuid(),
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         }
+            //     );
+            // });
 
             #endregion
 
             #region Person
             
             // ✅ Seed Address data
-            modelBuilder.Entity<Address>(entity =>
-            {
-                entity.ToTable("Address", "Person");
-
-                entity.HasKey(e => e.AddressID);
-
-                // ✅ Seed data
-                entity.HasData(
-                    new Address()
-                    {
-                        AddressID = 1,
-                        AddressLine1 = "3345 Heaven Avenue",
-                        AddressLine2 = "3345 Heaven Avenue",
-                        City = "Northern Pole",
-                        PostalCode = 4456,
-                        rowguid = Guid.NewGuid(),
-                        SpatialLocation = "dfsdf",
-                        StateProvinceID = 1,
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    }
-                );
-            });
+            // modelBuilder.Entity<Address>(entity =>
+            // {
+            //     entity.ToTable("Address", "Person");
+            //
+            //     entity.HasKey(e => e.AddressID);
+            //
+            //     // ✅ Seed data
+            //     entity.HasData(
+            //         new Address()
+            //         {
+            //             AddressID = 1,
+            //             AddressLine1 = "3345 Heaven Avenue",
+            //             AddressLine2 = "3345 Heaven Avenue",
+            //             City = "Northern Pole",
+            //             PostalCode = 4456,
+            //             rowguid = Guid.NewGuid(),
+            //             SpatialLocation = "dfsdf",
+            //             StateProvinceID = 1,
+            //             ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
+            //         }
+            //     );
+            // });
             
             // ✅ Seed AddressType data
             modelBuilder.Entity<AddressType>(entity =>

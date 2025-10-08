@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("Sales.Currency")]
+    [Table("Currency", Schema = "Sales")]
     [Description("Lookup table containing standard ISO currencies.")]
     public class Currency
     {
@@ -15,13 +15,11 @@ namespace Orion.DataAccess.Postgres.Entities
             this.CurrencyRates1 = new List<CurrencyRate>();
         }
         [Key]
-        [Column(name : "CurrencyCode", TypeName = "nchar")]
-        [MaxLength(3)]
-        [StringLength(3)]
+        [Column(name : "CurrencyCode")]
         [Required(ErrorMessage = "Currency Code is required")]
         [Display(Name = "Currency Code")]
         [Description("The ISO code for the Currency.")]
-        public string CurrencyCode { get; set; } // nchar(3)
+        public string CurrencyCode { get; set; } 
         [Column(name : "Name")]
         [MaxLength(50)]
         [StringLength(50)]
