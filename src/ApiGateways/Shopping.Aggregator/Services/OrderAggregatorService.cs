@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Orion.Shopping.Aggregator.Extensions;
-using Orion.Shopping.Aggregator.Models;
+using Orion.Aggregator.Models;
+using Orion.Aggregator.Extensions;
 
-namespace Orion.Shopping.Aggregator.Services
+namespace Orion.Aggregator.Services
 {
     public class OrderAggregatorService(HttpClient client) : IOrderAggregatorService
     {

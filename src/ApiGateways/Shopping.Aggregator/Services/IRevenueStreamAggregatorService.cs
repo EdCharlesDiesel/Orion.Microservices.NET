@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Orion.Shopping.Aggregator.Models;
+using Orion.Aggregator.Models;
 
-namespace Orion.Shopping.Aggregator.Services;
+namespace Orion.Aggregator.Services;
 
 public interface IRevenueStreamAggregatorService
 {

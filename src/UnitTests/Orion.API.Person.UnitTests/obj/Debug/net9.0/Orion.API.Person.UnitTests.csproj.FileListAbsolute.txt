@@ -423,3 +423,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.Person.UnitTests\
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.Person.UnitTests\obj\Debug\net9.0\Orion.API.Person.UnitTests.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.Person.UnitTests\obj\Debug\net9.0\Orion.API.Person.UnitTests.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.Person.UnitTests\obj\Debug\net9.0\ref\Orion.API.Person.UnitTests.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\UnitTests\Orion.API.Person.UnitTests\obj\Debug\net9.0\Orion.API.Person.UnitTests.sourcelink.json

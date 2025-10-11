@@ -129,3 +129,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\External.PaymentGateway\o
 C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\Orion.External.PaymentGateway.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\Orion.External.PaymentGateway.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\ref\Orion.External.PaymentGateway.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\Orion.External.PaymentGateway.sourcelink.json

@@ -1,0 +1,11 @@
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\bin\Debug\net9.0\Globomantics.Shared.deps.json
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\bin\Debug\net9.0\Globomantics.Shared.dll
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\bin\Debug\net9.0\Globomantics.Shared.pdb
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\obj\Debug\net9.0\Globomantics.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\obj\Debug\net9.0\Globomantics.Shared.AssemblyInfoInputs.cache
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\obj\Debug\net9.0\Globomantics.Shared.AssemblyInfo.cs
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\obj\Debug\net9.0\Globomantics.Shared.csproj.CoreCompileInputs.cache
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\obj\Debug\net9.0\Globomantics.Shared.dll
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\obj\Debug\net9.0\refint\Globomantics.Shared.dll
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\obj\Debug\net9.0\Globomantics.Shared.pdb
+C:\Users\PC\Downloads\ps-aspnetcore6apiauth-main\m5\Authorization\Shared\obj\Debug\net9.0\ref\Globomantics.Shared.dll

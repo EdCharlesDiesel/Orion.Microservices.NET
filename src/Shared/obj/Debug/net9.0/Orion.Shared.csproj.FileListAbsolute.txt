@@ -1,0 +1,12 @@
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\bin\Debug\net9.0\Orion.Shared.deps.json
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\bin\Debug\net9.0\Orion.Shared.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\bin\Debug\net9.0\Orion.Shared.pdb
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\obj\Debug\net9.0\Orion.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\obj\Debug\net9.0\Orion.Shared.AssemblyInfoInputs.cache
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\obj\Debug\net9.0\Orion.Shared.AssemblyInfo.cs
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\obj\Debug\net9.0\Orion.Shared.csproj.CoreCompileInputs.cache
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\obj\Debug\net9.0\Orion.Shared.sourcelink.json
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\obj\Debug\net9.0\Orion.Shared.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\obj\Debug\net9.0\refint\Orion.Shared.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\obj\Debug\net9.0\Orion.Shared.pdb
+C:\x\RealWorld\Orion.Microservices.NET\src\Shared\obj\Debug\net9.0\ref\Orion.Shared.dll

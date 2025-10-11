@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\Orion.Services.StockAnalyzer.API.props" />
-</Project>

@@ -305,3 +305,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\n
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\Orion.API.DatabaseLog.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\Orion.API.DatabaseLog.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\ref\Orion.API.DatabaseLog.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\Orion.API.DatabaseLog.sourcelink.json

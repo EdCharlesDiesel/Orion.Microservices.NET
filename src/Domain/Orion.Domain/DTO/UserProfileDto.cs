@@ -17,10 +17,11 @@ public class UserProfileDto
     public string Timezone { get; set; } = "UTC";
     public string Language { get; set; } = "en";
     public string Role { get; set; } = "User";
+    public bool LockoutEnabled { get; set; }
     public bool EmailConfirmed { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? LastLoginAt { get; set; }
-    public int LoginCount { get; set; }
+    public int AccessFailedCount { get; set; }
     public NotificationSettings NotificationSettings { get; set; } = new();
     public PrivacySettings PrivacySettings { get; set; } = new();
 }

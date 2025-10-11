@@ -10123,9 +10123,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Shopping.Aggregator.csproj",
-      "projectName": "Orion.Shopping.Aggregator",
-      "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Shopping.Aggregator.csproj",
+      "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Aggregator.csproj",
+      "projectName": "Orion.Aggregator",
+      "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\Orion.Aggregator.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
       "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\ApiGateways\\Shopping.Aggregator\\obj\\",
       "projectStyle": "PackageReference",
@@ -10211,27 +10211,5 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Unable to load the service index for source https://api.nuget.org/v3/index.json.",
-      "libraryId": "Azure.Identity"
-    },
-    {
-      "code": "NU1801",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Unable to load the service index for source https://api.nuget.org/v3/index.json.",
-      "libraryId": "Azure.Identity"
-    },
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

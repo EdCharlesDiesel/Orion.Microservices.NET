@@ -317,3 +317,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.TradingEconomics\obj\De
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.TradingEconomics\obj\Debug\net9.0\Orion.API.TradingEconomics.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.TradingEconomics\obj\Debug\net9.0\Orion.API.TradingEconomics.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.TradingEconomics\obj\Debug\net9.0\ref\Orion.API.TradingEconomics.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.TradingEconomics\obj\Debug\net9.0\Orion.API.TradingEconomics.sourcelink.json

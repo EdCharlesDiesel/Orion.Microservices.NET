@@ -247,3 +247,4 @@ C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Purchasing\obj\Debug\ne
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Purchasing\obj\Debug\net9.0\Orion.API.Purchasing.pdb
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Purchasing\obj\Debug\net9.0\Orion.API.Purchasing.genruntimeconfig.cache
 C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Purchasing\obj\Debug\net9.0\ref\Orion.API.Purchasing.dll
+C:\x\RealWorld\Orion.Microservices.NET\src\API\Orion.API.Purchasing\obj\Debug\net9.0\Orion.API.Purchasing.sourcelink.json
