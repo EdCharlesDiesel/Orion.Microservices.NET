@@ -1,2 +1,9 @@
-﻿src/DataAccess/Orion.DataAccess.Postgres/Data/Migrations/20250917164232_Initial.Designer.cs
-src/DataAccess/Orion.DataAccess.Postgres/Data/Migrations
+# Ignore only EF Core designer files
+**/Migrations/*.Designer.cs
+
+# Ignore user-specific and sensitive config files
+appsettings.Development.json
+appsettings.Local.json
+*.secrets.json
+.env
+.env.local
