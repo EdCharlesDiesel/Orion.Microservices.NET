@@ -1,5 +1,4 @@
 // using Microsoft.AspNetCore.Mvc;
-// using Orion.API.TradingEconomics.Interfaces;
 // using Orion.DataAccess.Postgres.Repositories;
 // using Orion.Domain.IRepositories;
 //

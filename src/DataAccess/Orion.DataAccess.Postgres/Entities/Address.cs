@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("Address", Schema = "Person")]
+    [Table("Person.Address")]
     [Description("Street address information for customers, employees, and vendors.")]
     public class Address
     {
@@ -51,15 +51,17 @@ namespace Orion.DataAccess.Postgres.Entities
         [Description("Unique identification number for the state or province. Foreign key to StateProvince table.")]
         public int? StateProvinceID { get; set; } // int
         [Column(name : "PostalCode")]
+        [MaxLength(15)]
+        [StringLength(15)]
         [Required(ErrorMessage = "Postal Code is required")]
         [Display(Name = "Postal Code")]
         [Description("Postal code for the street address.")]
-        public int PostalCode { get; set; } // nvarchar(15)
+        public string PostalCode { get; set; } // nvarchar(15)
         [Column(name : "SpatialLocation", TypeName = "geography")]
         [Display(Name = "Spatial Location")]
         [Description("Latitude and longitude of this address.")]
-        [NotMapped]
-        public string SpatialLocation { get; set; } // geography
+         [NotMapped]
+        public SqlGeography SpatialLocation { get; set; } // geography
         [Column(name : "rowguid")]
         [Required(ErrorMessage = "rowguid is required")]
         [Display(Name = "rowguid")]
@@ -73,7 +75,7 @@ namespace Orion.DataAccess.Postgres.Entities
 
         // Person.Address.StateProvinceID -> Person.StateProvince.StateProvinceID (FK_Address_StateProvince_StateProvinceID)
         [ForeignKey("StateProvinceID")]
-        public StateProvince? StateProvince { get; set; }
+        public StateProvince StateProvince { get; set; }
         // Person.BusinessEntityAddress.AddressID -> Person.Address.AddressID (FK_BusinessEntityAddress_Address_AddressID)
         public IEnumerable<BusinessEntityAddress> BusinessEntityAddress { get; set; }
         // Sales.SalesOrderHeader.BillToAddressID -> Person.Address.AddressID (FK_SalesOrderHeader_Address_BillToAddressID)

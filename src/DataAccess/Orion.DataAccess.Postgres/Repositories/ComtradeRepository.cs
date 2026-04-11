@@ -1,4 +1,4 @@
-
+using Orion.Domain.IRepositories;
 
 namespace Orion.DataAccess.Postgres.Repositories;
 
@@ -18,10 +18,6 @@ public class ComtradeRepository: IComtradeServices
 
     public async Task<string> GetHistorical(string symbol)
         => await HttpRequesterClass.HttpRequester($"/comtrade/historical/{symbol}");
-}
-
-public interface IComtradeServices
-{
 }
 
 public class HttpRequesterClass

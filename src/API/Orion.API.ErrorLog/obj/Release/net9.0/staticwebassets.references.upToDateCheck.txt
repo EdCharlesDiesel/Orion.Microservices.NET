@@ -1,0 +1,1 @@
+C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Release\net9.0\staticwebassets.build.json

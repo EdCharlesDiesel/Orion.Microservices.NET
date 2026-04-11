@@ -1,0 +1,4 @@
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.TradingEconomics\obj\Debug\net9.0\staticwebassets.build.json
+C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\staticwebassets.build.json
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.TradingEconomics\obj\Debug\net9.0\staticwebassets.build.json
+C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\staticwebassets.build.json

@@ -6,11 +6,11 @@
       context: .
       dockerfile: Orion.Access.Postgres/Dockerfile
 
-  orion.api.BuildVersion:
-    image: orion.api.BuildVersion
+  orion.api.awbuildversion:
+    image: orion.api.awbuildversion
     build:
       context: .
-      dockerfile: src/API/Orion.API.BuildVersion/Dockerfile
+      dockerfile: src/API/Orion.API.AWBuildVersion/Dockerfile
 
   orion.api.databaselog:
     image: orion.api.databaselog
@@ -32,7 +32,7 @@
 
   api:
       build: .
-      container_name: Orion.API.BuildVersion
+      container_name: Orion.API.AWBuildVersion
       environment:
         # Use service name 'postgres' as host
         ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0"

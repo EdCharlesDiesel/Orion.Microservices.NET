@@ -1,0 +1,432 @@
+﻿@page "/"
+@using Orion.WebApps.AanalysisDashboardBlazor.Models
+@using Orion.WebApps.AanalysisDashboardBlazor.Services
+
+@inject DataService DataService
+@inject IndicatorService IndicatorService
+@inject BacktestService BacktestService
+@inject IJSRuntime JSRuntime
+
+<PageTitle>EUR/USD Backtest Lab</PageTitle>
+
+<div class="dashboard-container">
+    <div class="header">
+        <h1>📊 EUR/USD Backtest Lab — 2025 M1 Data</h1>
+    </div>
+    
+    <div class="sidebar">
+        <h3>⚙️ Controls</h3>
+        <div class="control-group">
+            <label>📅 Select Trading Day</label>
+            <select @bind="selectedDateStr" @onchange="OnDateSelected">
+                @foreach (var date in allDates)
+                {
+                    <option value="@date.ToString("yyyy-MM-dd")">@date.ToString("yyyy-MM-dd")</option>
+                }
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <label>⏱ Timeframe</label>
+            <select @bind="selectedTimeframe">
+                <option value="M1">M1</option>
+                <option value="M5">M5</option>
+                <option value="M15">M15</option>
+                <option value="M30">M30</option>
+                <option value="H1">H1</option>
+            </select>
+        </div>
+        
+        <div class="control-group">
+            <label class="checkbox-label">
+                <input type="checkbox" @bind="showEma" />
+                EMA (9 / 21 / 50)
+            </label>
+        </div>
+        
+        <div class="control-group">
+            <label class="checkbox-label">
+                <input type="checkbox" @bind="showBb" />
+                Bollinger Bands (20)
+            </label>
+        </div>
+        
+        <div class="control-group">
+            <label class="checkbox-label">
+                <input type="checkbox" @bind="showSessions" />
+                Session Shading
+            </label>
+        </div>
+        
+        <div class="stats">
+            <div>📦 @totalCandles M1 candles loaded</div>
+            <div>🗓 @allDates.Count trading days</div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        @if (selectedDayData != null)
+        {
+            <div class="bias-header">
+                <h2>@selectedDateStr</h2>
+                <span class="badge @biasClass">@biasIcon @bias</span>
+                <span class="confidence">Confidence @confidence%</span>
+            </div>
+            
+            <div class="metrics-grid">
+                <MetricCard Label="Open" Value="@dayOpen.ToString("F5")" />
+                <MetricCard Label="Close" Value="@dayClose.ToString("F5")" CssClass="@changeClass" />
+                <MetricCard Label="High" Value="@dayHigh.ToString("F5")" CssClass="bull" />
+                <MetricCard Label="Low" Value="@dayLow.ToString("F5")" CssClass="bear" />
+                <MetricCard Label="Range" Value="@dayRange pips" />
+                <MetricCard Label="Change" Value="@changeDisplay" CssClass="@changeClass" />
+            </div>
+            
+            <div class="chart-ideas-container">
+                <div class="chart-container">
+                    <div id="priceChart" style="height: 500px;"></div>
+                </div>
+                
+                <div class="ideas-container">
+                    <h3>💡 Trading Ideas</h3>
+                    @foreach (var idea in tradingIdeas)
+                    {
+                        <IdeaCard Type="@idea.Type" Icon="@idea.Icon" Text="@idea.Text" />
+                    }
+                    
+                    <h3>📐 Key Levels</h3>
+                    <table class="levels-table">
+                        <tr><td>R2</td><td>@keyLevels.R2.ToString("F5")</td></tr>
+                        <tr><td>R1</td><td>@keyLevels.R1.ToString("F5")</td></tr>
+                        <tr><td>PP</td><td>@keyLevels.Pp.ToString("F5")</td></tr>
+                        <tr><td>S1</td><td>@keyLevels.S1.ToString("F5")</td></tr>
+                        <tr><td>S2</td><td>@keyLevels.S2.ToString("F5")</td></tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="sessions-grid">
+                @foreach (var session in sessionAnalysis)
+                {
+                    <div class="session-card">
+                        <div class="session-label">🌐 @session.Name Session</div>
+                        <div class="session-direction @GetDirectionClass(session.Direction)">@session.Direction</div>
+                        <div class="session-details">
+                            Range: <b>@session.RangePips pips</b><br />
+                            H: @session.High.ToString("F5") · L: @session.Low.ToString("F5")
+                        </div>
+                    </div>
+                }
+            </div>
+            
+            <div class="backtest-section">
+                <h3>🧪 Simple Strategy Backtest — EMA Cross (M15)</h3>
+                <div class="backtest-controls">
+                    <select @bind="backtestMonth">
+                        @foreach (var month in availableMonths)
+                        {
+                            <option value="@month">@month</option>
+                        }
+                    </select>
+                    <input type="range" @bind="slPips" min="5" max="50" />
+                    <span>SL: @slPips pips</span>
+                    <input type="range" @bind="tpPips" min="5" max="100" />
+                    <span>TP: @tpPips pips</span>
+                    <button @onclick="RunBacktest">Run Backtest</button>
+                </div>
+                
+                @if (backtestTrades.Any())
+                {
+                    <div class="backtest-metrics">
+                        <MetricCard Label="Total Trades" Value="@backtestTotalTrades.ToString()" />
+                        <MetricCard Label="Win Rate" Value="@backtestWinRate.ToString("F1")%" 
+                                   CssClass="@(backtestWinRate > 50 ? "bull" : "bear")" />
+                        <MetricCard Label="Total P&L" Value="@backtestTotalPnl pips" 
+                                   CssClass="@(backtestTotalPnl >= 0 ? "bull" : "bear")" />
+                        <MetricCard Label="W / L" Value="@backtestWins / @backtestLosses" />
+                    </div>
+                    
+                    <div id="equityChart" style="height: 300px;"></div>
+                    
+                    <table class="trades-table">
+                        <thead>
+                            <tr><th>Date</th><th>Time</th><th>Direction</th><th>Entry</th><th>Result</th><th>PnL</th></tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var trade in backtestTrades)
+                            {
+                                <tr>
+                                    <td>@trade.DateTime.ToString("yyyy-MM-dd")</td>
+                                    <td>@trade.DateTime.ToString("HH:mm:ss")</td>
+                                    <td>@trade.Direction</td>
+                                    <td>@trade.Entry.ToString("F5")</td>
+                                    <td class="@(trade.Result == "TP" ? "tp" : "sl")">@trade.Result</td>
+                                    <td class="@(trade.PnL >= 0 ? "bull" : "bear")">@(trade.PnL >= 0 ? $"+{trade.PnL}" : trade.PnL.ToString())</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    private List<DateOnly> allDates = new();
+    private string selectedDateStr = "";
+    private string selectedTimeframe = "M15";
+    private bool showEma = true;
+    private bool showBb = false;
+    private bool showSessions = true;
+    
+    private List<PriceData>? selectedDayData;
+    private List<PriceData>? chartData;
+    private string bias = "Neutral";
+    private double confidence = 50;
+    private decimal dayOpen, dayClose, dayHigh, dayLow;
+    private int dayRange;
+    private decimal dayChange;
+    private double dayChangePercent;
+    
+    private List<SessionAnalysis> sessionAnalysis = new();
+    private List<TradingIdea> tradingIdeas = new();
+    private KeyLevels keyLevels = new();
+    
+    private string backtestMonth = "";
+    private int slPips = 10;
+    private int tpPips = 20;
+    private List<Trade> backtestTrades = new();
+    private List<string> availableMonths = new();
+    
+    private int totalCandles;
+    
+    private string biasIcon => bias switch
+    {
+        "Bullish" => "🟢",
+        "Bearish" => "🔴",
+        _ => "⚪"
+    };
+    
+    private string biasClass => bias.ToLower();
+    private string changeClass => dayChange >= 0 ? "bull" : "bear";
+    private string changeDisplay => $"{dayChange:+0;-0;0} ({dayChange:+0.000;-0.000;0}%)";
+    
+    private int backtestTotalTrades => backtestTrades.Count(t => t.Result != "OPEN");
+    private double backtestWinRate => backtestTrades.Count(t => t.PnL > 0) / (double)backtestTotalTrades * 100;
+    private int backtestTotalPnl => backtestTrades.Where(t => t.Result != "OPEN").Sum(t => t.PnL);
+    private int backtestWins => backtestTrades.Count(t => t.PnL > 0);
+    private int backtestLosses => backtestTrades.Count(t => t.PnL < 0);
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var dataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), 
+            "Downloads", "HISTDATA_COM_NT_EURUSD_M12025", "DAT_NT_EURUSD_M1_2025.csv");
+        
+        await DataService.LoadDataAsync(dataPath);
+        allDates = DataService.GetAllDates();
+        totalCandles = DataService.GetAllDates().Sum(d => DataService.GetDataForDate(d).Count);
+        
+        availableMonths = allDates.Select(d => d.ToString("yyyy-MM")).Distinct().ToList();
+        backtestMonth = availableMonths.FirstOrDefault() ?? "";
+        
+        if (allDates.Any())
+        {
+            selectedDateStr = allDates.First().ToString("yyyy-MM-dd");
+            await LoadDayData();
+        }
+    }
+    
+    private async Task OnDateSelected(ChangeEventArgs e)
+    {
+        selectedDateStr = e.Value?.ToString() ?? "";
+        await LoadDayData();
+    }
+    
+    private async Task LoadDayData()
+    {
+        if (DateOnly.TryParse(selectedDateStr, out var date))
+        {
+            selectedDayData = DataService.GetDataForDate(date);
+            if (selectedDayData != null && selectedDayData.Any())
+            {
+                chartData = selectedTimeframe == "M1" ? selectedDayData : 
+                    DataService.ResampleData(selectedDayData, selectedTimeframe);
+                
+                IndicatorService.AddIndicators(chartData);
+                
+                var (b, c) = IndicatorService.ComputeDailyBias(selectedDayData);
+                bias = b;
+                confidence = c;
+                
+                dayOpen = selectedDayData.First().Open;
+                dayClose = selectedDayData.Last().Close;
+                dayHigh = selectedDayData.Max(d => d.High);
+                dayLow = selectedDayData.Min(d => d.Low);
+                dayRange = (int)((dayHigh - dayLow) * 10000);
+                dayChange = (dayClose - dayOpen) * 10000;
+                dayChangePercent = (double)((dayClose - dayOpen) / dayOpen) * 100;
+                
+                sessionAnalysis = AnalyzeSessions(selectedDayData);
+                (tradingIdeas, keyLevels) = GenerateTradingIdeas(selectedDayData, bias, chartData);
+                
+                await RenderChart();
+            }
+        }
+    }
+    
+    private List<SessionAnalysis> AnalyzeSessions(List<PriceData> dayData)
+    {
+        var sessions = new List<SessionAnalysis>();
+        var date = dayData.First().DateTime.Date;
+        
+        var asian = dayData.Where(d => d.DateTime.Hour >= 0 && d.DateTime.Hour < 8).ToList();
+        var london = dayData.Where(d => d.DateTime.Hour >= 7 && d.DateTime.Hour < 16).ToList();
+        var ny = dayData.Where(d => d.DateTime.Hour >= 13 && d.DateTime.Hour < 22).ToList();
+        
+        if (asian.Any()) sessions.Add(CreateSessionAnalysis("Asian", asian));
+        if (london.Any()) sessions.Add(CreateSessionAnalysis("London", london));
+        if (ny.Any()) sessions.Add(CreateSessionAnalysis("NY", ny));
+        
+        return sessions;
+    }
+    
+    private SessionAnalysis CreateSessionAnalysis(string name, List<PriceData> data)
+    {
+        var open = data.First().Open;
+        var close = data.Last().Close;
+        var high = data.Max(d => d.High);
+        var low = data.Min(d => d.Low);
+        var direction = close > open ? "🟢 Bull" : (close < open ? "🔴 Bear" : "⚪ Flat");
+        
+        return new SessionAnalysis
+        {
+            Name = name,
+            Open = open,
+            Close = close,
+            High = high,
+            Low = low,
+            RangePips = Math.Round((double)((high - low) * 10000), 1),
+            Direction = direction
+        };
+    }
+    
+    private (List<TradingIdea> Ideas, KeyLevels Levels) GenerateTradingIdeas(
+        List<PriceData> dayData, string bias, List<PriceData> indicators)
+    {
+        var ideas = new List<TradingIdea>();
+        var c = dayData.Last().Close;
+        var h = dayData.Max(d => d.High);
+        var l = dayData.Min(d => d.Low);
+        var rng = h - l;
+        var mid = (h + l) / 2;
+        var pp = (h + l + c) / 3;
+        var r1 = 2 * pp - l;
+        var r2 = pp + rng;
+        var s1 = 2 * pp - h;
+        var s2 = pp - rng;
+        
+        var levels = new KeyLevels { Pp = pp, R1 = r1, R2 = r2, S1 = s1, S2 = s2 };
+        
+        ideas.Add(new TradingIdea { Type = "level", Icon = "📍", Text = $"Pivot Point: {pp:F5} | R1: {r1:F5} | R2: {r2:F5}" });
+        ideas.Add(new TradingIdea { Type = "level", Icon = "📍", Text = $"S1: {s1:F5} | S2: {s2:F5} | Mid Range: {mid:F5}" });
+        
+        var last = indicators.LastOrDefault();
+        var rsiVal = last?.Rsi;
+        var ema9 = last?.Ema9;
+        var ema21 = last?.Ema21;
+        
+        if (bias == "Bullish")
+        {
+            ideas.Add(new TradingIdea { Type = "bull", Icon = "🟢", Text = $"BUY on pullback to S1 ({s1:F5}) or mid-range ({mid:F5}). Target R1 ({r1:F5})." });
+            if (ema9 > ema21)
+                ideas.Add(new TradingIdea { Type = "bull", Icon = "🟢", Text = "EMA9 > EMA21 — trend aligned. Look for long entries on dips." });
+            if (rsiVal < 40)
+                ideas.Add(new TradingIdea { Type = "bull", Icon = "🟢", Text = $"RSI at {rsiVal:F1} — oversold on bullish day. Reversal long opportunity." });
+        }
+        else if (bias == "Bearish")
+        {
+            ideas.Add(new TradingIdea { Type = "bear", Icon = "🔴", Text = $"SELL on bounce to R1 ({r1:F5}) or mid-range ({mid:F5}). Target S1 ({s1:F5})." });
+            if (ema9 < ema21)
+                ideas.Add(new TradingIdea { Type = "bear", Icon = "🔴", Text = "EMA9 < EMA21 — bearish trend confirmed. Look for short entries on bounces." });
+            if (rsiVal > 60)
+                ideas.Add(new TradingIdea { Type = "bear", Icon = "🔴", Text = $"RSI at {rsiVal:F1} — overbought on bearish day. Reversal short opportunity." });
+        }
+        else
+        {
+            ideas.Add(new TradingIdea { Type = "neutral", Icon = "⚪", Text = $"Range day. BUY near lows ({l:F5}) / SELL near highs ({h:F5}). Fade the extremes." });
+            ideas.Add(new TradingIdea { Type = "neutral", Icon = "⚪", Text = $"Wait for breakout above {h:F5} or breakdown below {l:F5} for direction." });
+        }
+        
+        if (rsiVal > 70)
+            ideas.Add(new TradingIdea { Type = "bear", Icon = "⚠️", Text = $"RSI overbought ({rsiVal:F1}). Caution on longs — watch for reversal." });
+        else if (rsiVal < 30)
+            ideas.Add(new TradingIdea { Type = "bull", Icon = "⚠️", Text = $"RSI oversold ({rsiVal:F1}). Caution on shorts — watch for bounce." });
+        
+        return (ideas, levels);
+    }
+    
+    private async Task RunBacktest()
+    {
+        if (string.IsNullOrEmpty(backtestMonth)) return;
+        
+        var monthStart = DateOnly.Parse($"{backtestMonth}-01");
+        var monthEnd = monthStart.AddMonths(1).AddDays(-1);
+        
+        var monthData = new List<PriceData>();
+        var dates = allDates.Where(d => d >= monthStart && d <= monthEnd).ToList();
+        
+        foreach (var date in dates)
+        {
+            monthData.AddRange(DataService.GetDataForDate(date));
+        }
+        
+        backtestTrades = BacktestService.RunEmaCrossBacktest(monthData, slPips, tpPips);
+        await RenderEquityChart();
+        StateHasChanged();
+    }
+    
+    private async Task RenderChart()
+    {
+        if (chartData == null) return;
+        
+        var chartDataJs = new
+        {
+            dates = chartData.Select(d => d.DateTime.ToString("yyyy-MM-dd HH:mm")).ToList(),
+            opens = chartData.Select(d => (double)d.Open).ToList(),
+            highs = chartData.Select(d => (double)d.High).ToList(),
+            lows = chartData.Select(d => (double)d.Low).ToList(),
+            closes = chartData.Select(d => (double)d.Close).ToList(),
+            ema9 = showEma ? chartData.Select(d => (double?)d.Ema9).ToList() : null,
+            ema21 = showEma ? chartData.Select(d => (double?)d.Ema21).ToList() : null,
+            ema50 = showEma ? chartData.Select(d => (double?)d.Ema50).ToList() : null,
+            bbUpper = showBb ? chartData.Select(d => (double?)d.BbUpper).ToList() : null,
+            bbLower = showBb ? chartData.Select(d => (double?)d.BbLower).ToList() : null,
+            rsi = chartData.Select(d => d.Rsi).ToList(),
+            macd = chartData.Select(d => (double?)d.Macd).ToList(),
+            signal = chartData.Select(d => (double?)d.Signal).ToList()
+        };
+        
+        await JSRuntime.InvokeVoidAsync("renderCandlestickChart", "priceChart", chartDataJs);
+    }
+    
+    private async Task RenderEquityChart()
+    {
+        var cumulative = new List<int>();
+        var runningTotal = 0;
+        foreach (var trade in backtestTrades.Where(t => t.Result != "OPEN"))
+        {
+            runningTotal += trade.PnL;
+            cumulative.Add(runningTotal);
+        }
+        
+        await JSRuntime.InvokeVoidAsync("renderLineChart", "equityChart", cumulative);
+    }
+    
+    private string GetDirectionClass(string direction)
+    {
+        if (direction.Contains("Bull")) return "bull";
+        if (direction.Contains("Bear")) return "bear";
+        return "neutral";
+    }
+}

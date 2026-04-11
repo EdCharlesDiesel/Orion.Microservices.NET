@@ -6,8 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    
-    [Table("Person.sysdiagrams", Schema = "Person")]
+    [Table("sysdiagrams")]
     public class Sysdiagrams
     {
         [Column(name : "name")]

@@ -11,5 +11,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include=".dockerignore" />
+    <None Include="src\Applications\Orion.WebApps.AanalysisDashboardBlazor\Components\Pages\Component.razor" />
+    <None Include="src\Applications\Orion.WebApps.AanalysisDashboardBlazor\Components\Pages\Component1.razor" />
   </ItemGroup>
 </Project>

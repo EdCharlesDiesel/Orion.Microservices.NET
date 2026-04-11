@@ -3,7 +3,7 @@ using Microsoft.Extensions.Hosting;
 using Orion.Common.Logging;
 using Serilog;
 
-namespace Orion.Aggregator
+namespace Orion.Shopping.Aggregator
 {
     public abstract class Program
     {

@@ -5,21 +5,21 @@ using Orion.DataAccess.Postgres.IRepositories;
 
 namespace Orion.DataAccess.Postgres.Repositories
 {
-    public class BuildVersionRepository(OrionDbContext context) : IBuildVersionRepository
+    public class AwBuildVersionRepository(OrionDbContext context) : IAwBuildVersionRepository
     {
-        public async Task<IEnumerable<BuildVersion>> GetAllAsync() =>
-            await context.BuildVersions.ToListAsync();
+        public async Task<IEnumerable<AWBuildVersion>> GetAllAsync() =>
+            await context.AwbuildVersions.ToListAsync();
 
-        public async Task<BuildVersion?> GetByIdAsync(int id) =>
-            await context.BuildVersions.FindAsync(id);
+        public async Task<AWBuildVersion?> GetByIdAsync(int id) =>
+            await context.AwbuildVersions.FindAsync(id);
 
-        public async Task AddAsync(BuildVersion entity) =>
-            await context.BuildVersions.AddAsync(entity);
+        public async Task AddAsync(AWBuildVersion entity) =>
+            await context.AwbuildVersions.AddAsync(entity);
 
-        public void Update(BuildVersion entity) =>
-            context.BuildVersions.Update(entity);
+        public void Update(AWBuildVersion entity) =>
+            context.AwbuildVersions.Update(entity);
 
-        public void Delete(BuildVersion entity) =>
-            context.BuildVersions.Remove(entity);
+        public void Delete(AWBuildVersion entity) =>
+            context.AwbuildVersions.Remove(entity);
     }
 }

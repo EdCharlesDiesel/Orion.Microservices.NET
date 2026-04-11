@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Orion.Aggregator.Models;
+using Orion.Shopping.Aggregator.Models;
 
-namespace Orion.Aggregator.Services
+namespace Orion.Shopping.Aggregator.Services
 {
     public interface IOrderAggregatorService
     {

@@ -147,5 +147,8 @@ namespace Orion.API.HumanResources.Controllers
                 return StatusCode(500, "An internal error occurred while deleting the record.");
             }
         }
+
+        
+        
     }
 }

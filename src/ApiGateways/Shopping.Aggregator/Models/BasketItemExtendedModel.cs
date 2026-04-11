@@ -1,4 +1,4 @@
-﻿namespace Orion.Aggregator.Models
+﻿namespace Orion.Shopping.Aggregator.Models
 {
     public abstract class BasketItemExtendedModel
     {

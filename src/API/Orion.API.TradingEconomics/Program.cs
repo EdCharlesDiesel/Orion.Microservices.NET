@@ -35,10 +35,10 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "Orion Trading Economics API",
+        Title = "Orion TradingEconomics API",
         Version = "v1",
-        Description = "An API for Trading Economics events and analysis.",
-        Contact = new OpenApiContact 
+        Description = "An API for economic events and stock analysis.",
+        Contact = new OpenApiContact
         {
             Name = "Khotso Mokhethi",
             Email = "Mokhetkc@hotmail.com", // Replace with your actual email

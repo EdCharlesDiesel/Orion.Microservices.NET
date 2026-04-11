@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
-using Orion.DataAccess.Postgres.Services;
 
 namespace Orion.DataAccess.Postgres.Tools
 {

@@ -6,8 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    
-    [Table("Production.UnitMeasure", Schema = "Production")]
+    [Table("Production.UnitMeasure")]
     [Description("Unit of measure lookup table.")]
     public class UnitMeasure
     {

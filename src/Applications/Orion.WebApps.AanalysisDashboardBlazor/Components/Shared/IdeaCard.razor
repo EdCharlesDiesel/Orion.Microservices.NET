@@ -1,0 +1,17 @@
+﻿<div class="idea-card @CssClass">
+    <span class="idea-icon">@Icon</span>
+    <span class="idea-text">@Text</span>
+</div>
+
+@code {
+    [Parameter] public string Type { get; set; } = string.Empty;
+    [Parameter] public string Icon { get; set; } = string.Empty;
+    [Parameter] public string Text { get; set; } = string.Empty;
+
+    private string CssClass => Type switch
+    {
+        "bear" => "bear",
+        "neutral" => "neutral",
+        _ => ""
+    };
+}

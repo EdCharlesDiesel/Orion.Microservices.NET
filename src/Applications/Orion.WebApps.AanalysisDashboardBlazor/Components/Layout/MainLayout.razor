@@ -1,0 +1,79 @@
+﻿@inherits LayoutComponentBase
+
+@* <div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+    </main>
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div> *@
+@* @inherits LayoutComponentBase *@
+@using MudBlazor
+
+<MudThemeProvider />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="1">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" OnClick="@((e) => DrawerToggle())" />
+        <MudText Typo="Typo.h6" Class="ml-2">💹 Macro Dashboard Pro</MudText>
+        <MudSpacer />
+        <MudText Typo="Typo.body2" Class="mr-2">Multi-Timeframe Analysis with 15-Minute Entry</MudText>
+    </MudAppBar>
+
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="2">
+        <MudNavMenu>
+            <MudNavLink Href="/" Match="NavLinkMatch.All">📊 Overview</MudNavLink>
+            <MudNavLink Href="/technicals">📈 Technicals</MudNavLink>
+            <MudNavLink Href="/multitf">⏰ Multi-Timeframe</MudNavLink>
+            <MudNavLink Href="/entry">⏱️ 15-Minute Entry</MudNavLink>
+            <MudNavLink Href="/gold">🥇 Gold</MudNavLink>
+            <MudNavLink Href="/ideas">🎯 Trading Ideas</MudNavLink>
+        </MudNavMenu>
+        
+        <MudDivider Class="my-4" />
+        
+        <MudText Typo="Typo.body2" Class="px-4 py-2">
+            <strong>Risk Parameters:</strong><br />
+            Risk per trade: 2%<br />
+            ATR Stop Loss: 1.5x<br />
+            Min R/R: 2:1
+        </MudText>
+        
+        <MudDivider Class="my-4" />
+        
+        <MudText Typo="Typo.caption" Class="px-4 py-2">
+            Last updated: @DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+        </MudText>
+    </MudDrawer>
+
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="my-4">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    private bool _drawerOpen = true;
+    
+    private void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

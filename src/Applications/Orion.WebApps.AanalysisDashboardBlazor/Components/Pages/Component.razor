@@ -1,0 +1,122 @@
+﻿@using Orion.WebApps.AanalysisDashboardBlazor.Interfaces
+@using Orion.WebApps.AanalysisDashboardBlazor.Models
+@using Orion.WebApps.AanalysisDashboardBlazor.Services
+
+@if (_isLoading)
+{
+    <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading trading ideas...</p>
+    </div>
+}
+else if (_tradingIdeas.Any())
+{
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-label">Total Ideas</div>
+            <div class="stat-value">@_tradingIdeas.Count</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Long Signals</div>
+            <div class="stat-value text-success">@_tradingIdeas.Count(x => x.Bias == "Long")</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">Short Signals</div>
+            <div class="stat-value text-error">@_tradingIdeas.Count(x => x.Bias == "Short")</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-label">High Conviction</div>
+            <div class="stat-value">@_tradingIdeas.Count(x => x.Conviction == "High")</div>
+        </div>
+    </div>
+
+    <hr class="divider" />
+
+    <!-- Trading Ideas List -->
+    @foreach (var idea in _tradingIdeas)
+    {
+        <div class="idea-card">
+            <div class="idea-header">
+                <div class="idea-title">
+                    @if (idea.Bias == "Long")
+                    {
+                        <span class="badge-long">📈 LONG</span>
+                    }
+                    else
+                    {
+                        <span class="badge-short">📉 SHORT</span>
+                    }
+                    <span class="pair-name">@idea.Pair</span>
+                </div>
+                <div class="conviction-badge @GetConvictionClass(idea.Conviction)">
+                    Conviction: @idea.Conviction | Strength Score: @idea.StrengthScore/10
+                </div>
+            </div>
+
+            <div class="idea-body">
+                <div class="idea-thesis">
+                    <p>@idea.Thesis</p>
+                </div>
+
+                <div class="price-levels">
+                    <div class="level-item">
+                        <span class="level-label">Entry</span>
+                        <span class="level-value">@idea.Entry.ToString("F5")</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-label">TP1</span>
+                        <span class="level-value">@idea.TakeProfit1.ToString("F5")</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-label">TP2</span>
+                        <span class="level-value">@idea.TakeProfit2.ToString("F5")</span>
+                    </div>
+                    <div class="level-item">
+                        <span class="level-label">Stop Loss</span>
+                        <span class="level-value">@idea.StopLoss.ToString("F5")</span>
+                    </div>
+                </div>
+
+                <div class="risk-reward">
+                    Risk/Reward: 1:@idea.RiskReward.ToString("F2")
+                </div>
+            </div>
+
+            <div class="idea-sidebar">
+                @if (idea.EntrySignal != null)
+                {
+                    <div class="entry-signal">
+                        <div class="signal-title">✨ Entry Signal Ready!</div>
+                        <div class="signal-confidence">Confidence: @idea.EntrySignal.Confidence/5</div>
+                        <ul class="signal-reasons">
+                            @foreach (var reason in idea.EntrySignal.Reasons.Take(2))
+                            {
+                                <li>✓ @reason</li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                <div class="timeframe-analysis">
+                    <div class="analysis-title">Timeframe Analysis:</div>
+                    @foreach (var tf in new[] { "weekly", "daily", "4h", "1h" })
+                    {
+                        if (idea.TimeframeSignals.TryGetValue(tf, out var signal) && signal.Bias != null)
+                        {
+                            <div class="analysis-item">
+                                - @tf.ToUpper(): @signal.Bias (Strength: @signal.Strength)
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="alert-warning">
+        ⚠️ No trading ideas generated. Try refreshing data or check market conditions.
+    </div>
+}

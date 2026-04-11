@@ -1,27 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj": {}
+    "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj": {}
   },
   "projects": {
-    "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj": {
+    "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj",
+        "projectUniqueName": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj",
         "projectName": "Orion.WebApps.StockAnalyzer.Web",
-        "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\obj\\",
+        "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj",
+        "packagesPath": "C:\\Users\\kmokhethi\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\kmokhethi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/SkyNetZA/index.json": {}
         },
         "frameworks": {
           "net6.0": {
@@ -81,7 +87,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310\\RuntimeIdentifierGraph.json"
         }
       }
     }

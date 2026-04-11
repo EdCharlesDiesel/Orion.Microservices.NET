@@ -1,5 +1,5 @@
 using Orion.DataAccess.Postgres.Data;
-using Orion.DataAccess.Postgres.Entities.TradingEconomics;
+using Orion.DataAccess.Postgres.Entities.Common;
 
 namespace Orion.DataAccess.Postgres.Repositories;
 

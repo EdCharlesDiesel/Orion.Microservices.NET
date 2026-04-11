@@ -4298,36 +4298,43 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\PC\\.nuget\\packages\\": {}
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.Apps\\Orion.API.Apps.csproj",
+      "projectUniqueName": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.Apps\\Orion.API.Apps.csproj",
       "projectName": "Orion.API.Apps",
-      "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.Apps\\Orion.API.Apps.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.Apps\\obj\\",
+      "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.Apps\\Orion.API.Apps.csproj",
+      "packagesPath": "C:\\Users\\kmokhethi\\.nuget\\packages\\",
+      "outputPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.Apps\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\kmokhethi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
-        "C:\\Program Files\\dotnet\\library-packs": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.pkg.github.com/SkyNetZA/index.json": {}
       },
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
-              "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj"
+            "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
+              "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj"
             },
-            "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj": {
-              "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj"
+            "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj": {
+              "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj"
             }
           }
         }
@@ -4392,8 +4399,20 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'AutoMapper' 15.0.1 has a known high severity vulnerability, https://github.com/advisories/GHSA-rvv3-g6hj-g44x",
+      "libraryId": "AutoMapper",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }

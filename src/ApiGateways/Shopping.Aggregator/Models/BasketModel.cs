@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Orion.Aggregator.Models
+namespace Orion.Shopping.Aggregator.Models
 {
     public abstract class BasketModel
     {
