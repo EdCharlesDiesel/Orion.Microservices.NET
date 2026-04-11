@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "OcelotApiGw": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "http://localhost:9001"
+    }
+  }
+}

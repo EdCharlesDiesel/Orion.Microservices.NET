@@ -1,0 +1,96 @@
+{
+  "version": 3,
+  "targets": {
+    "net9.0": {
+      "Orion.Core.Catalog/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Orion.Core.Catalog.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Orion.Core.Catalog.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Orion.Core.Catalog/1.0.0": {
+      "type": "project",
+      "path": "../Orion.Core.Catalog/Orion.Core.Catalog.csproj",
+      "msbuildProject": "../Orion.Core.Catalog/Orion.Core.Catalog.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net9.0": [
+      "Orion.Core.Catalog >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\PC\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\Core\\Orion.Core.Orders\\Orion.Core.Orders.csproj",
+      "projectName": "Orion.Core.Orders",
+      "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\Core\\Orion.Core.Orders\\Orion.Core.Orders.csproj",
+      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
+      "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\Core\\Orion.Core.Orders\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net9.0"
+      ],
+      "sources": {
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "projectReferences": {
+            "C:\\x\\Orion.Microservices.NET\\src\\Core\\Orion.Core.Catalog\\Orion.Core.Catalog.csproj": {
+              "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\Core\\Orion.Core.Catalog\\Orion.Core.Catalog.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.300"
+    },
+    "frameworks": {
+      "net9.0": {
+        "targetAlias": "net9.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

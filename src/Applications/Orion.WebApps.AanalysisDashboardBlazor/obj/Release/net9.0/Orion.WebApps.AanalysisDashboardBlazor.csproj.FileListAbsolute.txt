@@ -1,0 +1,8 @@
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.AanalysisDashboardBlazor\obj\Release\net9.0\Orion.WebApps.AanalysisDashboardBlazor.csproj.AssemblyReference.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.AanalysisDashboardBlazor\obj\Release\net9.0\rpswa.dswa.cache.json
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.AanalysisDashboardBlazor\obj\Release\net9.0\Orion.WebApps.AanalysisDashboardBlazor.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.AanalysisDashboardBlazor\obj\Release\net9.0\Orion.WebApps.AanalysisDashboardBlazor.AssemblyInfoInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.AanalysisDashboardBlazor\obj\Release\net9.0\Orion.WebApps.AanalysisDashboardBlazor.AssemblyInfo.cs
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.AanalysisDashboardBlazor\obj\Release\net9.0\Orion.WebApps.AanalysisDashboardBlazor.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.AanalysisDashboardBlazor\obj\Release\net9.0\Orion.WebApps.AanalysisDashboardBlazor.MvcApplicationPartsAssemblyInfo.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.AanalysisDashboardBlazor\obj\Release\net9.0\Orion.WebApps.AanalysisDashboardBlazor.sourcelink.json

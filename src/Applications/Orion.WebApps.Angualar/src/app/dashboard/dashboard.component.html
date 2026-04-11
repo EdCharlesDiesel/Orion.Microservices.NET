@@ -1,0 +1,125 @@
+<br />
+<div class="row">
+  <div class="col-lx-3 col-lg-3 col-md-6 col-sm-12 col-12">
+    <div class="card">
+      <br />
+      <div class="card-body">
+        <p class="card-title">Sales:<span class="text-info font-weight-bold">&nbsp;${{TotalSalesForTheYear}}</span></p>
+        <p>
+          <ngb-progressbar [showValue]="true" type="info" [value]="80"></ngb-progressbar>
+        </p>
+        <p>Target for the year 2014</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-lx-3 col-lg-3 col-md-6 col-sm-12 col-12">
+    <div class="card">
+      <br />
+      <div class="card-body">
+        <p class="card-title">Customers:<span class="text-info font-weight-bold">&nbsp;{{TotalCustomersCount}}</span>
+        </p>
+        <ngx-charts-line-chart [view]="[200,50]" [results]="CustomerLineChartDataset">
+        </ngx-charts-line-chart>
+        <span class="text-info float-left">2011</span>
+        <span class="text-info float-right">2014</span>
+      </div>
+    </div>
+  </div>
+  <div class="col-lx-3 col-lg-3 col-md-6 col-sm-12 col-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Inventory</h5>
+        <rg-gauge-chart [canvasWidth]="175" [needleValue]="InventoryGaugeChartDataSet.needleValue"
+          [centralLabel]="InventoryGaugeChartDataSet.centralLabel" [options]="InventoryGaugeChartDataSet.options"
+          [bottomLabel]="InventoryGaugeChartDataSet.bottomLabel">
+        </rg-gauge-chart>
+      </div>
+    </div>
+  </div>
+  <div class="col-lx-3 col-lg-3 col-md-6 col-sm-12 col-12">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Purchase</h5>
+        <rg-gauge-chart [canvasWidth]="175" [needleValue]="PurchaseGaugeChartDataSet.needleValue"
+          [centralLabel]="PurchaseGaugeChartDataSet.centralLabel" [options]="PurchaseGaugeChartDataSet.options">
+        </rg-gauge-chart>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+<div class="row">
+  <div class="col-lx-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="card" style="height:25rem;width:30rem">
+      <div class="card-body">
+        <h5 class="card-title">Territory Sales for 2014</h5>
+        <p *ngIf="TerritoryPiGridChartDataSet?.length<=0">There is some problem in loading data</p>
+        <ngx-charts-pie-chart [view]="[375, 350]" [results]="TerritoryPiGridChartDataSet" [animations]="true"
+          [labels]="true" [doughnut]="false" [legend]="false">
+        </ngx-charts-pie-chart>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-lx-6 col-lg-6 col-md-12 col-sm-12 col-12 align-self-center">
+    <div class="card" style="height:25rem;width:30rem">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-light" disabled>Product Sales:</button>
+        <button id="IDBtn2011" type="button" class="btn btn-outline-info" [ngClass]="{'active': IsBtn2011Clicked}" (click)="BtnProductSalesCLick(2011)">2011</button>
+        <button type="button" class="btn btn-outline-info" [ngClass]="{'active': IsBtn2012Clicked}" (click)="BtnProductSalesCLick(2012)">2012</button>
+        <button type="button" class="btn btn-outline-info" [ngClass]="{'active': IsBtn2013Clicked}" (click)="BtnProductSalesCLick(2013)">2013</button>
+        <button id="IDBtn2014" type="button" class="btn btn-outline-info" [ngClass]="{'active': IsBtn2014Clicked}" (click)="BtnProductSalesCLick(2014)">2014</button>
+      </div>
+      <div class="card-body">
+          <p *ngIf="ProductSalesBarChartDataSet?.length<=0">There is some problem in loading data</p>
+        <ngx-charts-bar-vertical [view]="[375,350]" [results]="ProductSalesBarChartDataSet" [xAxis]="true"
+          [yAxis]="true" [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="Year" [yAxisLabel]="Sales">
+        </ngx-charts-bar-vertical>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="col-lx-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="card" style="height:30rem;width:30rem">
+      <div class="card-header">
+        <h5 class="card-title">Pending Shipments</h5>
+      </div>
+      <div class="card-body">
+        <full-calendar defaultView="dayGridMonth" [plugins]="calendarPlugins" [events]="PendingShipmentDataSet"></full-calendar>
+      </div>
+    </div>
+  </div>
+  <div class="col-lx-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <div class="card" style="height:25rem;width:30rem">
+      <table class="table table-striped table-hover ">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col" colspan="3"><img src="./assets/icons/svg/chat.svg" alt="Quick Access"
+                style="height: 2rem">&nbsp;Quick Access</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<br /><br /><br /><br />

@@ -1,0 +1,16 @@
+<br />
+<div class="row">
+  <div class="col-lx-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <ngb-alert [dismissible]="false" *ngIf="!WorkOrderType">
+      <strong>Work Order Type not selected..!!</strong>
+    </ngb-alert>
+    <div class="card" *ngIf="WorkOrderType">
+      <div class="card-header">
+        <h3>Work Orders {{ WorkOrderType }}</h3>
+      </div>
+      <jqxGrid #IDWorkOrderDetailsGrid [auto-create]='false'>
+      </jqxGrid>
+    </div>
+  </div>
+</div>
+<br /><br /><br /><br />

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orion.API.TradingEconomics.API</name>
+    </assembly>
+    <members>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.CalendarController.GetAllEvents">
+            <summary>
+            Get all comtrade categories
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.ComtradeController.GetComCategories">
+            <summary>Get all comtrade categories</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.ComtradeController.GetComCountries">
+            <summary>Get all comtrade countries</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.ComtradeController.GetComCountryPage(System.String,System.Int32)">
+            <summary>Get comtrade by country and page</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.ComtradeController.GetComBetweenCountries(System.String,System.String,System.Int32)">
+            <summary>Get comtrade between two countries with pagination</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.ComtradeController.GetComHistorical(System.String)">
+            <summary>Get historical comtrade data by symbol</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.EarningsController.GetEarnings">
+            <summary>
+            get earnings calendar
+            </summary>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.EarningsController.GetEarningsByDate(System.Nullable{System.DateTime})">
+            <summary>
+            Filter earnings by date
+            </summary>
+            <param name="startDate">Start date if needed</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.EarningsController.GetEarningsByMarketDate(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Get earnings by market, and start date
+            </summary>
+            <param name="symbol">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.EarningsController.GetEarningsMarketBetweenDates(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Get earnings by market, start and end date
+            </summary>
+            <param name="symbol">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.EarningsController.GetEarningsByCountry(System.String)">
+            <summary>
+            Get earnings by country
+            </summary>
+            <param name="country">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.EarningsController.GetEarningsByType(System.String)">
+            <summary>
+            Get earnings by type
+            </summary>
+            <param name="type">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.ForecastController.GetAllForecasts">
+            <summary>
+            Get all comtrade categories
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.LatestController.getLatestUpdates">
+            <summary>
+            Get the latest news from trading economics
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.LatestController.getLatestUpdatesByDate(System.DateTime)">
+            <summary>
+            Get latest updates since a specific date
+            </summary>        
+            <returns></returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.LatestController.GetLatestUpdates">
+            <summary>
+            Get latest updates with no filters
+            </summary>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.LatestController.GetLatestUpdatesByDate(System.DateTime)">
+            <summary>
+            Get latest updates by date
+            </summary>
+            <param name="startDate">Start date if needed</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.MarketsIntradayController.GetIntradaySymbol(System.String)">
+            <summary>
+            Get intraday prices for a single market symbol.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.MarketsIntradayController.GetIntradayDateHour(System.String,System.DateTime)">
+            <summary>
+            Get intraday prices by symbol and start date (hour).
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.API.Controllers.MarketsIntradayController.GetIntradaySymbolDates(System.String,System.DateTime,System.DateTime)">
+            <summary>
+            Get intraday data between two dates.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,6 @@
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Release\net9.0\Orion.API.Persons.UnitTests.csproj.AssemblyReference.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Release\net9.0\Orion.API.Persons.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Release\net9.0\Orion.API.Persons.UnitTests.AssemblyInfoInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Release\net9.0\Orion.API.Persons.UnitTests.AssemblyInfo.cs
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Release\net9.0\Orion.API.Persons.UnitTests.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Release\net9.0\Orion.API.Persons.UnitTests.sourcelink.json

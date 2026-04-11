@@ -1,0 +1,55 @@
+﻿@page "/ideas"
+@using Orion.WebApps.AanalysisDashboardBlazor.Interfaces
+@using Orion.WebApps.AanalysisDashboardBlazor.Models
+@using Orion.WebApps.AanalysisDashboardBlazor.Services
+
+@inject DataService DataService
+@inject ITradingIdeaService TradingIdeaService
+
+<Component1 />
+
+
+
+@code {
+    private bool _isLoading = true;
+    private List<TradingIdea> _tradingIdeas = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadTradingIdeasAsync();
+    }
+
+    public async Task LoadTradingIdeasAsync()
+    {
+        try
+        {
+            _isLoading = true;
+            StateHasChanged();
+
+            var (dataByTimeframe, dxyByTimeframe) = await DataService.LoadAllTimeframesAsync();
+            var macroData = await DataService.GetMacroDataAsync();
+
+            _tradingIdeas = await TradingIdeaService.GenerateTradingIdeasAsync(dataByTimeframe, macroData, dxyByTimeframe);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading trading ideas: {ex.Message}");
+            _tradingIdeas = new List<TradingIdea>();
+        }
+        finally
+        {
+            _isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    public string GetConvictionClass(string conviction)
+    {
+        return conviction switch
+        {
+            "High" => "conviction-high",
+            "Medium" => "conviction-medium",
+            _ => "conviction-low"
+        };
+    }
+}

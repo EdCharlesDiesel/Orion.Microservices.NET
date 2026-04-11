@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>aspnet-Orion.Web-8a7e046b-4a5f-4dd0-9fa6-bd92e7b5bd7b</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.8" />
+
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\API\Orion.API.TradingEconomics\Orion.API.TradingEconomics.csproj" />
+      <ProjectReference Include="..\..\DataAccess\Orion.DataAccess.Postgres\Orion.DataAccess.Postgres.csproj" />
+      <ProjectReference Include="..\..\Domain\Orion.Domain\Orion.Domain.csproj" />
+    </ItemGroup>
+
+</Project>

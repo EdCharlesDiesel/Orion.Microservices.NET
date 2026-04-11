@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Orion.Services.StockAnalyzer.API.props" />
+</Project>

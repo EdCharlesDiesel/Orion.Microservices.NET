@@ -1,0 +1,6 @@
+@Orion.Services.Chat_HostAddress = http://localhost:5192
+
+GET {{Orion.Services.Chat_HostAddress}}/chat/
+Accept: application/json
+
+###

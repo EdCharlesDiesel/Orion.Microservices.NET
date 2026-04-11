@@ -1,0 +1,12 @@
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\bin\Debug\net5.0\Common.Logging.deps.json
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\bin\Debug\net5.0\Common.Logging.dll
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\bin\Debug\net5.0\Common.Logging.pdb
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.csproj.AssemblyReference.cache
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.AssemblyInfoInputs.cache
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.AssemblyInfo.cs
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.csproj.CoreCompileInputs.cache
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.dll
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\refint\Common.Logging.dll
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\Common.Logging.pdb
+C:\x\KhotsoCBookStore.Microservices.NET\src\BuildingBlocks\Common.Logging\obj\Debug\net5.0\ref\Common.Logging.dll
