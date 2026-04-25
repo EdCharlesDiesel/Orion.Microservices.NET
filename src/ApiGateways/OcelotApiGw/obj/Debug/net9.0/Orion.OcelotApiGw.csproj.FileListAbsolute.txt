@@ -193,6 +193,7 @@ C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\Orion.OcelotApiGw.csproj.CoreCompileInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\Orion.OcelotApiGw.MvcApplicationPartsAssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\Orion.OcelotApiGw.MvcApplicationPartsAssemblyInfo.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\Orion.OcelotApiGw.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -201,7 +202,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\staticwebassets.development.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\Orion.Oc.B1FD0C53.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\Orion.OcelotApiGw.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\OcelotApiGw\obj\Debug\net9.0\refint\Orion.OcelotApiGw.dll

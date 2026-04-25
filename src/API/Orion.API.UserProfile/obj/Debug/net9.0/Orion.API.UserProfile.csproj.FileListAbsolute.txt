@@ -164,8 +164,6 @@ C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Micr
 C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Microsoft.Extensions.Http.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\appsettings.Development.json
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\appsettings.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Orion.DataAccess.Postgres.deps.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Orion.DataAccess.Postgres.runtimeconfig.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Orion.DataAccess.Postgres.staticwebassets.endpoints.json
@@ -173,6 +171,8 @@ C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debu
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Orion.Helpers.deps.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Orion.Helpers.runtimeconfig.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Orion.Helpers.exe
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\appsettings.Development.json
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\appsettings.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Orion.API.UserProfile.staticwebassets.endpoints.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Orion.API.UserProfile.exe
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Orion.API.UserProfile.deps.json
@@ -312,6 +312,7 @@ C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debu
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\Orion.API.UserProfile.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\Orion.API.UserProfile.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\Orion.API.UserProfile.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\Orion.API.UserProfile.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -320,7 +321,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debu
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\staticwebassets.development.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\Orion.AP.F3D3CA16.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\Orion.API.UserProfile.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\refint\Orion.API.UserProfile.dll

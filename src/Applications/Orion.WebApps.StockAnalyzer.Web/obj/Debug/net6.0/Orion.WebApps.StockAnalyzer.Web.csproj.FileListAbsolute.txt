@@ -79,6 +79,7 @@ C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAn
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\Orion.WebApps.StockAnalyzer.Web.MvcApplicationPartsAssemblyInfo.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\Orion.WebApps.StockAnalyzer.Web.RazorAssemblyInfo.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\Orion.WebApps.StockAnalyzer.Web.RazorAssemblyInfo.cs
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\Orion.WebApps.StockAnalyzer.Web.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\rjsmcshtml.dswa.cache.json
@@ -89,7 +90,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAn
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\staticwebassets.build.json.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\staticwebassets.development.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\staticwebassets.build.endpoints.json
-C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\staticwebassets.upToDateCheck.txt
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\Orion.WebApps.StockAnalyzer.Web.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\refint\Orion.WebApps.StockAnalyzer.Web.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.StockAnalyzer.Web\obj\Debug\net6.0\Orion.WebApps.StockAnalyzer.Web.pdb

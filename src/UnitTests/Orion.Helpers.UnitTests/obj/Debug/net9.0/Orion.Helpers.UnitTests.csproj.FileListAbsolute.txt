@@ -106,14 +106,14 @@ C:\x\Orion.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net
 C:\x\Orion.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.genruntimeconfig.cache
 C:\x\Orion.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\ref\Orion.Helpers.UnitTests.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\CoverletSourceRootsMapping_Orion.Helpers.UnitTests
-C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\testhost.exe
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\testhost.dll
-C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
-C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\xunit.runner.reporters.netcoreapp10.dll
-C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\xunit.runner.utility.netcoreapp10.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\Orion.Helpers.deps.json
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\Orion.Helpers.runtimeconfig.json
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\Orion.Helpers.exe
+C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\testhost.exe
+C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\xunit.runner.reporters.netcoreapp10.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\xunit.runner.utility.netcoreapp10.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\Orion.Helpers.UnitTests.deps.json
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\Orion.Helpers.UnitTests.runtimeconfig.json
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\bin\Debug\net9.0\Orion.Helpers.UnitTests.dll
@@ -205,6 +205,7 @@ C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.He.EAEA705C.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\refint\Orion.Helpers.UnitTests.dll

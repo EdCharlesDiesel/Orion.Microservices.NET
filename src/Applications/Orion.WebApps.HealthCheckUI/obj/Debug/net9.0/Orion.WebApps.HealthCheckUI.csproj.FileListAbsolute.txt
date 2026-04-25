@@ -379,6 +379,7 @@ C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthC
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\Orion.WebApps.HealthCheckUI.csproj.CoreCompileInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\Orion.WebApps.HealthCheckUI.MvcApplicationPartsAssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\Orion.WebApps.HealthCheckUI.MvcApplicationPartsAssemblyInfo.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\Orion.WebApps.HealthCheckUI.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -387,7 +388,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthC
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\staticwebassets.development.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\Orion.We.E69839DD.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\Orion.WebApps.HealthCheckUI.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Applications\Orion.WebApps.HealthCheckUI\obj\Debug\net9.0\refint\Orion.WebApps.HealthCheckUI.dll

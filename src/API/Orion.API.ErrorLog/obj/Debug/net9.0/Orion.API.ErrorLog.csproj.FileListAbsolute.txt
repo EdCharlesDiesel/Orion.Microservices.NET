@@ -132,12 +132,12 @@ C:\x\Orion.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Microso
 C:\x\Orion.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Microsoft.Extensions.Http.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\appsettings.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Orion.DataAccess.Postgres.deps.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Orion.DataAccess.Postgres.runtimeconfig.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\appsettings.Development.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Orion.DataAccess.Postgres.staticwebassets.endpoints.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Orion.DataAccess.Postgres.exe
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\appsettings.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Orion.API.ErrorLog.staticwebassets.endpoints.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Orion.API.ErrorLog.exe
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\bin\Debug\net9.0\Orion.API.ErrorLog.deps.json
@@ -248,6 +248,7 @@ C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\n
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\Orion.API.ErrorLog.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\Orion.API.ErrorLog.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\Orion.API.ErrorLog.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\Orion.API.ErrorLog.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -256,7 +257,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\n
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\staticwebassets.development.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\Orion.AP.3A1E0990.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\Orion.API.ErrorLog.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.ErrorLog\obj\Debug\net9.0\refint\Orion.API.ErrorLog.dll

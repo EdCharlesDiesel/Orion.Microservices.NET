@@ -208,6 +208,7 @@ C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\ob
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.csproj.CoreCompileInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.MvcApplicationPartsAssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.MvcApplicationPartsAssemblyInfo.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -216,7 +217,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\ob
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\staticwebassets.development.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Sh.773B36B5.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\refint\Orion.Shopping.Aggregator.dll

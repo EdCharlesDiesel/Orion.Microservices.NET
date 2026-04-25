@@ -1,8 +1,3 @@
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.csproj.AssemblyReference.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.AssemblyInfoInputs.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.AssemblyInfo.cs
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.csproj.CoreCompileInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bin\Debug\net9.0\testhost.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bin\Debug\net9.0\Orion.API.Person.deps.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bin\Debug\net9.0\Orion.API.Person.runtimeconfig.json
@@ -202,6 +197,12 @@ C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bi
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bin\Debug\net9.0\Orion.API.Person.pdb
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bin\Debug\net9.0\Orion.DataAccess.Postgres.pdb
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bin\Debug\net9.0\Orion.Domain.pdb
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.csproj.AssemblyReference.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.AssemblyInfoInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.AssemblyInfo.cs
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.AP.E7ACB0E8.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\refint\Orion.API.Persons.UnitTests.dll

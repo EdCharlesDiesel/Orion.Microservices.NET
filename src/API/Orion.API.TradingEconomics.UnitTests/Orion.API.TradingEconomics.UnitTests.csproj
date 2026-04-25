@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0</TargetFrameworks>
-    
+    <OutputType>Exe</OutputType>  <!-- Add this line -->
+    <TargetFramework>net9.0</TargetFramework>`    
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -10,6 +10,8 @@
     <PackageReference Include="JetBrains.Annotations" Version="2025.2.0" />
     <PackageReference Include="Moq" Version="4.20.69" />
     <PackageReference Include="xunit.v3" Version="3.2.2" />
+    <!-- Add the xUnit runner package -->
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

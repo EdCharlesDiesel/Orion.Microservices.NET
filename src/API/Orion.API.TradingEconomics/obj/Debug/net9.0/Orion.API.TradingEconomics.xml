@@ -252,44 +252,127 @@
             <param name="cancellationToken"></param>
             <returns>Execution result with fill details and risk flags</returns>
         </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.AlertEngine">
+            <summary>
+            Evaluates a trading decision and produces risk, validation, and informational alerts.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AlertEngine.Evaluate(Orion.API.TradingEconomics.Entities.TradingDecision)">
+            <summary>
+            Evaluates the supplied trading decision and returns applicable alerts.
+            </summary>
+            <param name="decision">The trading decision to evaluate.</param>
+            <returns>A list of alerts describing validation, risk, or status issues.</returns>
+        </member>
         <member name="T:Orion.API.TradingEconomics.Engine.AlphaEngine">
             <summary>
-            
+            Generates an alpha signal from normalized technical, sentiment, and macro indicators.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AlphaEngine.Generate(System.String,System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.NormalizedIndicator},System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.MacroEvent})">
+            <summary>
+            Generates an alpha result for a currency pair.
+            </summary>
+            <param name="pair">The currency pair.</param>
+            <param name="indicators">Normalized indicators used to calculate alpha.</param>
+            <param name="macroEvents">Optional macro events used to suppress low-confidence signals.</param>
+            <returns>An alpha result containing direction, score, confidence, and component scores.</returns>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.AuditTrailEngine">
+            <summary>
+            Records and stores audit events for trading decisions, pipeline steps, errors, and system events.
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.RecordDecisionAsync(Orion.API.TradingEconomics.Entities.AuditRecord)">
             <summary>
-            Records a complete pipeline execution with all decision factors
+            Records a full trading decision audit record.
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.RecordPipelineStepAsync``1(System.Guid,System.String,``0,System.TimeSpan)">
             <summary>
-            Records a specific step in the pipeline
+            Records a single pipeline step.
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.RecordErrorAsync(System.Guid,System.String,System.Exception,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
-            Records errors or warnings during execution
+            Records an execution error.
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.RecordEventAsync(System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
             <summary>
-            Records state changes or important events
+            Records a business or system event.
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.FlushAsync">
             <summary>
-            Force flush all buffered entries to storage
+            Flushes buffered audit records to storage.
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.QueryAsync(Orion.API.TradingEconomics.Entities.AuditQuery)">
             <summary>
-            Query audit records with filters
+            Queries audit records from storage.
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.GenerateComplianceReportAsync(System.DateTime,System.DateTime,System.String)">
             <summary>
-            Generate compliance report
+            Generates a compliance report from stored decision audit records.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.BacktestEngine">
+            <summary>
+            Executes a simple backtest by generating portfolios, executing trades,
+            and simulating exits over a date range.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.BacktestEngine.#ctor(MediatR.IMediator,Orion.API.TradingEconomics.Engine.AdvancedExecutionEngine,System.Random)">
+            <summary>
+            Executes a simple backtest by generating portfolios, executing trades,
+            and simulating exits over a date range.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.BacktestEngine.RunAsync(System.DateTime,System.DateTime,System.Decimal)">
+            <summary>
+            Runs a backtest between two dates using the provided capital.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordDecisionAsync(Orion.API.TradingEconomics.Entities.AuditRecord)">
+            <summary>
+            Records a full trading decision audit record.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordPipelineStepAsync``1(System.Guid,System.String,``0,System.TimeSpan)">
+            <summary>
+            Records a single pipeline step.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordErrorAsync(System.Guid,System.String,System.Exception,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Records an execution error.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordEventAsync(System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Records a business or system event.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.FlushAsync">
+            <summary>
+            Flushes buffered audit records to storage.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.QueryAsync(Orion.API.TradingEconomics.Entities.AuditQuery)">
+            <summary>
+            Queries audit records from storage.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.GenerateComplianceReportAsync(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            Generates a compliance report from stored decision audit records.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IBacktestEngine">
+            <summary>
+            Contract for running historical backtests.
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.MarketReplayEngine.ReplayAsync(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.Candle},System.Int32)">

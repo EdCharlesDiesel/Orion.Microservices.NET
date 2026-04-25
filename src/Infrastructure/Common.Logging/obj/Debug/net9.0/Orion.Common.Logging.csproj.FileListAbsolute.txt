@@ -32,6 +32,7 @@ C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\Common.Logging\obj\
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\Common.Logging\obj\Debug\net9.0\Orion.Common.Logging.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\Common.Logging\obj\Debug\net9.0\Orion.Common.Logging.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\Common.Logging\obj\Debug\net9.0\Orion.Common.Logging.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\Common.Logging\obj\Debug\net9.0\Orion.Common.Logging.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\Common.Logging\obj\Debug\net9.0\Orion.Common.Logging.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\Common.Logging\obj\Debug\net9.0\refint\Orion.Common.Logging.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\Common.Logging\obj\Debug\net9.0\Orion.Common.Logging.pdb
