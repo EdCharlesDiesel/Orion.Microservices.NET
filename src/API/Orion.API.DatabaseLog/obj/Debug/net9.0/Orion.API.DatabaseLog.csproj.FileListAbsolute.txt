@@ -288,7 +288,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debu
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\Orion.API.DatabaseLog.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\Orion.API.DatabaseLog.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\Orion.API.DatabaseLog.csproj.CoreCompileInputs.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\Orion.API.DatabaseLog.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.DatabaseLog\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json

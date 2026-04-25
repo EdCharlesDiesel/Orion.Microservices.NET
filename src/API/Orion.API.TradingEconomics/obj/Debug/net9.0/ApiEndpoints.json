@@ -1,0 +1,655 @@
+[
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.MacroDataController",
+    "Method": "GetMacroData",
+    "RelativePath": "api/MacroData",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "apiKey",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Models.MacroData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.MacroDataController",
+    "Method": "GetMacroDataForCurrency",
+    "RelativePath": "api/MacroData/{currency}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "currency",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "apiKey",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Models.CurrencyMacroData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.MacroDataController",
+    "Method": "GetFallbackData",
+    "RelativePath": "api/MacroData/fallback",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[Orion.API.TradingEconomics.Models.CurrencyMacroData, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.MacroDataController",
+    "Method": "RefreshMacroData",
+    "RelativePath": "api/MacroData/refresh",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "apiKey",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Models.MacroData",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.MacroDataController",
+    "Method": "GetFredSeries",
+    "RelativePath": "api/MacroData/series",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.MacroDataController",
+    "Method": "GetStatus",
+    "RelativePath": "api/MacroData/status",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "apiKey",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.DTO.FredStatusResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.MarketDataController",
+    "Method": "FetchData",
+    "RelativePath": "api/MarketData/fetch",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pair",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "interval",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "period",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Models.MarketDataResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.MarketDataController",
+    "Method": "FetchAllTimeframes",
+    "RelativePath": "api/MarketData/fetch-all",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Orion.API.TradingEconomics.Controllers.FetchAllRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.Dictionary\u00602[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[Orion.API.TradingEconomics.Models.MarketDataResponse, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.MarketDataController",
+    "Method": "GetKpis",
+    "RelativePath": "api/MarketData/kpis",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Orion.API.TradingEconomics.Models.KpiData, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TechnicalAnalysisController",
+    "Method": "GetBiasDashboard",
+    "RelativePath": "api/TechnicalAnalysis/bias-dashboard",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Orion.API.TradingEconomics.Models.BiasAnalysisResult, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TechnicalAnalysisController",
+    "Method": "CalculateIndicators",
+    "RelativePath": "api/TechnicalAnalysis/calculate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "data",
+        "Type": "System.Collections.Generic.List\u00601[[Orion.API.TradingEconomics.Models.OHLCVData, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Models.TechnicalIndicators",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TechnicalAnalysisController",
+    "Method": "GetEntrySignal",
+    "RelativePath": "api/TechnicalAnalysis/entry-signal",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pair",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "bias",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Models.EntrySignalResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TechnicalAnalysisController",
+    "Method": "GetSwingIdeas",
+    "RelativePath": "api/TechnicalAnalysis/swing-ideas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Orion.API.TradingEconomics.Models.SwingTradingIdea, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TechnicalAnalysisController",
+    "Method": "GetTradingIdeas",
+    "RelativePath": "api/TechnicalAnalysis/trading-ideas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Orion.API.TradingEconomics.Models.TradingIdea, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GetTradingIdeas",
+    "RelativePath": "api/TradingIdeas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Controllers.TradingIdeasResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GetPairAnalysis",
+    "RelativePath": "api/TradingIdeas/analysis/{pair}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pair",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Controllers.PairAnalysisResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GetBiasAnalysis",
+    "RelativePath": "api/TradingIdeas/bias",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pairs",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Orion.API.TradingEconomics.Models.BiasAnalysisResult, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "ClearCache",
+    "RelativePath": "api/TradingIdeas/cache",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GetEntrySignal",
+    "RelativePath": "api/TradingIdeas/entry-signal/{pair}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pair",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "bias",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Models.EntrySignalResult",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "ExportIdeasAsCsv",
+    "RelativePath": "api/TradingIdeas/export/csv",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "includeSwing",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "ExportIdeasAsJson",
+    "RelativePath": "api/TradingIdeas/export/json",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "includeSwing",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GenerateTradingIdeas",
+    "RelativePath": "api/TradingIdeas/generate",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Orion.API.TradingEconomics.Controllers.GenerateIdeasRequest",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Controllers.TradingIdeasResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GetHighConvictionIdeas",
+    "RelativePath": "api/TradingIdeas/high-conviction",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Controllers.HighConvictionResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GetIdeasOnly",
+    "RelativePath": "api/TradingIdeas/ideas",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "conviction",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "bias",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Orion.API.TradingEconomics.Models.TradingIdea, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GetIdeaForPair",
+    "RelativePath": "api/TradingIdeas/pair/{pair}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pair",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Models.TradingIdea",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GetSwingIdeasOnly",
+    "RelativePath": "api/TradingIdeas/swing",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "conviction",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "bias",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Orion.API.TradingEconomics.Models.SwingTradingIdea, Orion.API.TradingEconomics, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Orion.API.TradingEconomics.Controllers.TradingIdeasController",
+    "Method": "GetSwingIdeaForPair",
+    "RelativePath": "api/TradingIdeas/swing/pair/{pair}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "pair",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Orion.API.TradingEconomics.Models.SwingTradingIdea",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

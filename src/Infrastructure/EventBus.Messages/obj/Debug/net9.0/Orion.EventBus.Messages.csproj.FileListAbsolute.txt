@@ -29,7 +29,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\o
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Debug\net9.0\Orion.EventBus.Messages.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Debug\net9.0\Orion.EventBus.Messages.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Debug\net9.0\Orion.EventBus.Messages.csproj.CoreCompileInputs.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Debug\net9.0\Orion.EventBus.Messages.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Debug\net9.0\Orion.EventBus.Messages.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Debug\net9.0\refint\Orion.EventBus.Messages.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Infrastructure\EventBus.Messages\obj\Debug\net9.0\Orion.EventBus.Messages.pdb

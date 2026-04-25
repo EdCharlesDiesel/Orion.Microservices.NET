@@ -130,7 +130,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\Orion.API.Apps.csproj.CoreCompileInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\Orion.API.Apps.MvcApplicationPartsAssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\Orion.API.Apps.MvcApplicationPartsAssemblyInfo.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\Orion.API.Apps.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Apps\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json

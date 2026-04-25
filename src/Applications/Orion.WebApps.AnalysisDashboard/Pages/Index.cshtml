@@ -1,0 +1,307 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "EUR/USD M1 Forex Data Viewer";
+}
+
+<div class="container">
+    <h1>
+        <i class="bi bi-graph-up"></i>
+        EUR/USD M1 Forex Data
+        <span class="badge">Interactive Viewer</span>
+    </h1>
+
+    <!-- Upload Area -->
+    <div class="upload-area" onclick="document.getElementById('fileUpload').click()">
+        <div class="upload-icon">
+            <i class="bi bi-cloud-upload"></i>
+        </div>
+        <div class="upload-text">Click to upload CSV file</div>
+        <div class="upload-hint">Format: YYYYMMDD HHMMSS;Open;High;Low;Close;Volume</div>
+        <form method="post" enctype="multipart/form-data" id="uploadForm">
+            <input type="file" id="fileUpload" name="UploadedFile" accept=".csv" style="display: none;" />
+            @Html.AntiForgeryToken()
+        </form>
+    </div>
+
+    <div id="loadingIndicator" class="loading-indicator" style="display: none;">
+        <div class="spinner"></div>
+        <span>Processing file...</span>
+    </div>
+
+    @if (Model.Statistics != null)
+    {
+        <!-- Statistics Cards -->
+        <div class="summary-cards">
+            <div class="card">
+                <div class="card-title">Total Candles</div>
+                <div class="card-value">@Model.Statistics.TotalCandles.ToString("N0")</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Date Range</div>
+                <div class="card-value">@Model.Statistics.DateRange</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Open Price</div>
+                <div class="card-value">@Model.Statistics.FirstPrice.ToString("F5")</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Close Price</div>
+                <div class="card-value">@Model.Statistics.LastPrice.ToString("F5")</div>
+            </div>
+            <div class="card">
+                <div class="card-title">Change</div>
+                <div class="card-value">
+                    <span class="@(Model.Statistics.Change >= 0 ? "positive" : "negative")">
+                        @(Model.Statistics.Change >= 0 ? "+" : "")@Model.Statistics.Change.ToString("F5")
+                    </span>
+                    <span class="card-subtitle">(@Model.Statistics.ChangePercent.ToString("F3")%)</span>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-title">High / Low</div>
+                <div class="card-value">@Model.Statistics.High.ToString("F5") / @Model.Statistics.Low.ToString("F5")</div>
+            </div>
+        </div>
+
+        <!-- Chart Container -->
+        <div class="chart-container">
+            <div class="chart-header">
+                <div class="chart-controls">
+                    <button class="btn btn-chart active" data-type="line">Line</button>
+                    <button class="btn btn-chart" data-type="candlestick">Candlestick</button>
+                    <button class="btn btn-chart" data-type="ohlc">OHLC</button>
+                </div>
+                <div class="date-range">
+                    <input type="date" id="startDate" class="form-control" value="@Model.Statistics.MinDate.ToString("yyyy-MM-dd")" />
+                    <span>to</span>
+                    <input type="date" id="endDate" class="form-control" value="@Model.Statistics.MaxDate.ToString("yyyy-MM-dd")" />
+                    <button class="btn btn-primary" onclick="applyDateFilter()">Apply</button>
+                    <button class="btn btn-secondary" onclick="resetZoom()">Reset</button>
+                </div>
+            </div>
+            <canvas id="priceChart"></canvas>
+        </div>
+
+        <!-- Data Table -->
+        <div class="table-container">
+            <div class="table-header">
+                <h3>Tick Data</h3>
+                <span class="file-info">Showing last 1,000 of @Model.Statistics.TotalCandles.ToString("N0") rows</span>
+            </div>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Open</th>
+                        <th>High</th>
+                        <th>Low</th>
+                        <th>Close</th>
+                        <th>Vol</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- FIXED: Changed from RecentsCandles to RecentCandles -->
+                    @foreach (var candle in Model.RecentCandles)
+                    {
+                        <tr>
+                            <td>@candle.Date</td>
+                            <td>@candle.Time</td>
+                            <td>@candle.Open.ToString("F5")</td>
+                            <td>@candle.High.ToString("F5")</td>
+                            <td>@candle.Low.ToString("F5")</td>
+                            <td class="@(candle.Close >= candle.Open ? "positive" : "negative")">@candle.Close.ToString("F5")</td>
+                            <td>@candle.Volume</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="empty-state">
+            <i class="bi bi-upload"></i>
+            <h2>No Data Loaded</h2>
+            <p>Upload a CSV file to view EUR/USD M1 forex data</p>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script>
+        // Chart data from server
+        const chartData = @Html.Raw(Model.ChartDataJson);
+        let chart = null;
+        let currentChartType = 'line';
+
+        function initChart() {
+            if (!chartData || chartData.length === 0) return;
+            updateChart();
+        }
+
+        function updateChart() {
+            const ctx = document.getElementById('priceChart').getContext('2d');
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            const labels = chartData.map(d => new Date(d.Timestamp));
+
+            if (currentChartType === 'line') {
+                chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Close Price',
+                            data: chartData.map(d => d.Close),
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            borderWidth: 1.5,
+                            pointRadius: 0,
+                            pointHoverRadius: 5,
+                            tension: 0.1,
+                            fill: true
+                        }]
+                    },
+                    options: getChartOptions()
+                });
+            } else if (currentChartType === 'candlestick') {
+                const colors = chartData.map(d => d.Close >= d.Open ? '#22c55e' : '#ef4444');
+
+                chart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'High-Low',
+                                data: chartData.map(d => [d.Low, d.High]),
+                                type: 'line',
+                                borderColor: '#64748b',
+                                borderWidth: 1,
+                                pointRadius: 0,
+                                segment: {
+                                    borderColor: ctx => '#64748b'
+                                }
+                            },
+                            {
+                                label: 'Open-Close',
+                                data: chartData.map(d => d.Close - d.Open),
+                                backgroundColor: colors.map(c => c + '40'),
+                                borderColor: colors,
+                                borderWidth: 1,
+                                barPercentage: 0.6,
+                                categoryPercentage: 0.8
+                            }
+                        ]
+                    },
+                    options: getChartOptions()
+                });
+            } else if (currentChartType === 'ohlc') {
+                chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'High-Low',
+                                data: chartData.map(d => [d.Low, d.High]),
+                                borderColor: '#64748b',
+                                borderWidth: 1,
+                                pointRadius: 0
+                            },
+                            {
+                                label: 'Open',
+                                data: chartData.map(d => d.Open),
+                                borderColor: '#f59e0b',
+                                borderWidth: 1.5,
+                                pointRadius: 0,
+                                borderDash: [5, 5]
+                            },
+                            {
+                                label: 'Close',
+                                data: chartData.map(d => d.Close),
+                                borderColor: '#3b82f6',
+                                borderWidth: 2,
+                                pointRadius: 0
+                            }
+                        ]
+                    },
+                    options: getChartOptions()
+                });
+            }
+        }
+
+        function getChartOptions() {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: { color: '#e2e8f0' }
+                    },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false
+                    }
+                },
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'hour',
+                            displayFormats: { hour: 'MMM d, HH:mm' }
+                        },
+                        grid: { color: '#334155' },
+                        ticks: { color: '#94a3b8', maxRotation: 30 }
+                    },
+                    y: {
+                        position: 'right',
+                        grid: { color: '#334155' },
+                        ticks: {
+                            color: '#94a3b8',
+                            callback: (value) => value.toFixed(5)
+                        }
+                    }
+                }
+            };
+        }
+
+        // Chart type switching
+        document.querySelectorAll('[data-type]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('[data-type]').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentChartType = e.target.dataset.type;
+                updateChart();
+            });
+        });
+
+        function applyDateFilter() {
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+            window.location.href = `?startDate=${startDate}&endDate=${endDate}`;
+        }
+
+        function resetZoom() {
+            window.location.href = '/';
+        }
+
+        // File upload handling
+        document.getElementById('fileUpload').addEventListener('change', function(e) {
+            if (this.files.length > 0) {
+                document.getElementById('loadingIndicator').style.display = 'flex';
+                document.getElementById('uploadForm').submit();
+            }
+        });
+
+        // Initialize chart on page load
+        document.addEventListener('DOMContentLoaded', initChart);
+    </script>
+}

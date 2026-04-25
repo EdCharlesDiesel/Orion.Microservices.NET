@@ -1,6 +1,6 @@
-using Orion.DataAccess.Postgres.Entities.TradingEconomics;
+using Orion.DataAccess.Postgres.Entities.Common;
 
-namespace Orion.API.TradingEconomics.Interfaces;
+namespace Orion.API.TradingEconomics.Controllers;
 
 public interface ICalendarServices
 {

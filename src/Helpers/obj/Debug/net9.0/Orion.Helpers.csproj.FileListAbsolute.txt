@@ -27,7 +27,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\Helpers\obj\Debug\net9.0\Orion.Hel
 C:\x\Practice\Orion.API.Microservices.NET\src\Helpers\obj\Debug\net9.0\Orion.Helpers.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Helpers\obj\Debug\net9.0\Orion.Helpers.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\Helpers\obj\Debug\net9.0\Orion.Helpers.csproj.CoreCompileInputs.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\Helpers\obj\Debug\net9.0\Orion.Helpers.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Helpers\obj\Debug\net9.0\Orion.He.0C87A7A1.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\Helpers\obj\Debug\net9.0\Orion.Helpers.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Helpers\obj\Debug\net9.0\refint\Orion.Helpers.dll

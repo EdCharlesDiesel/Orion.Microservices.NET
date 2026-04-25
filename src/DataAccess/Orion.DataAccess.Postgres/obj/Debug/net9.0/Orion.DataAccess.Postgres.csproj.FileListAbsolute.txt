@@ -389,7 +389,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgr
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\EFCoreNpgsqlNodaTime.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\EFCoreNpgsqlNetTopologySuite.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\EFCoreSqlServerHierarchyId.cs
-C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\Orion.DataAccess.Postgres.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
@@ -398,7 +397,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgr
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\staticwebassets.development.json
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\Orion.Da.89246EBC.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\Orion.DataAccess.Postgres.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\refint\Orion.DataAccess.Postgres.dll

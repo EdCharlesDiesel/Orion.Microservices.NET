@@ -19,7 +19,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\Orion.Domain.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\Orion.Domain.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\Orion.Domain.csproj.CoreCompileInputs.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\Orion.Domain.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\Orion.Domain.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\refint\Orion.Domain.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain\obj\Debug\net9.0\Orion.Domain.pdb

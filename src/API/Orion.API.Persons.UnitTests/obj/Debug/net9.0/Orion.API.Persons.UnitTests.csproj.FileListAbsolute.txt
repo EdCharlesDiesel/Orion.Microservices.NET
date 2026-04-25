@@ -3,7 +3,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\ob
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.csproj.CoreCompileInputs.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\obj\Debug\net9.0\Orion.API.Persons.UnitTests.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bin\Debug\net9.0\testhost.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bin\Debug\net9.0\Orion.API.Person.deps.json
 C:\x\Practice\Orion.API.Microservices.NET\src\API\Orion.API.Persons.UnitTests\bin\Debug\net9.0\Orion.API.Person.runtimeconfig.json

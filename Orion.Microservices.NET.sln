@@ -94,14 +94,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.API.Person", "src\API
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.API.Persons.UnitTests", "src\API\Orion.API.Persons.UnitTests\Orion.API.Persons.UnitTests.csproj", "{D9A6D6AD-30B6-4486-A499-9A1CEC511CC8}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "AanalysisDashboard", "src\Applications\Orion.WebApps.AanalysisDashboard\AanalysisDashboard.pyproj", "{FD3B472C-A143-4326-9B0B-3A2BC26EA67E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.WebApps.AanalysisDashboardBlazor", "src\Applications\Orion.WebApps.AanalysisDashboardBlazor\Orion.WebApps.AanalysisDashboardBlazor.csproj", "{73D09825-8EDA-41E8-ABA8-3846991229FC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AanalysisDashboard", "AanalysisDashboard", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.WebApps.AanalysisDashboard", "..\Orion.WebApps.AanalysisDashboard\Orion.WebApps.AanalysisDashboard.csproj", "{911601D0-0867-4069-B842-4249AC6F79F9}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -208,16 +200,6 @@ Global
 		{D9A6D6AD-30B6-4486-A499-9A1CEC511CC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9A6D6AD-30B6-4486-A499-9A1CEC511CC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9A6D6AD-30B6-4486-A499-9A1CEC511CC8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD3B472C-A143-4326-9B0B-3A2BC26EA67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD3B472C-A143-4326-9B0B-3A2BC26EA67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73D09825-8EDA-41E8-ABA8-3846991229FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73D09825-8EDA-41E8-ABA8-3846991229FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73D09825-8EDA-41E8-ABA8-3846991229FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73D09825-8EDA-41E8-ABA8-3846991229FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{911601D0-0867-4069-B842-4249AC6F79F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{911601D0-0867-4069-B842-4249AC6F79F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{911601D0-0867-4069-B842-4249AC6F79F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{911601D0-0867-4069-B842-4249AC6F79F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -258,10 +240,6 @@ Global
 		{86AB3076-3340-421C-A602-90B4F03A171B} = {9EB5AA97-4ABD-4608-8EBE-06BF0CC8D23D}
 		{02EA7BE7-DA03-49CD-8898-41D5CD0FB3B9} = {86AB3076-3340-421C-A602-90B4F03A171B}
 		{D9A6D6AD-30B6-4486-A499-9A1CEC511CC8} = {AA3F4F55-B094-4862-92CA-0DDA806D7587}
-		{FD3B472C-A143-4326-9B0B-3A2BC26EA67E} = {17C1F1E6-0B21-4C0C-9985-182D762975CA}
-		{73D09825-8EDA-41E8-ABA8-3846991229FC} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
-		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {4411C048-C4A6-44FF-A49F-C867333BD484}
-		{911601D0-0867-4069-B842-4249AC6F79F9} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CFC31B86-B732-491F-9E63-995F435D6ED6}
