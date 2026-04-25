@@ -6,33 +6,26 @@ using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public abstract class ScenarioEngine: IScenarioEngine
+    public abstract class ScenarioEngine(IMediator mediator) : IScenarioEngine
     {
-        private readonly IMediator _mediator;
-
-        public ScenarioEngine(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         public async Task<ScenarioResult> RunAsync(Scenario scenario)
         {
             // 1. Get baseline normalized data
-            var baseline = await _mediator.Send(new GetNormalizedMacroDataQuery());
+            var baseline = await mediator.Send(new GetNormalizedMacroDataQuery());
 
             // 2. Apply shocks
             var shockedData = ApplyShocks(baseline, scenario.Shocks);
 
             // 3. Recompute factors
-            var factors = await _mediator.Send(
+            var factors = await mediator.Send(
                 new CalculateCurrencyFactorsWithOverrideCommand(shockedData));
 
             // 4. Generate signals
-            var signals = await _mediator.Send(
+            var signals = await mediator.Send(
                 new GenerateFxSignalsFromFactorsCommand(factors));
 
             // 5. Build portfolio
-            var portfolio = await _mediator.Send(
+            var portfolio = await mediator.Send(
                 new BuildPortfolioFromSignalsCommand(signals));
 
             // 6. Compute impact

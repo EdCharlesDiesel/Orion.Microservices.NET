@@ -3,15 +3,9 @@ using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public sealed class ExecutionEngine(
-        IMarketDataFeed market,
-        IExecutionCostModel cost)
+    public sealed class ExecutionEngine(IMarketDataFeed market, IExecutionCostModel cost)
     {
-        public async Task<ExecutionOrder> ExecuteAsync(
-            string pair,
-            string direction,
-            decimal size,
-            CancellationToken cancellationToken = default)
+        public async Task<ExecutionOrder> ExecuteAsync(string pair, string direction, decimal size, CancellationToken cancellationToken = default)
         {
             if (string.IsNullOrWhiteSpace(pair))
                 throw new ArgumentException("Pair is required.", nameof(pair));
@@ -61,10 +55,7 @@ namespace Orion.API.TradingEconomics.Engine
             };
         }
 
-        public ExecutionOrder Execute(
-            OrderBook orderBook,
-            string signalDirection,
-            decimal sizePositionSize)
+        public ExecutionOrder Execute(OrderBook orderBook, string signalDirection, decimal sizePositionSize)
         {
             if (orderBook == null)
                 throw new ArgumentNullException(nameof(orderBook));

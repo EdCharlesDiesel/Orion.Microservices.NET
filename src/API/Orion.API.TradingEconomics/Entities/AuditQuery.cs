@@ -1,5 +1,4 @@
-using Orion.API.TradingEconomics.Engine;
-
+using Orion.API.TradingEconomics.Enum;
 namespace Orion.API.TradingEconomics.Entities;
 
 public class AuditQuery

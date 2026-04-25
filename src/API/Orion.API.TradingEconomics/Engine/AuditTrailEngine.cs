@@ -1,6 +1,8 @@
 ﻿using System.Collections.Concurrent;
 using Microsoft.Extensions.Options;
 using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Enum;
+using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine
 {
@@ -54,11 +56,7 @@ namespace Orion.API.TradingEconomics.Engine
         /// <summary>
         /// Records a specific step in the pipeline
         /// </summary>
-        public async Task RecordPipelineStepAsync<T>(
-            Guid correlationId,
-            string stepName,
-            T stepData,
-            TimeSpan duration)
+        public async Task RecordPipelineStepAsync<T>(Guid correlationId, string stepName, T stepData, TimeSpan duration)
         {
             var entry = new AuditEntry
             {
@@ -82,11 +80,7 @@ namespace Orion.API.TradingEconomics.Engine
         /// <summary>
         /// Records errors or warnings during execution
         /// </summary>
-        public async Task RecordErrorAsync(
-            Guid correlationId,
-            string stage,
-            Exception exception,
-            Dictionary<string, object> context = null)
+        public async Task RecordErrorAsync(Guid correlationId, string stage, Exception exception, Dictionary<string, object> context = null)
         {
             var entry = new AuditEntry
             {
@@ -111,10 +105,7 @@ namespace Orion.API.TradingEconomics.Engine
         /// <summary>
         /// Records state changes or important events
         /// </summary>
-        public async Task RecordEventAsync(
-            Guid correlationId,
-            string eventName,
-            Dictionary<string, object> metadata = null)
+        public async Task RecordEventAsync(Guid correlationId, string eventName, Dictionary<string, object> metadata = null)
         {
             var entry = new AuditEntry
             {
@@ -201,10 +192,7 @@ namespace Orion.API.TradingEconomics.Engine
         /// <summary>
         /// Generate compliance report
         /// </summary>
-        public async Task<ComplianceReport> GenerateComplianceReportAsync(
-            DateTime startDate, 
-            DateTime endDate,
-            string pair = null)
+        public async Task<ComplianceReport> GenerateComplianceReportAsync(DateTime startDate, DateTime endDate, string pair = null)
         {
             var query = new AuditQuery
             {
@@ -236,11 +224,4 @@ namespace Orion.API.TradingEconomics.Engine
         }
     }
 
-    #region Entities
-
-    #endregion
-
-    #region Options & Storage
-
-    #endregion
 }

@@ -1,5 +1,6 @@
 using System.Collections.Concurrent;
 using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine;
 

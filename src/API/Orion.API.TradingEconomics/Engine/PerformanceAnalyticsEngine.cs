@@ -2,7 +2,6 @@
 
 namespace Orion.API.TradingEconomics.Engine
 {
-
     public sealed class PerformanceAnalyticsEngine
     {
         public PerformanceReport Analyze(List<TradePlan>? trades)
@@ -36,7 +35,9 @@ namespace Orion.API.TradingEconomics.Engine
 
             var profitFactor = grossLoss > 0
                 ? grossProfit / grossLoss
-                : grossProfit > 0 ? 999m : 0m;
+                : grossProfit > 0
+                    ? 999m
+                    : 0m;
 
             var expectancy = CalculateExpectancy(
                 winRate,

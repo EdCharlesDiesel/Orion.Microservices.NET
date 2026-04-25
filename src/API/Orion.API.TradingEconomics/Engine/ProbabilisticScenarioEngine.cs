@@ -3,15 +3,8 @@ using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public class ProbabilisticScenarioEngine : IProbabilisticScenarioEngine
+    public class ProbabilisticScenarioEngine(ScenarioEngine scenarioEngine) : IProbabilisticScenarioEngine
     {
-        private readonly ScenarioEngine _scenarioEngine;
-
-        public ProbabilisticScenarioEngine(ScenarioEngine scenarioEngine)
-        {
-            _scenarioEngine = scenarioEngine;
-        }
-
         public async Task<List<SimulationResult>> RunAsync(List<ProbabilisticScenario> scenarios)
         {
             var results = new List<SimulationResult>();
@@ -24,7 +17,7 @@ namespace Orion.API.TradingEconomics.Engine
                     Shocks = s.Shocks
                 };
 
-                var result = await _scenarioEngine.RunAsync(scenario);
+                var result = await scenarioEngine.RunAsync(scenario);
 
                 var portfolioReturn = EstimateReturn(result.Portfolio);
 
@@ -40,7 +33,8 @@ namespace Orion.API.TradingEconomics.Engine
             return results;
         }
 
-        internal ProbabilisticScenarioResult Calculate(NormalizedIndicator normalized, RegimeResult regime, ScenarioResult scenario)
+        internal ProbabilisticScenarioResult Calculate(NormalizedIndicator normalized, RegimeResult regime,
+            ScenarioResult scenario)
         {
             throw new NotImplementedException();
         }

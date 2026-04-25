@@ -2,8 +2,6 @@
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    
-
     public sealed class ModelValidationEngine
     {
         public ModelValidationReport Validate(

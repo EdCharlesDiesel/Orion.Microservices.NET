@@ -2,14 +2,9 @@
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public sealed class FxPricingEngine(
-        CurrencyStrengthModel strength,
-        FxRelativePricer pricer,
-        FxPriceSimulator simulator)
+    public sealed class FxPricingEngine(CurrencyStrengthModel strength, FxRelativePricer pricer, FxPriceSimulator simulator)
     {
-        public List<FxPrice> Run(
-            List<MacroState> states,
-            Dictionary<string, decimal> initialPrices)
+        public List<FxPrice> Run(List<MacroState> states, Dictionary<string, decimal> initialPrices)
         {
             if (states == null)
                 throw new ArgumentNullException(nameof(states));
@@ -30,10 +25,7 @@ namespace Orion.API.TradingEconomics.Engine
                 pricer);
         }
 
-        public PricingResult Price(
-            string signalPair,
-            string signalDirection,
-            decimal sizePositionSize)
+        public PricingResult Price(string signalPair, string signalDirection, decimal sizePositionSize)
         {
             if (string.IsNullOrWhiteSpace(signalPair))
                 throw new ArgumentException("Signal pair is required.", nameof(signalPair));
@@ -74,15 +66,5 @@ namespace Orion.API.TradingEconomics.Engine
                 TimestampUtc = DateTime.UtcNow
             };
         }
-    }
-
-    public sealed class PricingResult
-    {
-        public string Pair { get; set; } = "";
-        public string Direction { get; set; } = "";
-        public decimal PositionSize { get; set; }
-        public string BaseCurrency { get; set; } = "";
-        public string QuoteCurrency { get; set; } = "";
-        public DateTime TimestampUtc { get; set; } = DateTime.UtcNow;
     }
 }

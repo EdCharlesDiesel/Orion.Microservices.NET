@@ -1,5 +1,5 @@
 namespace Orion.API.TradingEconomics.Entities;
 
-public class RiskEvaluation
+public class ExitStrategy
 {
 }
