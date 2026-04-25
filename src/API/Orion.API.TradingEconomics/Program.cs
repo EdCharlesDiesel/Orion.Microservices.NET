@@ -1,36 +1,58 @@
 using System.Reflection;
+using System.Threading.RateLimiting;
+using JasperFx;
+using Marten;
 using Microsoft.OpenApi.Models;
-using Orion.API.TradingEconomics.Mappings;
-using Orion.DataAccess.Postgres.Repositories;
-using Orion.Domain.IRepositories;
+using Orion.API.TradingEconomics.Configuration;
+using Orion.API.TradingEconomics.Engine;
+using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Helpers;
+using Orion.API.TradingEconomics.Interfaces;
+using Orion.API.TradingEconomics.Services;
+using YahooQuotesApi;
 
-AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true); // ✅ Fixes timestamp issues with Npgsql
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 
 var builder = WebApplication.CreateBuilder(args);
 
-// ✅ Configuration
-// var configuration = builder.Configuration;
-// string connectionString = configuration.GetConnectionString("DefaultConnection");
-//
-// // ✅ Add EF Core with PostgreSQL
-// builder.Services.AddDbContext<TradingEconomicsContext>(options =>
-//     options.UseNpgsql(connectionString));
+builder.Services.AddHttpClient();
 
-// ✅ Register application services
-
- builder.Services.AddScoped<CalendarRepository>();
-// builder.Services.AddScoped<IComtradeServices, ComtradeRepository>();
-// builder.Services.AddScoped<IForecastServices, ForecastRepository>();
-// builder.Services.AddAutoMapper(typeof(CalendarEventProfile));
-
-// ✅ Add HTTP client support if needed
-builder.Services.AddHttpClient(); // Or named client if needed
-
-// ✅ Add controller support
 builder.Services.AddControllers();
 
-// ✅ Swagger configuration
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddMarten(options =>
+{
+    options.Connection(
+        builder.Configuration.GetConnectionString("MacroDbConnection")
+        ?? throw new InvalidOperationException("Missing MacroDb connection string."));
+
+    options.AutoCreateSchemaObjects = AutoCreate.CreateOrUpdate;
+
+    options.Schema.For<TradePlan>()
+        .Index(x => x.Status)
+        .Index(x => x.Pair)
+        .Index(x => x.OpenedAt)
+        .Index(x => x.ClosedAt);
+
+    options.Schema.For<OrderRequest>()
+        .Index(x => x.Status)
+        .Index(x => x.Pair)
+        .Index(x => x.CreatedAt);
+
+    options.Schema.For<OrderState>()
+        .Index(x => x.Status)
+        .Index(x => x.Pair)
+        .Index(x => x.FilledAt);
+
+    // options.Schema.For<AuditRecord>()
+        // .Index(x => x.Stage)
+        // .Index(x => x.Status)
+        // .Index(x => x.Pair)
+        // .Index(x => x.Re);
+});
+
 builder.Services.AddSwaggerGen(options =>
 {
     options.SwaggerDoc("v1", new OpenApiInfo
@@ -41,7 +63,7 @@ builder.Services.AddSwaggerGen(options =>
         Contact = new OpenApiContact
         {
             Name = "Khotso Mokhethi",
-            Email = "Mokhetkc@hotmail.com", // Replace with your actual email
+            Email = "Mokhetkc@hotmail.com",
             Url = new Uri("https://github.com/EdCharlesDiesel")
         },
         License = new OpenApiLicense
@@ -51,62 +73,103 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 
-    // Optional: Include XML comments (if you enable them in .csproj)
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     if (File.Exists(xmlPath))
     {
         options.IncludeXmlComments(xmlPath);
     }
+});
 
-    // Optional: Add JWT bearer auth support if you're using authentication
-    /*
-    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+builder.Services.Configure<AppConfiguration>(
+    builder.Configuration.GetSection("AppConfiguration"));
+
+builder.Services.AddHttpClient("FRED", client =>
+{
+    client.BaseAddress = new Uri("https://api.stlouisfed.org/fred/");
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+});
+
+builder.Services.Configure<MarketPipelineOptions>(options =>
+{
+    options.EnableCaching = true;
+    options.CacheExpirationSeconds = 300;
+    options.ValidationRetries = 2;
+    options.EnableEnrichment = true;
+});
+
+builder.Services.AddMemoryCache();
+
+builder.Services.AddSingleton(new NormalizationOptions
+{
+    MinimumWindowSize = 6,
+    WinsorizeOutliers = true,
+    WinsorizeZLimit = 4.0
+});
+
+builder.Services.AddScoped<INormalizationEngine, NormalizationEngine>();
+builder.Services.AddScoped<ICacheService, MemoryCacheService>();
+
+builder.Services.AddSingleton<YahooQuotes>(sp =>
+    new YahooQuotesBuilder()
+        .WithLogger(sp.GetRequiredService<ILogger<YahooQuotes>>())
+        .Build());
+
+builder.Services.AddScoped<IFredService, FredService>();
+builder.Services.AddScoped<IMarketDataEngine, MarketDataEngine>();
+builder.Services.AddScoped<IDataQualityEngine, DataQualityEngine>();
+builder.Services.AddScoped<ILiquidityEngine, LiquidityEngine>();
+builder.Services.AddScoped<ICorrelationEngine, CorrelationEngine>();
+builder.Services.AddScoped<IHedgingEngine, HedgingEngine>();
+// later:
+// builder.Services.AddScoped<IMarketDataProvider, OandaMarketDataProvider>();
+// builder.Services.AddScoped<IMarketDataProvider, TwelveDataMarketDataProvider>();
+//builder.Services.AddScoped<ITechnicalAnalysisService, TechnicalAnalysisService>();
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AngularApp", policy =>
     {
-        Name = "Authorization",
-        Type = SecuritySchemeType.ApiKey,
-        Scheme = "Bearer",
-        BearerFormat = "JWT",
-        In = ParameterLocation.Header,
-        Description = "Enter 'Bearer' followed by your token"
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials();
     });
+});
 
-    options.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
+builder.Services.AddRateLimiter(options =>
+{
+    options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(
+        httpContext => RateLimitPartition.GetFixedWindowLimiter(
+            partitionKey: httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            factory: _ => new FixedWindowRateLimiterOptions
             {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
-                }
-            },
-            Array.Empty<string>()
-        }
-    });
-    */
+                AutoReplenishment = true,
+                PermitLimit = 100,
+                Window = TimeSpan.FromMinutes(1)
+            }));
 });
 
 var app = builder.Build();
 
-// ✅ Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
-    app.UseDeveloperExceptionPage(); // Better error info in dev
+    app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 else
 {
-    app.UseExceptionHandler("/error"); // Optional: your custom error endpoint
-    app.UseHsts(); // Enforce HTTPS in production
+    app.UseExceptionHandler("/error");
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();
 
-// Optional: add if you configure authentication
-// app.UseAuthentication();
+app.UseCors("AngularApp");
+
+app.UseRateLimiter();
 
 app.UseAuthorization();
 
@@ -114,6 +177,3 @@ app.MapControllers();
 
 app.Run();
 
-public class CalendarRepository
-{
-}

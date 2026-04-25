@@ -115,7 +115,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\External.PaymentGatewa
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\Orion.External.PaymentGateway.csproj.CoreCompileInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\Orion.External.PaymentGateway.MvcApplicationPartsAssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\Orion.External.PaymentGateway.MvcApplicationPartsAssemblyInfo.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\Orion.External.PaymentGateway.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\External.PaymentGateway\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json

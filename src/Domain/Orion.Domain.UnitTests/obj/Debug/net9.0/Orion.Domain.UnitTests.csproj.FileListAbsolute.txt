@@ -385,7 +385,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain.UnitTests\obj\
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain.UnitTests\obj\Debug\net9.0\Orion.Domain.UnitTests.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain.UnitTests\obj\Debug\net9.0\Orion.Domain.UnitTests.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain.UnitTests\obj\Debug\net9.0\Orion.Domain.UnitTests.csproj.CoreCompileInputs.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain.UnitTests\obj\Debug\net9.0\Orion.Domain.UnitTests.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain.UnitTests\obj\Debug\net9.0\Orion.Do.E6A42B31.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain.UnitTests\obj\Debug\net9.0\Orion.Domain.UnitTests.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\Domain\Orion.Domain.UnitTests\obj\Debug\net9.0\refint\Orion.Domain.UnitTests.dll

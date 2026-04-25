@@ -208,7 +208,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\ob
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.csproj.CoreCompileInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.MvcApplicationPartsAssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.MvcApplicationPartsAssemblyInfo.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\Orion.Shopping.Aggregator.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\rjimswa.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 C:\x\Practice\Orion.API.Microservices.NET\src\ApiGateways\Shopping.Aggregator\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json

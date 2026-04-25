@@ -59,13 +59,17 @@
               "target": "Package",
               "version": "[15.0.1, )"
             },
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "Marten": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[8.32.1, )"
             },
-            "FastEndpoints.MediatR": {
+            "Marten.AspNetCore": {
               "target": "Package",
-              "version": "[2.0.6, )"
+              "version": "[8.32.1, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.4.1, )"
             },
             "Microsoft.AspNetCore.Authentication.Negotiate": {
               "target": "Package",
@@ -75,9 +79,33 @@
               "target": "Package",
               "version": "[1.22.1, )"
             },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.4, )"
+            },
+            "Polly.Extensions.Http": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.18.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "Weasel.Core": {
+              "target": "Package",
+              "version": "[8.14.1, )"
+            },
+            "YahooFinanceApi": {
+              "target": "Package",
+              "version": "[2.3.3, )"
+            },
+            "YahooQuotesApi": {
+              "target": "Package",
+              "version": "[7.0.7, )"
             }
           },
           "imports": [

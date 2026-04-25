@@ -205,7 +205,6 @@ C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.AssemblyInfoInputs.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.AssemblyInfo.cs
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.csproj.CoreCompileInputs.cache
-C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.sourcelink.json
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.He.EAEA705C.Up2Date
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\Orion.Helpers.UnitTests.dll
 C:\x\Practice\Orion.API.Microservices.NET\src\UnitTests\Orion.Helpers.UnitTests\obj\Debug\net9.0\refint\Orion.Helpers.UnitTests.dll
