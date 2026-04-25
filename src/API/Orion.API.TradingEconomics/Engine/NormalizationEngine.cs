@@ -91,7 +91,7 @@ namespace Orion.API.TradingEconomics.Engine
             return results;
         }
 
-        private static decimal CalculatePeriodChange(List<EconomicIndicator> data,int index,int lag)
+        private static decimal CalculatePeriodChange(List<EconomicIndicator> data, int index, int lag)
         {
             if (index < lag)
                 return 0;

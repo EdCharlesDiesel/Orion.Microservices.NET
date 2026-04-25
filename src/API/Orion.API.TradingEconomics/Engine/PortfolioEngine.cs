@@ -2,8 +2,6 @@
 
 namespace Orion.API.TradingEconomics.Engine
 {
-
-
     public sealed class PortfolioEngine
     {
         private readonly ConfigurationEngine _config;

@@ -70,10 +70,7 @@ namespace Orion.API.TradingEconomics.Engine
             });
         }
 
-        private static List<decimal> TakeAlignedLookback(
-            List<decimal> first,
-            List<decimal> second,
-            int lookbackPeriods)
+        private static List<decimal> TakeAlignedLookback(List<decimal> first, List<decimal> second, int lookbackPeriods)
         {
             var count = Math.Min(first.Count, second.Count);
 
@@ -86,9 +83,7 @@ namespace Orion.API.TradingEconomics.Engine
                 .ToList();
         }
 
-        private static decimal CalculatePearsonCorrelation(
-            List<decimal> xValues,
-            List<decimal> yValues)
+        private static decimal CalculatePearsonCorrelation(List<decimal> xValues, List<decimal> yValues)
         {
             var count = Math.Min(xValues.Count, yValues.Count);
 

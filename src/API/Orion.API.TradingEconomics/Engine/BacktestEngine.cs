@@ -1,16 +1,12 @@
 ﻿using MediatR;
 using Orion.API.TradingEconomics.Commands;
 using Orion.API.TradingEconomics.Entities;
-using Orion.Core.MacroEngine.Application;
 
 namespace Orion.API.TradingEconomics.Engine
 {
     public class BacktestEngine(IMediator mediator, AdvancedExecutionEngine execution)
     {
-        public async Task<List<TradeResult>> RunAsync(
-            DateTime start,
-            DateTime end,
-            decimal capital)
+        public async Task<List<TradeResult>> RunAsync(DateTime start, DateTime end, decimal capital)
         {
             var trades = new List<TradeResult>();
             var currentCapital = capital;

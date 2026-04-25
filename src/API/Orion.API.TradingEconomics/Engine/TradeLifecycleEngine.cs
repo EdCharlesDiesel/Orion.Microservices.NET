@@ -2,8 +2,6 @@
 
 namespace Orion.API.TradingEconomics.Engine
 {
-
-
     public sealed class TradeLifecycleEngine
     {
         public TradePlan CreatePlan(

@@ -26,9 +26,7 @@ namespace Orion.API.TradingEconomics.Engine
         "SARB"
     };
 
-        public EconomicCalendarRiskResult Evaluate(
-            ForexMarketInput input,
-            DateTime nowUtc)
+        public EconomicCalendarRiskResult Evaluate(ForexMarketInput input, DateTime nowUtc)
         {
             if (input.MacroEvents == null || input.MacroEvents.Count == 0)
                 return EconomicCalendarRiskResult.Clear("No macro events supplied.");

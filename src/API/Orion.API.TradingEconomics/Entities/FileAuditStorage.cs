@@ -1,8 +1,9 @@
 using System.Text.Json;
 using Microsoft.Extensions.Options;
-using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Engine;
+using Orion.API.TradingEconomics.Interfaces;
 
-namespace Orion.API.TradingEconomics.Engine;
+namespace Orion.API.TradingEconomics.Entities;
 
 /// <summary>
 /// File-based audit storage for development/small deployments

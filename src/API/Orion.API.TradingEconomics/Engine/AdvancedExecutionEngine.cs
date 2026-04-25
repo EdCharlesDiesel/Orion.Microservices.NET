@@ -1,13 +1,15 @@
 ﻿using Orion.API.TradingEconomics.Entities;
 using Orion.API.TradingEconomics.Interfaces;
 using Orion.API.TradingEconomics.Services;
-
 namespace Orion.API.TradingEconomics.Engine
 {
-    public abstract class AdvancedExecutionEngine(
-        IOrderBookProvider orderBook,
-        ILatencyModel latency,
-        INewsEventService news)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="orderBook"></param>
+    /// <param name="latency"></param>
+    /// <param name="news"></param>
+    public abstract class AdvancedExecutionEngine(IOrderBookProvider orderBook, ILatencyModel latency, INewsEventService news)
     {
         private readonly OrderBookExecutionService _executor = new();
 

@@ -1,8 +1,7 @@
 ﻿using Orion.API.TradingEconomics.Entities;
 
 namespace Orion.API.TradingEconomics.Engine
-{    
-
+{
     public sealed class PositionSizingEngine
     {
         private const decimal DefaultRiskPerTradePercent = 1.0m;

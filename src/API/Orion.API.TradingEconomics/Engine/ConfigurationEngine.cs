@@ -2,8 +2,6 @@
 
 namespace Orion.API.TradingEconomics.Engine
 {
-
-
     public sealed class ConfigurationEngine(IConfiguration configuration)
     {
         private readonly TradingSystemConfig _config = configuration

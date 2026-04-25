@@ -4,11 +4,7 @@ namespace Orion.API.TradingEconomics.Engine
 {
     public sealed class CircuitBreakerEngine(ConfigurationEngine config)
     {
-        public CircuitBreakerResult Evaluate(
-            AccountContext account,
-            List<TradePlan> todayTrades,
-            List<TradePlan> openTrades,
-            DataQualityResult dataQuality)
+        public CircuitBreakerResult Evaluate(AccountContext account, List<TradePlan> todayTrades, List<TradePlan> openTrades, DataQualityResult dataQuality)
         {
             if (account.Equity <= 0)
                 return CircuitBreakerResult.Tripped("Invalid account equity.");

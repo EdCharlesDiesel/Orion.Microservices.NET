@@ -1,17 +1,13 @@
 
 
 using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Enum;
 
 namespace Orion.API.TradingEconomics.Engine
 {
     public sealed class ComplianceEngine
     {
-        public ComplianceResult Validate(
-            string pair,
-            string direction,
-            decimal requestedSize,
-            AccountSnapshot account,
-            RealTimeRiskResult risk)
+        public ComplianceResult Validate(string pair, string direction, decimal requestedSize, AccountSnapshot account, RealTimeRiskResult risk)
         {
             if (string.IsNullOrWhiteSpace(pair))
                 throw new ArgumentException("Pair is required.", nameof(pair));
@@ -66,10 +62,7 @@ namespace Orion.API.TradingEconomics.Engine
             };
         }
 
-        private static ComplianceResult Fail(
-            string pair,
-            string direction,
-            string reason)
+        private static ComplianceResult Fail(string pair, string direction, string reason)
         {
             return new ComplianceResult
             {

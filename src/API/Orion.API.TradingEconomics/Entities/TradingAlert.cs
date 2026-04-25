@@ -1,4 +1,4 @@
-namespace Orion.API.TradingEconomics.Engine;
+namespace Orion.API.TradingEconomics.Entities;
 
 public sealed class TradingAlert
 {

@@ -2,12 +2,12 @@ using Orion.API.TradingEconomics.Entities;
 
 namespace Orion.API.TradingEconomics.Engine
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public sealed class AlphaEngine
     {
-        public AlphaResult Generate(
-            string pair,
-            List<NormalizedIndicator> indicators,
-            List<MacroEvent>? macroEvents = null)
+        public AlphaResult Generate(string pair, List<NormalizedIndicator> indicators, List<MacroEvent>? macroEvents = null)
         {
             if (string.IsNullOrWhiteSpace(pair))
                 throw new ArgumentException("Pair is required.", nameof(pair));

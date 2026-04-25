@@ -1,3 +1,5 @@
+using Orion.API.TradingEconomics.Enum;
+
 namespace Orion.API.TradingEconomics.Entities;
 
 public sealed class ComplianceResult

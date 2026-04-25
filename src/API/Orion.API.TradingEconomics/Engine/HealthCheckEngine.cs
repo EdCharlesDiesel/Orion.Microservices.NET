@@ -1,8 +1,15 @@
-// namespace Orion.API.TradingEconomics.Engine;
+// using Orion.API.TradingEconomics.Entities;
+//
+//
 //
 // using System.Collections.Concurrent;
 // using System.Diagnostics;
 // using Microsoft.Extensions.Diagnostics.HealthChecks;
+// using Microsoft.Extensions.Options;
+// using Orion.API.TradingEconomics.Engine.Orion.API.TradingEconomics.Engine;
+// using Orion.API.TradingEconomics.Interfaces;
+// using HealthReport = Microsoft.Extensions.Diagnostics.HealthChecks.HealthReport;
+//
 //
 // namespace Orion.API.TradingEconomics.Engine
 // {
@@ -762,115 +769,5 @@
 //         }
 //     }
 //
-//     #region Entities and Models
-//
-//     public class HealthCheckOptions
-//     {
-//         public int CheckIntervalSeconds { get; set; } = 30;
-//         public int InitialDelaySeconds { get; set; } = 5;
-//         public int MaxHistoryItems { get; set; } = 1000;
-//         public double MaxMemoryThresholdMB { get; set; } = 2048;
-//         public double MaxCpuPercent { get; set; } = 80;
-//         public bool DetailedMetricsEnabled { get; set; } = true;
-//         public List<string> ExcludedComponents { get; set; } = new();
-//         public Dictionary<string, object> CustomThresholds { get; set; } = new();
-//     }
-//
-//     public class HealthComponent
-//     {
-//         public string Name { get; set; }
-//         public HealthComponentType Type { get; set; }
-//         public bool Critical { get; set; }
-//         public bool Enabled { get; set; } = true;
-//         public TimeSpan Timeout { get; set; } = TimeSpan.FromSeconds(10);
-//         public TimeSpan DegradedThreshold { get; set; } = TimeSpan.FromSeconds(5);
-//         public TimeSpan? CheckInterval { get; set; }
-//         public DateTime LastCheckTime { get; set; }
-//         public HealthCheckResult? LastResult { get; set; }
-//         public long TotalChecks { get; set; }
-//         public long FailedChecks { get; set; }
-//     }
-//
-//     public enum HealthComponentType
-//     {
-//         DataProvider,
-//         PipelineEngine,
-//         ExternalService,
-//         Infrastructure,
-//         Database,
-//         Cache,
-//         MessageQueue,
-//         Custom
-//     }
-//
-//     public class HealthReport
-//     {
-//         public DateTime Timestamp { get; set; }
-//         public HealthStatus OverallStatus { get; set; }
-//         public Dictionary<string, HealthCheckResult> Checks { get; set; }
-//         public SystemMetrics Metrics { get; set; }
-//         public string Version { get; set; } = "1.0.0";
-//     }
-//
-//     public class SystemMetrics
-//     {
-//         public DateTime ProcessStartTime { get; set; }
-//         public TimeSpan UpTime { get; set; }
-//         public int ThreadCount { get; set; }
-//         public int HandleCount { get; set; }
-//         public long WorkingSet { get; set; }
-//         public long PeakWorkingSet { get; set; }
-//         public long PrivateMemory { get; set; }
-//         public long VirtualMemory { get; set; }
-//         public long PagedMemory { get; set; }
-//         public long GcTotalMemory { get; set; }
-//         public long PipelineDecisionsProcessed { get; set; }
-//         public double ErrorRate { get; set; }
-//     }
-//
-//     public class HealthSnapshot
-//     {
-//         public DateTime Timestamp { get; set; }
-//         public HealthStatus Status { get; set; }
-//         public int ComponentCount { get; set; }
-//         public int HealthyCount { get; set; }
-//         public int DegradedCount { get; set; }
-//         public int UnhealthyCount { get; set; }
-//     }
-//
-//     public class HealthTrend
-//     {
-//         public List<HealthSnapshot> Snapshots { get; set; }
-//         public decimal UptimePercentage { get; set; }
-//         public TimeSpan MeanTimeToRecovery { get; set; }
-//         public Dictionary<HealthStatus, int> StatusDistribution { get; set; }
-//     }
-//
-//     public class ComponentDetails
-//     {
-//         public string Name { get; set; }
-//         public HealthComponentType Type { get; set; }
-//         public bool Critical { get; set; }
-//         public DateTime LastCheck { get; set; }
-//         public HealthCheckResult? LastResult { get; set; }
-//         public long TotalChecks { get; set; }
-//         public long FailedChecks { get; set; }
-//         public double SuccessRate { get; set; }
-//     }
-//
-//     public class DataQualityResult
-//     {
-//         public bool IsValid { get; set; }
-//         public int Score { get; set; }
-//         public List<string> Issues { get; set; } = new();
-//     }
-//
-//     public enum HealthStatus
-//     {
-//         Healthy,
-//         Degraded,
-//         Unhealthy
-//     }
-//
-//     #endregion
+//  
 // }
