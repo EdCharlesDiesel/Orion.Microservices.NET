@@ -1,83 +1,99 @@
+using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
+namespace Orion.API.TradingEconomics.Engine;
 
-namespace Orion.API.TradingEconomics.Engine
+/// <summary>
+/// Generates an alpha signal from normalized technical, sentiment, and macro indicators.
+/// </summary>
+public sealed class AlphaEngine : IAlphaEngine
 {
+    private const decimal LongThreshold = 0.25m;
+    private const decimal ShortThreshold = -0.25m;
+    private const decimal HighImpactConfidenceThreshold = 0.75m;
+
     /// <summary>
-    /// 
+    /// Generates an alpha result for a currency pair.
     /// </summary>
-    public sealed class AlphaEngine
+    /// <param name="pair">The currency pair.</param>
+    /// <param name="indicators">Normalized indicators used to calculate alpha.</param>
+    /// <param name="macroEvents">Optional macro events used to suppress low-confidence signals.</param>
+    /// <returns>An alpha result containing direction, score, confidence, and component scores.</returns>
+    public AlphaResult Generate(string pair, List<NormalizedIndicator>? indicators, List<MacroEvent>? macroEvents = null)
     {
-        public AlphaResult Generate(string pair, List<NormalizedIndicator> indicators, List<MacroEvent>? macroEvents = null)
+        if (string.IsNullOrWhiteSpace(pair))
+            throw new ArgumentException("Pair is required.", nameof(pair));
+
+        indicators ??= [];
+        macroEvents ??= [];
+
+        var trend = GetIndicatorValue(indicators, "TREND");
+        var momentum = GetIndicatorValue(indicators, "MOMENTUM");
+        var volatility = GetIndicatorValue(indicators, "VOLATILITY");
+        var sentiment = GetIndicatorValue(indicators, "SENTIMENT");
+        var macro = GetIndicatorValue(indicators, "MACRO");
+
+        var volatilityPenalty = Math.Abs(volatility) * 0.10m;
+
+        var alphaScore = Clamp(
+            trend * 0.30m +
+            momentum * 0.25m +
+            sentiment * 0.20m +
+            macro * 0.15m -
+            volatilityPenalty,
+            -1m,
+            1m);
+
+        var confidence = Math.Abs(alphaScore);
+        var direction = GetDirection(alphaScore);
+
+        var highImpactEvents = macroEvents.Count(x =>
+            string.Equals(x.Impact, "HIGH", StringComparison.OrdinalIgnoreCase));
+
+        if (highImpactEvents > 0 && confidence < HighImpactConfidenceThreshold)
+            direction = "FLAT";
+
+        return new AlphaResult
         {
-            if (string.IsNullOrWhiteSpace(pair))
-                throw new ArgumentException("Pair is required.", nameof(pair));
+            Pair = pair.Trim().ToUpperInvariant(),
+            Direction = direction,
+            AlphaScore = alphaScore,
+            Confidence = confidence,
+            TrendScore = trend,
+            MomentumScore = momentum,
+            VolatilityPenalty = volatilityPenalty,
+            SentimentScore = sentiment,
+            MacroScore = macro,
+            HighImpactMacroEvents = highImpactEvents,
+            TimestampUtc = DateTime.UtcNow
+        };
+    }
 
-            indicators ??= new List<NormalizedIndicator>();
-            macroEvents ??= new List<MacroEvent>();
-
-            var trend = Get(indicators, "TREND");
-            var momentum = Get(indicators, "MOMENTUM");
-            var volatility = Get(indicators, "VOLATILITY");
-            var sentiment = Get(indicators, "SENTIMENT");
-            var macro = Get(indicators, "MACRO");
-
-            var rawScore =
-                trend * 0.30m +
-                momentum * 0.25m +
-                sentiment * 0.20m +
-                macro * 0.15m -
-                Math.Abs(volatility) * 0.10m;
-
-            rawScore = Clamp(rawScore, -1m, 1m);
-
-            var confidence = Math.Abs(rawScore);
-
-            var direction = rawScore switch
-            {
-                >= 0.25m => "LONG",
-                <= -0.25m => "SHORT",
-                _ => "FLAT"
-            };
-
-            var highImpactEvents = macroEvents.Count(x =>
-                string.Equals(x.Impact, "HIGH", StringComparison.OrdinalIgnoreCase));
-
-            if (highImpactEvents > 0 && confidence < 0.75m)
-                direction = "FLAT";
-
-            return new AlphaResult
-            {
-                Pair = pair.Trim().ToUpperInvariant(),
-                Direction = direction,
-                AlphaScore = rawScore,
-                Confidence = confidence,
-                TrendScore = trend,
-                MomentumScore = momentum,
-                VolatilityPenalty = Math.Abs(volatility) * 0.10m,
-                SentimentScore = sentiment,
-                MacroScore = macro,
-                HighImpactMacroEvents = highImpactEvents,
-                TimestampUtc = DateTime.UtcNow
-            };
-        }
-
-        private static decimal Get(List<NormalizedIndicator> indicators, string name)
+    private static string GetDirection(decimal alphaScore)
+    {
+        return alphaScore switch
         {
-            var item = indicators.FirstOrDefault(x =>
-                string.Equals(x.Name, name, StringComparison.OrdinalIgnoreCase));
+            >= LongThreshold => "LONG",
+            <= ShortThreshold => "SHORT",
+            _ => "FLAT"
+        };
+    }
 
-            return item?.Value ?? 0m;
-        }
+    private static decimal GetIndicatorValue(List<NormalizedIndicator> indicators, string name)
+    {
+        var indicator = indicators.FirstOrDefault(x =>
+            string.Equals(x.Name, name, StringComparison.OrdinalIgnoreCase));
 
-        private static decimal Clamp(decimal value, decimal min, decimal max)
-        {
-            if (value < min)
-                return min;
+        return indicator?.Value ?? 0m;
+    }
 
-            if (value > max)
-                return max;
+    private static decimal Clamp(decimal value, decimal min, decimal max)
+    {
+        if (value < min)
+            return min;
 
-            return value;
-        }
+        if (value > max)
+            return max;
+
+        return value;
     }
 }

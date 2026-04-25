@@ -115,7 +115,7 @@
             <param name="capital"></param>
             <returns></returns>
         </member>
-        <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetMacroData(System.String,System.Threading.CancellationToken)">
+        <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetMacroData(System.Threading.CancellationToken)">
             <summary>
             Get macroeconomic data (GDP, Inflation, Rates, Unemployment) for all currencies
             </summary>
@@ -128,11 +128,6 @@
         <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetFredSeries">
             <summary>
             Get available FRED series mappings
-            </summary>
-        </member>
-        <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetFallbackData">
-            <summary>
-            Get fallback/static macro data
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetStatus(System.String,System.Threading.CancellationToken)">
@@ -230,6 +225,38 @@
             FRED API status response
             </summary>
         </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.AdvancedExecutionEngine">
+            <summary>
+            Provides advanced execution logic including:
+            - Latency simulation
+            - News-based risk adjustment
+            - Order book execution
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AdvancedExecutionEngine.#ctor(Orion.API.TradingEconomics.Interfaces.IOrderBookProvider,Orion.API.TradingEconomics.Interfaces.ILatencyModel,Orion.API.TradingEconomics.Interfaces.INewsEventService,Orion.API.TradingEconomics.Interfaces.IOrderBookExecutionService)">
+            <summary>
+            Provides advanced execution logic including:
+            - Latency simulation
+            - News-based risk adjustment
+            - Order book execution
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AdvancedExecutionEngine.ExecuteAsync(System.String,System.String,System.Decimal,System.Threading.CancellationToken)">
+            <summary>
+            Executes an order with realistic market conditions:
+            latency, news impact, and order book depth.
+            </summary>
+            <param name="pair">Currency pair (e.g., EUR/USD)</param>
+            <param name="direction">Trade direction (BUY/SELL)</param>
+            <param name="size">Requested trade size</param>
+            <param name="cancellationToken"></param>
+            <returns>Execution result with fill details and risk flags</returns>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.AlphaEngine">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.RecordDecisionAsync(Orion.API.TradingEconomics.Entities.AuditRecord)">
             <summary>
             Records a complete pipeline execution with all decision factors
@@ -255,7 +282,7 @@
             Force flush all buffered entries to storage
             </summary>
         </member>
-        <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.QueryAsync(Orion.API.TradingEconomics.Engine.AuditQuery)">
+        <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.QueryAsync(Orion.API.TradingEconomics.Entities.AuditQuery)">
             <summary>
             Query audit records with filters
             </summary>
@@ -297,14 +324,14 @@
             <param name="raw"></param>
             <returns></returns>
         </member>
-        <member name="T:Orion.API.TradingEconomics.Engine.FileAuditStorage">
-            <summary>
-            File-based audit storage for development/small deployments
-            </summary>
-        </member>
         <member name="T:Orion.API.TradingEconomics.Engine.InMemoryAuditStorage">
             <summary>
             In-memory storage for testing
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Entities.FileAuditStorage">
+            <summary>
+            File-based audit storage for development/small deployments
             </summary>
         </member>
         <member name="T:Orion.API.TradingEconomics.Entities.MarketSession">

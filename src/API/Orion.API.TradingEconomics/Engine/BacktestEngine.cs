@@ -1,58 +1,85 @@
 ﻿using MediatR;
 using Orion.API.TradingEconomics.Commands;
+using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
 
-namespace Orion.API.TradingEconomics.Engine
+namespace Orion.API.TradingEconomics.Engine;
+
+/// <summary>
+/// Executes a simple backtest by generating portfolios, executing trades,
+/// and simulating exits over a date range.
+/// </summary>
+public sealed class BacktestEngine(
+    IMediator mediator,
+    AdvancedExecutionEngine execution,
+    Random? random = null)
+    : IBacktestEngine
 {
-    public class BacktestEngine(IMediator mediator, AdvancedExecutionEngine execution)
+    private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
+    private readonly AdvancedExecutionEngine _execution = execution ?? throw new ArgumentNullException(nameof(execution));
+    private readonly Random _random = random ?? new Random();
+
+    /// <summary>
+    /// Runs a backtest between two dates using the provided capital.
+    /// </summary>
+    public async Task<List<TradeResult>> RunAsync(
+        DateTime start,
+        DateTime end,
+        decimal capital)
     {
-        public async Task<List<TradeResult>> RunAsync(DateTime start, DateTime end, decimal capital)
-        {
-            var trades = new List<TradeResult>();
-            var currentCapital = capital;
+        if (end < start)
+            throw new ArgumentException("End date cannot be before start date.", nameof(end));
 
-            for (var date = start; date <= end; date = date.AddDays(1))
+        if (capital <= 0)
+            throw new ArgumentException("Capital must be greater than zero.", nameof(capital));
+
+        var trades = new List<TradeResult>();
+        var currentCapital = capital;
+
+        for (var date = start.Date; date <= end.Date; date = date.AddDays(1))
+        {
+            var portfolio = await _mediator.Send(new BuildPortfolioCommand(currentCapital))
+                             ?? new List<PortfolioPosition>();
+
+            foreach (var position in portfolio)
             {
-                // 1. Generate portfolio
-                var portfolio = await mediator.Send(new BuildPortfolioCommand(currentCapital));
+                var exec = await _execution.ExecuteAsync(
+                    position.Pair,
+                    position.Direction,
+                    position.PositionSize);
 
-                foreach (var position in portfolio)
+                if (exec?.Order == null || exec.Order.FilledSize <= 0)
+                    continue;
+
+                var entryPrice = exec.Order.ExecutedPrice;
+                var exitPrice = entryPrice * (1 + RandomReturn());
+
+                var directionMultiplier = string.Equals(position.Direction, "LONG", StringComparison.OrdinalIgnoreCase) ? 1 : -1;
+
+                var pnl = (exitPrice - entryPrice)
+                          * exec.Order.FilledSize
+                          * directionMultiplier;
+
+                trades.Add(new TradeResult
                 {
-                    // 2. Execute trade
-                    var exec = await execution.ExecuteAsync(
-                        position.Pair,
-                        position.Direction,
-                        position.PositionSize);
+                    Pair = position.Pair,
+                    EntryTime = date,
+                    ExitTime = date.AddDays(1),
+                    EntryPrice = entryPrice,
+                    ExitPrice = exitPrice,
+                    PositionSize = exec.Order.FilledSize,
+                    PnL = pnl
+                });
 
-                    // 3. Simulate exit (next period for now)
-                    var exitPrice = exec.Order.ExecutedPrice * (1 + RandomReturn());
-
-                    var pnl = (exitPrice - exec.Order.ExecutedPrice)
-                              * exec.Order.FilledSize
-                              * (position.Direction == "LONG" ? 1 : -1);
-
-                    trades.Add(new TradeResult
-                    {
-                        Pair = position.Pair,
-                        EntryTime = date,
-                        ExitTime = date.AddDays(1),
-                        EntryPrice = exec.Order.ExecutedPrice,
-                        ExitPrice = exitPrice,
-                        PositionSize = position.PositionSize,
-                        PnL = pnl
-                    });
-
-                    currentCapital += pnl;
-                }
+                currentCapital += pnl;
             }
-
-            return trades;
         }
 
-        private decimal RandomReturn()
-        {
-            var rand = new Random();
-            return (decimal)((rand.NextDouble() - 0.5) * 0.01); // ±0.5%
-        }
+        return trades;
+    }
+
+    private decimal RandomReturn()
+    {
+        return (decimal)((_random.NextDouble() - 0.5) * 0.01); // ±0.5%
     }
 }

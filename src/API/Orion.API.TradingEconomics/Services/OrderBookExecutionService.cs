@@ -1,8 +1,9 @@
 ﻿using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Services
 {
-    public class OrderBookExecutionService
+    public class OrderBookExecutionService: IOrderBookExecutionService
     {
         public ExecutionOrder Execute(OrderBook book,string direction,decimal size)
         {

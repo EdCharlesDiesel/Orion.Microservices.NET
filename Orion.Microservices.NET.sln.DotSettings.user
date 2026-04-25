@@ -39,6 +39,7 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=61EE6B6B_002D3A72_002D4D9F_002D8756_002D228AB8C5D64F/@EntryIndexedValue">Orion.Services.Chat.API.Tests</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=814B99C9_002D7C60_002D4451_002D914D_002DAE3CD918E278/@EntryIndexedValue">4BBC93EE-9774-4FCA-8277-3E97E18C3ACC</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=84186A4B_002D6EF1_002D47A5_002D912B_002DA9D173E0C39C/@EntryIndexedValue">Orion.Services.Basket.API.Tests</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=9B57E108_002D1255_002D4F09_002D844F_002DC5675C77065B/@EntryIndexedValue">0884D5E2-E9E7-4481-8AF0-A42F25FB194E</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=AB1409C5_002DF703_002D4073_002DB884_002D78F822874DB6/@EntryIndexedValue">70E07A35-6A35-4343-9385-0D0CEB743491</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=xUnit/@EntryIndexedValue">33ff99d8-b1ad-4ed5-a4fd-376b97c2c841</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=17870995_002D381a_002D4ac1_002D9d91_002D31d39da4fe3b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;

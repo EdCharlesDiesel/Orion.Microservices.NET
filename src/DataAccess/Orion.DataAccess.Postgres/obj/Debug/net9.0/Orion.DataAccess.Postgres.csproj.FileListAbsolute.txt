@@ -403,3 +403,4 @@ C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgr
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\Orion.DataAccess.Postgres.pdb
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\Orion.DataAccess.Postgres.genruntimeconfig.cache
 C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\ref\Orion.DataAccess.Postgres.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\Orion.DataAccess.Postgres.sourcelink.json

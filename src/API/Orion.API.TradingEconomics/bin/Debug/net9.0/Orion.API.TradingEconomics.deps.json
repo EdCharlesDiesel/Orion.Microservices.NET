@@ -15,6 +15,8 @@
           "Microsoft.AspNetCore.Authentication.Negotiate": "9.0.7",
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.22.1",
           "Orion.DataAccess.Postgres": "1.0.0",
+          "Polly": "7.2.4",
+          "Polly.Extensions.Http": "3.0.0",
           "Quartz": "3.18.0",
           "Swashbuckle.AspNetCore": "6.5.0",
           "Weasel.Core": "8.14.1",
@@ -1758,6 +1760,14 @@
           }
         }
       },
+      "Polly/7.2.4": {
+        "runtime": {
+          "lib/netstandard2.0/Polly.dll": {
+            "assemblyVersion": "7.0.0.0",
+            "fileVersion": "7.2.4.982"
+          }
+        }
+      },
       "Polly.Core/8.6.5": {
         "runtime": {
           "lib/net8.0/Polly.Core.dll": {
@@ -1776,6 +1786,17 @@
           "lib/net8.0/Polly.Extensions.dll": {
             "assemblyVersion": "8.0.0.0",
             "fileVersion": "8.4.2.3950"
+          }
+        }
+      },
+      "Polly.Extensions.Http/3.0.0": {
+        "dependencies": {
+          "Polly": "7.2.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Polly.Extensions.Http.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.0.0"
           }
         }
       },
@@ -3047,6 +3068,13 @@
       "path": "npgsql.nodatime/9.0.3",
       "hashPath": "npgsql.nodatime.9.0.3.nupkg.sha512"
     },
+    "Polly/7.2.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bw00Ck5sh6ekduDE3mnCo1ohzuad946uslCDEENu3091+6UKnBuKLo4e+yaNcCzXxOZCXWY2gV4a35+K1d4LDA==",
+      "path": "polly/7.2.4",
+      "hashPath": "polly.7.2.4.nupkg.sha512"
+    },
     "Polly.Core/8.6.5": {
       "type": "package",
       "serviceable": true,
@@ -3060,6 +3088,13 @@
       "sha512": "sha512-GZ9vRVmR0jV2JtZavt+pGUsQ1O1cuRKG7R7VOZI6ZDy9y6RNPvRvXK1tuS4ffUrv8L0FTea59oEuQzgS0R7zSA==",
       "path": "polly.extensions/8.4.2",
       "hashPath": "polly.extensions.8.4.2.nupkg.sha512"
+    },
+    "Polly.Extensions.Http/3.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-drrG+hB3pYFY7w1c3BD+lSGYvH2oIclH8GRSehgfyP5kjnFnHKQuuBhuHLv+PWyFuaTDyk/vfRpnxOzd11+J8g==",
+      "path": "polly.extensions.http/3.0.0",
+      "hashPath": "polly.extensions.http.3.0.0.nupkg.sha512"
     },
     "Polly.RateLimiting/8.4.2": {
       "type": "package",

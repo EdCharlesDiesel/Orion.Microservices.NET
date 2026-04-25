@@ -5,6 +5,7 @@ using Marten;
 using Microsoft.OpenApi.Models;
 using Orion.API.TradingEconomics.Configuration;
 using Orion.API.TradingEconomics.Engine;
+using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
 using Orion.API.TradingEconomics.Helpers;
 using Orion.API.TradingEconomics.Interfaces;
@@ -115,16 +116,24 @@ builder.Services.AddSingleton<YahooQuotes>(sp =>
         .WithLogger(sp.GetRequiredService<ILogger<YahooQuotes>>())
         .Build());
 
+//Services
 builder.Services.AddScoped<IFredService, FredService>();
+
+
+//Engines
 builder.Services.AddScoped<IMarketDataEngine, MarketDataEngine>();
 builder.Services.AddScoped<IDataQualityEngine, DataQualityEngine>();
 builder.Services.AddScoped<ILiquidityEngine, LiquidityEngine>();
 builder.Services.AddScoped<ICorrelationEngine, CorrelationEngine>();
 builder.Services.AddScoped<IHedgingEngine, HedgingEngine>();
-// later:
-// builder.Services.AddScoped<IMarketDataProvider, OandaMarketDataProvider>();
-// builder.Services.AddScoped<IMarketDataProvider, TwelveDataMarketDataProvider>();
-//builder.Services.AddScoped<ITechnicalAnalysisService, TechnicalAnalysisService>();
+builder.Services.AddScoped<IOrderBookExecutionService,OrderBookExecutionService>();
+builder.Services.AddScoped<IAdvancedExecutionEngine,AdvancedExecutionEngine>();
+builder.Services.AddScoped<IAlertEngine,AlertEngine>();
+builder.Services.AddScoped<IAlphaEngine,AlphaEngine>();
+builder.Services.AddScoped<IAuditTrailEngine,AuditTrailEngine>();
+builder.Services.AddScoped<IBacktestEngine,BacktestEngine>();
+
+
 
 
 builder.Services.AddCors(options =>
