@@ -1,12 +1,5 @@
 namespace Orion.API.TradingEconomics.Enum;
 
-public enum HealthStatus
-{
-    Healthy,
-    Degraded,
-    Unhealthy
-}
-
 public enum AuditRecordType
 {
     Decision,
@@ -43,4 +36,21 @@ public enum RiskAction
     ReducePosition = 2,
     ClosePosition = 3,
     EmergencyFlatten = 4
+}
+
+public enum MarketRegime
+{
+    RiskOn,
+    RiskOff,
+    Stagflation,
+    Goldilocks
+}
+
+public enum IndicatorFrequency
+{
+    Daily,
+    Weekly,
+    Monthly,
+    Quarterly,
+    Yearly
 }

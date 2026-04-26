@@ -1,5 +1,6 @@
 using Orion.API.TradingEconomics.Engine;
 using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Enum;
 using Xunit;
 
 namespace Orion.API.TradingEconomics.UnitTests.Engine

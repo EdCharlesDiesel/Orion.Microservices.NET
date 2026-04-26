@@ -3,6 +3,26 @@
   "WorkspaceRootPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|c:\\x\\practice\\orion.api.microservices.net\\src\\api\\orion.api.tradingeconomics\\interfaces\\iregimeengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|solutionrelative:src\\api\\orion.api.tradingeconomics\\interfaces\\iregimeengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|c:\\x\\practice\\orion.api.microservices.net\\src\\api\\orion.api.tradingeconomics\\engine\\dynamicmacrosimulationengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|solutionrelative:src\\api\\orion.api.tradingeconomics\\engine\\dynamicmacrosimulationengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|c:\\x\\practice\\orion.api.microservices.net\\src\\api\\orion.api.tradingeconomics\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|solutionrelative:src\\api\\orion.api.tradingeconomics\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|c:\\x\\practice\\orion.api.microservices.net\\src\\api\\orion.api.tradingeconomics\\engine\\regimeengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|solutionrelative:src\\api\\orion.api.tradingeconomics\\engine\\regimeengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|c:\\x\\practice\\orion.api.microservices.net\\src\\api\\orion.api.tradingeconomics\\enum\\systemenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|solutionrelative:src\\api\\orion.api.tradingeconomics\\enum\\systemenums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|c:\\x\\practice\\orion.api.microservices.net\\src\\api\\orion.api.tradingeconomics\\engine\\advancedexecutionengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|solutionrelative:src\\api\\orion.api.tradingeconomics\\engine\\advancedexecutionengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -14,8 +34,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "src\\API\\Orion.API.TradingEconomics\\Interfaces\\IRepository.cs",
+              "ToolTip": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "src\\API\\Orion.API.TradingEconomics\\Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T12:31:15.573Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "IRegimeEngine.cs",
+              "DocumentMoniker": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Interfaces\\IRegimeEngine.cs",
+              "RelativeDocumentMoniker": "src\\API\\Orion.API.TradingEconomics\\Interfaces\\IRegimeEngine.cs",
+              "ToolTip": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Interfaces\\IRegimeEngine.cs",
+              "RelativeToolTip": "src\\API\\Orion.API.TradingEconomics\\Interfaces\\IRegimeEngine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T12:31:14.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DynamicMacroSimulationEngine.cs",
+              "DocumentMoniker": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Engine\\DynamicMacroSimulationEngine.cs",
+              "RelativeDocumentMoniker": "src\\API\\Orion.API.TradingEconomics\\Engine\\DynamicMacroSimulationEngine.cs",
+              "ToolTip": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Engine\\DynamicMacroSimulationEngine.cs",
+              "RelativeToolTip": "src\\API\\Orion.API.TradingEconomics\\Engine\\DynamicMacroSimulationEngine.cs",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAcwH4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T12:30:06.76Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SystemEnums.cs",
+              "DocumentMoniker": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Enum\\SystemEnums.cs",
+              "RelativeDocumentMoniker": "src\\API\\Orion.API.TradingEconomics\\Enum\\SystemEnums.cs",
+              "ToolTip": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Enum\\SystemEnums.cs",
+              "RelativeToolTip": "src\\API\\Orion.API.TradingEconomics\\Enum\\SystemEnums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T12:29:08.124Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -58,13 +130,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
+              "Title": "RegimeEngine.cs",
+              "DocumentMoniker": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Engine\\RegimeEngine.cs",
+              "RelativeDocumentMoniker": "src\\API\\Orion.API.TradingEconomics\\Engine\\RegimeEngine.cs",
+              "ToolTip": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Engine\\RegimeEngine.cs",
+              "RelativeToolTip": "src\\API\\Orion.API.TradingEconomics\\Engine\\RegimeEngine.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-26T12:28:29.143Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "AdvancedExecutionEngine.cs",
               "DocumentMoniker": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Engine\\AdvancedExecutionEngine.cs",
               "RelativeDocumentMoniker": "src\\API\\Orion.API.TradingEconomics\\Engine\\AdvancedExecutionEngine.cs",
               "ToolTip": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Engine\\AdvancedExecutionEngine.cs",
               "RelativeToolTip": "src\\API\\Orion.API.TradingEconomics\\Engine\\AdvancedExecutionEngine.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwAMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-24T15:28:09.774Z",
               "EditorCaption": ""

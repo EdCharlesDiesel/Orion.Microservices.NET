@@ -1,4 +1,6 @@
-﻿namespace Orion.API.TradingEconomics.Entities
+﻿using Orion.API.TradingEconomics.Enum;
+
+namespace Orion.API.TradingEconomics.Entities
 {
     public class MacroTransitionModel
     {

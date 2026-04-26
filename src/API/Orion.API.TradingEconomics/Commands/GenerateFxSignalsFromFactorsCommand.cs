@@ -37,8 +37,6 @@ namespace Orion.API.TradingEconomics.Commands
                         QuoteCurrency = weaker.Currency,
                         BaseScore = stronger.TotalScore,
                         QuoteScore = weaker.TotalScore,
-                        SignalStrength = strength,
-                        Direction = "LONG",
                         Confidence = CalculateConfidence(strength)
                     });
                 }

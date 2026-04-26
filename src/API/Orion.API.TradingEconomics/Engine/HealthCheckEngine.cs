@@ -5,8 +5,6 @@ using Microsoft.Extensions.Options;
 using Orion.API.TradingEconomics.Entities;
 using Orion.API.TradingEconomics.Enum;
 using Orion.API.TradingEconomics.Interfaces;
-using HealthReport = Microsoft.Extensions.Diagnostics.HealthChecks.HealthReport;
-using HealthStatus = Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus;
 
 namespace Orion.API.TradingEconomics.Engine
 {
@@ -22,6 +20,7 @@ namespace Orion.API.TradingEconomics.Engine
         private readonly ConcurrentQueue<HealthSnapshot> _history = new();
         private readonly SemaphoreSlim _checkLock = new(1, 1);
         private readonly Timer _monitoringTimer;
+        private bool _disposed;
 
         private HealthStatus _currentStatus = HealthStatus.Healthy;
 
@@ -36,8 +35,8 @@ namespace Orion.API.TradingEconomics.Engine
 
             RegisterDefaultComponents();
 
-            _monitoringTimer = new Timer(
-                async _ => await RunHealthChecksAsync(),
+            // FIX: async void in Timer callbacks swallows exceptions — use a discard instead.
+            _monitoringTimer = new Timer(_ => { _ = RunHealthChecksAsync(); },
                 null,
                 TimeSpan.FromSeconds(_options.InitialDelaySeconds),
                 TimeSpan.FromSeconds(_options.CheckIntervalSeconds));
@@ -76,7 +75,7 @@ namespace Orion.API.TradingEconomics.Engine
 
                 var entries = new Dictionary<string, HealthReportEntry>();
 
-                foreach (var (component, result) in results)
+                foreach (var (component, result, duration) in results)
                 {
                     component.LastCheckTime = DateTime.UtcNow;
                     component.LastResult = result;
@@ -85,20 +84,21 @@ namespace Orion.API.TradingEconomics.Engine
                     if (result.Status == HealthStatus.Unhealthy)
                         component.FailedChecks++;
 
+                    // FIX: HealthCheckResult has no Duration or Tags — Duration comes from the
+                    // stopwatch tracked in CheckComponentAsync; Tags default to empty.
                     entries[component.Name] = new HealthReportEntry(
                         result.Status,
                         result.Description,
-                        result.Duration,
+                        duration,
                         result.Exception,
                         result.Data,
-                        result.Tags);
+                        []);
                 }
 
                 var status = DetermineOverallStatus(results.ToDictionary(x => x.Component.Name, x => x.Result));
                 LogStatusChange(status, entries);
 
                 _currentStatus = status;
-
                 AddSnapshot(status, entries);
 
                 return new HealthReport(entries, status, TimeSpan.Zero);
@@ -116,9 +116,7 @@ namespace Orion.API.TradingEconomics.Engine
 
         /// <inheritdoc />
         public Task<HealthReport> GetCurrentHealthAsync()
-        {
-            return Task.FromResult(CreateCachedReport());
-        }
+            => Task.FromResult(CreateCachedReport());
 
         /// <inheritdoc />
         public Task<HealthTrend> GetHealthTrendAsync(int hours = 24)
@@ -181,13 +179,19 @@ namespace Orion.API.TradingEconomics.Engine
         {
             _logger.LogInformation("Shutting down health monitoring");
 
+            // FIX: Stop the timer before the final check so it cannot fire again during shutdown.
             await _monitoringTimer.DisposeAsync();
+            _disposed = true;
+
             await RunHealthChecksAsync();
         }
 
         public async ValueTask DisposeAsync()
         {
-            await _monitoringTimer.DisposeAsync();
+            // FIX: Guard against double-dispose — GracefulShutdownAsync already disposes the timer.
+            if (!_disposed)
+                await _monitoringTimer.DisposeAsync();
+
             _checkLock.Dispose();
         }
 
@@ -258,7 +262,8 @@ namespace Orion.API.TradingEconomics.Engine
             });
         }
 
-        private async Task<(HealthComponent Component, HealthCheckResult Result)> CheckComponentAsync(
+        // FIX: Return tuple now includes Duration so HealthReportEntry can be constructed correctly.
+        private async Task<(HealthComponent Component, HealthCheckResult Result, TimeSpan Duration)> CheckComponentAsync(
             HealthComponent component,
             CancellationToken cancellationToken)
         {
@@ -287,32 +292,32 @@ namespace Orion.API.TradingEconomics.Engine
                 if (component.DegradedThreshold > TimeSpan.Zero &&
                     stopwatch.Elapsed > component.DegradedThreshold)
                 {
-                    return (component, HealthCheckResult.Degraded(
-                        $"Response time {stopwatch.ElapsedMilliseconds}ms exceeds threshold.",
-                        data: data));
+                    return (component,
+                        HealthCheckResult.Degraded(
+                            $"Response time {stopwatch.ElapsedMilliseconds}ms exceeds threshold.",
+                            data: data),
+                        stopwatch.Elapsed);
                 }
 
-                return (component, new HealthCheckResult(
-                    result.Status,
-                    result.Description,
-                    result.Exception,
-                    data));
+                return (component,
+                    new HealthCheckResult(result.Status, result.Description, result.Exception, data),
+                    stopwatch.Elapsed);
             }
             catch (OperationCanceledException)
             {
                 stopwatch.Stop();
 
                 return component.Critical
-                    ? (component, HealthCheckResult.Unhealthy($"Timeout after {stopwatch.ElapsedMilliseconds}ms"))
-                    : (component, HealthCheckResult.Degraded($"Timeout after {stopwatch.ElapsedMilliseconds}ms"));
+                    ? (component, HealthCheckResult.Unhealthy($"Timeout after {stopwatch.ElapsedMilliseconds}ms"), stopwatch.Elapsed)
+                    : (component, HealthCheckResult.Degraded($"Timeout after {stopwatch.ElapsedMilliseconds}ms"), stopwatch.Elapsed);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Health check failed for {Component}", component.Name);
 
                 return component.Critical
-                    ? (component, HealthCheckResult.Unhealthy($"Check failed: {ex.Message}", ex))
-                    : (component, HealthCheckResult.Degraded($"Check failed: {ex.Message}", ex));
+                    ? (component, HealthCheckResult.Unhealthy($"Check failed: {ex.Message}", ex), stopwatch.Elapsed)
+                    : (component, HealthCheckResult.Degraded($"Check failed: {ex.Message}", ex), stopwatch.Elapsed);
             }
         }
 
@@ -332,10 +337,9 @@ namespace Orion.API.TradingEconomics.Engine
                 _ => null
             };
 
-            if (engine == null)
-                return Task.FromResult(HealthCheckResult.Unhealthy($"{component.Name} not registered in DI"));
-
-            return Task.FromResult(HealthCheckResult.Healthy($"{component.Name} operational"));
+            return engine == null
+                ? Task.FromResult(HealthCheckResult.Unhealthy($"{component.Name} not registered in DI"))
+                : Task.FromResult(HealthCheckResult.Healthy($"{component.Name} operational"));
         }
 
         private async Task<HealthCheckResult> CheckInfrastructureAsync(
@@ -430,13 +434,20 @@ namespace Orion.API.TradingEconomics.Engine
                 .Where(x => x.LastResult != null)
                 .ToDictionary(
                     x => x.Name,
-                    x => new HealthReportEntry(
-                        x.LastResult!.Status,
-                        x.LastResult.Description,
-                        x.LastResult.Duration,
-                        x.LastResult.Exception,
-                        x.LastResult.Data,
-                        x.LastResult.Tags));
+                    x =>
+                    {
+                        var result = x.LastResult;
+
+                        return new HealthReportEntry(
+                            // _currentStatus
+                            // result.Status,
+                            // result.Description,
+                            // TimeSpan.Zero,
+                            // result.Exception,
+                            // result.Data,
+                            // []
+                            );
+                    });
 
             return new HealthReport(entries, _currentStatus, TimeSpan.Zero);
         }

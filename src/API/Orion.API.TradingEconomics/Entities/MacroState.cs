@@ -11,14 +11,6 @@
         public decimal GdpGrowth { get; set; }
         public decimal Sentiment { get; set; }
         public bool IsStable { get; set; }
-    }
-
-
-    public enum MarketRegime
-    {
-        RiskOn,
-        RiskOff,
-        Stagflation,
-        Goldilocks
+        public DateTime TimestampUtc { get; set; }
     }
 }

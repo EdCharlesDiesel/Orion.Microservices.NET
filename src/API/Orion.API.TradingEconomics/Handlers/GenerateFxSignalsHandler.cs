@@ -38,8 +38,6 @@ namespace Orion.API.TradingEconomics.Handlers
                         QuoteCurrency = quoteCurrency,
                         BaseScore = (decimal)(diff > 0 ? a.TotalScore : b.TotalScore),
                         QuoteScore = diff > 0 ? b.TotalScore : a.TotalScore,
-                        SignalStrength = strength,
-                        Direction = direction,
                         Confidence = confidence
                     });
                 }

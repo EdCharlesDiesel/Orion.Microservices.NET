@@ -3,8 +3,8 @@
     public sealed class CorrelationRequest
     {
         public string PrimaryPair { get; set; } = "";
-        public List<CorrelationSeries> Series { get; set; } = new();
         public int LookbackPeriods { get; set; } = 50;
+        public List<CorrelationSeries> Series { get; set; } = new();
     }
 
     public sealed class CorrelationSeries

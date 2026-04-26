@@ -1,12 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|c:\\x\\practice\\orion.api.microservices.net\\src\\api\\orion.api.tradingeconomics\\engine\\advancedexecutionengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9B57E108-1255-4F09-844F-C5675C77065B}|src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj|solutionrelative:src\\api\\orion.api.tradingeconomics\\engine\\advancedexecutionengine.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -14,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -55,19 +50,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AdvancedExecutionEngine.cs",
-              "DocumentMoniker": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Engine\\AdvancedExecutionEngine.cs",
-              "RelativeDocumentMoniker": "src\\API\\Orion.API.TradingEconomics\\Engine\\AdvancedExecutionEngine.cs",
-              "ToolTip": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Engine\\AdvancedExecutionEngine.cs",
-              "RelativeToolTip": "src\\API\\Orion.API.TradingEconomics\\Engine\\AdvancedExecutionEngine.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T15:28:09.774Z",
-              "EditorCaption": ""
             }
           ]
         }

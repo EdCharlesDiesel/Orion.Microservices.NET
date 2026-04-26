@@ -1,6 +1,7 @@
 using Moq;
 using Orion.API.TradingEconomics.Engine;
 using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Enum;
 using Orion.API.TradingEconomics.Interfaces;
 using Xunit;
 
@@ -15,14 +16,14 @@ namespace Orion.API.TradingEconomics.UnitTests.Engine
         [Fact]
         public void Run_WithNullInitialState_ThrowsArgumentNullException()
         {
-            var engine = new DynamicMacroSimulationEngine();
+            var engine = new DynamicMacroSimulationEngine(_mockRegime.Object,_mockShock.Object, _mockTransition.Object);
             Assert.Throws<ArgumentNullException>(() => engine.Run(null!, 5));
         }
 
         [Fact]
         public void Run_WithZeroSteps_ThrowsArgumentException()
         {
-            var engine = new DynamicMacroSimulationEngine();
+            var engine = new DynamicMacroSimulationEngine(_mockRegime.Object,_mockShock.Object, _mockTransition.Object);
             var initialState = new MacroState();
             Assert.Throws<ArgumentException>(() => engine.Run(initialState, 0));
         }
@@ -30,7 +31,7 @@ namespace Orion.API.TradingEconomics.UnitTests.Engine
         [Fact]
         public void Run_WithNegativeSteps_ThrowsArgumentException()
         {
-            var engine = new DynamicMacroSimulationEngine();
+            var engine = new DynamicMacroSimulationEngine(_mockRegime.Object,_mockShock.Object, _mockTransition.Object);
             var initialState = new MacroState();
             Assert.Throws<ArgumentException>(() => engine.Run(initialState, -5));
         }
@@ -38,7 +39,7 @@ namespace Orion.API.TradingEconomics.UnitTests.Engine
         [Fact]
         public void Run_WithValidInputs_ReturnsCorrectNumberOfStates()
         {
-            var engine = new DynamicMacroSimulationEngine();
+            var engine = new DynamicMacroSimulationEngine(_mockRegime.Object,_mockShock.Object, _mockTransition.Object);
             var initialState = new MacroState
             {
                 GdpGrowth = 0.02m,
@@ -80,7 +81,7 @@ namespace Orion.API.TradingEconomics.UnitTests.Engine
         [Fact]
         public void Simulate_WithNullNormalized_ThrowsArgumentNullException()
         {
-            var engine = new DynamicMacroSimulationEngine();
+            var engine = new DynamicMacroSimulationEngine(_mockRegime.Object,_mockShock.Object, _mockTransition.Object);
             Assert.Throws<ArgumentNullException>(() => 
                 engine.Simulate(null!, new RegimeResult(), new ProbabilisticScenarioResult()));
         }
@@ -88,7 +89,7 @@ namespace Orion.API.TradingEconomics.UnitTests.Engine
         [Fact]
         public void Simulate_WithNullRegime_ThrowsArgumentNullException()
         {
-            var engine = new DynamicMacroSimulationEngine();
+            var engine = new DynamicMacroSimulationEngine(_mockRegime.Object,_mockShock.Object, _mockTransition.Object);
             Assert.Throws<ArgumentNullException>(() => 
                 engine.Simulate(new NormalizedIndicator(), null!, new ProbabilisticScenarioResult()));
         }
@@ -96,7 +97,7 @@ namespace Orion.API.TradingEconomics.UnitTests.Engine
         [Fact]
         public void Simulate_WithNullProbabilities_ThrowsArgumentNullException()
         {
-            var engine = new DynamicMacroSimulationEngine();
+            var engine = new DynamicMacroSimulationEngine(_mockRegime.Object,_mockShock.Object, _mockTransition.Object);
             Assert.Throws<ArgumentNullException>(() => 
                 engine.Simulate(new NormalizedIndicator(), new RegimeResult(), null!));
         }
@@ -150,7 +151,7 @@ namespace Orion.API.TradingEconomics.UnitTests.Engine
         [Fact]
         public void Constructor_WithDefault_SuccessfullyCreatesInstance()
         {
-            var engine = new DynamicMacroSimulationEngine();
+            var engine = new DynamicMacroSimulationEngine(_mockRegime.Object,_mockShock.Object, _mockTransition.Object);
             Assert.NotNull(engine);
         }
 

@@ -1,11 +1,10 @@
 ﻿using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
-using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine
 {
     /// <summary>
-    /// Engine for analyzing correlations between financial time series data.
+    /// Calculates Pearson correlation between a primary series and other series.
     /// </summary>
     public sealed class CorrelationEngine : ICorrelationEngine
     {
@@ -13,141 +12,142 @@ namespace Orion.API.TradingEconomics.Engine
         private const decimal NeutralThreshold = 0.10m;
 
         /// <inheritdoc />
-        public async Task<CorrelationResult> AnalyzeAsync(CorrelationRequest request, CancellationToken cancellationToken = default)
+        public async Task<CorrelationResult> AnalyzeAsync(
+            CorrelationRequest request,
+            CancellationToken cancellationToken = default)
         {
+            ArgumentNullException.ThrowIfNull(request);
+
             ValidateRequest(request);
 
-            var primarySeries = GetPrimarySeries(request);
-            var correlations = await CalculateCorrelationsAsync(request, primarySeries, cancellationToken);
-            var averageCorrelation = CalculateAverageAbsoluteCorrelation(correlations);
+            var primary = GetPrimarySeries(request);
 
-            return BuildResult(request.PrimaryPair, correlations, averageCorrelation);
+            var correlations = await CalculateCorrelationsAsync(
+                primary,
+                request,
+                cancellationToken);
+
+            var avg = CalculateAverageAbsoluteCorrelation(correlations);
+
+            return BuildResult(request.PrimaryPair, correlations, avg);
         }
 
         private static void ValidateRequest(CorrelationRequest request)
         {
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
-
             if (string.IsNullOrWhiteSpace(request.PrimaryPair))
                 throw new ArgumentException("Primary pair is required.", nameof(request));
 
             if (request.Series == null || request.Series.Count < MinValuesRequired)
-                throw new ArgumentException($"At least {MinValuesRequired} series are required for correlation analysis.", nameof(request));
+                throw new ArgumentException($"At least {MinValuesRequired} series required.", nameof(request));
         }
 
-        private static DataSeries GetPrimarySeries(CorrelationRequest request)
+        private static CorrelationSeries GetPrimarySeries(CorrelationRequest request)
         {
             var primary = request.Series.FirstOrDefault(x =>
                 string.Equals(x.Symbol, request.PrimaryPair, StringComparison.OrdinalIgnoreCase));
 
             if (primary == null)
-                throw new ArgumentException("Primary pair series was not supplied.", nameof(request));
+                throw new ArgumentException("Primary pair series not supplied.", nameof(request));
 
             if (primary.Values == null || primary.Values.Count < MinValuesRequired)
-                throw new ArgumentException($"Primary pair requires at least {MinValuesRequired} values.", nameof(request));
+                throw new ArgumentException("Primary series has insufficient data.", nameof(request));
 
             return primary;
         }
 
         private static async Task<List<CorrelationItem>> CalculateCorrelationsAsync(
+            CorrelationSeries primary,
             CorrelationRequest request,
-            DataSeries primarySeries,
             CancellationToken cancellationToken)
         {
-            var correlations = new List<CorrelationItem>();
+            var result = new List<CorrelationItem>();
 
             foreach (var series in request.Series)
             {
                 cancellationToken.ThrowIfCancellationRequested();
 
-                if (IsPrimarySeries(series, request.PrimaryPair))
+                if (IsPrimary(series, request.PrimaryPair))
                     continue;
 
                 if (!HasValidValues(series))
                     continue;
 
-                var correlation = await Task.Run(() => CalculateSeriesCorrelation(primarySeries, series, request.LookbackPeriods), cancellationToken);
+                var correlation = await Task.Run(() =>
+                    CalculateSeriesCorrelation(primary, series, request.LookbackPeriods),
+                    cancellationToken);
 
-                if (correlation.HasValue)
+                if (!correlation.HasValue)
+                    continue;
+
+                result.Add(new CorrelationItem
                 {
-                    correlations.Add(new CorrelationItem
-                    {
-                        Symbol = series.Symbol,
-                        Correlation = correlation.Value,
-                        Strength = GetCorrelationStrength(correlation.Value),
-                        Direction = GetCorrelationDirection(correlation.Value)
-                    });
-                }
+                    Symbol = series.Symbol,
+                    Correlation = correlation.Value,
+                    Strength = GetStrength(correlation.Value),
+                    Direction = GetDirection(correlation.Value)
+                });
             }
 
-            return correlations;
+            return result;
         }
 
-        private static bool IsPrimarySeries(DataSeries series, string primaryPair) =>
-            string.Equals(series.Symbol, primaryPair, StringComparison.OrdinalIgnoreCase);
+        private static bool IsPrimary(CorrelationSeries s, string primary) =>
+            string.Equals(s.Symbol, primary, StringComparison.OrdinalIgnoreCase);
 
-        private static bool HasValidValues(DataSeries series) =>
-            series.Values != null && series.Values.Count >= MinValuesRequired;
+        private static bool HasValidValues(CorrelationSeries s) =>
+            s.Values != null && s.Values.Count >= MinValuesRequired;
 
-        private static decimal? CalculateSeriesCorrelation(DataSeries primary, DataSeries secondary, int lookbackPeriods)
+        private static decimal? CalculateSeriesCorrelation(
+            CorrelationSeries primary,
+            CorrelationSeries secondary,
+            int lookback)
         {
-            var alignedPrimary = AlignValues(primary.Values, secondary.Values, lookbackPeriods);
-            var alignedSecondary = AlignValues(secondary.Values, primary.Values, lookbackPeriods);
+            var x = Align(primary.Values, secondary.Values, lookback);
+            var y = Align(secondary.Values, primary.Values, lookback);
 
-            if (alignedPrimary.Count < MinValuesRequired || alignedSecondary.Count < MinValuesRequired)
+            if (x.Count < MinValuesRequired || y.Count < MinValuesRequired)
                 return null;
 
-            return CalculatePearsonCorrelation(alignedPrimary, alignedSecondary);
+            return Pearson(x, y);
         }
 
-        private static List<decimal> AlignValues(List<decimal> primary, List<decimal> secondary, int lookbackPeriods)
+        private static List<decimal> Align(List<decimal> a, List<decimal> b, int lookback)
         {
-            var maxCount = Math.Min(primary.Count, secondary.Count);
-            var takeCount = lookbackPeriods > 0 ? Math.Min(maxCount, lookbackPeriods) : maxCount;
+            var max = Math.Min(a.Count, b.Count);
+            var take = lookback > 0 ? Math.Min(max, lookback) : max;
 
-            return primary
-                .Skip(primary.Count - takeCount)
-                .Take(takeCount)
-                .ToList();
+            return a.Skip(a.Count - take).Take(take).ToList();
         }
 
-        private static decimal CalculatePearsonCorrelation(List<decimal> xValues, List<decimal> yValues)
+        private static decimal Pearson(List<decimal> xVals, List<decimal> yVals)
         {
-            var count = Math.Min(xValues.Count, yValues.Count);
+            var n = Math.Min(xVals.Count, yVals.Count);
 
-            if (count < MinValuesRequired)
-                return 0m;
-
-            var x = xValues.TakeLast(count).Select(v => (double)v).ToArray();
-            var y = yValues.TakeLast(count).Select(v => (double)v).ToArray();
+            var x = xVals.TakeLast(n).Select(v => (double)v).ToArray();
+            var y = yVals.TakeLast(n).Select(v => (double)v).ToArray();
 
             var avgX = x.Average();
             var avgY = y.Average();
 
-            double numerator = 0;
-            double sumXSquared = 0;
-            double sumYSquared = 0;
+            double num = 0, sx = 0, sy = 0;
 
-            for (var i = 0; i < count; i++)
+            for (int i = 0; i < n; i++)
             {
-                var xDiff = x[i] - avgX;
-                var yDiff = y[i] - avgY;
+                var dx = x[i] - avgX;
+                var dy = y[i] - avgY;
 
-                numerator += xDiff * yDiff;
-                sumXSquared += xDiff * xDiff;
-                sumYSquared += yDiff * yDiff;
+                num += dx * dy;
+                sx += dx * dx;
+                sy += dy * dy;
             }
 
-            var denominator = Math.Sqrt(sumXSquared * sumYSquared);
-            var correlation = denominator == 0 ? 0 : numerator / denominator;
-
-            return Math.Round((decimal)correlation, 4);
+            var denom = Math.Sqrt(sx * sy);
+            return denom == 0 ? 0 : Math.Round((decimal)(num / denom), 4);
         }
 
-        private static string GetCorrelationStrength(decimal correlation)
+        private static string GetStrength(decimal c)
         {
-            var abs = Math.Abs(correlation);
+            var abs = Math.Abs(c);
 
             return abs >= 0.80m ? "VERY_STRONG" :
                    abs >= 0.60m ? "STRONG" :
@@ -156,30 +156,33 @@ namespace Orion.API.TradingEconomics.Engine
                    "VERY_WEAK";
         }
 
-        private static string GetCorrelationDirection(decimal correlation) =>
-            correlation > NeutralThreshold ? "POSITIVE" :
-            correlation < -NeutralThreshold ? "NEGATIVE" :
+        private static string GetDirection(decimal c) =>
+            c > NeutralThreshold ? "POSITIVE" :
+            c < -NeutralThreshold ? "NEGATIVE" :
             "NEUTRAL";
 
-        private static decimal CalculateAverageAbsoluteCorrelation(List<CorrelationItem> correlations) =>
-            correlations.Count == 0
-                ? 0m
-                : Math.Round(correlations.Average(x => Math.Abs(x.Correlation)), 4);
+        private static decimal CalculateAverageAbsoluteCorrelation(List<CorrelationItem> list) =>
+            list.Count == 0 ? 0m : Math.Round(list.Average(x => Math.Abs(x.Correlation)), 4);
 
-        private static string GetRiskSummary(decimal averageAbsCorrelation) =>
-            averageAbsCorrelation >= 0.75m ? "HIGH_CORRELATION_RISK" :
-            averageAbsCorrelation >= 0.50m ? "MODERATE_CORRELATION_RISK" :
-            averageAbsCorrelation >= 0.25m ? "LOW_CORRELATION_RISK" :
+        private static string GetRisk(decimal avg) =>
+            avg >= 0.75m ? "HIGH_CORRELATION_RISK" :
+            avg >= 0.50m ? "MODERATE_CORRELATION_RISK" :
+            avg >= 0.25m ? "LOW_CORRELATION_RISK" :
             "DIVERSIFIED";
 
-        private static CorrelationResult BuildResult(string primaryPair, List<CorrelationItem> correlations, decimal averageCorrelation) =>
-            new CorrelationResult
+        private static CorrelationResult BuildResult(
+            string pair,
+            List<CorrelationItem> list,
+            decimal avg)
+        {
+            return new CorrelationResult
             {
-                PrimaryPair = primaryPair,
-                Correlations = correlations.OrderByDescending(x => Math.Abs(x.Correlation)).ToList(),
-                AverageAbsCorrelation = averageCorrelation,
-                RiskSummary = GetRiskSummary(averageCorrelation),
+                PrimaryPair = pair,
+                Correlations = list.OrderByDescending(x => Math.Abs(x.Correlation)).ToList(),
+                AverageAbsCorrelation = avg,
+                RiskSummary = GetRisk(avg),
                 TimestampUtc = DateTime.UtcNow
             };
+        }
     }
 }

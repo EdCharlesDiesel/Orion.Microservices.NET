@@ -25,14 +25,10 @@
         public string Frequency { get; set; } = "Monthly";
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public string? Name { get; set; }
+        public decimal GdpNormalized { get; set; }
+        public decimal InflationNormalized { get; set; }
+        public decimal SentimentNormalized { get; set; }
     }
 
-    public enum IndicatorFrequency
-    {
-        Daily,
-        Weekly,
-        Monthly,
-        Quarterly,
-        Yearly
-    }
+
 }

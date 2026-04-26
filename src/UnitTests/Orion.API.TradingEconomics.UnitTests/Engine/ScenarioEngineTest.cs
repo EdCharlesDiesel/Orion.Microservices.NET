@@ -4,6 +4,7 @@ using Orion.API.TradingEconomics.Application;
 using Orion.API.TradingEconomics.Commands;
 using Orion.API.TradingEconomics.Engine;
 using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Enum;
 using Xunit;
 
 namespace Orion.API.TradingEconomics.UnitTests.Engine
@@ -65,8 +66,8 @@ namespace Orion.API.TradingEconomics.UnitTests.Engine
             {
                 new()
                 {
-                    Pair = "EUR/USD",
-                    SignalStrength = 75m
+                    Pair = "EUR/USD"
+                    
                 }
             };
 

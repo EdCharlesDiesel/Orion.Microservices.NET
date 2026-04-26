@@ -3,7 +3,7 @@
     public sealed class HedgingRequest
     {
         public string PortfolioBaseCurrency { get; set; } = "USD";
-        public List<HedgePosition> OpenPositions { get; set; } = new();
+        public List<OpenPosition> OpenPositions { get; set; } = new();
         public List<HedgeCandidate> HedgeCandidates { get; set; } = new();
         public decimal MaxHedgePercent { get; set; } = 50m;
     }
