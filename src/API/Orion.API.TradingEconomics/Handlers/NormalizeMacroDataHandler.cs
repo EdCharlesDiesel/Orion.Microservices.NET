@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Orion.API.TradingEconomics.Commands;
+using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
 using Orion.API.TradingEconomics.Interfaces;
 
@@ -7,26 +8,14 @@ namespace Orion.API.TradingEconomics.Handlers
 {
 
 
-    public sealed class NormalizeMacroDataHandler        : IRequestHandler<NormalizeMacroDataCommand, int>
+    public sealed class NormalizeMacroDataHandler(
+        IRepository<EconomicIndicator> rawRepo,
+        IRepository<NormalizedIndicator> normalizedRepo,
+        INormalizationEngine engine,
+        ICacheService cache)
+        : IRequestHandler<NormalizeMacroDataCommand, int>
     {
         private const string CacheKey = "macro:normalized:latest";
-
-        private readonly IRepository<EconomicIndicator> _rawRepo;
-        private readonly IRepository<NormalizedIndicator> _normalizedRepo;
-        private readonly INormalizationEngine _engine;
-        private readonly ICacheService _cache;
-
-        public NormalizeMacroDataHandler(
-            IRepository<EconomicIndicator> rawRepo,
-            IRepository<NormalizedIndicator> normalizedRepo,
-            INormalizationEngine engine,
-            ICacheService cache)
-        {
-            _rawRepo = rawRepo;
-            _normalizedRepo = normalizedRepo;
-            _engine = engine;
-            _cache = cache;
-        }
 
         public async Task<int> Handle(
             NormalizeMacroDataCommand request,
@@ -34,22 +23,22 @@ namespace Orion.API.TradingEconomics.Handlers
         {
             if (!request.ForceRefresh)
             {
-                var cached = await _cache.GetAsync<List<NormalizedIndicator>>(CacheKey, ct);
+                var cached = await cache.GetAsync<List<NormalizedIndicator>>(CacheKey, ct);
 
                 if (cached is { Count: > 0 })
                     return cached.Count;
             }
 
-            var raw = await _rawRepo.GetAllAsync();
+            var raw = await rawRepo.GetAllAsync();
 
-            var normalized = _engine.Normalize(raw).ToList();
+            var normalized = engine.Normalize(raw).ToList();
 
             if (normalized.Count == 0)
                 return 0;
 
-            await _normalizedRepo.AddRangeAsync(normalized);
+            await normalizedRepo.AddRangeAsync(normalized);
 
-            await _cache.SetAsync(
+            await cache.SetAsync(
                 CacheKey,
                 normalized,
                 TimeSpan.FromMinutes(30),

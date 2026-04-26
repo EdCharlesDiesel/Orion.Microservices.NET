@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "RvqJeJTP604=",
+  "dgSpecHash": "KLtIU7eHWGk=",
   "success": true,
   "projectFilePath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\Orion.API.TradingEconomics.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -20,6 +20,7 @@
     "C:\\Users\\kmokhethi\\.nuget\\packages\\jasperfx\\1.26.0\\jasperfx.1.26.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\jasperfx.events\\1.29.1\\jasperfx.events.1.29.1.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\jasperfx.runtimecompiler\\4.4.0\\jasperfx.runtimecompiler.4.4.0.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\jetbrains.annotations\\2025.2.0\\jetbrains.annotations.2025.2.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\marten\\8.32.1\\marten.8.32.1.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\marten.aspnetcore\\8.32.1\\marten.aspnetcore.8.32.1.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\mediatr\\12.4.1\\mediatr.12.4.1.nupkg.sha512",

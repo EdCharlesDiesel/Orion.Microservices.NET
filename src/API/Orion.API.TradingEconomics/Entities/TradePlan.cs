@@ -17,6 +17,7 @@
         public DateTime? ClosedAt { get; set; }
         public string CloseReason { get; set; } = "";
         public string Reason { get; set; } = "";
+        public decimal ExitPrice { get; set; }
 
         public static TradePlan Rejected(string reason)
         {

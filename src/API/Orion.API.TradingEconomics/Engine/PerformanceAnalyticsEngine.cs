@@ -1,23 +1,29 @@
-﻿using Orion.API.TradingEconomics.Entities;
+﻿using Orion.API.TradingEconomics.Engine.Interfaces;
+using Orion.API.TradingEconomics.Entities;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public sealed class PerformanceAnalyticsEngine
+    /// <summary>
+    /// Calculates trading performance analytics from closed trade plans.
+    /// </summary>
+    public sealed class PerformanceAnalyticsEngine : IPerformanceAnalyticsEngine
     {
+        /// <inheritdoc />
         public PerformanceReport Analyze(List<TradePlan>? trades)
         {
             if (trades == null || trades.Count == 0)
                 return PerformanceReport.Empty("No trades to analyze.");
 
             var closedTrades = trades
-                .Where(x => x.Status == "CLOSED")
+                .Where(x => string.Equals(x.Status, "CLOSED", StringComparison.OrdinalIgnoreCase))
+                .OrderBy(x => x.ClosedAt)
                 .ToList();
 
             if (closedTrades.Count == 0)
                 return PerformanceReport.Empty("No closed trades to analyze.");
 
-            var winningTrades = closedTrades.Where(x => x.ProfitLoss > 0).ToList();
-            var losingTrades = closedTrades.Where(x => x.ProfitLoss < 0).ToList();
+            var winningTrades = closedTrades.Where(x => x.ProfitLoss > 0m).ToList();
+            var losingTrades = closedTrades.Where(x => x.ProfitLoss < 0m).ToList();
 
             var grossProfit = winningTrades.Sum(x => x.ProfitLoss);
             var grossLoss = Math.Abs(losingTrades.Sum(x => x.ProfitLoss));
@@ -33,21 +39,15 @@ namespace Orion.API.TradingEconomics.Engine
                 ? Math.Abs(losingTrades.Average(x => x.ProfitLoss))
                 : 0m;
 
-            var profitFactor = grossLoss > 0
+            var profitFactor = grossLoss > 0m
                 ? grossProfit / grossLoss
-                : grossProfit > 0
-                    ? 999m
-                    : 0m;
+                : grossProfit > 0m ? 999m : 0m;
 
-            var expectancy = CalculateExpectancy(
-                winRate,
-                averageWin,
-                averageLoss);
-
+            var expectancy = CalculateExpectancy(winRate, averageWin, averageLoss);
             var maxDrawdown = CalculateMaxDrawdown(closedTrades);
 
             var averageRiskReward = closedTrades
-                .Where(x => x.EntryPrice > 0 && x.StopLoss > 0 && x.TakeProfit > 0)
+                .Where(x => x.EntryPrice > 0m && x.StopLoss > 0m && x.TakeProfit > 0m)
                 .Select(CalculateRiskReward)
                 .DefaultIfEmpty(0m)
                 .Average();
@@ -57,21 +57,17 @@ namespace Orion.API.TradingEconomics.Engine
                 TotalTrades = closedTrades.Count,
                 WinningTrades = winningTrades.Count,
                 LosingTrades = losingTrades.Count,
-                WinRate = decimal.Round(winRate, 2),
-                GrossProfit = decimal.Round(grossProfit, 2),
-                GrossLoss = decimal.Round(grossLoss, 2),
-                NetProfit = decimal.Round(netProfit, 2),
-                AverageWin = decimal.Round(averageWin, 2),
-                AverageLoss = decimal.Round(averageLoss, 2),
-                ProfitFactor = decimal.Round(profitFactor, 2),
-                Expectancy = decimal.Round(expectancy, 2),
-                MaxDrawdown = decimal.Round(maxDrawdown, 2),
-                AverageRiskReward = decimal.Round(averageRiskReward, 2),
-                Verdict = BuildVerdict(
-                    winRate,
-                    profitFactor,
-                    expectancy,
-                    maxDrawdown)
+                WinRate = Math.Round(winRate, 2),
+                GrossProfit = Math.Round(grossProfit, 2),
+                GrossLoss = Math.Round(grossLoss, 2),
+                NetProfit = Math.Round(netProfit, 2),
+                AverageWin = Math.Round(averageWin, 2),
+                AverageLoss = Math.Round(averageLoss, 2),
+                ProfitFactor = Math.Round(profitFactor, 2),
+                Expectancy = Math.Round(expectancy, 2),
+                MaxDrawdown = Math.Round(maxDrawdown, 2),
+                AverageRiskReward = Math.Round(averageRiskReward, 2),
+                Verdict = BuildVerdict(winRate, profitFactor, expectancy, maxDrawdown)
             };
         }
 
@@ -83,15 +79,14 @@ namespace Orion.API.TradingEconomics.Engine
             var winProbability = winRatePercent / 100m;
             var lossProbability = 1m - winProbability;
 
-            return winProbability * averageWin -
-                   lossProbability * averageLoss;
+            return winProbability * averageWin - lossProbability * averageLoss;
         }
 
-        private static decimal CalculateMaxDrawdown(List<TradePlan> closedTrades)
+        private static decimal CalculateMaxDrawdown(IReadOnlyCollection<TradePlan> closedTrades)
         {
-            decimal equity = 0;
-            decimal peak = 0;
-            decimal maxDrawdown = 0;
+            var equity = 0m;
+            var peak = 0m;
+            var maxDrawdown = 0m;
 
             foreach (var trade in closedTrades.OrderBy(x => x.ClosedAt))
             {
@@ -111,23 +106,25 @@ namespace Orion.API.TradingEconomics.Engine
 
         private static decimal CalculateRiskReward(TradePlan trade)
         {
-            if (trade.Direction == "LONG")
+            var direction = trade.Direction?.Trim().ToUpperInvariant();
+
+            if (direction == "LONG")
             {
                 var risk = trade.EntryPrice - trade.StopLoss;
                 var reward = trade.TakeProfit - trade.EntryPrice;
 
-                return risk > 0 ? reward / risk : 0;
+                return risk > 0m ? reward / risk : 0m;
             }
 
-            if (trade.Direction == "SHORT")
+            if (direction == "SHORT")
             {
                 var risk = trade.StopLoss - trade.EntryPrice;
                 var reward = trade.EntryPrice - trade.TakeProfit;
 
-                return risk > 0 ? reward / risk : 0;
+                return risk > 0m ? reward / risk : 0m;
             }
 
-            return 0;
+            return 0m;
         }
 
         private static string BuildVerdict(
@@ -136,16 +133,16 @@ namespace Orion.API.TradingEconomics.Engine
             decimal expectancy,
             decimal maxDrawdown)
         {
-            if (profitFactor >= 1.8m && expectancy > 0 && winRate >= 55m)
+            if (profitFactor >= 1.8m && expectancy > 0m && winRate >= 55m)
                 return "STRONG_EDGE";
 
-            if (profitFactor >= 1.3m && expectancy > 0)
+            if (profitFactor >= 1.3m && expectancy > 0m)
                 return "POSITIVE_EDGE";
 
-            if (profitFactor < 1.0m || expectancy <= 0)
+            if (profitFactor < 1.0m || expectancy <= 0m)
                 return "NO_EDGE";
 
-            if (maxDrawdown > 0 && profitFactor < 1.2m)
+            if (maxDrawdown > 0m && profitFactor < 1.2m)
                 return "UNSTABLE_EDGE";
 
             return "NEUTRAL";

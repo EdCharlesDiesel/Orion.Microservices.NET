@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "dgSpecHash": "fdNyGTPQnSE=",
-  "success": true,
+  "dgSpecHash": "1ZK0BZ3V8CA=",
+  "success": false,
   "projectFilePath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kmokhethi\\.nuget\\packages\\automapper\\15.0.1\\automapper.15.0.1.nupkg.sha512",
@@ -116,6 +116,9 @@
     "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.openapi\\1.6.25\\microsoft.openapi.1.6.25.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.sqlserver.server\\1.0.0\\microsoft.sqlserver.server.1.0.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.sqlserver.types\\160.1000.6\\microsoft.sqlserver.types.160.1000.6.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.testing.extensions.trxreport.abstractions\\1.6.2\\microsoft.testing.extensions.trxreport.abstractions.1.6.2.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.testing.platform\\1.6.2\\microsoft.testing.platform.1.6.2.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.testing.platform.msbuild\\1.6.2\\microsoft.testing.platform.msbuild.1.6.2.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.5.0\\microsoft.testplatform.objectmodel.17.5.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.testplatform.testhost\\17.5.0\\microsoft.testplatform.testhost.17.5.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512",
@@ -254,12 +257,19 @@
     "C:\\Users\\kmokhethi\\.nuget\\packages\\weasel.postgresql\\8.14.1\\weasel.postgresql.8.14.1.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit\\2.4.2\\xunit.2.4.2.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.abstractions\\2.0.3\\xunit.abstractions.2.0.3.nupkg.sha512",
-    "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.analyzers\\1.0.0\\xunit.analyzers.1.0.0.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.analyzers\\1.20.0\\xunit.analyzers.1.20.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.assert\\2.4.2\\xunit.assert.2.4.2.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.core\\2.4.2\\xunit.core.2.4.2.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.extensibility.core\\2.4.2\\xunit.extensibility.core.2.4.2.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.extensibility.execution\\2.4.2\\xunit.extensibility.execution.2.4.2.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.v3\\2.0.0\\xunit.v3.2.0.0.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.v3.assert\\2.0.0\\xunit.v3.assert.2.0.0.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.v3.common\\2.0.0\\xunit.v3.common.2.0.0.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.v3.core\\2.0.0\\xunit.v3.core.2.0.0.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.v3.extensibility.core\\2.0.0\\xunit.v3.extensibility.core.2.0.0.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.v3.runner.common\\2.0.0\\xunit.v3.runner.common.2.0.0.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\xunit.v3.runner.inproc.console\\2.0.0\\xunit.v3.runner.inproc.console.2.0.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\yahoofinanceapi\\2.3.3\\yahoofinanceapi.2.3.3.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\yahooquotesapi\\7.0.7\\yahooquotesapi.7.0.7.nupkg.sha512"
   ],
@@ -272,6 +282,28 @@
       "warningLevel": 1,
       "filePath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
       "libraryId": "AutoMapper",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Microsoft.NET.Test.Sdk from 17.12.0 to 17.5.0. Reference the package directly from the project to select a different version. \r\n Orion.API.HumanResources.UnitTests -> Orion.API.TradingEconomics.UnitTests -> Microsoft.NET.Test.Sdk (>= 17.12.0) \r\n Orion.API.HumanResources.UnitTests -> Microsoft.NET.Test.Sdk (>= 17.5.0)",
+      "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
+      "filePath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
+      "libraryId": "Microsoft.NET.Test.Sdk",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1605",
+      "level": "Error",
+      "message": "Warning As Error: Detected package downgrade: Moq from 4.20.72 to 4.20.69. Reference the package directly from the project to select a different version. \r\n Orion.API.HumanResources.UnitTests -> Orion.API.TradingEconomics.UnitTests -> Moq (>= 4.20.72) \r\n Orion.API.HumanResources.UnitTests -> Moq (>= 4.20.69)",
+      "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
+      "filePath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
+      "libraryId": "Moq",
       "targetGraphs": [
         "net9.0"
       ]

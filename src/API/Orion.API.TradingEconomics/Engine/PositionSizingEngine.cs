@@ -1,37 +1,45 @@
-﻿using Orion.API.TradingEconomics.Entities;
+﻿using Orion.API.TradingEconomics.Engine.Interfaces;
+using Orion.API.TradingEconomics.Entities;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public sealed class PositionSizingEngine
+    /// <summary>
+    /// Calculates ATR-based position size with confidence and risk-quality adjustment.
+    /// </summary>
+    public sealed class PositionSizingEngine : IPositionSizingEngine
     {
         private const decimal DefaultRiskPerTradePercent = 1.0m;
         private const decimal MaxRiskPerTradePercent = 2.0m;
         private const decimal MinPositionSize = 0.01m;
 
+        /// <inheritdoc />
         public PositionSizeResult Calculate(
             SignalResult signal,
             RiskResult risk,
             NormalizedMarketContext market,
             AccountContext account)
         {
-            if (signal.Direction == "NO_TRADE")
+            ArgumentNullException.ThrowIfNull(signal);
+            ArgumentNullException.ThrowIfNull(risk);
+            ArgumentNullException.ThrowIfNull(market);
+            ArgumentNullException.ThrowIfNull(account);
+
+            if (string.Equals(signal.Direction, "NO_TRADE", StringComparison.OrdinalIgnoreCase))
                 return PositionSizeResult.None("No trade signal.");
 
             if (!risk.IsAllowed)
                 return PositionSizeResult.None(risk.Reason);
 
-            if (account.Balance <= 0)
+            if (account.Balance <= 0m)
                 return PositionSizeResult.None("Invalid account balance.");
 
-            if (market.Candles == null || market.Candles.Count < 14)
+            if (market.Candles == null || market.Candles.Count < 15)
                 return PositionSizeResult.None("Not enough candles for position sizing.");
 
             var atr = CalculateAtr(market.Candles, 14);
 
-            if (atr <= 0)
+            if (atr <= 0m)
                 return PositionSizeResult.None("Invalid ATR.");
-
-            var latestClose = market.Candles[^1].Close;
 
             var stopDistance = atr * GetAtrStopMultiplier(market.Pair);
 
@@ -45,21 +53,22 @@ namespace Orion.API.TradingEconomics.Engine
 
             adjustedRiskPercent = Math.Min(adjustedRiskPercent, MaxRiskPerTradePercent);
 
+            if (adjustedRiskPercent <= 0m)
+                return PositionSizeResult.None("Signal confidence too low.");
+
             var riskAmount = account.Balance * (adjustedRiskPercent / 100m);
-
             var rawSize = riskAmount / stopDistance;
-
             var positionSize = Math.Max(rawSize, MinPositionSize);
 
             return new PositionSizeResult
             {
                 IsAllowed = true,
-                Pair = market.Pair,
-                Direction = signal.Direction,
-                PositionSize = decimal.Round(positionSize, 4),
-                RiskAmount = decimal.Round(riskAmount, 2),
-                RiskPercent = decimal.Round(adjustedRiskPercent, 2),
-                StopDistance = decimal.Round(stopDistance, 5),
+                Pair = market.Pair.Trim().ToUpperInvariant(),
+                Direction = signal.Direction.Trim().ToUpperInvariant(),
+                PositionSize = Math.Round(positionSize, 4),
+                RiskAmount = Math.Round(riskAmount, 2),
+                RiskPercent = Math.Round(adjustedRiskPercent, 2),
+                StopDistance = Math.Round(stopDistance, 5),
                 Reason =
                     $"Position accepted. " +
                     $"Risk={adjustedRiskPercent:F2}%, " +
@@ -70,12 +79,12 @@ namespace Orion.API.TradingEconomics.Engine
             };
         }
 
-        private static decimal CalculateAtr(List<OhlcvBar> candles, int period)
+        private static decimal CalculateAtr(IReadOnlyList<OhlcvBar> candles, int period)
         {
             var recent = candles.TakeLast(period + 1).ToList();
 
             if (recent.Count < period + 1)
-                return 0;
+                return 0m;
 
             var trueRanges = new List<decimal>();
 
@@ -96,7 +105,7 @@ namespace Orion.API.TradingEconomics.Engine
 
         private static decimal GetAtrStopMultiplier(string pair)
         {
-            return pair.ToUpperInvariant() switch
+            return pair.Trim().ToUpperInvariant() switch
             {
                 "USD/ZAR" => 2.5m,
                 "XAU/USD" => 2.0m,
@@ -109,12 +118,12 @@ namespace Orion.API.TradingEconomics.Engine
 
         private static decimal GetConfidenceMultiplier(decimal confidence)
         {
-            if (confidence >= 85) return 1.30m;
-            if (confidence >= 75) return 1.15m;
-            if (confidence >= 65) return 1.00m;
-            if (confidence >= 55) return 0.75m;
+            if (confidence >= 85m) return 1.30m;
+            if (confidence >= 75m) return 1.15m;
+            if (confidence >= 65m) return 1.00m;
+            if (confidence >= 55m) return 0.75m;
 
-            return 0.0m;
+            return 0m;
         }
 
         private static decimal GetRiskQualityMultiplier(decimal riskScore)

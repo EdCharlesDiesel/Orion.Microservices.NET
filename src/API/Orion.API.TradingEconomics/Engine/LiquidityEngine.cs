@@ -1,16 +1,19 @@
-﻿using Orion.API.TradingEconomics.Entities;
-using Orion.API.TradingEconomics.Interfaces;
+﻿using Orion.API.TradingEconomics.Engine.Interfaces;
+using Orion.API.TradingEconomics.Entities;
 
 namespace Orion.API.TradingEconomics.Engine
 {
+    /// <summary>
+    /// Provides liquidity analysis for bid/ask order book data.
+    /// </summary>
     public sealed class LiquidityEngine : ILiquidityEngine
     {
+        /// <inheritdoc />
         public Task<LiquidityResult> AnalyzeAsync(
             LiquidityRequest request,
             CancellationToken cancellationToken = default)
         {
-            if (request == null)
-                throw new ArgumentNullException(nameof(request));
+            ArgumentNullException.ThrowIfNull(request);
 
             if (string.IsNullOrWhiteSpace(request.Pair))
                 throw new ArgumentException("Pair is required.", nameof(request));
@@ -20,6 +23,8 @@ namespace Orion.API.TradingEconomics.Engine
 
             if (request.Asks == null || request.Asks.Count == 0)
                 throw new ArgumentException("Ask levels are required.", nameof(request));
+
+            cancellationToken.ThrowIfCancellationRequested();
 
             var bids = request.Bids
                 .Where(x => x.Price > 0 && x.Volume > 0)
@@ -37,17 +42,15 @@ namespace Orion.API.TradingEconomics.Engine
             if (asks.Count == 0)
                 throw new ArgumentException("No valid ask levels supplied.", nameof(request));
 
-            cancellationToken.ThrowIfCancellationRequested();
-
-            var bestBid = bids.First().Price;
-            var bestAsk = asks.First().Price;
+            var bestBid = bids[0].Price;
+            var bestAsk = asks[0].Price;
 
             if (bestAsk <= bestBid)
                 throw new ArgumentException("Invalid order book: best ask must be greater than best bid.", nameof(request));
 
             var midPrice = (bestBid + bestAsk) / 2m;
             var spread = bestAsk - bestBid;
-            var spreadPercent = midPrice > 0 ? spread / midPrice * 100m : 0m;
+            var spreadPercent = spread / midPrice * 100m;
 
             var bidDepth = bids.Sum(x => x.Volume);
             var askDepth = asks.Sum(x => x.Volume);
@@ -64,7 +67,7 @@ namespace Orion.API.TradingEconomics.Engine
 
             return Task.FromResult(new LiquidityResult
             {
-                Pair = request.Pair,
+                Pair = request.Pair.Trim().ToUpperInvariant(),
                 BestBid = bestBid,
                 BestAsk = bestAsk,
                 Spread = Math.Round(spread, 6),
@@ -81,16 +84,16 @@ namespace Orion.API.TradingEconomics.Engine
         }
 
         private static decimal EstimateSlippagePercent(
-            List<OrderBookLevel> asks,
+            IReadOnlyCollection<OrderBookLevel> asks,
             decimal requestedSize,
             decimal midPrice)
         {
             if (requestedSize <= 0 || midPrice <= 0)
                 return 0m;
 
-            decimal remaining = requestedSize;
-            decimal totalCost = 0m;
-            decimal filled = 0m;
+            var remaining = requestedSize;
+            var totalCost = 0m;
+            var filled = 0m;
 
             foreach (var level in asks)
             {
@@ -109,7 +112,7 @@ namespace Orion.API.TradingEconomics.Engine
 
             var averageFillPrice = totalCost / filled;
 
-            return (averageFillPrice - midPrice) / midPrice * 100m;
+            return Math.Max(0m, (averageFillPrice - midPrice) / midPrice * 100m);
         }
 
         private static string ResolveLiquidityGrade(

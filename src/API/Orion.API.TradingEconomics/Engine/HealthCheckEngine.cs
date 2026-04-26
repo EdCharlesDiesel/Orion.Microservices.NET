@@ -1,773 +1,526 @@
-// using Orion.API.TradingEconomics.Entities;
-//
-//
-//
-// using System.Collections.Concurrent;
-// using System.Diagnostics;
-// using Microsoft.Extensions.Diagnostics.HealthChecks;
-// using Microsoft.Extensions.Options;
-// using Orion.API.TradingEconomics.Engine.Orion.API.TradingEconomics.Engine;
-// using Orion.API.TradingEconomics.Interfaces;
-// using HealthReport = Microsoft.Extensions.Diagnostics.HealthChecks.HealthReport;
-//
-//
-// namespace Orion.API.TradingEconomics.Engine
-// {
-//     public sealed class HealthCheckEngine
-//     {
-//         private readonly ILogger<HealthCheckEngine> _logger;
-//         private readonly HealthCheckOptions _options;
-//         private readonly IServiceProvider _serviceProvider;
-//         private readonly ConcurrentDictionary<string, HealthComponent> _components;
-//         private readonly ConcurrentQueue<HealthSnapshot> _history;
-//         private readonly Timer _monitoringTimer;
-//         private readonly SemaphoreSlim _checkLock;
-//         private HealthStatus _currentStatus;
-//
-//         public HealthCheckEngine(
-//             ILogger<HealthCheckEngine> logger,
-//             IOptions<HealthCheckOptions> options,
-//             IServiceProvider serviceProvider)
-//         {
-//             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-//             _options = options?.Value ?? new HealthCheckOptions();
-//             _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
-//             _components = new ConcurrentDictionary<string, HealthComponent>();
-//             _history = new ConcurrentQueue<HealthSnapshot>();
-//             _checkLock = new SemaphoreSlim(1, 1);
-//             _currentStatus = HealthStatus.Healthy;
-//
-//             RegisterDefaultComponents();
-//             
-//             _monitoringTimer = new Timer(
-//                 async _ => await RunHealthChecksAsync(),
-//                 null,
-//                 TimeSpan.FromSeconds(_options.InitialDelaySeconds),
-//                 TimeSpan.FromSeconds(_options.CheckIntervalSeconds));
-//         }
-//
-//         private void RegisterDefaultComponents()
-//         {
-//             // Data Provider Health
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "YahooFinanceDataProvider",
-//                 Type = HealthComponentType.DataProvider,
-//                 Critical = true,
-//                 Timeout = TimeSpan.FromSeconds(10),
-//                 DegradedThreshold = TimeSpan.FromSeconds(5)
-//             });
-//
-//             // Pipeline Engines Health
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "NormalizationEngine",
-//                 Type = HealthComponentType.PipelineEngine,
-//                 Critical = true,
-//                 Timeout = TimeSpan.FromSeconds(5)
-//             });
-//
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "RegimeEngine",
-//                 Type = HealthComponentType.PipelineEngine,
-//                 Critical = true,
-//                 Timeout = TimeSpan.FromSeconds(5)
-//             });
-//
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "SignalEngine",
-//                 Type = HealthComponentType.PipelineEngine,
-//                 Critical = true,
-//                 Timeout = TimeSpan.FromSeconds(5)
-//             });
-//
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "RiskEngine",
-//                 Type = HealthComponentType.PipelineEngine,
-//                 Critical = true,
-//                 Timeout = TimeSpan.FromSeconds(3)
-//             });
-//
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "ExecutionEngine",
-//                 Type = HealthComponentType.PipelineEngine,
-//                 Critical = true,
-//                 Timeout = TimeSpan.FromSeconds(5)
-//             });
-//
-//             // External Services
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "TradingEconomicsAPI",
-//                 Type = HealthComponentType.ExternalService,
-//                 Critical = false,
-//                 Timeout = TimeSpan.FromSeconds(15)
-//             });
-//
-//             // Infrastructure
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "AuditTrailStorage",
-//                 Type = HealthComponentType.Infrastructure,
-//                 Critical = true,
-//                 Timeout = TimeSpan.FromSeconds(5)
-//             });
-//
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "MemoryUsage",
-//                 Type = HealthComponentType.Infrastructure,
-//                 Critical = true,
-//                 CheckInterval = TimeSpan.FromMinutes(1)
-//             });
-//
-//             RegisterComponent(new HealthComponent
-//             {
-//                 Name = "CpuUsage",
-//                 Type = HealthComponentType.Infrastructure,
-//                 Critical = false,
-//                 CheckInterval = TimeSpan.FromMinutes(1)
-//             });
-//         }
-//
-//         public void RegisterComponent(HealthComponent component)
-//         {
-//             component.LastCheckTime = DateTime.UtcNow;
-//             _components[component.Name] = component;
-//             _logger.LogInformation("Registered health component: {Component}", component.Name);
-//         }
-//
-//         public async Task<HealthReport> RunHealthChecksAsync(CancellationToken cancellationToken = default)
-//         {
-//             if (!await _checkLock.WaitAsync(TimeSpan.FromSeconds(5), cancellationToken))
-//             {
-//                 _logger.LogWarning("Health check already in progress, skipping");
-//                 return CreateCachedReport();
-//             }
-//
-//             try
-//             {
-//                 var report = new HealthReport
-//                 {
-//                     Timestamp = DateTime.UtcNow,
-//                     Checks = new Dictionary<string, HealthCheckResult>(),
-//                     Metrics = new SystemMetrics()
-//                 };
-//
-//                 var tasks = _components.Values
-//                     .Where(c => ShouldCheck(c))
-//                     .Select(c => CheckComponentAsync(c, cancellationToken));
-//
-//                 var results = await Task.WhenAll(tasks);
-//
-//                 foreach (var (component, result) in results)
-//                 {
-//                     report.Checks[component.Name] = result;
-//                     component.LastCheckTime = DateTime.UtcNow;
-//                     component.LastResult = result;
-//                 }
-//
-//                 // System metrics
-//                 report.Metrics = await CollectSystemMetricsAsync();
-//
-//                 // Determine overall status
-//                 report.OverallStatus = DetermineOverallStatus(report.Checks);
-//                 _currentStatus = report.OverallStatus;
-//
-//                 // Store history
-//                 _history.Enqueue(new HealthSnapshot
-//                 {
-//                     Timestamp = report.Timestamp,
-//                     Status = report.OverallStatus,
-//                     ComponentCount = report.Checks.Count,
-//                     HealthyCount = report.Checks.Count(c => c.Value.Status == HealthStatus.Healthy),
-//                     DegradedCount = report.Checks.Count(c => c.Value.Status == HealthStatus.Degraded),
-//                     UnhealthyCount = report.Checks.Count(c => c.Value.Status == HealthStatus.Unhealthy)
-//                 });
-//
-//                 // Trim history
-//                 while (_history.Count > _options.MaxHistoryItems)
-//                 {
-//                     _history.TryDequeue(out _);
-//                 }
-//
-//                 // Log status changes
-//                 LogStatusChange(report);
-//
-//                 return report;
-//             }
-//             catch (Exception ex)
-//             {
-//                 _logger.LogError(ex, "Health check execution failed");
-//                 return CreateErrorReport(ex);
-//             }
-//             finally
-//             {
-//                 _checkLock.Release();
-//             }
-//         }
-//
-//         private async Task<(HealthComponent Component, HealthCheckResult Result)> CheckComponentAsync(
-//             HealthComponent component, 
-//             CancellationToken cancellationToken)
-//         {
-//             var sw = Stopwatch.StartNew();
-//             
-//             try
-//             {
-//                 using var cts = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-//                 cts.CancelAfter(component.Timeout);
-//
-//                 var result = component.Type switch
-//                 {
-//                     HealthComponentType.DataProvider => await CheckDataProviderAsync(component, cts.Token),
-//                     HealthComponentType.PipelineEngine => await CheckPipelineEngineAsync(component, cts.Token),
-//                     HealthComponentType.ExternalService => await CheckExternalServiceAsync(component, cts.Token),
-//                     HealthComponentType.Infrastructure => await CheckInfrastructureAsync(component, cts.Token),
-//                     _ => HealthCheckResult.Healthy($"{component.Name} is operational")
-//                 };
-//
-//                 sw.Stop();
-//                 result = result with 
-//                 { 
-//                     Data = new Dictionary<string, object>(result.Data ?? new Dictionary<string, object>())
-//                     {
-//                         ["ResponseTimeMs"] = sw.ElapsedMilliseconds,
-//                         ["LastCheck"] = DateTime.UtcNow
-//                     }
-//                 };
-//
-//                 if (sw.Elapsed > component.DegradedThreshold)
-//                 {
-//                     return (component, HealthCheckResult.Degraded(
-//                         $"Response time {sw.ElapsedMilliseconds}ms exceeds threshold {component.DegradedThreshold.TotalMilliseconds}ms",
-//                         data: result.Data));
-//                 }
-//
-//                 return (component, result);
-//             }
-//             catch (OperationCanceledException)
-//             {
-//                 sw.Stop();
-//                 _logger.LogWarning("Health check timed out for {Component} after {Elapsed}ms", 
-//                     component.Name, sw.ElapsedMilliseconds);
-//                 
-//                 return component.Critical
-//                     ? (component, HealthCheckResult.Unhealthy(
-//                         $"Timeout after {sw.ElapsedMilliseconds}ms",
-//                         data: new Dictionary<string, object> { ["TimeoutMs"] = sw.ElapsedMilliseconds }))
-//                     : (component, HealthCheckResult.Degraded(
-//                         $"Timeout after {sw.ElapsedMilliseconds}ms",
-//                         data: new Dictionary<string, object> { ["TimeoutMs"] = sw.ElapsedMilliseconds }));
-//             }
-//             catch (Exception ex)
-//             {
-//                 _logger.LogError(ex, "Health check failed for {Component}", component.Name);
-//                 
-//                 return component.Critical
-//                     ? (component, HealthCheckResult.Unhealthy(
-//                         $"Check failed: {ex.Message}",
-//                         exception: ex))
-//                     : (component, HealthCheckResult.Degraded(
-//                         $"Check failed: {ex.Message}",
-//                         exception: ex));
-//             }
-//         }
-//
-//         private async Task<HealthCheckResult> CheckDataProviderAsync(
-//             HealthComponent component, 
-//             CancellationToken cancellationToken)
-//         {
-//             try
-//             {
-//                 // Test data provider connectivity
-//                 var provider = _serviceProvider.GetService<IYahooFinanceService>();
-//                 if (provider == null)
-//                     return HealthCheckResult.Unhealthy("YahooFinanceService not registered");
-//
-//                 // Quick connectivity test with a known symbol
-//                 var data = await provider.GetHistoricalDataAsync(
-//                     "EURUSD=X", "1d", "1h", cancellationToken);
-//
-//                 if (data == null)
-//                     return HealthCheckResult.Unhealthy("Data provider returned null");
-//
-//                 if (data.Count == 0)
-//                     return HealthCheckResult.Degraded("Data provider returned empty dataset");
-//
-//                 // Check data quality
-//                 var dataQuality = ValidateDataQuality(data);
-//                 if (!dataQuality.IsValid)
-//                 {
-//                     return HealthCheckResult.Degraded(
-//                         $"Data quality issues: {string.Join(", ", dataQuality.Issues)}",
-//                         data: new Dictionary<string, object>
-//                         {
-//                             ["DataPointCount"] = data.Count,
-//                             ["QualityScore"] = dataQuality.Score,
-//                             ["Issues"] = dataQuality.Issues
-//                         });
-//                 }
-//
-//                 return HealthCheckResult.Healthy(
-//                     $"Data provider operational. Retrieved {data.Count} bars",
-//                     data: new Dictionary<string, object>
-//                     {
-//                         ["DataPointCount"] = data.Count,
-//                         ["LatestTimestamp"] = data.Last().TimestampUtc,
-//                         ["Symbol"] = "EURUSD=X"
-//                     });
-//             }
-//             catch (Exception ex)
-//             {
-//                 return HealthCheckResult.Unhealthy(
-//                     $"Data provider check failed: {ex.Message}",
-//                     exception: ex);
-//             }
-//         }
-//
-//         private async Task<HealthCheckResult> CheckPipelineEngineAsync(
-//             HealthComponent component, 
-//             CancellationToken cancellationToken)
-//         {
-//             try
-//             {
-//                 // Verify engine is instantiated and responsive
-//                 object engine = component.Name switch
-//                 {
-//                     "NormalizationEngine" => _serviceProvider.GetService<NormalizationEngine>(),
-//                     "RegimeEngine" => _serviceProvider.GetService<RegimeEngine>(),
-//                     "SignalEngine" => _serviceProvider.GetService<SignalEngine>(),
-//                     "RiskEngine" => _serviceProvider.GetService<RiskEngine>(),
-//                     "ExecutionEngine" => _serviceProvider.GetService<ExecutionEngine>(),
-//                     _ => null
-//                 };
-//
-//                 if (engine == null)
-//                     return HealthCheckResult.Unhealthy($"Engine {component.Name} not registered in DI");
-//
-//                 // Perform a lightweight test if possible
-//                 var testResult = await PerformEngineSmokeTestAsync(component.Name, engine, cancellationToken);
-//
-//                 return testResult;
-//             }
-//             catch (Exception ex)
-//             {
-//                 return HealthCheckResult.Unhealthy(
-//                     $"Engine check failed: {ex.Message}",
-//                     exception: ex);
-//             }
-//         }
-//
-//         private Task<HealthCheckResult> PerformEngineSmokeTestAsync(
-//             string engineName, 
-//             object engine, 
-//             CancellationToken cancellationToken)
-//         {
-//             // Lightweight validation that engine is operational
-//             // Could test with minimal input/output validation
-//             
-//             var tests = new Dictionary<string, bool>
-//             {
-//                 ["InstanceExists"] = engine != null,
-//                 ["TypeCorrect"] = engine?.GetType().IsClass == true
-//             };
-//
-//             var allPassed = tests.All(t => t.Value);
-//             
-//             return Task.FromResult(allPassed
-//                 ? HealthCheckResult.Healthy($"{engineName} operational", 
-//                     data: new Dictionary<string, object> { ["Tests"] = tests })
-//                 : HealthCheckResult.Degraded($"{engineName} degraded",
-//                     data: new Dictionary<string, object> { ["Tests"] = tests }));
-//         }
-//
-//         private async Task<HealthCheckResult> CheckExternalServiceAsync(
-//             HealthComponent component, 
-//             CancellationToken cancellationToken)
-//         {
-//             try
-//             {
-//                 // Check Trading Economics API
-//                 if (component.Name == "TradingEconomicsAPI")
-//                 {
-//                     var service = _serviceProvider.GetService<ITradingEconomicsService>();
-//                     if (service == null)
-//                         return HealthCheckResult.Unhealthy("TradingEconomicsService not registered");
-//
-//                     var connectivity = await service.CheckConnectivityAsync(cancellationToken);
-//                     
-//                     return connectivity.IsConnected
-//                         ? HealthCheckResult.Healthy(
-//                             $"API connected. Latency: {connectivity.LatencyMs}ms",
-//                             data: new Dictionary<string, object>
-//                             {
-//                                 ["LatencyMs"] = connectivity.LatencyMs,
-//                                 ["ApiStatus"] = connectivity.Status
-//                             })
-//                         : HealthCheckResult.Unhealthy(
-//                             $"API unreachable: {connectivity.ErrorMessage}");
-//                 }
-//
-//                 return HealthCheckResult.Healthy($"{component.Name} operational");
-//             }
-//             catch (Exception ex)
-//             {
-//                 return HealthCheckResult.Unhealthy(
-//                     $"External service check failed: {ex.Message}",
-//                     exception: ex);
-//             }
-//         }
-//
-//         private async Task<HealthCheckResult> CheckInfrastructureAsync(
-//             HealthComponent component, 
-//             CancellationToken cancellationToken)
-//         {
-//             try
-//             {
-//                 return component.Name switch
-//                 {
-//                     "MemoryUsage" => CheckMemoryUsage(),
-//                     "CpuUsage" => CheckCpuUsage(),
-//                     "AuditTrailStorage" => await CheckAuditStorageAsync(cancellationToken),
-//                     _ => HealthCheckResult.Healthy($"{component.Name} operational")
-//                 };
-//             }
-//             catch (Exception ex)
-//             {
-//                 return HealthCheckResult.Unhealthy(
-//                     $"Infrastructure check failed: {ex.Message}",
-//                     exception: ex);
-//             }
-//         }
-//
-//         private HealthCheckResult CheckMemoryUsage()
-//         {
-//             var process = Process.GetCurrentProcess();
-//             var usedMemoryMB = process.WorkingSet64 / 1024.0 / 1024.0;
-//             var totalMemoryMB = GC.GetTotalMemory(false) / 1024.0 / 1024.0;
-//
-//             var data = new Dictionary<string, object>
-//             {
-//                 ["WorkingSetMB"] = Math.Round(usedMemoryMB, 2),
-//                 ["ManagedMemoryMB"] = Math.Round(totalMemoryMB, 2),
-//                 ["GcCollections"] = new Dictionary<string, int>
-//                 {
-//                     ["Gen0"] = GC.CollectionCount(0),
-//                     ["Gen1"] = GC.CollectionCount(1),
-//                     ["Gen2"] = GC.CollectionCount(2)
-//                 }
-//             };
-//
-//             if (usedMemoryMB > _options.MaxMemoryThresholdMB)
-//             {
-//                 return HealthCheckResult.Degraded(
-//                     $"High memory usage: {usedMemoryMB:F1}MB",
-//                     data: data);
-//             }
-//
-//             return HealthCheckResult.Healthy(
-//                 $"Memory usage: {usedMemoryMB:F1}MB",
-//                 data: data);
-//         }
-//
-//         private HealthCheckResult CheckCpuUsage()
-//         {
-//             var process = Process.GetCurrentProcess();
-//             var cpuUsage = process.TotalProcessorTime;
-//             
-//             var data = new Dictionary<string, object>
-//             {
-//                 ["TotalProcessorTime"] = cpuUsage.ToString(),
-//                 ["ThreadCount"] = process.Threads.Count
-//             };
-//
-//             return HealthCheckResult.Healthy(
-//                 $"CPU time: {cpuUsage.TotalSeconds:F1}s",
-//                 data: data);
-//         }
-//
-//         private async Task<HealthCheckResult> CheckAuditStorageAsync(CancellationToken cancellationToken)
-//         {
-//             var storage = _serviceProvider.GetService<IAuditStorage>();
-//             if (storage == null)
-//                 return HealthCheckResult.Unhealthy("Audit storage not registered");
-//
-//             try
-//             {
-//                 // Try to query recent entry to verify storage accessibility
-//                 var query = new AuditQuery
-//                 {
-//                     StartDate = DateTime.UtcNow.AddMinutes(-5),
-//                     PageSize = 1
-//                 };
-//                 
-//                 await storage.QueryAsync(query);
-//                 
-//                 return HealthCheckResult.Healthy("Audit storage accessible");
-//             }
-//             catch (Exception ex)
-//             {
-//                 return HealthCheckResult.Unhealthy(
-//                     $"Audit storage inaccessible: {ex.Message}",
-//                     exception: ex);
-//             }
-//         }
-//
-//         private async Task<SystemMetrics> CollectSystemMetricsAsync()
-//         {
-//             var process = Process.GetCurrentProcess();
-//             
-//             return new SystemMetrics
-//             {
-//                 ProcessStartTime = process.StartTime,
-//                 UpTime = DateTime.Now - process.StartTime,
-//                 ThreadCount = process.Threads.Count,
-//                 HandleCount = process.HandleCount,
-//                 WorkingSet = process.WorkingSet64,
-//                 PeakWorkingSet = process.PeakWorkingSet64,
-//                 PrivateMemory = process.PrivateMemorySize64,
-//                 VirtualMemory = process.VirtualMemorySize64,
-//                 PagedMemory = process.PagedMemorySize64,
-//                 GcTotalMemory = GC.GetTotalMemory(false),
-//                 PipelineDecisionsProcessed = GetDecisionCount(),
-//                 ErrorRate = CalculateErrorRate()
-//             };
-//         }
-//
-//         private DataQualityResult ValidateDataQuality(List<OhlcvBar> data)
-//         {
-//             var issues = new List<string>();
-//             var score = 100;
-//
-//             // Check for gaps
-//             var expectedInterval = TimeSpan.FromHours(1);
-//             for (int i = 1; i < data.Count; i++)
-//             {
-//                 var gap = data[i].TimestampUtc - data[i - 1].TimestampUtc;
-//                 if (gap > expectedInterval * 2)
-//                 {
-//                     issues.Add($"Data gap detected at {data[i].TimestampUtc}: {gap.TotalHours:F1}h");
-//                     score -= 10;
-//                 }
-//             }
-//
-//             // Check for anomalies (zero or negative prices)
-//             var anomalies = data.Count(b => b.Open <= 0 || b.High <= 0 || b.Low <= 0 || b.Close <= 0);
-//             if (anomalies > 0)
-//             {
-//                 issues.Add($"Found {anomalies} bars with invalid prices");
-//                 score -= 20;
-//             }
-//
-//             // Check OHLC logic
-//             var ohlcIssues = data.Count(b => b.High < b.Low || b.Open > b.High || b.Open < b.Low || 
-//                                               b.Close > b.High || b.Close < b.Low);
-//             if (ohlcIssues > 0)
-//             {
-//                 issues.Add($"Found {ohlcIssues} bars with invalid OHLC relationships");
-//                 score -= 30;
-//             }
-//
-//             // Check volume
-//             var zeroVolume = data.Count(b => b.Volume == 0);
-//             if (zeroVolume > data.Count * 0.5) // More than 50% zero volume
-//             {
-//                 issues.Add($"High percentage of zero volume bars: {zeroVolume}/{data.Count}");
-//                 score -= 10;
-//             }
-//
-//             return new DataQualityResult
-//             {
-//                 IsValid = issues.Count == 0,
-//                 Score = Math.Max(0, score),
-//                 Issues = issues
-//             };
-//         }
-//
-//         private HealthStatus DetermineOverallStatus(Dictionary<string, HealthCheckResult> checks)
-//         {
-//             var criticalUnhealthy = _components.Values
-//                 .Where(c => c.Critical)
-//                 .Any(c => checks.ContainsKey(c.Name) && checks[c.Name].Status == HealthStatus.Unhealthy);
-//
-//             if (criticalUnhealthy)
-//                 return HealthStatus.Unhealthy;
-//
-//             var anyUnhealthy = checks.Any(c => c.Value.Status == HealthStatus.Unhealthy);
-//             if (anyUnhealthy)
-//                 return HealthStatus.Degraded;
-//
-//             var anyDegraded = checks.Any(c => c.Value.Status == HealthStatus.Degraded);
-//             if (anyDegraded)
-//                 return HealthStatus.Degraded;
-//
-//             return HealthStatus.Healthy;
-//         }
-//
-//         private bool ShouldCheck(HealthComponent component)
-//         {
-//             if (!component.Enabled)
-//                 return false;
-//
-//             if (component.CheckInterval.HasValue)
-//             {
-//                 return DateTime.UtcNow - component.LastCheckTime >= component.CheckInterval.Value;
-//             }
-//
-//             return true;
-//         }
-//
-//         private void LogStatusChange(HealthReport report)
-//         {
-//             if (_currentStatus != report.OverallStatus)
-//             {
-//                 _logger.LogWarning(
-//                     "Health status changed from {OldStatus} to {NewStatus}. " +
-//                     "Healthy: {Healthy}, Degraded: {Degraded}, Unhealthy: {Unhealthy}",
-//                     _currentStatus, report.OverallStatus,
-//                     report.Checks.Count(c => c.Value.Status == HealthStatus.Healthy),
-//                     report.Checks.Count(c => c.Value.Status == HealthStatus.Degraded),
-//                     report.Checks.Count(c => c.Value.Status == HealthStatus.Unhealthy));
-//             }
-//         }
-//
-//         // Public API Methods
-//
-//         public Task<HealthReport> GetCurrentHealthAsync()
-//         {
-//             return Task.FromResult(CreateCachedReport());
-//         }
-//
-//         public async Task<HealthTrend> GetHealthTrendAsync(int hours = 24)
-//         {
-//             var snapshots = _history
-//                 .Where(h => h.Timestamp >= DateTime.UtcNow.AddHours(-hours))
-//                 .OrderBy(h => h.Timestamp)
-//                 .ToList();
-//
-//             return new HealthTrend
-//             {
-//                 Snapshots = snapshots,
-//                 UptimePercentage = CalculateUptime(snapshots),
-//                 MeanTimeToRecovery = CalculateMTTR(snapshots),
-//                 StatusDistribution = snapshots
-//                     .GroupBy(s => s.Status)
-//                     .ToDictionary(g => g.Key, g => g.Count())
-//             };
-//         }
-//
-//         public async Task<ComponentDetails> GetComponentDetailsAsync(string componentName)
-//         {
-//             if (!_components.TryGetValue(componentName, out var component))
-//                 return null;
-//
-//             return new ComponentDetails
-//             {
-//                 Name = component.Name,
-//                 Type = component.Type,
-//                 Critical = component.Critical,
-//                 LastCheck = component.LastCheckTime,
-//                 LastResult = component.LastResult,
-//                 TotalChecks = component.TotalChecks,
-//                 FailedChecks = component.FailedChecks,
-//                 SuccessRate = component.TotalChecks > 0 
-//                     ? (double)(component.TotalChecks - component.FailedChecks) / component.TotalChecks * 100
-//                     : 0
-//             };
-//         }
-//
-//         public void EnableComponent(string name, bool enabled)
-//         {
-//             if (_components.TryGetValue(name, out var component))
-//             {
-//                 component.Enabled = enabled;
-//                 _logger.LogInformation("Component {Component} enabled: {Enabled}", name, enabled);
-//             }
-//         }
-//
-//         public async Task GracefulShutdownAsync()
-//         {
-//             _logger.LogInformation("Shutting down health monitoring");
-//             await _monitoringTimer.DisposeAsync();
-//             await RunHealthChecksAsync(); // Final check before shutdown
-//         }
-//
-//         private HealthReport CreateCachedReport()
-//         {
-//             return new HealthReport
-//             {
-//                 Timestamp = DateTime.UtcNow,
-//                 OverallStatus = _currentStatus,
-//                 Checks = _components.Values
-//                     .Where(c => c.LastResult != null)
-//                     .ToDictionary(c => c.Name, c => c.LastResult),
-//                 Metrics = new SystemMetrics()
-//             };
-//         }
-//
-//         private HealthReport CreateErrorReport(Exception ex)
-//         {
-//             return new HealthReport
-//             {
-//                 Timestamp = DateTime.UtcNow,
-//                 OverallStatus = HealthStatus.Unhealthy,
-//                 Checks = new Dictionary<string, HealthCheckResult>
-//                 {
-//                     ["HealthCheckEngine"] = HealthCheckResult.Unhealthy(
-//                         $"Health check system failed: {ex.Message}", ex)
-//                 }
-//             };
-//         }
-//
-//         private decimal CalculateUptime(List<HealthSnapshot> snapshots)
-//         {
-//             if (!snapshots.Any())
-//                 return 100;
-//
-//             var unhealthyCount = snapshots.Count(s => s.Status == HealthStatus.Unhealthy);
-//             return 100 - (decimal)unhealthyCount / snapshots.Count * 100;
-//         }
-//
-//         private TimeSpan CalculateMTTR(List<HealthSnapshot> snapshots)
-//         {
-//             var downtimes = new List<TimeSpan>();
-//             DateTime? downtimeStart = null;
-//
-//             foreach (var snapshot in snapshots.OrderBy(s => s.Timestamp))
-//             {
-//                 if (snapshot.Status == HealthStatus.Unhealthy && downtimeStart == null)
-//                 {
-//                     downtimeStart = snapshot.Timestamp;
-//                 }
-//                 else if (snapshot.Status == HealthStatus.Healthy && downtimeStart.HasValue)
-//                 {
-//                     downtimes.Add(snapshot.Timestamp - downtimeStart.Value);
-//                     downtimeStart = null;
-//                 }
-//             }
-//
-//             return downtimes.Any()
-//                 ? TimeSpan.FromTicks((long)downtimes.Average(t => t.Ticks))
-//                 : TimeSpan.Zero;
-//         }
-//
-//         private long GetDecisionCount()
-//         {
-//             // Track decisions processed (inject counter service or access AuditTrail)
-//             return 0;
-//         }
-//
-//         private double CalculateErrorRate()
-//         {
-//             // Calculate error rate from recent history
-//             return 0;
-//         }
-//     }
-//
-//  
-// }
+using System.Collections.Concurrent;
+using System.Diagnostics;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Options;
+using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Enum;
+using Orion.API.TradingEconomics.Interfaces;
+using HealthReport = Microsoft.Extensions.Diagnostics.HealthChecks.HealthReport;
+using HealthStatus = Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus;
+
+namespace Orion.API.TradingEconomics.Engine
+{
+    /// <summary>
+    /// Monitors registered trading-system components and reports system health.
+    /// </summary>
+    public sealed class HealthCheckEngine : IHealthCheckEngine, IAsyncDisposable
+    {
+        private readonly ILogger<HealthCheckEngine> _logger;
+        private readonly HealthCheckOptions _options;
+        private readonly IServiceProvider _serviceProvider;
+        private readonly ConcurrentDictionary<string, HealthComponent> _components = new();
+        private readonly ConcurrentQueue<HealthSnapshot> _history = new();
+        private readonly SemaphoreSlim _checkLock = new(1, 1);
+        private readonly Timer _monitoringTimer;
+
+        private HealthStatus _currentStatus = HealthStatus.Healthy;
+
+        public HealthCheckEngine(
+            ILogger<HealthCheckEngine> logger,
+            IOptions<HealthCheckOptions> options,
+            IServiceProvider serviceProvider)
+        {
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _options = options?.Value ?? new HealthCheckOptions();
+            _serviceProvider = serviceProvider ?? throw new ArgumentNullException(nameof(serviceProvider));
+
+            RegisterDefaultComponents();
+
+            _monitoringTimer = new Timer(
+                async _ => await RunHealthChecksAsync(),
+                null,
+                TimeSpan.FromSeconds(_options.InitialDelaySeconds),
+                TimeSpan.FromSeconds(_options.CheckIntervalSeconds));
+        }
+
+        /// <inheritdoc />
+        public void RegisterComponent(HealthComponent component)
+        {
+            ArgumentNullException.ThrowIfNull(component);
+
+            if (string.IsNullOrWhiteSpace(component.Name))
+                throw new ArgumentException("Component name is required.", nameof(component));
+
+            component.LastCheckTime = DateTime.UtcNow;
+            _components[component.Name] = component;
+
+            _logger.LogInformation("Registered health component: {Component}", component.Name);
+        }
+
+        /// <inheritdoc />
+        public async Task<HealthReport> RunHealthChecksAsync(CancellationToken cancellationToken = default)
+        {
+            if (!await _checkLock.WaitAsync(TimeSpan.FromSeconds(5), cancellationToken))
+            {
+                _logger.LogWarning("Health check already in progress, returning cached report");
+                return CreateCachedReport();
+            }
+
+            try
+            {
+                var tasks = _components.Values
+                    .Where(ShouldCheck)
+                    .Select(component => CheckComponentAsync(component, cancellationToken));
+
+                var results = await Task.WhenAll(tasks);
+
+                var entries = new Dictionary<string, HealthReportEntry>();
+
+                foreach (var (component, result) in results)
+                {
+                    component.LastCheckTime = DateTime.UtcNow;
+                    component.LastResult = result;
+                    component.TotalChecks++;
+
+                    if (result.Status == HealthStatus.Unhealthy)
+                        component.FailedChecks++;
+
+                    entries[component.Name] = new HealthReportEntry(
+                        result.Status,
+                        result.Description,
+                        result.Duration,
+                        result.Exception,
+                        result.Data,
+                        result.Tags);
+                }
+
+                var status = DetermineOverallStatus(results.ToDictionary(x => x.Component.Name, x => x.Result));
+                LogStatusChange(status, entries);
+
+                _currentStatus = status;
+
+                AddSnapshot(status, entries);
+
+                return new HealthReport(entries, status, TimeSpan.Zero);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Health check execution failed");
+                return CreateErrorReport(ex);
+            }
+            finally
+            {
+                _checkLock.Release();
+            }
+        }
+
+        /// <inheritdoc />
+        public Task<HealthReport> GetCurrentHealthAsync()
+        {
+            return Task.FromResult(CreateCachedReport());
+        }
+
+        /// <inheritdoc />
+        public Task<HealthTrend> GetHealthTrendAsync(int hours = 24)
+        {
+            var snapshots = _history
+                .Where(x => x.Timestamp >= DateTime.UtcNow.AddHours(-hours))
+                .OrderBy(x => x.Timestamp)
+                .ToList();
+
+            return Task.FromResult(new HealthTrend
+            {
+                Snapshots = snapshots,
+                UptimePercentage = CalculateUptime(snapshots),
+                MeanTimeToRecovery = CalculateMttr(snapshots),
+                StatusDistribution = snapshots
+                    .GroupBy(x => x.Status)
+                    .ToDictionary(x => x.Key, x => x.Count())
+            });
+        }
+
+        /// <inheritdoc />
+        public Task<ComponentDetails?> GetComponentDetailsAsync(string componentName)
+        {
+            if (string.IsNullOrWhiteSpace(componentName))
+                throw new ArgumentException("Component name is required.", nameof(componentName));
+
+            if (!_components.TryGetValue(componentName, out var component))
+                return Task.FromResult<ComponentDetails?>(null);
+
+            return Task.FromResult<ComponentDetails?>(new ComponentDetails
+            {
+                Name = component.Name,
+                Type = component.Type,
+                Critical = component.Critical,
+                LastCheck = component.LastCheckTime,
+                LastResult = component.LastResult,
+                TotalChecks = component.TotalChecks,
+                FailedChecks = component.FailedChecks,
+                SuccessRate = component.TotalChecks > 0
+                    ? (double)(component.TotalChecks - component.FailedChecks) / component.TotalChecks * 100
+                    : 0
+            });
+        }
+
+        /// <inheritdoc />
+        public void EnableComponent(string name, bool enabled)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentException("Component name is required.", nameof(name));
+
+            if (_components.TryGetValue(name, out var component))
+            {
+                component.Enabled = enabled;
+                _logger.LogInformation("Component {Component} enabled: {Enabled}", name, enabled);
+            }
+        }
+
+        /// <inheritdoc />
+        public async Task GracefulShutdownAsync()
+        {
+            _logger.LogInformation("Shutting down health monitoring");
+
+            await _monitoringTimer.DisposeAsync();
+            await RunHealthChecksAsync();
+        }
+
+        public async ValueTask DisposeAsync()
+        {
+            await _monitoringTimer.DisposeAsync();
+            _checkLock.Dispose();
+        }
+
+        private void RegisterDefaultComponents()
+        {
+            RegisterComponent(new HealthComponent
+            {
+                Name = "NormalizationEngine",
+                Type = HealthComponentType.PipelineEngine,
+                Critical = true,
+                Timeout = TimeSpan.FromSeconds(5)
+            });
+
+            RegisterComponent(new HealthComponent
+            {
+                Name = "RegimeEngine",
+                Type = HealthComponentType.PipelineEngine,
+                Critical = true,
+                Timeout = TimeSpan.FromSeconds(5)
+            });
+
+            RegisterComponent(new HealthComponent
+            {
+                Name = "SignalEngine",
+                Type = HealthComponentType.PipelineEngine,
+                Critical = true,
+                Timeout = TimeSpan.FromSeconds(5)
+            });
+
+            RegisterComponent(new HealthComponent
+            {
+                Name = "RiskEngine",
+                Type = HealthComponentType.PipelineEngine,
+                Critical = true,
+                Timeout = TimeSpan.FromSeconds(3)
+            });
+
+            RegisterComponent(new HealthComponent
+            {
+                Name = "ExecutionEngine",
+                Type = HealthComponentType.PipelineEngine,
+                Critical = true,
+                Timeout = TimeSpan.FromSeconds(5)
+            });
+
+            RegisterComponent(new HealthComponent
+            {
+                Name = "AuditTrailStorage",
+                Type = HealthComponentType.Infrastructure,
+                Critical = true,
+                Timeout = TimeSpan.FromSeconds(5)
+            });
+
+            RegisterComponent(new HealthComponent
+            {
+                Name = "MemoryUsage",
+                Type = HealthComponentType.Infrastructure,
+                Critical = true,
+                CheckInterval = TimeSpan.FromMinutes(1)
+            });
+
+            RegisterComponent(new HealthComponent
+            {
+                Name = "CpuUsage",
+                Type = HealthComponentType.Infrastructure,
+                Critical = false,
+                CheckInterval = TimeSpan.FromMinutes(1)
+            });
+        }
+
+        private async Task<(HealthComponent Component, HealthCheckResult Result)> CheckComponentAsync(
+            HealthComponent component,
+            CancellationToken cancellationToken)
+        {
+            var stopwatch = Stopwatch.StartNew();
+
+            try
+            {
+                using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+                timeout.CancelAfter(component.Timeout);
+
+                var result = component.Type switch
+                {
+                    HealthComponentType.PipelineEngine => await CheckPipelineEngineAsync(component, timeout.Token),
+                    HealthComponentType.Infrastructure => await CheckInfrastructureAsync(component, timeout.Token),
+                    _ => HealthCheckResult.Healthy($"{component.Name} operational")
+                };
+
+                stopwatch.Stop();
+
+                var data = new Dictionary<string, object>(result.Data)
+                {
+                    ["ResponseTimeMs"] = stopwatch.ElapsedMilliseconds,
+                    ["LastCheckUtc"] = DateTime.UtcNow
+                };
+
+                if (component.DegradedThreshold > TimeSpan.Zero &&
+                    stopwatch.Elapsed > component.DegradedThreshold)
+                {
+                    return (component, HealthCheckResult.Degraded(
+                        $"Response time {stopwatch.ElapsedMilliseconds}ms exceeds threshold.",
+                        data: data));
+                }
+
+                return (component, new HealthCheckResult(
+                    result.Status,
+                    result.Description,
+                    result.Exception,
+                    data));
+            }
+            catch (OperationCanceledException)
+            {
+                stopwatch.Stop();
+
+                return component.Critical
+                    ? (component, HealthCheckResult.Unhealthy($"Timeout after {stopwatch.ElapsedMilliseconds}ms"))
+                    : (component, HealthCheckResult.Degraded($"Timeout after {stopwatch.ElapsedMilliseconds}ms"));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Health check failed for {Component}", component.Name);
+
+                return component.Critical
+                    ? (component, HealthCheckResult.Unhealthy($"Check failed: {ex.Message}", ex))
+                    : (component, HealthCheckResult.Degraded($"Check failed: {ex.Message}", ex));
+            }
+        }
+
+        private Task<HealthCheckResult> CheckPipelineEngineAsync(
+            HealthComponent component,
+            CancellationToken cancellationToken)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+
+            var engine = component.Name switch
+            {
+                "NormalizationEngine" => _serviceProvider.GetService(typeof(NormalizationEngine)),
+                "RegimeEngine" => _serviceProvider.GetService(typeof(RegimeEngine)),
+                "SignalEngine" => _serviceProvider.GetService(typeof(SignalEngine)),
+                "RiskEngine" => _serviceProvider.GetService(typeof(RiskEngine)),
+                "ExecutionEngine" => _serviceProvider.GetService(typeof(ExecutionEngine)),
+                _ => null
+            };
+
+            if (engine == null)
+                return Task.FromResult(HealthCheckResult.Unhealthy($"{component.Name} not registered in DI"));
+
+            return Task.FromResult(HealthCheckResult.Healthy($"{component.Name} operational"));
+        }
+
+        private async Task<HealthCheckResult> CheckInfrastructureAsync(
+            HealthComponent component,
+            CancellationToken cancellationToken)
+        {
+            return component.Name switch
+            {
+                "MemoryUsage" => CheckMemoryUsage(),
+                "CpuUsage" => CheckCpuUsage(),
+                "AuditTrailStorage" => await CheckAuditStorageAsync(cancellationToken),
+                _ => HealthCheckResult.Healthy($"{component.Name} operational")
+            };
+        }
+
+        private HealthCheckResult CheckMemoryUsage()
+        {
+            var process = Process.GetCurrentProcess();
+            var usedMemoryMb = process.WorkingSet64 / 1024.0 / 1024.0;
+
+            var data = new Dictionary<string, object>
+            {
+                ["WorkingSetMB"] = Math.Round(usedMemoryMb, 2),
+                ["ManagedMemoryMB"] = Math.Round(GC.GetTotalMemory(false) / 1024.0 / 1024.0, 2)
+            };
+
+            return usedMemoryMb > _options.MaxMemoryThresholdMB
+                ? HealthCheckResult.Degraded($"High memory usage: {usedMemoryMb:F1}MB", data: data)
+                : HealthCheckResult.Healthy($"Memory usage: {usedMemoryMb:F1}MB", data: data);
+        }
+
+        private static HealthCheckResult CheckCpuUsage()
+        {
+            var process = Process.GetCurrentProcess();
+
+            return HealthCheckResult.Healthy(
+                $"CPU time: {process.TotalProcessorTime.TotalSeconds:F1}s",
+                data: new Dictionary<string, object>
+                {
+                    ["ThreadCount"] = process.Threads.Count
+                });
+        }
+
+        private async Task<HealthCheckResult> CheckAuditStorageAsync(CancellationToken cancellationToken)
+        {
+            var storage = _serviceProvider.GetService(typeof(IAuditStorage)) as IAuditStorage;
+
+            if (storage == null)
+                return HealthCheckResult.Unhealthy("Audit storage not registered");
+
+            var query = new AuditQuery
+            {
+                StartDate = DateTime.UtcNow.AddMinutes(-5),
+                PageSize = 1
+            };
+
+            await storage.QueryAsync(query);
+
+            return HealthCheckResult.Healthy("Audit storage accessible");
+        }
+
+        private HealthStatus DetermineOverallStatus(Dictionary<string, HealthCheckResult> checks)
+        {
+            var criticalUnhealthy = _components.Values
+                .Where(x => x.Critical)
+                .Any(x => checks.TryGetValue(x.Name, out var result) &&
+                          result.Status == HealthStatus.Unhealthy);
+
+            if (criticalUnhealthy)
+                return HealthStatus.Unhealthy;
+
+            if (checks.Any(x => x.Value.Status != HealthStatus.Healthy))
+                return HealthStatus.Degraded;
+
+            return HealthStatus.Healthy;
+        }
+
+        private bool ShouldCheck(HealthComponent component)
+        {
+            if (!component.Enabled)
+                return false;
+
+            if (component.CheckInterval.HasValue)
+                return DateTime.UtcNow - component.LastCheckTime >= component.CheckInterval.Value;
+
+            return true;
+        }
+
+        private HealthReport CreateCachedReport()
+        {
+            var entries = _components.Values
+                .Where(x => x.LastResult != null)
+                .ToDictionary(
+                    x => x.Name,
+                    x => new HealthReportEntry(
+                        x.LastResult!.Status,
+                        x.LastResult.Description,
+                        x.LastResult.Duration,
+                        x.LastResult.Exception,
+                        x.LastResult.Data,
+                        x.LastResult.Tags));
+
+            return new HealthReport(entries, _currentStatus, TimeSpan.Zero);
+        }
+
+        private static HealthReport CreateErrorReport(Exception ex)
+        {
+            var entries = new Dictionary<string, HealthReportEntry>
+            {
+                ["HealthCheckEngine"] = new(
+                    HealthStatus.Unhealthy,
+                    $"Health check system failed: {ex.Message}",
+                    TimeSpan.Zero,
+                    ex,
+                    new Dictionary<string, object>(),
+                    [])
+            };
+
+            return new HealthReport(entries, HealthStatus.Unhealthy, TimeSpan.Zero);
+        }
+
+        private void AddSnapshot(
+            HealthStatus status,
+            IReadOnlyDictionary<string, HealthReportEntry> entries)
+        {
+            _history.Enqueue(new HealthSnapshot
+            {
+                Timestamp = DateTime.UtcNow,
+                Status = status,
+                ComponentCount = entries.Count,
+                HealthyCount = entries.Count(x => x.Value.Status == HealthStatus.Healthy),
+                DegradedCount = entries.Count(x => x.Value.Status == HealthStatus.Degraded),
+                UnhealthyCount = entries.Count(x => x.Value.Status == HealthStatus.Unhealthy)
+            });
+
+            while (_history.Count > _options.MaxHistoryItems)
+                _history.TryDequeue(out _);
+        }
+
+        private void LogStatusChange(
+            HealthStatus newStatus,
+            IReadOnlyDictionary<string, HealthReportEntry> entries)
+        {
+            if (_currentStatus == newStatus)
+                return;
+
+            _logger.LogWarning(
+                "Health status changed from {OldStatus} to {NewStatus}. Healthy: {Healthy}, Degraded: {Degraded}, Unhealthy: {Unhealthy}",
+                _currentStatus,
+                newStatus,
+                entries.Count(x => x.Value.Status == HealthStatus.Healthy),
+                entries.Count(x => x.Value.Status == HealthStatus.Degraded),
+                entries.Count(x => x.Value.Status == HealthStatus.Unhealthy));
+        }
+
+        private static decimal CalculateUptime(IReadOnlyCollection<HealthSnapshot> snapshots)
+        {
+            if (snapshots.Count == 0)
+                return 100m;
+
+            var unhealthyCount = snapshots.Count(x => x.Status == HealthStatus.Unhealthy);
+
+            return 100m - (decimal)unhealthyCount / snapshots.Count * 100m;
+        }
+
+        private static TimeSpan CalculateMttr(IEnumerable<HealthSnapshot> snapshots)
+        {
+            var downtimes = new List<TimeSpan>();
+            DateTime? downtimeStart = null;
+
+            foreach (var snapshot in snapshots.OrderBy(x => x.Timestamp))
+            {
+                if (snapshot.Status == HealthStatus.Unhealthy && downtimeStart == null)
+                    downtimeStart = snapshot.Timestamp;
+
+                if (snapshot.Status == HealthStatus.Healthy && downtimeStart.HasValue)
+                {
+                    downtimes.Add(snapshot.Timestamp - downtimeStart.Value);
+                    downtimeStart = null;
+                }
+            }
+
+            return downtimes.Count > 0
+                ? TimeSpan.FromTicks((long)downtimes.Average(x => x.Ticks))
+                : TimeSpan.Zero;
+        }
+    }
+}

@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\UnitTests\Orion.API.TradingEconomics.UnitTests\Orion.API.TradingEconomics.UnitTests.csproj" />
     <ProjectReference Include="..\Orion.API.HumanResources\Orion.API.HumanResources.csproj" />
   </ItemGroup>
   

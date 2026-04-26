@@ -1,6 +1,6 @@
 ﻿using Orion.API.TradingEconomics.Entities;
 
-namespace Orion.API.TradingEconomics.Interfaces
+namespace Orion.API.TradingEconomics.Engine.Interfaces
 {
     public interface ILiquidityEngine
     {

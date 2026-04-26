@@ -1,23 +1,15 @@
 ﻿using MediatR;
 using Orion.API.TradingEconomics.Commands;
 using Orion.API.TradingEconomics.Entities;
-using Orion.Core.MacroEngine.Application;
 
 namespace Orion.API.TradingEconomics.Handlers
 {
-    public class GenerateFxSignalsHandler
+    public class GenerateFxSignalsHandler(IMediator mediator)
         : IRequestHandler<GenerateFxSignalsCommand, List<FxSignal>>
     {
-        private readonly IMediator _mediator;
-
-        public GenerateFxSignalsHandler(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         public async Task<List<FxSignal>> Handle(GenerateFxSignalsCommand request,CancellationToken ct)
         {
-            var scores = await _mediator.Send(new CalculateCurrencyFactorsCommand());
+            var scores = await mediator.Send(new CalculateCurrencyFactorsCommand());
 
             var signals = new List<FxSignal>();
 

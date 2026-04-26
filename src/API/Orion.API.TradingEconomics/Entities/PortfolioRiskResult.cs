@@ -4,6 +4,7 @@
     {
         public bool IsAllowed { get; set; }
         public string Reason { get; set; } = "";
+        public bool Allowed { get; set; }
 
         public static PortfolioRiskResult Allow(string reason)
         {

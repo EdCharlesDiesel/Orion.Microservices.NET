@@ -14,5 +14,6 @@
         public decimal StopLoss { get; set; }
         public decimal TakeProfit { get; set; } 
         public bool IsClosed { get; set; }
+        public decimal NotionalUsd { get; set; }
     }
 }

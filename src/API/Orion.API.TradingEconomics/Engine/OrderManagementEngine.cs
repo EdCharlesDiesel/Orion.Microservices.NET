@@ -1,25 +1,35 @@
-﻿using Orion.API.TradingEconomics.Entities;
+﻿using Orion.API.TradingEconomics.Engine.Interfaces;
+using Orion.API.TradingEconomics.Entities;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public sealed class OrderManagementEngine
+    /// <summary>
+    /// Handles order creation, fill validation, and cancellation.
+    /// </summary>
+    public sealed class OrderManagementEngine(ConfigurationEngine config) : IOrderManagementEngine
     {
-        private readonly ConfigurationEngine _config;
+        private readonly ConfigurationEngine _config = config ?? throw new ArgumentNullException(nameof(config));
 
-        public OrderManagementEngine(ConfigurationEngine config)
-        {
-            _config = config;
-        }
-
+        /// <inheritdoc />
         public OrderRequest CreateOrder(
             TradePlan trade,
             PositionSizeResult size,
             AccountContext account)
         {
-            if (trade.Status != "OPEN")
+            ArgumentNullException.ThrowIfNull(trade);
+            ArgumentNullException.ThrowIfNull(size);
+            ArgumentNullException.ThrowIfNull(account);
+
+            if (!string.Equals(trade.Status, "OPEN", StringComparison.OrdinalIgnoreCase))
                 return OrderRequest.Rejected("Trade is not open.");
 
-            if (size.PositionSize <= 0)
+            if (string.IsNullOrWhiteSpace(trade.Pair))
+                return OrderRequest.Rejected("Pair is required.");
+
+            if (string.IsNullOrWhiteSpace(trade.Direction))
+                return OrderRequest.Rejected("Direction is required.");
+
+            if (size.PositionSize <= 0m)
                 return OrderRequest.Rejected("Invalid position size.");
 
             if (!_config.IsPairEnabled(trade.Pair))
@@ -33,8 +43,8 @@ namespace Orion.API.TradingEconomics.Engine
             return new OrderRequest
             {
                 Status = liveConfig.PaperTradingOnly ? "PAPER_ORDER" : "LIVE_ORDER",
-                Pair = trade.Pair,
-                Direction = trade.Direction,
+                Pair = trade.Pair.Trim().ToUpperInvariant(),
+                Direction = trade.Direction.Trim().ToUpperInvariant(),
                 OrderType = "MARKET",
                 Quantity = size.PositionSize,
                 EntryPrice = trade.EntryPrice,
@@ -45,24 +55,28 @@ namespace Orion.API.TradingEconomics.Engine
             };
         }
 
+        /// <inheritdoc />
         public OrderState ValidateFill(
             OrderRequest order,
             ExecutionOrder execution)
         {
-            if (order.Status == "REJECTED")
+            ArgumentNullException.ThrowIfNull(order);
+            ArgumentNullException.ThrowIfNull(execution);
+
+            if (string.Equals(order.Status, "REJECTED", StringComparison.OrdinalIgnoreCase))
                 return OrderState.Rejected(order.Reason);
 
-            if (execution.FilledSize <= 0)
+            if (order.Quantity <= 0m)
+                return OrderState.Rejected("Invalid order quantity.");
+
+            if (execution.FilledSize <= 0m)
                 return OrderState.Rejected("Order was not filled.");
 
             var fillRatio = execution.FilledSize / order.Quantity;
             var executionConfig = _config.GetExecutionConfig();
 
             if (fillRatio < executionConfig.MinFillRatio)
-            {
-                return OrderState.Rejected(
-                    $"Fill ratio too low: {fillRatio:P2}.");
-            }
+                return OrderState.Rejected($"Fill ratio too low: {fillRatio:P2}.");
 
             return new OrderState
             {
@@ -77,18 +91,23 @@ namespace Orion.API.TradingEconomics.Engine
             };
         }
 
+        /// <inheritdoc />
         public OrderState Cancel(OrderRequest order, string reason)
         {
+            ArgumentNullException.ThrowIfNull(order);
+
             return new OrderState
             {
                 Status = "CANCELLED",
                 Pair = order.Pair,
                 Direction = order.Direction,
                 RequestedQuantity = order.Quantity,
-                FilledQuantity = 0,
-                AverageFillPrice = 0,
+                FilledQuantity = 0m,
+                AverageFillPrice = 0m,
                 FilledAt = null,
-                Reason = reason
+                Reason = string.IsNullOrWhiteSpace(reason)
+                    ? "Order cancelled."
+                    : reason
             };
         }
     }

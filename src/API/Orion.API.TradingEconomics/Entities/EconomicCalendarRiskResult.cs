@@ -4,6 +4,7 @@
     {
         public bool IsBlocked { get; set; }
         public string Reason { get; set; } = "";
+        public bool IsClear { get; set; }
 
         public static EconomicCalendarRiskResult Clear(string reason)
         {
@@ -21,6 +22,11 @@
                 IsBlocked = true,
                 Reason = reason
             };
+        }
+
+        public bool Message(char obj)
+        {
+            throw new NotImplementedException();
         }
     }
 }

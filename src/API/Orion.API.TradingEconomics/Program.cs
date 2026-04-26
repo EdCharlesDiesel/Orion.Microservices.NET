@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using Orion.API.TradingEconomics.Configuration;
 using Orion.API.TradingEconomics.Engine;
 using Orion.API.TradingEconomics.Engine.Interfaces;
+using Orion.API.TradingEconomics.Engine.Interfaces.Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
 using Orion.API.TradingEconomics.Helpers;
 using Orion.API.TradingEconomics.Interfaces;
@@ -105,7 +106,7 @@ builder.Services.AddSingleton(new NormalizationOptions
 {
     MinimumWindowSize = 6,
     WinsorizeOutliers = true,
-    WinsorizeZLimit = 4.0
+    WinsorizeZLimit = 4.0m
 });
 
 builder.Services.AddScoped<INormalizationEngine, NormalizationEngine>();
@@ -121,18 +122,19 @@ builder.Services.AddScoped<IFredService, FredService>();
 
 
 //Engines
-builder.Services.AddScoped<IMarketDataEngine, MarketDataEngine>();
-builder.Services.AddScoped<IDataQualityEngine, DataQualityEngine>();
-builder.Services.AddScoped<ILiquidityEngine, LiquidityEngine>();
-builder.Services.AddScoped<ICorrelationEngine, CorrelationEngine>();
-builder.Services.AddScoped<IHedgingEngine, HedgingEngine>();
-builder.Services.AddScoped<IOrderBookExecutionService,OrderBookExecutionService>();
 builder.Services.AddScoped<IAdvancedExecutionEngine,AdvancedExecutionEngine>();
 builder.Services.AddScoped<IAlertEngine,AlertEngine>();
 builder.Services.AddScoped<IAlphaEngine,AlphaEngine>();
 builder.Services.AddScoped<IAuditTrailEngine,AuditTrailEngine>();
 builder.Services.AddScoped<IBacktestEngine,BacktestEngine>();
-
+builder.Services.AddScoped<ICircuitBreakerEngine,CircuitBreakerEngine>();
+builder.Services.AddScoped<ICorrelationEngine, CorrelationEngine>();
+builder.Services.AddScoped<IDataQualityEngine, DataQualityEngine>();
+builder.Services.AddScoped<IFxPricingEngine, FxPricingEngine>();
+builder.Services.AddScoped<IMarketDataEngine, MarketDataEngine>();
+builder.Services.AddScoped<IHedgingEngine, HedgingEngine>();
+builder.Services.AddScoped<ILiquidityEngine, LiquidityEngine>();
+builder.Services.AddScoped<IOrderBookExecutionService,OrderBookExecutionService>();
 
 
 

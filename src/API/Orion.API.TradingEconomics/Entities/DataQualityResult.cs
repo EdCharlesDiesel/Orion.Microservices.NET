@@ -25,5 +25,10 @@
                 Reason = reason
             };
         }
+
+        public bool Message(char obj)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -257,6 +257,19 @@
           }
         }
       },
+      "JetBrains.Annotations/2025.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "related": ".deps.json;.xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "related": ".deps.json;.xml"
+          }
+        }
+      },
       "Marten/8.32.1": {
         "type": "package",
         "dependencies": {
@@ -4491,6 +4504,29 @@
         "lib/net8.0/JasperFx.RuntimeCompiler.xml",
         "lib/net9.0/JasperFx.RuntimeCompiler.dll",
         "lib/net9.0/JasperFx.RuntimeCompiler.xml"
+      ]
+    },
+    "JetBrains.Annotations/2025.2.0": {
+      "sha512": "2BvMkOSW+50EbQFhWFIPWTqmcDLiyyjwkMN7lN386bhP2vN/7ts5t59qu11HtenmHFxqDzaD8J1fFoh+QTOzVA==",
+      "type": "package",
+      "path": "jetbrains.annotations/2025.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "jetbrains.annotations.2025.2.0.nupkg.sha512",
+        "jetbrains.annotations.nuspec",
+        "lib/net20/JetBrains.Annotations.dll",
+        "lib/net20/JetBrains.Annotations.xml",
+        "lib/netstandard1.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard1.0/JetBrains.Annotations.dll",
+        "lib/netstandard1.0/JetBrains.Annotations.xml",
+        "lib/netstandard2.0/JetBrains.Annotations.deps.json",
+        "lib/netstandard2.0/JetBrains.Annotations.dll",
+        "lib/netstandard2.0/JetBrains.Annotations.xml",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.dll",
+        "lib/portable40-net40+sl5+win8+wp8+wpa81/JetBrains.Annotations.xml",
+        "readme.md"
       ]
     },
     "Marten/8.32.1": {
@@ -10541,6 +10577,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "JetBrains.Annotations >= 2025.2.0",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
       "Moq >= 4.20.72",
       "Orion.Services.TradingEconomics.API >= 1.0.0",
@@ -10604,6 +10641,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "JetBrains.Annotations": {
+            "target": "Package",
+            "version": "[2025.2.0, )"
+          },
           "Microsoft.NET.Test.Sdk": {
             "target": "Package",
             "version": "[17.12.0, )"

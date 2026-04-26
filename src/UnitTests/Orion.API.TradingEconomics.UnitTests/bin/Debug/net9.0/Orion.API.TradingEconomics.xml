@@ -335,6 +335,71 @@
             Runs a backtest between two dates using the provided capital.
             </summary>
         </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.CircuitBreakerEngine">
+            <summary>
+            Evaluates trading constraints such as risk limits, open exposure, and data validity.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.CircuitBreakerEngine.#ctor(Orion.API.TradingEconomics.Engine.ConfigurationEngine)">
+            <summary>
+            Evaluates trading constraints such as risk limits, open exposure, and data validity.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.CircuitBreakerEngine.Evaluate(Orion.API.TradingEconomics.Entities.AccountContext,System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.TradePlan},System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.TradePlan},Orion.API.TradingEconomics.Entities.DataQualityResult)">
+            <summary>
+            Evaluates whether trading should continue or be halted.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.ComplianceEngine">
+            <summary>
+            Validates trade requests against account state and real-time risk rules.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ComplianceEngine.Validate(System.String,System.String,System.Decimal,Orion.API.TradingEconomics.Entities.AccountSnapshot,Orion.API.TradingEconomics.Entities.RealTimeRiskResult)">
+            <summary>
+            Validates whether a trade request is compliant.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.ConfigurationEngine">
+            <summary>
+            Provides typed access to trading system configuration.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ConfigurationEngine.GetConfig">
+            <summary>
+            Returns the full trading system configuration.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ConfigurationEngine.GetPairConfig(System.String)">
+            <summary>
+            Returns pair-specific configuration or the default pair configuration.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ConfigurationEngine.IsLiveTradingEnabled">
+            <summary>
+            Returns whether live trading is enabled.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ConfigurationEngine.IsPairEnabled(System.String)">
+            <summary>
+            Returns whether a pair is enabled for trading.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ConfigurationEngine.GetRiskConfig">
+            <summary>
+            Returns risk configuration.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ConfigurationEngine.GetSignalConfig">
+            <summary>
+            Returns signal configuration.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ConfigurationEngine.GetExecutionConfig">
+            <summary>
+            Returns execution configuration.
+            </summary>
+        </member>
         <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordDecisionAsync(Orion.API.TradingEconomics.Entities.AuditRecord)">
             <summary>
             Records a full trading decision audit record.
@@ -373,6 +438,21 @@
         <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IBacktestEngine">
             <summary>
             Contract for running historical backtests.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.ICircuitBreakerEngine">
+            <summary>
+            Contract for circuit breaker evaluation.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IComplianceEngine">
+            <summary>
+            Contract for validating trade compliance before execution.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IConfigurationEngine">
+            <summary>
+            Contract for accessing trading system configuration.
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.MarketReplayEngine.ReplayAsync(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.Candle},System.Int32)">

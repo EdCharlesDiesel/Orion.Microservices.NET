@@ -1,7 +1,7 @@
 ﻿using MediatR;
+using Orion.API.TradingEconomics.Commands;
 using Orion.API.TradingEconomics.Entities;
 using Orion.API.TradingEconomics.Interfaces;
-using Orion.Core.MacroEngine.Application;
 
 namespace Orion.API.TradingEconomics.Handlers
 {

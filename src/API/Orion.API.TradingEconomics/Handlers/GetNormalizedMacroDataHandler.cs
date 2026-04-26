@@ -7,20 +7,14 @@ namespace Orion.API.TradingEconomics.Handlers
 {
 
 
-    public class GetNormalizedMacroDataHandler: IRequestHandler<GetNormalizedMacroDataQuery, List<NormalizedIndicator>>
+    public class GetNormalizedMacroDataHandler(IRepository<NormalizedIndicator> repo)
+        : IRequestHandler<GetNormalizedMacroDataQuery, List<NormalizedIndicator>>
     {
-        private readonly IRepository<NormalizedIndicator> _repo;
-
-        public GetNormalizedMacroDataHandler(IRepository<NormalizedIndicator> repo)
-        {
-            _repo = repo;
-        }
-
         public async Task<List<NormalizedIndicator>> Handle(
             GetNormalizedMacroDataQuery request,
             CancellationToken ct)
         {
-            var data = await _repo.GetAllAsync();
+            var data = await repo.GetAllAsync();
 
             // Optional filtering
             if (!string.IsNullOrWhiteSpace(request.Country))

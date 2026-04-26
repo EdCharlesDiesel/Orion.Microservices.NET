@@ -1,55 +1,28 @@
 ﻿using System.Runtime.CompilerServices;
+using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public class MarketReplayEngine
+    /// <summary>
+    /// Replays historical candles to simulate real-time market data flow.
+    /// </summary>
+    public sealed class MarketReplayEngine : IMarketReplayEngine
     {
-
-        /// <summary>
-        /// Replays candles sequentially asynchronously, simulating real-time market data flow
-        /// </summary>
-        /// <param name="candles">Historical candles to replay</param>
-        /// <param name="delayBetweenCandles">Optional delay between candles to simulate real-time (default: 0ms)</param>
-        /// <returns>Async enumerable of candles</returns>
-        public async IAsyncEnumerable<Candle> ReplayAsync(List<Candle> candles, [EnumeratorCancellation] int delayBetweenCandlesMs = 0)
+        /// <inheritdoc />
+        public async IAsyncEnumerable<Candle> ReplayAsync(
+            IEnumerable<Candle> candles,
+            int delayBetweenCandlesMs = 0,
+            [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
-            if (candles == null)
-                throw new ArgumentNullException(nameof(candles));
+            ArgumentNullException.ThrowIfNull(candles);
 
-            if (!candles.Any())
-                yield break;
-
-            // Ensure candles are sorted by time
-            var orderedCandles = candles
-                .OrderBy(c => c.Time)
-                .ToList();
-
-            foreach (var candle in orderedCandles)
-            {
-                // Simulate processing delay if specified
-                if (delayBetweenCandlesMs > 0)
-                {
-                    await Task.Delay(delayBetweenCandlesMs).ConfigureAwait(false);
-                }
-
-                yield return candle;
-            }
-        }
-
-        /// <summary>
-        /// Replays candles with cancellation support
-        /// </summary>
-        public async IAsyncEnumerable<Candle> ReplayAsync(List<Candle> candles, CancellationToken cancellationToken, [EnumeratorCancellation] int delayBetweenCandlesMs = 0)
-        {
-            if (candles == null)
-                throw new ArgumentNullException(nameof(candles));
-
-            if (!candles.Any())
-                yield break;
+            if (delayBetweenCandlesMs < 0)
+                throw new ArgumentOutOfRangeException(nameof(delayBetweenCandlesMs), "Delay cannot be negative.");
 
             var orderedCandles = candles
-                .OrderBy(c => c.Time)
+                .OrderBy(x => x.Time)
                 .ToList();
 
             foreach (var candle in orderedCandles)
@@ -57,63 +30,43 @@ namespace Orion.API.TradingEconomics.Engine
                 cancellationToken.ThrowIfCancellationRequested();
 
                 if (delayBetweenCandlesMs > 0)
-                {
                     await Task.Delay(delayBetweenCandlesMs, cancellationToken).ConfigureAwait(false);
-                }
 
                 yield return candle;
             }
         }
 
-        /// <summary>
-        /// Replays candles in batches for performance optimization
-        /// </summary>
-        public async IAsyncEnumerable<IReadOnlyList<Candle>> ReplayBatchesAsync(List<Candle> candles, int batchSize = 100, [EnumeratorCancellation] int delayBetweenBatchesMs = 0)
+        /// <inheritdoc />
+        public async IAsyncEnumerable<IReadOnlyList<Candle>> ReplayBatchesAsync(
+            IEnumerable<Candle> candles,
+            int batchSize = 100,
+            int delayBetweenBatchesMs = 0,
+            [EnumeratorCancellation] CancellationToken cancellationToken = default)
         {
-            if (candles == null)
-                throw new ArgumentNullException(nameof(candles));
+            ArgumentNullException.ThrowIfNull(candles);
 
             if (batchSize <= 0)
-                throw new ArgumentException("Batch size must be greater than 0", nameof(batchSize));
+                throw new ArgumentOutOfRangeException(nameof(batchSize), "Batch size must be greater than 0.");
 
-            if (!candles.Any())
-                yield break;
+            if (delayBetweenBatchesMs < 0)
+                throw new ArgumentOutOfRangeException(nameof(delayBetweenBatchesMs), "Delay cannot be negative.");
 
             var orderedCandles = candles
-                .OrderBy(c => c.Time)
+                .OrderBy(x => x.Time)
                 .ToList();
 
-            for (int i = 0; i < orderedCandles.Count; i += batchSize)
+            for (var i = 0; i < orderedCandles.Count; i += batchSize)
             {
-                var batch = orderedCandles
+                cancellationToken.ThrowIfCancellationRequested();
+
+                if (delayBetweenBatchesMs > 0)
+                    await Task.Delay(delayBetweenBatchesMs, cancellationToken).ConfigureAwait(false);
+
+                yield return orderedCandles
                     .Skip(i)
                     .Take(batchSize)
                     .ToList();
-
-                if (delayBetweenBatchesMs > 0)
-                {
-                    await Task.Delay(delayBetweenBatchesMs).ConfigureAwait(false);
-                }
-
-                yield return batch;
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="candles"></param>
-        /// <returns></returns>
-        public async IAsyncEnumerable<Candle> ReplayAsync(IEnumerable<Candle> candles)
-        {
-            foreach (var candle in candles.OrderBy(x => x.Time))
-            {
-                yield return candle;
-
-                // simulate real-time flow
-                await Task.Delay(1);
-            }
-        }
-
     }
 }

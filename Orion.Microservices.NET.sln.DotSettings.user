@@ -36,10 +36,11 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=24D3F7FC_002D66FC_002D4317_002D83DB_002DFDBAD0A5B2AB/@EntryIndexedValue">529CD237-D27B-4134-861C-9AF6F29C692F</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=291B1B14_002D0A03_002D4FF7_002DA8B6_002D2E7575F4AC07/@EntryIndexedValue">Orion.Domain.UnitTests</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=3E22D332_002DDA55_002D48A9_002DBB5E_002DDF4745A68E6A/@EntryIndexedValue">Orion.API.CompetitionScorecard.Tests</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=42594CDA_002D4E21_002D4C46_002DB5A4_002D2B74CC72BA44/@EntryIndexedValue">0AB3AB87-04B0-4F3B-863D-780BA4BA245A</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=61EE6B6B_002D3A72_002D4D9F_002D8756_002D228AB8C5D64F/@EntryIndexedValue">Orion.Services.Chat.API.Tests</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=814B99C9_002D7C60_002D4451_002D914D_002DAE3CD918E278/@EntryIndexedValue">4BBC93EE-9774-4FCA-8277-3E97E18C3ACC</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=84186A4B_002D6EF1_002D47A5_002D912B_002DA9D173E0C39C/@EntryIndexedValue">Orion.Services.Basket.API.Tests</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=9B57E108_002D1255_002D4F09_002D844F_002DC5675C77065B/@EntryIndexedValue">0884D5E2-E9E7-4481-8AF0-A42F25FB194E</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=9B57E108_002D1255_002D4F09_002D844F_002DC5675C77065B/@EntryIndexedValue">42594CDA-4E21-4C46-B5A4-2B74CC72BA44</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestProjectMapping/=AB1409C5_002DF703_002D4073_002DB884_002D78F822874DB6/@EntryIndexedValue">70E07A35-6A35-4343-9385-0D0CEB743491</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/CreateUnitTestDialog/TestTemplateMapping/=xUnit/@EntryIndexedValue">33ff99d8-b1ad-4ed5-a4fd-376b97c2c841</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=17870995_002D381a_002D4ac1_002D9d91_002D31d39da4fe3b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from Solution" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;

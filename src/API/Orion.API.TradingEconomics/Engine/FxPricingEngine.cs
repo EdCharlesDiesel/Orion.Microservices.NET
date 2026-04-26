@@ -1,19 +1,29 @@
-﻿using Orion.API.TradingEconomics.Entities;
+﻿using Orion.API.TradingEconomics.Engine.Interfaces;
+using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public sealed class FxPricingEngine(CurrencyStrengthModel strength, FxRelativePricer pricer, FxPriceSimulator simulator)
+    /// <summary>
+    /// Provides FX pricing simulation and trade pricing metadata.
+    /// </summary>
+    public sealed class FxPricingEngine(
+        CurrencyStrengthModel strength,
+        FxRelativePricer pricer,
+        FxPriceSimulator simulator) : IFxPricingEngine
     {
-        public List<FxPrice> Run(List<MacroState> states, Dictionary<string, decimal> initialPrices)
+        /// <summary>
+        /// Runs FX price simulation using macro states and initial prices.
+        /// </summary>
+        public List<FxPrice> Run(
+            List<MacroState> states,
+            Dictionary<string, decimal> initialPrices)
         {
-            if (states == null)
-                throw new ArgumentNullException(nameof(states));
-
-            if (initialPrices == null)
-                throw new ArgumentNullException(nameof(initialPrices));
+            ArgumentNullException.ThrowIfNull(states);
+            ArgumentNullException.ThrowIfNull(initialPrices);
 
             if (states.Count == 0)
-                return new List<FxPrice>();
+                return [];
 
             if (initialPrices.Count == 0)
                 throw new ArgumentException("Initial prices are required.", nameof(initialPrices));
@@ -25,7 +35,13 @@ namespace Orion.API.TradingEconomics.Engine
                 pricer);
         }
 
-        public PricingResult Price(string signalPair, string signalDirection, decimal sizePositionSize)
+        /// <summary>
+        /// Builds a pricing result for a forex signal.
+        /// </summary>
+        public PricingResult Price(
+            string signalPair,
+            string signalDirection,
+            decimal sizePositionSize)
         {
             if (string.IsNullOrWhiteSpace(signalPair))
                 throw new ArgumentException("Signal pair is required.", nameof(signalPair));
@@ -34,26 +50,29 @@ namespace Orion.API.TradingEconomics.Engine
                 throw new ArgumentException("Signal direction is required.", nameof(signalDirection));
 
             if (sizePositionSize <= 0)
-                throw new ArgumentOutOfRangeException(nameof(sizePositionSize), "Position size must be greater than zero.");
+                throw new ArgumentOutOfRangeException(
+                    nameof(sizePositionSize),
+                    "Position size must be greater than zero.");
 
             var direction = signalDirection.Trim().ToUpperInvariant();
 
             if (direction is not "LONG" and not "SHORT")
                 throw new ArgumentException("Direction must be LONG or SHORT.", nameof(signalDirection));
 
-            var pair = signalPair.Trim().ToUpperInvariant();
+            var cleanPair = signalPair
+                .Trim()
+                .ToUpperInvariant()
+                .Replace("/", string.Empty)
+                .Replace("-", string.Empty)
+                .Replace("_", string.Empty);
 
-            var baseCurrency = pair.Length >= 6
-                ? pair[..3]
-                : string.Empty;
+            if (cleanPair.Length != 6)
+                throw new ArgumentException(
+                    "Pair must be in a valid format, for example EURUSD or EUR/USD.",
+                    nameof(signalPair));
 
-            var quoteCurrency = pair.Length >= 6
-                ? pair[^3..]
-                : string.Empty;
-
-            if (string.IsNullOrWhiteSpace(baseCurrency) || string.IsNullOrWhiteSpace(quoteCurrency))
-                throw new ArgumentException("Pair must be in a valid format, for example EURUSD or EUR/USD.", nameof(signalPair));
-
+            var baseCurrency = cleanPair[..3];
+            var quoteCurrency = cleanPair[3..];
             var normalizedPair = $"{baseCurrency}/{quoteCurrency}";
 
             return new PricingResult

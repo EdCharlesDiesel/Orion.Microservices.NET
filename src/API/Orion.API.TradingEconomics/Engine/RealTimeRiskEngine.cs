@@ -1,10 +1,13 @@
+using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
 using Orion.API.TradingEconomics.Enum;
 
-
 namespace Orion.API.TradingEconomics.Engine
 {
-    public sealed class RealTimeRiskEngine
+    /// <summary>
+    /// Performs real-time trade risk checks against account and market limits.
+    /// </summary>
+    public sealed class RealTimeRiskEngine : IRealTimeRiskEngine
     {
         private readonly decimal _maxAccountDrawdownPercent;
         private readonly decimal _maxPositionRiskPercent;
@@ -23,57 +26,52 @@ namespace Orion.API.TradingEconomics.Engine
             _maxDailyLossPercent = maxDailyLossPercent;
         }
 
+        /// <inheritdoc />
         public RealTimeRiskResult Evaluate(
             AccountSnapshot account,
             ExecutionOrder execution,
             ExitPlan exitPlan,
             MarketQuote quote)
         {
-            if (account == null)
-                throw new ArgumentNullException(nameof(account));
+            ArgumentNullException.ThrowIfNull(account);
+            ArgumentNullException.ThrowIfNull(execution);
+            ArgumentNullException.ThrowIfNull(exitPlan);
+            ArgumentNullException.ThrowIfNull(quote);
 
-            if (execution == null)
-                throw new ArgumentNullException(nameof(execution));
+            if (account.Balance <= 0m)
+                throw new ArgumentException("Account balance must be greater than zero.", nameof(account));
 
-            if (exitPlan == null)
-                throw new ArgumentNullException(nameof(exitPlan));
+            if (account.Equity <= 0m)
+                throw new ArgumentException("Account equity must be greater than zero.", nameof(account));
 
-            if (quote == null)
-                throw new ArgumentNullException(nameof(quote));
-
-            if (account.Balance <= 0)
-                throw new ArgumentException("Account balance must be greater than zero.", nameof(account.Balance));
-
-            if (account.Equity <= 0)
-                throw new ArgumentException("Account equity must be greater than zero.", nameof(account.Equity));
-
-            if (quote.Bid <= 0 || quote.Ask <= 0)
+            if (quote.Bid <= 0m || quote.Ask <= 0m || quote.Ask <= quote.Bid)
                 throw new ArgumentException("Invalid market quote bid/ask.", nameof(quote));
+
+            if (execution.ExecutedPrice <= 0m)
+                throw new ArgumentException("Execution price must be greater than zero.", nameof(execution));
+
+            if (execution.FilledSize <= 0m)
+                throw new ArgumentException("Execution filled size must be greater than zero.", nameof(execution));
 
             var direction = execution.Direction?.Trim().ToUpperInvariant();
 
             if (direction is not "LONG" and not "SHORT")
-                throw new ArgumentException("Execution direction must be LONG or SHORT.", nameof(execution.Direction));
+                throw new ArgumentException("Execution direction must be LONG or SHORT.", nameof(execution));
 
             var mid = (quote.Bid + quote.Ask) / 2m;
-            var spread = quote.Ask - quote.Bid;
-            var spreadPercent = mid > 0 ? spread / mid * 100m : 0m;
+            var spreadPercent = (quote.Ask - quote.Bid) / mid * 100m;
 
-            var drawdownPercent = account.Balance > 0
-                ? (account.Balance - account.Equity) / account.Balance * 100m
-                : 0m;
+            var drawdownPercent = Math.Max(
+                0m,
+                (account.Balance - account.Equity) / account.Balance * 100m);
 
-            var dailyLossPercent = account.Balance > 0
-                ? Math.Abs(account.RealizedPnlToday < 0 ? account.RealizedPnlToday : 0m) / account.Balance * 100m
+            var dailyLossPercent = account.RealizedPnlToday < 0m
+                ? Math.Abs(account.RealizedPnlToday) / account.Balance * 100m
                 : 0m;
 
             var stopDistance = Math.Abs(execution.ExecutedPrice - exitPlan.StopLoss);
-
             var positionRiskAmount = stopDistance * execution.FilledSize;
-
-            var positionRiskPercent = account.Equity > 0
-                ? positionRiskAmount / account.Equity * 100m
-                : 0m;
+            var positionRiskPercent = positionRiskAmount / account.Equity * 100m;
 
             var violations = new List<string>();
 
@@ -95,15 +93,15 @@ namespace Orion.API.TradingEconomics.Engine
 
             return new RealTimeRiskResult
             {
-                Pair = execution.Pair,
+                Pair = execution.Pair?.Trim().ToUpperInvariant() ?? string.Empty,
                 Direction = direction,
                 AccountBalance = account.Balance,
                 AccountEquity = account.Equity,
-                DrawdownPercent = drawdownPercent,
-                DailyLossPercent = dailyLossPercent,
-                PositionRiskAmount = positionRiskAmount,
-                PositionRiskPercent = positionRiskPercent,
-                SpreadPercent = spreadPercent,
+                DrawdownPercent = Math.Round(drawdownPercent, 4),
+                DailyLossPercent = Math.Round(dailyLossPercent, 4),
+                PositionRiskAmount = Math.Round(positionRiskAmount, 2),
+                PositionRiskPercent = Math.Round(positionRiskPercent, 4),
+                SpreadPercent = Math.Round(spreadPercent, 4),
                 Action = action,
                 IsAllowed = action == RiskAction.AllowTrade,
                 Violations = violations,

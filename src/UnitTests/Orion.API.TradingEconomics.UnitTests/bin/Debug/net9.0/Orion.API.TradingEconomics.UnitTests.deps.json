@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "Orion.API.TradingEconomics.UnitTests/1.0.0": {
         "dependencies": {
+          "JetBrains.Annotations": "2025.2.0",
           "Microsoft.NET.Test.Sdk": "17.12.0",
           "Moq": "4.20.72",
           "Orion.Services.TradingEconomics.API": "1.0.0",
@@ -188,6 +189,14 @@
           "lib/net9.0/JasperFx.RuntimeCompiler.dll": {
             "assemblyVersion": "4.4.0.0",
             "fileVersion": "4.4.0.0"
+          }
+        }
+      },
+      "JetBrains.Annotations/2025.2.0": {
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "assemblyVersion": "4242.42.42.42",
+            "fileVersion": "2025.2.0.0"
           }
         }
       },
@@ -2848,6 +2857,13 @@
       "sha512": "sha512-n5dOtQlytGsCfpRyOGDw/qHaqPDd2GcR7pgO53bQto1T82/VZjQdzkfuLQt8vUMY6D+m1TgqUjqedNFDT1+rEQ==",
       "path": "jasperfx.runtimecompiler/4.4.0",
       "hashPath": "jasperfx.runtimecompiler.4.4.0.nupkg.sha512"
+    },
+    "JetBrains.Annotations/2025.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2BvMkOSW+50EbQFhWFIPWTqmcDLiyyjwkMN7lN386bhP2vN/7ts5t59qu11HtenmHFxqDzaD8J1fFoh+QTOzVA==",
+      "path": "jetbrains.annotations/2025.2.0",
+      "hashPath": "jetbrains.annotations.2025.2.0.nupkg.sha512"
     },
     "Marten/8.32.1": {
       "type": "package",

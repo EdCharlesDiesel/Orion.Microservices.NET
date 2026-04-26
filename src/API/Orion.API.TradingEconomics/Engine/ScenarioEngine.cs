@@ -1,34 +1,48 @@
 ﻿using MediatR;
 using Orion.API.TradingEconomics.Application;
 using Orion.API.TradingEconomics.Commands;
+using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
-using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public abstract class ScenarioEngine(IMediator mediator) : IScenarioEngine
+    /// <summary>
+    /// Runs scenario analysis by applying macro shocks and recalculating factors, signals and portfolio impact.
+    /// </summary>
+    public sealed class ScenarioEngine(IMediator mediator) : IScenarioEngine
     {
-        public async Task<ScenarioResult> RunAsync(Scenario scenario)
-        {
-            // 1. Get baseline normalized data
-            var baseline = await mediator.Send(new GetNormalizedMacroDataQuery());
+        private readonly IMediator _mediator = mediator ?? throw new ArgumentNullException(nameof(mediator));
 
-            // 2. Apply shocks
+        /// <inheritdoc />
+        public async Task<ScenarioResult> RunAsync(
+            Scenario scenario,
+            CancellationToken cancellationToken = default)
+        {
+            ArgumentNullException.ThrowIfNull(scenario);
+
+            if (string.IsNullOrWhiteSpace(scenario.Name))
+                throw new ArgumentException("Scenario name is required.", nameof(scenario));
+
+            scenario.Shocks ??= [];
+
+            var baseline = await _mediator.Send(
+                new GetNormalizedMacroDataQuery(),
+                cancellationToken);
+
             var shockedData = ApplyShocks(baseline, scenario.Shocks);
 
-            // 3. Recompute factors
-            var factors = await mediator.Send(
-                new CalculateCurrencyFactorsWithOverrideCommand(shockedData));
+            var factors = await _mediator.Send(
+                new CalculateCurrencyFactorsWithOverrideCommand(shockedData),
+                cancellationToken);
 
-            // 4. Generate signals
-            var signals = await mediator.Send(
-                new GenerateFxSignalsFromFactorsCommand(factors));
+            var signals = await _mediator.Send(
+                new GenerateFxSignalsFromFactorsCommand(factors),
+                cancellationToken);
 
-            // 5. Build portfolio
-            var portfolio = await mediator.Send(
-                new BuildPortfolioFromSignalsCommand(signals));
+            var portfolio = await _mediator.Send(
+                new BuildPortfolioFromSignalsCommand(signals),
+                cancellationToken);
 
-            // 6. Compute impact
             var impact = ComputeImpact(factors, signals);
 
             return new ScenarioResult
@@ -41,35 +55,71 @@ namespace Orion.API.TradingEconomics.Engine
             };
         }
 
-        private List<NormalizedIndicator> ApplyShocks(List<NormalizedIndicator> data, List<ScenarioShock> shocks)
+        /// <inheritdoc />
+        public ScenarioResult Build(
+            NormalizedIndicator normalized,
+            RegimeResult regime)
         {
-            var result = data.Select(x => new NormalizedIndicator
+            ArgumentNullException.ThrowIfNull(normalized);
+            ArgumentNullException.ThrowIfNull(regime);
+
+            var direction = normalized.ZScore >= 0m ? "BULLISH" : "BEARISH";
+            var strength = Math.Min(100m, Math.Abs(normalized.ZScore) * 25m);
+
+            return new ScenarioResult
             {
-                Id = x.Id,
-                Country = x.Country,
-                Indicator = x.Indicator,
-                Date = x.Date,
-                Value = x.Value,
-                YoY = x.YoY,
-                MoM = x.MoM,
-                ZScore = x.ZScore,
-                Surprise = x.Surprise
-            }).ToList();
+                ScenarioName = $"{normalized.Country}-{normalized.Indicator}-{regime.Regime}",
+                Impact = new ScenarioImpact
+                {
+                    ExpectedReturnChange = strength,
+                    RiskChange = Math.Abs(normalized.Surprise),
+                    KeyDrivers =
+                    [
+                        $"{normalized.Country} {normalized.Indicator} is {direction} with ZScore={normalized.ZScore:F2}.",
+                        $"Detected regime is {regime.Regime} with confidence {regime.Confidence:F0}%."
+                    ]
+                }
+            };
+        }
+
+        private static List<NormalizedIndicator> ApplyShocks(
+            IEnumerable<NormalizedIndicator> data,
+            IEnumerable<ScenarioShock> shocks)
+        {
+            var result = data
+                .Select(x => new NormalizedIndicator
+                {
+                    Id = x.Id,
+                    Country = x.Country,
+                    Indicator = x.Indicator,
+                    Date = x.Date,
+                    Value = x.Value,
+                    Previous = x.Previous,
+                    Forecast = x.Forecast,
+                    YoY = x.YoY,
+                    MoM = x.MoM,
+                    ZScore = x.ZScore,
+                    RollingMean = x.RollingMean,
+                    RollingStdDev = x.RollingStdDev,
+                    Surprise = x.Surprise,
+                    Frequency = x.Frequency,
+                    CreatedAt = x.CreatedAt
+                })
+                .ToList();
 
             foreach (var shock in shocks)
             {
-                var affected = result
-                    .Where(x => x.Country == shock.Country &&
-                                x.Indicator.Contains(shock.Indicator));
+                var affected = result.Where(x =>
+                    string.Equals(x.Country, shock.Country, StringComparison.OrdinalIgnoreCase) &&
+                    x.Indicator.Contains(shock.Indicator, StringComparison.OrdinalIgnoreCase));
 
                 foreach (var item in affected)
                 {
                     if (shock.Type == ShockType.Absolute)
                         item.Value += shock.ShockValue;
                     else
-                        item.Value *= (1 + shock.ShockValue);
+                        item.Value *= 1m + shock.ShockValue;
 
-                    // Recompute ZScore (simplified)
                     item.ZScore += shock.ShockValue * 0.5m;
                 }
             }
@@ -77,7 +127,9 @@ namespace Orion.API.TradingEconomics.Engine
             return result;
         }
 
-        private static ScenarioImpact ComputeImpact(List<CurrencyFactorScore> factors, List<FxSignal> signals)
+        private static ScenarioImpact ComputeImpact(
+            IReadOnlyCollection<CurrencyFactorScore> factors,
+            IReadOnlyCollection<FxSignal> signals)
         {
             var topFactor = factors
                 .OrderByDescending(x => Math.Abs(x.TotalScore))
@@ -87,20 +139,20 @@ namespace Orion.API.TradingEconomics.Engine
                 .OrderByDescending(x => x.SignalStrength)
                 .FirstOrDefault();
 
-            var avgSignalStrength = signals.Count == 0
-                ? 0
+            var averageSignalStrength = signals.Count == 0
+                ? 0m
                 : signals.Average(x => x.SignalStrength);
 
-            var avgRisk = factors.Count == 0
-                ? 0
+            var averageRisk = factors.Count == 0
+                ? 0m
                 : factors.Average(x => Math.Abs(x.Risk));
 
             return new ScenarioImpact
             {
-                ExpectedReturnChange = avgSignalStrength,
-                RiskChange = avgRisk,
-                KeyDrivers = new List<string>
-                {
+                ExpectedReturnChange = averageSignalStrength,
+                RiskChange = averageRisk,
+                KeyDrivers =
+                [
                     topFactor is null
                         ? "No dominant macro factor found."
                         : $"{topFactor.Currency} has the strongest total macro score: {topFactor.TotalScore:N2}",
@@ -108,13 +160,8 @@ namespace Orion.API.TradingEconomics.Engine
                     topSignal is null
                         ? "No FX signal generated."
                         : $"Strongest FX signal is {topSignal.Pair} with strength {topSignal.SignalStrength:N2}"
-                }
+                ]
             };
-        }
-
-        internal ScenarioResult Build(NormalizedIndicator normalized, RegimeResult regime)
-        {
-            throw new NotImplementedException();
         }
     }
 }

@@ -8,6 +8,9 @@
         public decimal   RiskSentiment { get; set; } // -1 to +1
 
         public Dictionary<string, decimal> CurrencyStrength { get; set; } = new();
+        public decimal GdpGrowth { get; set; }
+        public decimal Sentiment { get; set; }
+        public bool IsStable { get; set; }
     }
 
 

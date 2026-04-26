@@ -4,6 +4,6 @@
     {
         public int MinimumWindowSize { get; set; } = 6;
         public bool WinsorizeOutliers { get; set; } = true;
-        public double WinsorizeZLimit { get; set; } = 4.0;
+        public decimal WinsorizeZLimit { get; set; } = 4.0m;
     }
 }

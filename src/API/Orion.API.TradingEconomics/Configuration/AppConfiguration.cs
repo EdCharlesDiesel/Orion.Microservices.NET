@@ -1,4 +1,6 @@
-﻿namespace Orion.API.TradingEconomics.Configuration
+﻿using Orion.API.TradingEconomics.Entities;
+
+namespace Orion.API.TradingEconomics.Configuration
 {
     public class AppConfiguration
     {
@@ -70,6 +72,7 @@
         };
         public bool UseMockData { get; internal set; }
         public object ApiBaseUrl { get; internal set; }
+        public LiveTradingConfig LiveTrading { get; set; }
 
         // Helper Methods
         public decimal GetATRMultiplier(string pair)

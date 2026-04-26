@@ -1,7 +1,4 @@
-using Orion.API.TradingEconomics.Engine;
-using Orion.API.TradingEconomics.Entities;
-
-namespace Orion.API.TradingEconomics.Helpers;
+namespace Orion.API.TradingEconomics.Entities;
 
 public class DataQualityReport
 {

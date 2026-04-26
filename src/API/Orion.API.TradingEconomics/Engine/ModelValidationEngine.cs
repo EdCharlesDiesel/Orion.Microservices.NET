@@ -1,9 +1,14 @@
-﻿using Orion.API.TradingEconomics.Entities;
+﻿using Orion.API.TradingEconomics.Engine.Interfaces;
+using Orion.API.TradingEconomics.Entities;
 
 namespace Orion.API.TradingEconomics.Engine
 {
-    public sealed class ModelValidationEngine
+    /// <summary>
+    /// Scores model quality using consistency, drawdown, edge and overfit risk.
+    /// </summary>
+    public sealed class ModelValidationEngine : IModelValidationEngine
     {
+        /// <inheritdoc />
         public ModelValidationReport Validate(
             PerformanceReport performance,
             List<TradePlan> trades)
@@ -15,7 +20,7 @@ namespace Orion.API.TradingEconomics.Engine
                 return ModelValidationReport.Fail("No trades available for validation.");
 
             var closedTrades = trades
-                .Where(x => x.Status == "CLOSED")
+                .Where(x => string.Equals(x.Status, "CLOSED", StringComparison.OrdinalIgnoreCase))
                 .OrderBy(x => x.ClosedAt)
                 .ToList();
 
@@ -44,7 +49,7 @@ namespace Orion.API.TradingEconomics.Engine
             return new ModelValidationReport
             {
                 IsValid = finalScore >= 0.65m,
-                Score = decimal.Round(finalScore, 2),
+                Score = Math.Round(finalScore, 2),
                 Verdict = verdict,
                 Reason =
                     $"Consistency={consistencyScore:F2}, " +
@@ -55,30 +60,30 @@ namespace Orion.API.TradingEconomics.Engine
             };
         }
 
-        private static decimal CalculateConsistencyScore(List<TradePlan> trades)
+        private static decimal CalculateConsistencyScore(IReadOnlyList<TradePlan> trades)
         {
             var chunks = trades
                 .Select((trade, index) => new { trade, index })
                 .GroupBy(x => x.index / 10)
-                .Select(g => g.Select(x => x.trade).ToList())
-                .Where(g => g.Count >= 5)
+                .Select(x => x.Select(y => y.trade).ToList())
+                .Where(x => x.Count >= 5)
                 .ToList();
 
             if (chunks.Count == 0)
-                return 0;
+                return 0m;
 
-            var profitableChunks = chunks.Count(chunk => chunk.Sum(x => x.ProfitLoss) > 0);
+            var profitableChunks = chunks.Count(x => x.Sum(y => y.ProfitLoss) > 0m);
 
             return Clamp01((decimal)profitableChunks / chunks.Count);
         }
 
         private static decimal CalculateDrawdownScore(PerformanceReport performance)
         {
-            if (performance.NetProfit <= 0)
-                return 0;
+            if (performance.NetProfit <= 0m)
+                return 0m;
 
-            if (performance.MaxDrawdown <= 0)
-                return 1;
+            if (performance.MaxDrawdown <= 0m)
+                return 1m;
 
             var drawdownRatio = performance.MaxDrawdown / performance.NetProfit;
 
@@ -92,7 +97,7 @@ namespace Orion.API.TradingEconomics.Engine
 
         private static decimal CalculateEdgeScore(PerformanceReport performance)
         {
-            decimal score = 0;
+            var score = 0m;
 
             if (performance.ProfitFactor >= 1.2m)
                 score += 0.30m;
@@ -100,7 +105,7 @@ namespace Orion.API.TradingEconomics.Engine
             if (performance.ProfitFactor >= 1.5m)
                 score += 0.20m;
 
-            if (performance.Expectancy > 0)
+            if (performance.Expectancy > 0m)
                 score += 0.25m;
 
             if (performance.WinRate >= 50m)
@@ -112,18 +117,18 @@ namespace Orion.API.TradingEconomics.Engine
             return Clamp01(score);
         }
 
-        private static decimal CalculateOverfitScore(List<TradePlan> trades)
+        private static decimal CalculateOverfitScore(IReadOnlyCollection<TradePlan> trades)
         {
             var pnl = trades.Select(x => x.ProfitLoss).ToList();
 
             if (pnl.Count < 30)
-                return 0;
+                return 0m;
 
             var largestWin = pnl.Max();
-            var totalProfit = pnl.Where(x => x > 0).Sum();
+            var totalProfit = pnl.Where(x => x > 0m).Sum();
 
-            if (totalProfit <= 0)
-                return 0;
+            if (totalProfit <= 0m)
+                return 0m;
 
             var largestWinContribution = largestWin / totalProfit;
 
