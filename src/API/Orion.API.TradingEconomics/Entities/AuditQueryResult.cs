@@ -8,4 +8,5 @@ public class AuditQueryResult
     public int PageSize { get; set; }
     public int PageNumber { get; set; }
     public bool HasMorePages { get; set; }
+    public int Page { get; set; }
 }

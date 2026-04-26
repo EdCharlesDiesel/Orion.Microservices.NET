@@ -107,6 +107,23 @@
           }
         }
       },
+      "Devlooped.SponsorLink/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/_._": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Devlooped.SponsorLink.props": {},
+          "buildTransitive/Devlooped.SponsorLink.targets": {}
+        }
+      },
       "DistributedLock.Core/1.0.8": {
         "type": "package",
         "compile": {
@@ -2850,10 +2867,11 @@
           }
         }
       },
-      "Moq/4.20.69": {
+      "Moq/4.20.0": {
         "type": "package",
         "dependencies": {
-          "Castle.Core": "5.1.1"
+          "Castle.Core": "5.1.1",
+          "Devlooped.SponsorLink": "1.0.0"
         },
         "compile": {
           "lib/net6.0/Moq.dll": {
@@ -5628,6 +5646,29 @@
         "lib/netstandard2.0/CsvHelper.xml",
         "lib/netstandard2.1/CsvHelper.dll",
         "lib/netstandard2.1/CsvHelper.xml"
+      ]
+    },
+    "Devlooped.SponsorLink/1.0.0": {
+      "sha512": "YtGfB0L0OUGK/Nl7YR8jVLOb8zIYo+pM80nw86GVqqeI36D3itw/N5agupsn4sAJxQxKVJti9KvqqAR8dfrW1A==",
+      "type": "package",
+      "path": "devlooped.sponsorlink/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "analyzers/dotnet/Devlooped.SponsorLink.dll",
+        "analyzers/dotnet/Devlooped.SponsorLink.xml",
+        "analyzers/dotnet/System.Net.Http.WinHttpHandler.dll",
+        "analyzers/dotnet/es/Devlooped.SponsorLink.resources.dll",
+        "buildTransitive/Devlooped.SponsorLink.props",
+        "buildTransitive/Devlooped.SponsorLink.targets",
+        "devlooped.sponsorlink.1.0.0.nupkg.sha512",
+        "devlooped.sponsorlink.nuspec",
+        "icon.png",
+        "lib/netstandard2.0/Devlooped.SponsorLink.dll",
+        "lib/netstandard2.0/Devlooped.SponsorLink.xml",
+        "lib/netstandard2.0/System.Net.Http.WinHttpHandler.dll",
+        "lib/netstandard2.0/es/Devlooped.SponsorLink.resources.dll",
+        "readme.md"
       ]
     },
     "DistributedLock.Core/1.0.8": {
@@ -10000,13 +10041,16 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Moq/4.20.69": {
-      "sha512": "8P/oAUOL8ZVyXnzBBcgdhTsOD1kQbAWfOcMI7KDQO3HqQtzB/0WYLdnMa4Jefv8nu/MQYiiG0IuoJdvG0v0Nig==",
+    "Moq/4.20.0": {
+      "sha512": "QZg6hh/MCpVN9uq3/uwfgKCHsV5NqTASJbowai960f2yjkyDk02qG5LO301uMqVIc+ge/GRbUo3qaYI6mlqQrg==",
       "type": "package",
-      "path": "moq/4.20.69",
+      "path": "moq/4.20.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "analyzers/dotnet/roslyn4.0/Moq.CodeAnalysis.dll",
+        "analyzers/dotnet/roslyn4.0/Moq.CodeAnalysis.xml",
+        "analyzers/dotnet/roslyn4.0/es/Moq.CodeAnalysis.resources.dll",
         "icon.png",
         "lib/net462/Moq.dll",
         "lib/net462/Moq.xml",
@@ -10016,7 +10060,7 @@
         "lib/netstandard2.0/Moq.xml",
         "lib/netstandard2.1/Moq.dll",
         "lib/netstandard2.1/Moq.xml",
-        "moq.4.20.69.nupkg.sha512",
+        "moq.4.20.0.nupkg.sha512",
         "moq.nuspec",
         "readme.md"
       ]
@@ -15247,7 +15291,7 @@
     "net9.0": [
       "JetBrains.Annotations >= 2025.2.0",
       "Microsoft.NET.Test.Sdk >= 17.5.0",
-      "Moq >= 4.20.69",
+      "Moq >= 4.20.0",
       "Orion.API.HumanResources >= 1.0.0",
       "Orion.API.TradingEconomics.UnitTests >= 1.0.0",
       "xunit >= 2.4.2",
@@ -15267,7 +15311,6 @@
       "packagesPath": "C:\\Users\\kmokhethi\\.nuget\\packages\\",
       "outputPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
-      "crossTargeting": true,
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
@@ -15277,7 +15320,7 @@
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
-        "net9.0"
+        "net9"
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -15286,7 +15329,7 @@
       },
       "frameworks": {
         "net9.0": {
-          "targetAlias": "net9.0",
+          "targetAlias": "net9",
           "projectReferences": {
             "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj": {
               "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj"
@@ -15311,7 +15354,7 @@
     },
     "frameworks": {
       "net9.0": {
-        "targetAlias": "net9.0",
+        "targetAlias": "net9",
         "dependencies": {
           "JetBrains.Annotations": {
             "target": "Package",
@@ -15323,7 +15366,7 @@
           },
           "Moq": {
             "target": "Package",
-            "version": "[4.20.69, )"
+            "version": "[4.20.0, )"
           },
           "xunit": {
             "target": "Package",
@@ -15368,6 +15411,16 @@
       ]
     },
     {
+      "code": "NU1901",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Moq' 4.20.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-6r78-m64m-qwcf",
+      "libraryId": "Moq",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
       "code": "NU1605",
       "level": "Error",
       "message": "Warning As Error: Detected package downgrade: Microsoft.NET.Test.Sdk from 17.12.0 to 17.5.0. Reference the package directly from the project to select a different version. \r\n Orion.API.HumanResources.UnitTests -> Orion.API.TradingEconomics.UnitTests -> Microsoft.NET.Test.Sdk (>= 17.12.0) \r\n Orion.API.HumanResources.UnitTests -> Microsoft.NET.Test.Sdk (>= 17.5.0)",
@@ -15379,7 +15432,7 @@
     {
       "code": "NU1605",
       "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Moq from 4.20.72 to 4.20.69. Reference the package directly from the project to select a different version. \r\n Orion.API.HumanResources.UnitTests -> Orion.API.TradingEconomics.UnitTests -> Moq (>= 4.20.72) \r\n Orion.API.HumanResources.UnitTests -> Moq (>= 4.20.69)",
+      "message": "Warning As Error: Detected package downgrade: Moq from 4.20.72 to 4.20.0. Reference the package directly from the project to select a different version. \r\n Orion.API.HumanResources.UnitTests -> Orion.API.TradingEconomics.UnitTests -> Moq (>= 4.20.72) \r\n Orion.API.HumanResources.UnitTests -> Moq (>= 4.20.0)",
       "libraryId": "Moq",
       "targetGraphs": [
         "net9.0"

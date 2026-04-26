@@ -1,7 +1,7 @@
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Orion.API.TradingEconomics.Entities;
 
-namespace Orion.API.TradingEconomics.Interfaces
+namespace Orion.API.TradingEconomics.Engine.Interfaces
 {
     /// <summary>
     /// Runs and manages system health checks.

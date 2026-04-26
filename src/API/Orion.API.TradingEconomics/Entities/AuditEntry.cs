@@ -14,4 +14,5 @@ public class AuditEntry
     public string Direction { get; set; }
     public decimal? Confidence { get; set; }
     public object Data { get; set; }
+    public DateTime TimestampUtc { get; set; }
 }

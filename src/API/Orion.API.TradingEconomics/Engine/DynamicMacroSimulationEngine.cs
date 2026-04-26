@@ -1,7 +1,7 @@
-﻿using Orion.API.TradingEconomics.Entities;
+﻿using Orion.API.TradingEconomics.Engine.Interfaces;
+using Orion.API.TradingEconomics.Entities;
 using Orion.API.TradingEconomics.Enum;
 using Orion.API.TradingEconomics.Interfaces;
-using CorrelatedShockGenerator = Orion.API.TradingEconomics.Helpers.CorrelatedShockGenerator;
 
 namespace Orion.API.TradingEconomics.Engine
 {

@@ -2,10 +2,10 @@
 
 namespace Orion.API.TradingEconomics.Interfaces
 {
-    public interface IMarketDataFeed
-    {
-        Task<MarketTick> GetLatestTickAsync(string pair, CancellationToken cancellationToken);
-    }
+    // public interface IMarketDataFeed
+    // {
+    //     Task<MarketTick> GetLatestTickAsync(string pair, CancellationToken cancellationToken);
+    // }
     public interface IExecutionCostModel
     {
         decimal EstimateSlippage(string pair, decimal size);

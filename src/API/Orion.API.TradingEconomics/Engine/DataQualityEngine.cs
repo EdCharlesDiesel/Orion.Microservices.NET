@@ -1,6 +1,5 @@
 ﻿using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
-using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Engine
 {
@@ -31,34 +30,36 @@ namespace Orion.API.TradingEconomics.Engine
         /// <inheritdoc />
         public DataQualityResult ValidateCandles(IReadOnlyList<OhlcvBar>? candles)
         {
-            var candleResult = ValidateCandleBasics(candles);
-            if (!candleResult.IsValid)
-                return candleResult;
+            var basic = ValidateCandleBasics(candles);
+            if (!basic.IsValid)
+                return basic;
 
-            var orderedCandles = candles!.OrderBy(x => x.TimestampUtc).ToList();
+            var ordered = candles!
+                .OrderBy(x => x.TimestampUtc)
+                .ToList();
 
-            var duplicateCheck = CheckDuplicateTimestamps(orderedCandles);
-            if (!duplicateCheck.IsValid)
-                return duplicateCheck;
+            var duplicate = CheckDuplicateTimestamps(ordered);
+            if (!duplicate.IsValid)
+                return duplicate;
 
-            var priceCheck = CheckPriceValidity(orderedCandles);
-            if (!priceCheck.IsValid)
-                return priceCheck;
+            var price = CheckPriceValidity(ordered);
+            if (!price.IsValid)
+                return price;
 
-            var stalenessCheck = CheckStaleness(orderedCandles);
-            if (!stalenessCheck.IsValid)
-                return stalenessCheck;
+            var stale = CheckStaleness(ordered);
+            if (!stale.IsValid)
+                return stale;
 
-            var gapCheck = CheckGaps(orderedCandles);
-            if (!gapCheck.IsValid)
-                return gapCheck;
+            var gaps = CheckGaps(ordered);
+            if (!gaps.IsValid)
+                return gaps;
 
-            var spikeCheck = CheckPriceSpikes(orderedCandles);
-            if (!spikeCheck.IsValid)
-                return spikeCheck;
+            var spikes = CheckPriceSpikes(ordered);
+            if (!spikes.IsValid)
+                return spikes;
 
             return DataQualityResult.Pass(
-                $"Data quality passed. Candles={orderedCandles.Count}, From={orderedCandles.First().TimestampUtc:u}, To={orderedCandles.Last().TimestampUtc:u}");
+                $"Data quality passed. Candles={ordered.Count}, From={ordered.First().TimestampUtc:u}, To={ordered.Last().TimestampUtc:u}");
         }
 
         private static DataQualityResult ValidateCandleBasics(IReadOnlyList<OhlcvBar>? candles)
@@ -87,18 +88,18 @@ namespace Orion.API.TradingEconomics.Engine
 
         private static DataQualityResult CheckPriceValidity(List<OhlcvBar> candles)
         {
-            var hasInvalidPrices = candles.Any(x =>
-                x.Open <= 0 ||
-                x.High <= 0 ||
-                x.Low <= 0 ||
-                x.Close <= 0 ||
+            var invalid = candles.Any(x =>
+                x.Open <= 0m ||
+                x.High <= 0m ||
+                x.Low <= 0m ||
+                x.Close <= 0m ||
                 x.High < x.Low ||
                 x.High < x.Open ||
                 x.High < x.Close ||
                 x.Low > x.Open ||
                 x.Low > x.Close);
 
-            return hasInvalidPrices
+            return invalid
                 ? DataQualityResult.Fail("Invalid OHLC candle prices detected.")
                 : DataQualityResult.Pass("Price validity check passed.");
         }
@@ -115,17 +116,18 @@ namespace Orion.API.TradingEconomics.Engine
 
         private static DataQualityResult CheckGaps(List<OhlcvBar> candles)
         {
-            var gaps = 0;
+            var gapCount = 0;
 
             for (var i = 1; i < candles.Count; i++)
             {
                 var gap = candles[i].TimestampUtc - candles[i - 1].TimestampUtc;
+
                 if (gap.TotalDays > MaxGapDays)
-                    gaps++;
+                    gapCount++;
             }
 
-            return gaps > MaxGapCount
-                ? DataQualityResult.Fail($"Too many candle gaps detected: {gaps}.")
+            return gapCount > MaxGapCount
+                ? DataQualityResult.Fail($"Too many candle gaps detected: {gapCount}.")
                 : DataQualityResult.Pass("Gap check passed.");
         }
 
@@ -135,18 +137,18 @@ namespace Orion.API.TradingEconomics.Engine
 
             for (var i = 1; i < recent.Count; i++)
             {
-                var previousClose = recent[i - 1].Close;
-                var currentClose = recent[i].Close;
+                var prevClose = recent[i - 1].Close;
+                var currClose = recent[i].Close;
 
-                if (previousClose <= 0)
+                if (prevClose <= 0m)
                     continue;
 
-                var movePercent = Math.Abs((currentClose - previousClose) / previousClose) * 100m;
+                var move = Math.Abs((currClose - prevClose) / prevClose) * 100m;
 
-                if (movePercent > MaxSpikePercent)
+                if (move > MaxSpikePercent)
                 {
                     return DataQualityResult.Fail(
-                        $"Abnormal price spike detected: {movePercent:F2}% at {recent[i].TimestampUtc:u}.");
+                        $"Abnormal price spike detected: {move:F2}% at {recent[i].TimestampUtc:u}.");
                 }
             }
 

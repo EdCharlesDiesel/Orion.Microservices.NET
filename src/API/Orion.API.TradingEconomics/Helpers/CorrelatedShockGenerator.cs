@@ -1,5 +1,7 @@
 ﻿using Orion.API.TradingEconomics.Engine;
+using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
+using Orion.API.TradingEconomics.Interfaces;
 
 namespace Orion.API.TradingEconomics.Helpers
 {

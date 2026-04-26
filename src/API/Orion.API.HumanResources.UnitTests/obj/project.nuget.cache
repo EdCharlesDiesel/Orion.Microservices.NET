@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "1ZK0BZ3V8CA=",
+  "dgSpecHash": "71c0YiXqa1k=",
   "success": false,
   "projectFilePath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\kmokhethi\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\castle.core\\5.1.1\\castle.core.5.1.1.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\devlooped.sponsorlink\\1.0.0\\devlooped.sponsorlink.1.0.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\distributedlock.core\\1.0.8\\distributedlock.core.1.0.8.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\distributedlock.postgres\\1.3.0\\distributedlock.postgres.1.3.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\fastexpressioncompiler\\5.3.0\\fastexpressioncompiler.5.3.0.nupkg.sha512",
@@ -124,7 +125,7 @@
     "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.22.1\\microsoft.visualstudio.azure.containers.tools.targets.1.22.1.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
-    "C:\\Users\\kmokhethi\\.nuget\\packages\\moq\\4.20.69\\moq.4.20.69.nupkg.sha512",
+    "C:\\Users\\kmokhethi\\.nuget\\packages\\moq\\4.20.0\\moq.4.20.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\netstandard.library\\1.6.1\\netstandard.library.1.6.1.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\nettopologysuite\\2.5.0\\nettopologysuite.2.5.0.nupkg.sha512",
     "C:\\Users\\kmokhethi\\.nuget\\packages\\nettopologysuite.io.postgis\\2.1.0\\nettopologysuite.io.postgis.2.1.0.nupkg.sha512",
@@ -287,6 +288,18 @@
       ]
     },
     {
+      "code": "NU1901",
+      "level": "Warning",
+      "message": "Package 'Moq' 4.20.0 has a known low severity vulnerability, https://github.com/advisories/GHSA-6r78-m64m-qwcf",
+      "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
+      "warningLevel": 1,
+      "filePath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
+      "libraryId": "Moq",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
       "code": "NU1605",
       "level": "Error",
       "message": "Warning As Error: Detected package downgrade: Microsoft.NET.Test.Sdk from 17.12.0 to 17.5.0. Reference the package directly from the project to select a different version. \r\n Orion.API.HumanResources.UnitTests -> Orion.API.TradingEconomics.UnitTests -> Microsoft.NET.Test.Sdk (>= 17.12.0) \r\n Orion.API.HumanResources.UnitTests -> Microsoft.NET.Test.Sdk (>= 17.5.0)",
@@ -300,7 +313,7 @@
     {
       "code": "NU1605",
       "level": "Error",
-      "message": "Warning As Error: Detected package downgrade: Moq from 4.20.72 to 4.20.69. Reference the package directly from the project to select a different version. \r\n Orion.API.HumanResources.UnitTests -> Orion.API.TradingEconomics.UnitTests -> Moq (>= 4.20.72) \r\n Orion.API.HumanResources.UnitTests -> Moq (>= 4.20.69)",
+      "message": "Warning As Error: Detected package downgrade: Moq from 4.20.72 to 4.20.0. Reference the package directly from the project to select a different version. \r\n Orion.API.HumanResources.UnitTests -> Orion.API.TradingEconomics.UnitTests -> Moq (>= 4.20.72) \r\n Orion.API.HumanResources.UnitTests -> Moq (>= 4.20.0)",
       "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
       "filePath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\Orion.API.HumanResources.UnitTests.csproj",
       "libraryId": "Moq",

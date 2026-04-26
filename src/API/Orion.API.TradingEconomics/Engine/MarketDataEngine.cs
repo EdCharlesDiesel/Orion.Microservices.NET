@@ -1,5 +1,4 @@
 ﻿using Orion.API.TradingEconomics.DTO;
-using Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Engine.Interfaces.Orion.API.TradingEconomics.Engine.Interfaces;
 using Orion.API.TradingEconomics.Entities;
 using Orion.API.TradingEconomics.Interfaces;
@@ -91,6 +90,17 @@ namespace Orion.API.TradingEconomics.Engine
                 Message = "FRED macro data service is available. Quote/candle provider is not configured.",
                 CheckedAtUtc = DateTime.UtcNow
             });
+        }
+
+        /// <inheritdoc />
+        public Task<MarketTick?> GetLatestTickAsync(string pair, CancellationToken cancellationToken = default)
+        {
+            if (string.IsNullOrWhiteSpace(pair))
+                throw new ArgumentException("Pair is required.", nameof(pair));
+
+            logger.LogInformation("Latest tick requested for {Pair}", pair);
+
+            return Task.FromResult<MarketTick?>(null);
         }
     }
 }

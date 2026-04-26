@@ -13,7 +13,6 @@
         "packagesPath": "C:\\Users\\kmokhethi\\.nuget\\packages\\",
         "outputPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
-        "crossTargeting": true,
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
@@ -23,7 +22,7 @@
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
-          "net9.0"
+          "net9"
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
@@ -32,7 +31,7 @@
         },
         "frameworks": {
           "net9.0": {
-            "targetAlias": "net9.0",
+            "targetAlias": "net9",
             "projectReferences": {
               "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj": {
                 "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj"
@@ -57,7 +56,7 @@
       },
       "frameworks": {
         "net9.0": {
-          "targetAlias": "net9.0",
+          "targetAlias": "net9",
           "dependencies": {
             "JetBrains.Annotations": {
               "target": "Package",
@@ -69,7 +68,7 @@
             },
             "Moq": {
               "target": "Package",
-              "version": "[4.20.69, )"
+              "version": "[4.20.0, )"
             },
             "xunit": {
               "target": "Package",

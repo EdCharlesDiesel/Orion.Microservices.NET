@@ -10,9 +10,7 @@ namespace Orion.API.TradingEconomics.Engine.Interfaces
         /// <summary>
         /// Calculates spread, volatility, regime, and drawdown risk.
         /// </summary>
-        RiskResult Evaluate(
-            SignalResult signal,
-            NormalizedMarketContext? market,
+        RiskResult Evaluate(SignalResult signal, NormalizedMarketContext? market,
             RegimeResult regime);
     }
 }

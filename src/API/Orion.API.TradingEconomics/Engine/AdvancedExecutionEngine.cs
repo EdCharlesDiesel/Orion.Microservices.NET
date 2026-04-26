@@ -9,7 +9,7 @@ namespace Orion.API.TradingEconomics.Engine;
 /// - News-based risk adjustment
 /// - Order book execution
 /// </summary>
-public abstract class AdvancedExecutionEngine(
+public  class AdvancedExecutionEngine(
     IOrderBookProvider orderBookProvider,
     ILatencyModel latencyModel,
     INewsEventService newsService,

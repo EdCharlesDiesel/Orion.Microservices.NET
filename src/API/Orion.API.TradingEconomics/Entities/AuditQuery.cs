@@ -15,4 +15,5 @@ public class AuditQuery
     public int PageNumber { get; set; } = 1;
     public string SortBy { get; set; } = "Timestamp";
     public bool SortDescending { get; set; } = true;
+    public int Page { get; set; }
 }

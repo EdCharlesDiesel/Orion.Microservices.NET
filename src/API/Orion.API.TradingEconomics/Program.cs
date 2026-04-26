@@ -119,6 +119,8 @@ builder.Services.AddSingleton<YahooQuotes>(sp =>
 
 //Services
 builder.Services.AddScoped<IFredService, FredService>();
+builder.Services.AddScoped<IOrderBookProvider, OrderBookProvider>();
+builder.Services.AddScoped<IAuditStorage, AuditStorage>();
 
 
 //Engines
@@ -128,14 +130,35 @@ builder.Services.AddScoped<IAlphaEngine,AlphaEngine>();
 builder.Services.AddScoped<IAuditTrailEngine,AuditTrailEngine>();
 builder.Services.AddScoped<IBacktestEngine,BacktestEngine>();
 builder.Services.AddScoped<ICircuitBreakerEngine,CircuitBreakerEngine>();
+builder.Services.AddScoped<IComplianceEngine, ComplianceEngine>();
 builder.Services.AddScoped<ICorrelationEngine, CorrelationEngine>();
+builder.Services.AddScoped<IConfigurationEngine, ConfigurationEngine>();
 builder.Services.AddScoped<IDataQualityEngine, DataQualityEngine>();
+builder.Services.AddScoped<IMacroSimulationEngine, DynamicMacroSimulationEngine>();
+builder.Services.AddScoped<IEconomicCalendarRiskEngine, EconomicCalendarRiskEngine>();
+builder.Services.AddScoped<IExecutionEngine, ExecutionEngine>();
+builder.Services.AddScoped<IExitEngine, ExitEngine>();
 builder.Services.AddScoped<IFxPricingEngine, FxPricingEngine>();
-builder.Services.AddScoped<IMarketDataEngine, MarketDataEngine>();
 builder.Services.AddScoped<IHedgingEngine, HedgingEngine>();
 builder.Services.AddScoped<ILiquidityEngine, LiquidityEngine>();
-builder.Services.AddScoped<IOrderBookExecutionService,OrderBookExecutionService>();
-
+builder.Services.AddScoped<IMarketDataEngine, MarketDataEngine>();
+builder.Services.AddScoped<IMarketReplayEngine, MarketReplayEngine>();
+builder.Services.AddScoped<IModelValidationEngine, ModelValidationEngine>();
+builder.Services.AddScoped<IMonteCarloEngine, MonteCarloEngine>();
+builder.Services.AddScoped<INormalizationEngine, NormalizationEngine>();
+builder.Services.AddScoped<IOrderManagementEngine, OrderManagementEngine>();
+builder.Services.AddScoped<IPerformanceAnalyticsEngine, PerformanceAnalyticsEngine>();
+builder.Services.AddScoped<IPortfolioEngine, PortfolioEngine>();
+builder.Services.AddScoped<IPositionSizingEngine, PositionSizingEngine>();
+builder.Services.AddScoped<IProbabilisticScenarioEngine, ProbabilisticScenarioEngine>();
+builder.Services.AddScoped<IRealBacktestEngine, RealBacktestEngine>();
+builder.Services.AddScoped<IRealTimeRiskEngine, RealTimeRiskEngine>();
+builder.Services.AddScoped<IRegimeEngine, RegimeEngine>();
+builder.Services.AddScoped<IRiskEngine, RiskEngine>();
+builder.Services.AddScoped<IScenarioEngine, ScenarioEngine>();
+builder.Services.AddScoped<ISentimentEngine, SentimentEngine>();
+builder.Services.AddScoped<ITradeLifecycleEngine, TradeLifecycleEngine>();
+// builder.Services.AddScoped<IWalkForwardEngine, WalkForwardEngine>();
 
 
 builder.Services.AddCors(options =>
@@ -187,4 +210,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-

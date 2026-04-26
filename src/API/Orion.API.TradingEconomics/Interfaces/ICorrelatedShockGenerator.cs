@@ -1,6 +1,6 @@
 ﻿using Orion.API.TradingEconomics.Entities;
 
-namespace Orion.API.TradingEconomics.Engine
+namespace Orion.API.TradingEconomics.Interfaces
 {
     /// <summary>
     /// Interface for correlated shock generator.

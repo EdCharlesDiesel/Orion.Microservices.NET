@@ -18,17 +18,12 @@ namespace Orion.API.TradingEconomics.Engine.Interfaces
 
             Task<FredStatusResponse> CheckStatusAsync(CancellationToken cancellationToken = default);
 
-            Task<IReadOnlyList<OhlcvBar>> GetHistoricalCandlesAsync(
-                MarketDataRequest request,
-                CancellationToken cancellationToken = default);
+            Task<IReadOnlyList<OhlcvBar>> GetHistoricalCandlesAsync(MarketDataRequest request, CancellationToken cancellationToken = default);
 
-            Task<MarketQuote?> GetLatestQuoteAsync(
-                string pair,
-                CancellationToken cancellationToken = default);
+            Task<MarketQuote?> GetLatestQuoteAsync(string pair, CancellationToken cancellationToken = default);
+            Task<MarketDataHealth> CheckHealthAsync(string pair, CancellationToken cancellationToken = default);
 
-            Task<MarketDataHealth> CheckHealthAsync(
-                string pair,
-                CancellationToken cancellationToken = default);
+            Task <MarketTick>GetLatestTickAsync(string pair, CancellationToken cancellationToken);
         }
     }
 }

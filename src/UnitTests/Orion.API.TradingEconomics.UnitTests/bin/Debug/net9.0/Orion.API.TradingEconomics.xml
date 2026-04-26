@@ -632,6 +632,16 @@
             Calculates net exposure, hedge requirement, and hedge recommendations.
             </summary>
         </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.ILiveTradingOrchestrator">
+            <summary>
+            Coordinates full live trading pipeline from data → trade decision.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.ILiveTradingOrchestrator.Run(Orion.API.TradingEconomics.Entities.ForexMarketInput,Orion.API.TradingEconomics.Entities.AccountContext,Orion.API.TradingEconomics.Entities.OrderBook)">
+            <summary>
+            Executes full trading flow and returns final decision.
+            </summary>
+        </member>
         <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.Orion.API.TradingEconomics.Engine.Interfaces.IMarketDataEngine">
             <summary>
             Provides access to macro and market data used by the trading system.

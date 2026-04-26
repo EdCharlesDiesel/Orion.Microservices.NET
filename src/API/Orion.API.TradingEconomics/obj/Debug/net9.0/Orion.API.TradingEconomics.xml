@@ -424,7 +424,7 @@
             Engine for simulating dynamic macroeconomic state transitions.
             </summary>
         </member>
-        <member name="M:Orion.API.TradingEconomics.Engine.DynamicMacroSimulationEngine.#ctor(Orion.API.TradingEconomics.Interfaces.IRegimeEngine,Orion.API.TradingEconomics.Engine.ICorrelatedShockGenerator,Orion.API.TradingEconomics.Interfaces.IMacroTransitionModel)">
+        <member name="M:Orion.API.TradingEconomics.Engine.DynamicMacroSimulationEngine.#ctor(Orion.API.TradingEconomics.Engine.Interfaces.IRegimeEngine,Orion.API.TradingEconomics.Interfaces.ICorrelatedShockGenerator,Orion.API.TradingEconomics.Interfaces.IMacroTransitionModel)">
             <summary>
             Initializes a new instance with dependency injection.
             </summary>
@@ -441,6 +441,17 @@
             </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.EconomicCalendarRiskEngine.Evaluate(Orion.API.TradingEconomics.Entities.ForexMarketInput,System.DateTime)">
+            <inheritdoc />
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.ExecutionEngine">
+            <summary>
+            Handles trade execution using live market data or order book depth.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ExecutionEngine.ExecuteAsync(System.String,System.String,System.Decimal,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.ExecutionEngine.Execute(Orion.API.TradingEconomics.Entities.OrderBook,System.String,System.Decimal)">
             <inheritdoc />
         </member>
         <member name="T:Orion.API.TradingEconomics.Engine.ExitEngine">
@@ -503,26 +514,6 @@
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.HedgingEngine.AnalyzeAsync(Orion.API.TradingEconomics.Entities.HedgingRequest,System.Threading.CancellationToken)">
             <inheritdoc />
-        </member>
-        <member name="T:Orion.API.TradingEconomics.Engine.ICorrelatedShockGenerator">
-            <summary>
-            Interface for correlated shock generator.
-            </summary>
-        </member>
-        <member name="T:Orion.API.TradingEconomics.Engine.IMacroSimulationEngine">
-            <summary>
-            Interface for macro simulation engine.
-            </summary>
-        </member>
-        <member name="M:Orion.API.TradingEconomics.Engine.IMacroSimulationEngine.Run(Orion.API.TradingEconomics.Entities.MacroState,System.Int32)">
-            <summary>
-            Runs a macro state simulation for specified number of steps.
-            </summary>
-        </member>
-        <member name="M:Orion.API.TradingEconomics.Engine.IMacroSimulationEngine.Simulate(Orion.API.TradingEconomics.Entities.NormalizedIndicator,Orion.API.TradingEconomics.Entities.RegimeResult,Orion.API.TradingEconomics.Entities.ProbabilisticScenarioResult)">
-            <summary>
-            Simulates macro outcomes based on normalized indicators and probabilities.
-            </summary>
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordDecisionAsync(Orion.API.TradingEconomics.Entities.AuditRecord)">
             <summary>
@@ -592,6 +583,11 @@
             <param name="nowUtc">Current UTC time for risk window calculation.</param>
             <returns>Risk evaluation result.</returns>
         </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IExecutionEngine">
+            <summary>
+            Executes orders using market data or order book.
+            </summary>
+        </member>
         <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IExitEngine">
             <summary>
             Interface for exit engine operations.
@@ -622,6 +618,11 @@
             Builds pricing metadata for a signal.
             </summary>
         </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IHealthCheckEngine">
+            <summary>
+            Runs and manages system health checks.
+            </summary>
+        </member>
         <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IHedgingEngine">
             <summary>
             Analyzes portfolio exposure and recommends hedging actions.
@@ -630,6 +631,31 @@
         <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IHedgingEngine.AnalyzeAsync(Orion.API.TradingEconomics.Entities.HedgingRequest,System.Threading.CancellationToken)">
             <summary>
             Calculates net exposure, hedge requirement, and hedge recommendations.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.ILiveTradingOrchestrator">
+            <summary>
+            Coordinates full live trading pipeline from data → trade decision.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.ILiveTradingOrchestrator.Run(Orion.API.TradingEconomics.Entities.ForexMarketInput,Orion.API.TradingEconomics.Entities.AccountContext,Orion.API.TradingEconomics.Entities.OrderBook)">
+            <summary>
+            Executes full trading flow and returns final decision.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IMacroSimulationEngine">
+            <summary>
+            Interface for macro simulation engine.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IMacroSimulationEngine.Run(Orion.API.TradingEconomics.Entities.MacroState,System.Int32)">
+            <summary>
+            Runs a macro state simulation for specified number of steps.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IMacroSimulationEngine.Simulate(Orion.API.TradingEconomics.Entities.NormalizedIndicator,Orion.API.TradingEconomics.Entities.RegimeResult,Orion.API.TradingEconomics.Entities.ProbabilisticScenarioResult)">
+            <summary>
+            Simulates macro outcomes based on normalized indicators and probabilities.
             </summary>
         </member>
         <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.Orion.API.TradingEconomics.Engine.Interfaces.IMarketDataEngine">
@@ -870,6 +896,9 @@
             <inheritdoc />
         </member>
         <member name="M:Orion.API.TradingEconomics.Engine.MarketDataEngine.CheckHealthAsync(System.String,System.Threading.CancellationToken)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.MarketDataEngine.GetLatestTickAsync(System.String,System.Threading.CancellationToken)">
             <inheritdoc />
         </member>
         <member name="T:Orion.API.TradingEconomics.Engine.MarketReplayEngine">
@@ -1200,9 +1229,9 @@
             Placeholder implementations for dependencies.
             </summary>
         </member>
-        <member name="T:Orion.API.TradingEconomics.Interfaces.IHealthCheckEngine">
+        <member name="T:Orion.API.TradingEconomics.Interfaces.ICorrelatedShockGenerator">
             <summary>
-            Runs and manages system health checks.
+            Interface for correlated shock generator.
             </summary>
         </member>
         <member name="T:Orion.API.TradingEconomics.Interfaces.IMacroTransitionModel">
