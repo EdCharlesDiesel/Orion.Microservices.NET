@@ -69,3 +69,12 @@ x86/
 
 # Publish Web Output
 *.[Pp]ublish.xml
+
+# Secrets — never commit real credentials; use dotnet user-secrets or env vars instead
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
+secrets.json
+.env
+.env.local
+.idea/.idea.Orion.Microservices.NET
