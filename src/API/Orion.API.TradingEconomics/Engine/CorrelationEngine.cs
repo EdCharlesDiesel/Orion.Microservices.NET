@@ -12,8 +12,7 @@ namespace Orion.API.TradingEconomics.Engine
         private const decimal NeutralThreshold = 0.10m;
 
         /// <inheritdoc />
-        public async Task<CorrelationResult> AnalyzeAsync(
-            CorrelationRequest request,
+        public async Task<CorrelationResult> AnalyzeAsync(CorrelationRequest request,
             CancellationToken cancellationToken = default)
         {
             ArgumentNullException.ThrowIfNull(request);

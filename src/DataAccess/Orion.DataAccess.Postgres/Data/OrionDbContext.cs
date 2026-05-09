@@ -8,7 +8,7 @@ using Orion.DataAccess.Postgres.Entities.Common;
 namespace Orion.DataAccess.Postgres.Data
 {
     // Inherit from IdentityDbContext instead of DbContext
-    public sealed class OrionDbContext(
+    public class OrionDbContext(
         DbContextOptions<OrionDbContext> options)
         : IdentityDbContext<IdentityUser, IdentityRole, string>(options), IOrionDbContext
     {

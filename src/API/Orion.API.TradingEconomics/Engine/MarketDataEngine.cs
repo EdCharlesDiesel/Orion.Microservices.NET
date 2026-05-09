@@ -8,13 +8,10 @@ namespace Orion.API.TradingEconomics.Engine
     /// <summary>
     /// Coordinates macro-data retrieval and market-data health checks.
     /// </summary>
-    public sealed class MarketDataEngine(
-        IFredService fredService,
-        ILogger<MarketDataEngine> logger) : IMarketDataEngine
+    public sealed class MarketDataEngine(IFredService fredService, ILogger<MarketDataEngine> logger) : IMarketDataEngine
     {
         /// <inheritdoc />
-        public async Task<MacroData> GetMacroDataAsync(
-            CancellationToken cancellationToken = default)
+        public async Task<MacroData> GetMacroDataAsync(CancellationToken cancellationToken = default)
         {
             logger.LogInformation("Getting macro data");
 

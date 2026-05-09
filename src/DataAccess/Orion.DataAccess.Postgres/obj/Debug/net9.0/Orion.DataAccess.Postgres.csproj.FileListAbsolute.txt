@@ -153,7 +153,6 @@ C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime.dll
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\Npgsql.NetTopologySuite.dll
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\Npgsql.NodaTime.dll
-C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\System.Text.Json.dll
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\EFCoreNpgsqlNodaTime.cs
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\obj\Debug\net9.0\EFCoreNpgsqlNetTopologySuite.cs
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\Azure.Core.dll
@@ -174,7 +173,6 @@ C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\System.ClientModel.dll
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\System.Drawing.Common.dll
-C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\System.Formats.Asn1.dll
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\System.Memory.Data.dll
 C:\x\Orion.Microservices.NET\src\DataAccess\Orion.DataAccess.Postgres\bin\Debug\net9.0\System.Runtime.Caching.dll

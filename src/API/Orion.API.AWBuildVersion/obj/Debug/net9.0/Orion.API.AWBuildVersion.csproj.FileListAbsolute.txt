@@ -73,13 +73,11 @@ C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\S
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.ClientModel.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.Drawing.Common.dll
-C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.Formats.Asn1.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.Memory.Data.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.Runtime.Caching.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.Security.Cryptography.ProtectedData.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.Security.Permissions.dll
-C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.Text.Json.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\System.Windows.Extensions.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\de\Microsoft.SqlServer.Types.resources.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.AWBuildVersion\bin\Debug\net9.0\es\Microsoft.SqlServer.Types.resources.dll

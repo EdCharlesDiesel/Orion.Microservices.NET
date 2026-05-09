@@ -1,3 +1,4 @@
+using System.Globalization;
 using Microsoft.Extensions.Configuration;
 using Orion.API.TradingEconomics.Engine;
 using Orion.API.TradingEconomics.Entities;
@@ -180,7 +181,7 @@ namespace Orion.API.TradingEconomics.UnitTests.Engine
             var values = new Dictionary<string, string?>
             {
                 ["TradingSystem:LiveTrading:MaxOpenTrades"] = maxOpenTrades.ToString(),
-                ["TradingSystem:LiveTrading:MaxDailyLossPercent"] = maxDailyLossPercent.ToString()
+                ["TradingSystem:LiveTrading:MaxDailyLossPercent"] = maxDailyLossPercent.ToString(CultureInfo.CurrentCulture)
             };
 
             var configuration = new ConfigurationBuilder()

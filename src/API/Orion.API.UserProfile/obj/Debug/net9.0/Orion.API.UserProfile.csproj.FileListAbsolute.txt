@@ -151,8 +151,6 @@ C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Npgs
 C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Npgsql.NetTopologySuite.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\Npgsql.NodaTime.dll
-C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\System.Formats.Asn1.dll
-C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\System.Text.Json.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\runtimes\win-x64\native\SqlServerSpatial160.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\bin\Debug\net9.0\runtimes\win-x86\native\SqlServerSpatial160.dll
 C:\x\Orion.Microservices.NET\src\API\Orion.API.UserProfile\obj\Debug\net9.0\scopedcss\bundle\Orion.API.UserProfile.styles.css

@@ -133,7 +133,6 @@ namespace Orion.API.HumanResources.Controllers;
 
                 var error = new ErrorLog()
                 {
-                    ErrorLogID = 22,
                     ErrorTime = DateTimeOffset.UtcNow,
                     UserName = HttpContext?.User?.Identity?.Name ?? "System",
                     ErrorMessage = exception.Message,

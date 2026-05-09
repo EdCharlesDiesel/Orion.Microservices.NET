@@ -10,12 +10,12 @@
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.8",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.8",
-          "Microsoft.DotNet.ILCompiler": "9.0.12",
+          "Microsoft.DotNet.ILCompiler": "9.0.15",
           "Microsoft.EntityFrameworkCore": "9.0.8",
           "Microsoft.EntityFrameworkCore.Design": "9.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer.HierarchyId": "9.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.8",
-          "Microsoft.NET.ILLink.Tasks": "9.0.12",
+          "Microsoft.NET.ILLink.Tasks": "9.0.15",
           "Microsoft.SqlServer.Types": "160.1000.6",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite": "9.0.4",
@@ -475,7 +475,7 @@
           }
         }
       },
-      "Microsoft.DotNet.ILCompiler/9.0.12": {},
+      "Microsoft.DotNet.ILCompiler/9.0.15": {},
       "Microsoft.EntityFrameworkCore/9.0.8": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.8",
@@ -890,7 +890,7 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Tasks/9.0.12": {},
+      "Microsoft.NET.ILLink.Tasks/9.0.15": {},
       "Microsoft.SqlServer.Server/1.0.0": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.SqlServer.Server.dll": {
@@ -1493,12 +1493,12 @@
       "path": "microsoft.data.sqlclient.sni.runtime/5.1.1",
       "hashPath": "microsoft.data.sqlclient.sni.runtime.5.1.1.nupkg.sha512"
     },
-    "Microsoft.DotNet.ILCompiler/9.0.12": {
+    "Microsoft.DotNet.ILCompiler/9.0.15": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6RjjgSgfaKgnhNepPhfKQFB/g2TzbqmuOR29jWuOfeM5HMIyELd2T/OQC6P7gKEaOMYp3iYwt21dyYgWVpqnVQ==",
-      "path": "microsoft.dotnet.ilcompiler/9.0.12",
-      "hashPath": "microsoft.dotnet.ilcompiler.9.0.12.nupkg.sha512"
+      "sha512": "sha512-pd1ojloB2mbVckRjSoqzdellgNLSH/l6s9xstD2C9cIbux2RpYuICewKIWL5R7hlKMm8yGKUDOKsLaV/n/1l+Q==",
+      "path": "microsoft.dotnet.ilcompiler/9.0.15",
+      "hashPath": "microsoft.dotnet.ilcompiler.9.0.15.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/9.0.8": {
       "type": "package",
@@ -1745,12 +1745,12 @@
       "path": "microsoft.identitymodel.tokens/8.0.1",
       "hashPath": "microsoft.identitymodel.tokens.8.0.1.nupkg.sha512"
     },
-    "Microsoft.NET.ILLink.Tasks/9.0.12": {
+    "Microsoft.NET.ILLink.Tasks/9.0.15": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-StA3kyImQHqDo8A8ZHaSxgASbEuT5UIqgeCvK5SzUPj//xE1QSys421J9pEs4cYuIVwq7CJvWSKxtyH7aPr1LA==",
-      "path": "microsoft.net.illink.tasks/9.0.12",
-      "hashPath": "microsoft.net.illink.tasks.9.0.12.nupkg.sha512"
+      "sha512": "sha512-EejcbfCMR77Dthy77qxRbEShmzLApHZUPqXMBVQK+A0pNrRThkaHoGGMGvbq/gTkC/waKcDEgjBkbaejB58Wtw==",
+      "path": "microsoft.net.illink.tasks/9.0.15",
+      "hashPath": "microsoft.net.illink.tasks.9.0.15.nupkg.sha512"
     },
     "Microsoft.SqlServer.Server/1.0.0": {
       "type": "package",

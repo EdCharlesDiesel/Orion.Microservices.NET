@@ -1,40 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\Orion.API.TradingEconomics.UnitTests.csproj": {}
+    "C:\\x\\Orion.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\Orion.API.TradingEconomics.UnitTests.csproj": {}
   },
   "projects": {
-    "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj": {
+    "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj",
+        "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj",
         "projectName": "Orion.Services.TradingEconomics.API",
-        "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj",
-        "packagesPath": "C:\\Users\\kmokhethi\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\obj\\",
+        "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\kmokhethi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.pkg.github.com/SkyNetZA/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
-                "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj"
+              "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
+                "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj"
               }
             }
           }
@@ -127,41 +120,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
+    "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj",
+        "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj",
         "projectName": "Orion.DataAccess.Postgres",
-        "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj",
-        "packagesPath": "C:\\Users\\kmokhethi\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\obj\\",
+        "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\kmokhethi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.pkg.github.com/SkyNetZA/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj": {
-                "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj"
+              "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj": {
+                "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj"
               }
             }
           }
@@ -193,7 +179,7 @@
             "Microsoft.DotNet.ILCompiler": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.12, )",
+              "version": "[9.0.15, )",
               "autoReferenced": true
             },
             "Microsoft.EntityFrameworkCore": {
@@ -217,7 +203,7 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.12, )",
+              "version": "[9.0.15, )",
               "autoReferenced": true
             },
             "Microsoft.SqlServer.Types": {
@@ -255,7 +241,7 @@
           "downloadDependencies": [
             {
               "name": "runtime.win-x64.Microsoft.DotNet.ILCompiler",
-              "version": "[9.0.12, 9.0.12]"
+              "version": "[9.0.15, 9.0.15]"
             }
           ],
           "frameworkReferences": {
@@ -266,34 +252,27 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj": {
+    "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj",
+        "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj",
         "projectName": "Orion.Domain",
-        "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj",
-        "packagesPath": "C:\\Users\\kmokhethi\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\Domain\\Orion.Domain\\obj\\",
+        "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\kmokhethi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.pkg.github.com/SkyNetZA/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
@@ -358,41 +337,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\Orion.API.TradingEconomics.UnitTests.csproj": {
+    "C:\\x\\Orion.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\Orion.API.TradingEconomics.UnitTests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\Orion.API.TradingEconomics.UnitTests.csproj",
+        "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\Orion.API.TradingEconomics.UnitTests.csproj",
         "projectName": "Orion.API.TradingEconomics.UnitTests",
-        "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\Orion.API.TradingEconomics.UnitTests.csproj",
-        "packagesPath": "C:\\Users\\kmokhethi\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\obj\\",
+        "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\Orion.API.TradingEconomics.UnitTests.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\UnitTests\\Orion.API.TradingEconomics.UnitTests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\kmokhethi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.pkg.github.com/SkyNetZA/index.json": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj": {
-                "projectPath": "C:\\x\\Practice\\Orion.API.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj"
+              "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj": {
+                "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj"
               }
             }
           }
@@ -458,7 +430,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.310/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
