@@ -10,12 +10,12 @@
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.8",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.8",
-          "Microsoft.DotNet.ILCompiler": "9.0.7",
+          "Microsoft.DotNet.ILCompiler": "9.0.15",
           "Microsoft.EntityFrameworkCore": "9.0.8",
           "Microsoft.EntityFrameworkCore.Design": "9.0.8",
           "Microsoft.EntityFrameworkCore.SqlServer.HierarchyId": "9.0.8",
           "Microsoft.EntityFrameworkCore.Tools": "9.0.8",
-          "Microsoft.NET.ILLink.Tasks": "9.0.7",
+          "Microsoft.NET.ILLink.Tasks": "9.0.15",
           "Microsoft.SqlServer.Types": "160.1000.6",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "9.0.4",
           "Npgsql.EntityFrameworkCore.PostgreSQL.NetTopologySuite": "9.0.4",
@@ -475,7 +475,7 @@
           }
         }
       },
-      "Microsoft.DotNet.ILCompiler/9.0.7": {},
+      "Microsoft.DotNet.ILCompiler/9.0.15": {},
       "Microsoft.EntityFrameworkCore/9.0.8": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Abstractions": "9.0.8",
@@ -890,7 +890,7 @@
           }
         }
       },
-      "Microsoft.NET.ILLink.Tasks/9.0.7": {},
+      "Microsoft.NET.ILLink.Tasks/9.0.15": {},
       "Microsoft.SqlServer.Server/1.0.0": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.SqlServer.Server.dll": {
@@ -1216,14 +1216,7 @@
           }
         }
       },
-      "System.Formats.Asn1/9.0.8": {
-        "runtime": {
-          "lib/net9.0/System.Formats.Asn1.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.825.36511"
-          }
-        }
-      },
+      "System.Formats.Asn1/9.0.8": {},
       "System.IdentityModel.Tokens.Jwt/8.0.1": {
         "dependencies": {
           "Microsoft.IdentityModel.JsonWebTokens": "8.0.1",
@@ -1321,14 +1314,7 @@
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         }
       },
-      "System.Text.Json/9.0.8": {
-        "runtime": {
-          "lib/net9.0/System.Text.Json.dll": {
-            "assemblyVersion": "9.0.0.0",
-            "fileVersion": "9.0.825.36511"
-          }
-        }
-      },
+      "System.Text.Json/9.0.8": {},
       "System.Threading.Channels/7.0.0": {},
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "System.Windows.Extensions/6.0.0": {
@@ -1507,12 +1493,12 @@
       "path": "microsoft.data.sqlclient.sni.runtime/5.1.1",
       "hashPath": "microsoft.data.sqlclient.sni.runtime.5.1.1.nupkg.sha512"
     },
-    "Microsoft.DotNet.ILCompiler/9.0.7": {
+    "Microsoft.DotNet.ILCompiler/9.0.15": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-FpvJ2rCpj2CB/4hZt0cmB3hCPMNZV2vrisQis3hR9itTEjLzeggi0AShrgJIZ5+3Y7433K7ESSsJ6+8T+nE2nQ==",
-      "path": "microsoft.dotnet.ilcompiler/9.0.7",
-      "hashPath": "microsoft.dotnet.ilcompiler.9.0.7.nupkg.sha512"
+      "sha512": "sha512-pd1ojloB2mbVckRjSoqzdellgNLSH/l6s9xstD2C9cIbux2RpYuICewKIWL5R7hlKMm8yGKUDOKsLaV/n/1l+Q==",
+      "path": "microsoft.dotnet.ilcompiler/9.0.15",
+      "hashPath": "microsoft.dotnet.ilcompiler.9.0.15.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore/9.0.8": {
       "type": "package",
@@ -1759,12 +1745,12 @@
       "path": "microsoft.identitymodel.tokens/8.0.1",
       "hashPath": "microsoft.identitymodel.tokens.8.0.1.nupkg.sha512"
     },
-    "Microsoft.NET.ILLink.Tasks/9.0.7": {
+    "Microsoft.NET.ILLink.Tasks/9.0.15": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-SZ1brSGoLnhLbE8QUZrtN6YwzN2gDT1wbx9qDBEfFFJcstiDTjJ6ygNuTPBV/K7SjGfx2YNbcJi5+ygbPOZpDg==",
-      "path": "microsoft.net.illink.tasks/9.0.7",
-      "hashPath": "microsoft.net.illink.tasks.9.0.7.nupkg.sha512"
+      "sha512": "sha512-EejcbfCMR77Dthy77qxRbEShmzLApHZUPqXMBVQK+A0pNrRThkaHoGGMGvbq/gTkC/waKcDEgjBkbaejB58Wtw==",
+      "path": "microsoft.net.illink.tasks/9.0.15",
+      "hashPath": "microsoft.net.illink.tasks.9.0.15.nupkg.sha512"
     },
     "Microsoft.SqlServer.Server/1.0.0": {
       "type": "package",

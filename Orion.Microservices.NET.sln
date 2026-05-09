@@ -43,7 +43,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{E0B4
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.Helpers", "src\Helpers\Orion.Helpers.csproj", "{8E66D25F-9B92-4B69-8049-AD0D561CBBF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.API.Apps", "src\API\Orion.API.Apps\Orion.API.Apps.csproj", "{D2E02B3D-7B34-47E2-8214-21D346247CA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.API.ChatApi", "src\API\Orion.API.ChatApi\Orion.API.ChatApi.csproj", "{D2E02B3D-7B34-47E2-8214-21D346247CA8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orion.API.TradingEconomics", "src\API\Orion.API.TradingEconomics\Orion.API.TradingEconomics.csproj", "{9B57E108-1255-4F09-844F-C5675C77065B}"
 EndProject
