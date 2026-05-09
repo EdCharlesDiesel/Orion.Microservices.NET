@@ -1,0 +1,11 @@
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\bin\Debug\net9.0\Orion.Core.StrategyEngine.deps.json
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\bin\Debug\net9.0\Orion.Core.StrategyEngine.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\bin\Debug\net9.0\Orion.Core.StrategyEngine.pdb
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\obj\Debug\net9.0\Orion.Core.StrategyEngine.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\obj\Debug\net9.0\Orion.Core.StrategyEngine.AssemblyInfoInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\obj\Debug\net9.0\Orion.Core.StrategyEngine.AssemblyInfo.cs
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\obj\Debug\net9.0\Orion.Core.StrategyEngine.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\obj\Debug\net9.0\Orion.Core.StrategyEngine.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\obj\Debug\net9.0\refint\Orion.Core.StrategyEngine.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\obj\Debug\net9.0\Orion.Core.StrategyEngine.pdb
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.StrategyEngine\obj\Debug\net9.0\ref\Orion.Core.StrategyEngine.dll

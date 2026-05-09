@@ -1,0 +1,7 @@
+﻿using MediatR;
+using Orion.API.TradingEconomics.Entities;
+
+namespace Orion.API.TradingEconomics.Commands
+{
+    public record CalculateCurrencyFactorsCommand : IRequest<List<CurrencyFactorScore>>;
+}

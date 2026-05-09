@@ -1,0 +1,681 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orion.API.TradingEconomics</name>
+    </assembly>
+    <members>
+        <member name="M:Orion.API.TradingEconomics.Controllers.CalendarController.GetAllEvents">
+            <summary>
+            Get all calendar events
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.CalendarController.GetEventsByDate(System.DateTime,System.DateTime)">
+            <summary>
+            Get calendar events by date range
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.CalendarController.GetEventsByCountries(System.String[])">
+            <summary>
+            Get calendar events by country names
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.CalendarController.GetEventsByCountriesAndDates(System.DateTime,System.DateTime,System.String[])">
+            <summary>
+            Get calendar events by countries and date range
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.CalendarController.GetEventsByIndicators(System.String[])">
+            <summary>
+            Get calendar events by indicator names
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.ComtradeController.GetComCategories">
+            <summary>Get all comtrade categories</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.ComtradeController.GetComCountries">
+            <summary>Get all comtrade countries</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.ComtradeController.GetComCountryPage(System.String,System.Int32)">
+            <summary>Get comtrade by country and page</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.ComtradeController.GetComBetweenCountries(System.String,System.String,System.Int32)">
+            <summary>Get comtrade between two countries with pagination</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.ComtradeController.GetComHistorical(System.String)">
+            <summary>Get historical comtrade data by symbol</summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.EarningsController.GetEarnings">
+            <summary>
+            get earnings calendar
+            </summary>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.EarningsController.GetEarningsByDate(System.Nullable{System.DateTime})">
+            <summary>
+            Filter earnings by date
+            </summary>
+            <param name="startDate">Start date if needed</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.EarningsController.GetEarningsByMarketDate(System.String,System.Nullable{System.DateTime})">
+            <summary>
+            Get earnings by market, and start date
+            </summary>
+            <param name="symbol">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.EarningsController.GetEarningsMarketBetweenDates(System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime})">
+            <summary>
+            Get earnings by market, start and end date
+            </summary>
+            <param name="symbol">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.EarningsController.GetEarningsByCountry(System.String)">
+            <summary>
+            Get earnings by country
+            </summary>
+            <param name="country">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.EarningsController.GetEarningsByType(System.String)">
+            <summary>
+            Get earnings by type
+            </summary>
+            <param name="type">symbol</param>
+            <param name="startDate">Start date</param>
+            <param name="endDate">End date</param>
+            <returns>A task that will be resolved in a string with the request result</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.ForecastController.GetAllForecasts">
+            <summary>
+            Get all comtrade categories
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.LatestController.GetLatestUpdates">
+            <summary>
+            Get the latest news from Trading Economics
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.LatestController.GetLatestUpdatesByDate(System.DateTime)">
+            <summary>
+            Get latest updates since a specific date
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetPortfolio(System.Decimal)">
+            <summary>
+            
+            </summary>
+            <param name="capital"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetMacroData(System.Threading.CancellationToken)">
+            <summary>
+            Get macroeconomic data (GDP, Inflation, Rates, Unemployment) for all currencies
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetMacroDataForCurrency(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get macro data for a specific currency
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetFredSeries">
+            <summary>
+            Get available FRED series mappings
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.GetStatus(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Check if FRED API is configured and working
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.MacroController.RefreshMacroData(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Refresh macro data cache
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.MarketsIntradayController.GetIntradaySymbol(System.String)">
+            <summary>
+            Get intraday prices for a single market symbol.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.MarketsIntradayController.GetIntradayDateHour(System.String,System.DateTime)">
+            <summary>
+            Get intraday prices by symbol and start date (hour).
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.MarketsIntradayController.GetIntradaySymbolDates(System.String,System.DateTime,System.DateTime)">
+            <summary>
+            Get intraday data between two dates.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GenerateTradingIdeas(Orion.API.TradingEconomics.Controllers.GenerateIdeasRequest,System.Threading.CancellationToken)">
+            <summary>
+            Generate trading ideas based on multi-timeframe analysis
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GetTradingIdeas">
+            <summary>
+            Get previously generated trading ideas (cached)
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GetIdeasOnly(System.String,System.String)">
+            <summary>
+            Get only trading ideas (not swing)
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GetSwingIdeasOnly(System.String,System.String)">
+            <summary>
+            Get only swing trading ideas
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GetIdeaForPair(System.String)">
+            <summary>
+            Get trading idea for a specific pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GetSwingIdeaForPair(System.String)">
+            <summary>
+            Get swing idea for a specific pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GetHighConvictionIdeas">
+            <summary>
+            Get high-conviction ideas only
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.ExportIdeasAsCsv(System.Boolean)">
+            <summary>
+            Export trading ideas as CSV
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.ExportIdeasAsJson(System.Boolean)">
+            <summary>
+            Export trading ideas as JSON
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.ClearCache">
+            <summary>
+            Clear cached ideas
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GetBiasAnalysis(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get bias analysis for all pairs
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GetEntrySignal(System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get entry signal for a specific pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Controllers.TradingIdeasController.GetPairAnalysis(System.String,System.Threading.CancellationToken)">
+            <summary>
+            Get multi-timeframe analysis for a single pair
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.DTO.FredStatusResponse">
+            <summary>
+            FRED API status response
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.AdvancedExecutionEngine">
+            <summary>
+            Provides advanced execution logic including:
+            - Latency simulation
+            - News-based risk adjustment
+            - Order book execution
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AdvancedExecutionEngine.#ctor(Orion.API.TradingEconomics.Interfaces.IOrderBookProvider,Orion.API.TradingEconomics.Interfaces.ILatencyModel,Orion.API.TradingEconomics.Interfaces.INewsEventService,Orion.API.TradingEconomics.Interfaces.IOrderBookExecutionService)">
+            <summary>
+            Provides advanced execution logic including:
+            - Latency simulation
+            - News-based risk adjustment
+            - Order book execution
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AdvancedExecutionEngine.ExecuteAsync(System.String,System.String,System.Decimal,System.Threading.CancellationToken)">
+            <summary>
+            Executes an order with realistic market conditions:
+            latency, news impact, and order book depth.
+            </summary>
+            <param name="pair">Currency pair (e.g., EUR/USD)</param>
+            <param name="direction">Trade direction (BUY/SELL)</param>
+            <param name="size">Requested trade size</param>
+            <param name="cancellationToken"></param>
+            <returns>Execution result with fill details and risk flags</returns>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.AlertEngine">
+            <summary>
+            Evaluates a trading decision and produces risk, validation, and informational alerts.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AlertEngine.Evaluate(Orion.API.TradingEconomics.Entities.TradingDecision)">
+            <summary>
+            Evaluates the supplied trading decision and returns applicable alerts.
+            </summary>
+            <param name="decision">The trading decision to evaluate.</param>
+            <returns>A list of alerts describing validation, risk, or status issues.</returns>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.AlphaEngine">
+            <summary>
+            Generates an alpha signal from normalized technical, sentiment, and macro indicators.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AlphaEngine.Generate(System.String,System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.NormalizedIndicator},System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.MacroEvent})">
+            <summary>
+            Generates an alpha result for a currency pair.
+            </summary>
+            <param name="pair">The currency pair.</param>
+            <param name="indicators">Normalized indicators used to calculate alpha.</param>
+            <param name="macroEvents">Optional macro events used to suppress low-confidence signals.</param>
+            <returns>An alpha result containing direction, score, confidence, and component scores.</returns>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.AuditTrailEngine">
+            <summary>
+            Records and stores audit events for trading decisions, pipeline steps, errors, and system events.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.RecordDecisionAsync(Orion.API.TradingEconomics.Entities.AuditRecord)">
+            <summary>
+            Records a full trading decision audit record.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.RecordPipelineStepAsync``1(System.Guid,System.String,``0,System.TimeSpan)">
+            <summary>
+            Records a single pipeline step.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.RecordErrorAsync(System.Guid,System.String,System.Exception,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Records an execution error.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.RecordEventAsync(System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Records a business or system event.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.FlushAsync">
+            <summary>
+            Flushes buffered audit records to storage.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.QueryAsync(Orion.API.TradingEconomics.Entities.AuditQuery)">
+            <summary>
+            Queries audit records from storage.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.AuditTrailEngine.GenerateComplianceReportAsync(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            Generates a compliance report from stored decision audit records.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.BacktestEngine">
+            <summary>
+            Executes a simple backtest by generating portfolios, executing trades,
+            and simulating exits over a date range.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.BacktestEngine.#ctor(MediatR.IMediator,Orion.API.TradingEconomics.Engine.AdvancedExecutionEngine,System.Random)">
+            <summary>
+            Executes a simple backtest by generating portfolios, executing trades,
+            and simulating exits over a date range.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.BacktestEngine.RunAsync(System.DateTime,System.DateTime,System.Decimal)">
+            <summary>
+            Runs a backtest between two dates using the provided capital.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordDecisionAsync(Orion.API.TradingEconomics.Entities.AuditRecord)">
+            <summary>
+            Records a full trading decision audit record.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordPipelineStepAsync``1(System.Guid,System.String,``0,System.TimeSpan)">
+            <summary>
+            Records a single pipeline step.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordErrorAsync(System.Guid,System.String,System.Exception,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Records an execution error.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.RecordEventAsync(System.Guid,System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Records a business or system event.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.FlushAsync">
+            <summary>
+            Flushes buffered audit records to storage.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.QueryAsync(Orion.API.TradingEconomics.Entities.AuditQuery)">
+            <summary>
+            Queries audit records from storage.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.Interfaces.IAuditTrailEngine.GenerateComplianceReportAsync(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            Generates a compliance report from stored decision audit records.
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.Interfaces.IBacktestEngine">
+            <summary>
+            Contract for running historical backtests.
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.MarketReplayEngine.ReplayAsync(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.Candle},System.Int32)">
+            <summary>
+            Replays candles sequentially asynchronously, simulating real-time market data flow
+            </summary>
+            <param name="candles">Historical candles to replay</param>
+            <param name="delayBetweenCandles">Optional delay between candles to simulate real-time (default: 0ms)</param>
+            <returns>Async enumerable of candles</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.MarketReplayEngine.ReplayAsync(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.Candle},System.Threading.CancellationToken,System.Int32)">
+            <summary>
+            Replays candles with cancellation support
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.MarketReplayEngine.ReplayBatchesAsync(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.Candle},System.Int32,System.Int32)">
+            <summary>
+            Replays candles in batches for performance optimization
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.MarketReplayEngine.ReplayAsync(System.Collections.Generic.IEnumerable{Orion.API.TradingEconomics.Entities.Candle})">
+            <summary>
+            
+            </summary>
+            <param name="candles"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Engine.NormalizationEngine.Normalize(System.Collections.Generic.IEnumerable{Orion.API.TradingEconomics.Entities.EconomicIndicator})">
+            <summary>
+            
+            </summary>
+            <param name="raw"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Engine.InMemoryAuditStorage">
+            <summary>
+            In-memory storage for testing
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Entities.FileAuditStorage">
+            <summary>
+            File-based audit storage for development/small deployments
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Entities.MarketSession">
+            <summary>
+            Market session information
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Entities.NormalizeMacroDataOptions">
+            <summary>
+            Configuration options for macro data normalization
+            </summary>
+        </member>
+        <member name="P:Orion.API.TradingEconomics.Entities.NormalizeMacroDataOptions.RemoveDuplicates">
+            <summary>
+            Remove duplicate candles with the same timestamp
+            </summary>
+        </member>
+        <member name="P:Orion.API.TradingEconomics.Entities.NormalizeMacroDataOptions.FillGaps">
+            <summary>
+            Fill gaps in candle data using forward fill
+            </summary>
+        </member>
+        <member name="P:Orion.API.TradingEconomics.Entities.NormalizeMacroDataOptions.PriceScaleFactor">
+            <summary>
+            Scale factor for prices (e.g., 0.1 for decimating forex pairs)
+            </summary>
+        </member>
+        <member name="P:Orion.API.TradingEconomics.Entities.NormalizeMacroDataOptions.RoundDecimals">
+            <summary>
+            Round prices to specified decimal places
+            </summary>
+        </member>
+        <member name="P:Orion.API.TradingEconomics.Entities.NormalizeMacroDataOptions.TimestampIntervalMinutes">
+            <summary>
+            Normalize timestamps to specific intervals (in minutes)
+            </summary>
+        </member>
+        <member name="P:Orion.API.TradingEconomics.Entities.NormalizeMacroDataOptions.ResampleToTimeframe">
+            <summary>
+            Resample candles to target timeframe
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:Orion.API.TradingEconomics.Entities.NormalizeMacroDataOptions.ValidateOHLC" -->
+        <member name="T:Orion.API.TradingEconomics.Entities.OpenPosition">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Entities.SpreadResponse">
+            <summary>
+            Spread response from API
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Entities.StopLossResult">
+            <summary>
+            Result of stop loss calculation
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Entities.TakeProfitResult">
+            <summary>
+            Result of take profit calculation
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Entities.TrendBiasResult">
+            <summary>
+            Trend bias analysis result
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Entities.VolatilityMetrics">
+            <summary>
+            Comprehensive volatility metrics for a trading pair
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Interfaces.IMarketDataService">
+            <summary>
+            Interface for market data retrieval service
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.IMarketDataService.GetHistoricalDataAsync(System.String,System.String,System.Int32)">
+            <summary>
+            Gets historical OHLCV data for a trading pair
+            </summary>
+            <param name="pair">Trading pair (e.g., "EUR/USD")</param>
+            <param name="timeframe">Timeframe (1m, 5m, 15m, 1h, 4h, 1d, 1w)</param>
+            <param name="count">Number of candles to retrieve</param>
+            <returns>List of OHLCV data</returns>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.IMarketDataService.GetLatestPriceAsync(System.String)">
+            <summary>
+            Gets latest price for a trading pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.IMarketDataService.GetMultiTimeframeDataAsync(System.String,System.String[],System.Int32)">
+            <summary>
+            Gets multi-timeframe data for a pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.IMarketDataService.GetMultiplePairsDataAsync(System.String[],System.String,System.Int32)">
+            <summary>
+            Gets data for multiple pairs
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.IMarketDataService.GetSpreadAsync(System.String)">
+            <summary>
+            Gets current spread for a pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.IMarketDataService.GetCurrentSessionAsync(System.String)">
+            <summary>
+            Gets trading sessions status
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.IMarketDataService.IsMarketOpenAsync(System.String)">
+            <summary>
+            Validates if market is open for a pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.CalculateIndicators(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar})">
+            <summary>
+            Calculate all technical indicators for a given OHLCV dataset
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.GetEntrySignal(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar},System.String)">
+            <summary>
+            Get entry signal based on 15-minute data and trend bias
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.GenerateTradingIdeasAsync(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,Orion.API.TradingEconomics.Entities.MarketDataResponse}},System.Threading.CancellationToken)">
+            <summary>
+            Generate trading ideas across all pairs using multi-timeframe analysis
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.GenerateSwingIdeasAsync(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,Orion.API.TradingEconomics.Entities.MarketDataResponse}},System.Threading.CancellationToken)">
+            <summary>
+            Generate swing trading ideas based on weekly/daily/4H structure
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.GenerateBiasDashboardAsync(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.Dictionary{System.String,Orion.API.TradingEconomics.Entities.MarketDataResponse}},System.Threading.CancellationToken)">
+            <summary>
+            Generate multi-timeframe bias dashboard for all pairs
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.AnalyzeMultiTimeframeAsync(Orion.API.TradingEconomics.Entities.MarketDataResponse,Orion.API.TradingEconomics.Entities.MarketDataResponse,Orion.API.TradingEconomics.Entities.MarketDataResponse,Orion.API.TradingEconomics.Entities.MarketDataResponse,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Analyze a single pair across multiple timeframes
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.CalculateStopLoss(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar},System.String,System.String,System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            Calculate stop loss level based on ATR and market structure
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.CalculateTakeProfit(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar},System.String,System.String,System.Decimal,System.Decimal,System.Decimal,System.Int32)">
+            <summary>
+            Calculate take profit levels
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.GetPipSize(System.String)">
+            <summary>
+            Calculate pip size for a given currency pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.PriceToPips(System.String,System.Decimal)">
+            <summary>
+            Convert price distance to pips
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.GetSwingStop(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar},System.String,System.Int32)">
+            <summary>
+            Get swing high/low for stop loss placement
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.GetSwingTarget(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar},System.String,System.Int32)">
+            <summary>
+            Get swing high/low for take profit target
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.CalculateAdx(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar},System.Int32)">
+            <summary>
+            Calculate ADX trend strength
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.DetermineTrendBias(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar},System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar},System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar})">
+            <summary>
+            Determine overall trend bias from multiple indicators
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Interfaces.ITechnicalAnalysisService.HasValidEntrySetup(System.Collections.Generic.List{Orion.API.TradingEconomics.Entities.OhlcvBar},System.String,System.Collections.Generic.List{System.String}@)">
+            <summary>
+            Check if there's a valid entry setup
+            </summary>
+        </member>
+        <member name="T:Orion.API.TradingEconomics.Interfaces.IVolatilityService">
+            <summary>
+            Interface for volatility service
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.MarketDataService.GetHistoricalDataAsync(System.String,System.String,System.Int32)">
+            <summary>
+            Gets historical OHLCV data for a trading pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.MarketDataService.GetLatestPriceAsync(System.String)">
+            <summary>
+            Gets latest price for a trading pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.MarketDataService.GetMultiTimeframeDataAsync(System.String,System.String[],System.Int32)">
+            <summary>
+            Gets multi-timeframe data for a pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.MarketDataService.GetMultiplePairsDataAsync(System.String[],System.String,System.Int32)">
+            <summary>
+            Gets data for multiple pairs
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.MarketDataService.GetSpreadAsync(System.String)">
+            <summary>
+            Gets current spread for a pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.MarketDataService.GetCurrentSessionAsync(System.String)">
+            <summary>
+            Gets current trading session info
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.MarketDataService.IsMarketOpenAsync(System.String)">
+            <summary>
+            Validates if market is open for a pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.VolatilityService.GetVolatilityAsync(System.String)">
+            <summary>
+            Gets current volatility as a decimal (e.g., 0.005 = 0.5%)
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.VolatilityService.GetAtrAsync(System.String,System.Int32)">
+            <summary>
+            Gets ATR (Average True Range) for a pair
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.VolatilityService.GetVolatilityMetricsAsync(System.String)">
+            <summary>
+            Gets volatility metrics for multiple timeframes
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.VolatilityService.GetVolatilityAdjustedSizeAsync(System.String,System.Decimal,System.Decimal)">
+            <summary>
+            Adjusts position size based on volatility
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.VolatilityService.GetAtrBasedStopDistanceAsync(System.String,System.Decimal)">
+            <summary>
+            Gets stop loss distance based on ATR
+            </summary>
+        </member>
+        <member name="M:Orion.API.TradingEconomics.Services.VolatilityService.GetVolatilityRankingAsync(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Compares volatility across multiple pairs
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,11 @@
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\bin\Debug\net9.0\Orion.Core.ExecutionSimulator.deps.json
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\bin\Debug\net9.0\Orion.Core.ExecutionSimulator.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\bin\Debug\net9.0\Orion.Core.ExecutionSimulator.pdb
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\obj\Debug\net9.0\Orion.Core.ExecutionSimulator.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\obj\Debug\net9.0\Orion.Core.ExecutionSimulator.AssemblyInfoInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\obj\Debug\net9.0\Orion.Core.ExecutionSimulator.AssemblyInfo.cs
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\obj\Debug\net9.0\Orion.Core.ExecutionSimulator.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\obj\Debug\net9.0\Orion.Core.ExecutionSimulator.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\obj\Debug\net9.0\refint\Orion.Core.ExecutionSimulator.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\obj\Debug\net9.0\Orion.Core.ExecutionSimulator.pdb
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.ExecutionSimulator\obj\Debug\net9.0\ref\Orion.Core.ExecutionSimulator.dll

@@ -15,8 +15,6 @@ namespace Orion.DataAccess.Postgres.Entities
             this.SalesTerritories = new List<SalesTerritory>();
         }
 
-        
-        
         [Key]
         [Column(name : "CountryRegionCode")]
         [MaxLength(3)]

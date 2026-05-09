@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj": {}
+    "C:\\x\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj": {}
   },
   "projects": {
-    "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj": {
+    "C:\\x\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj",
+        "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj",
         "projectName": "Orion.Helpers",
-        "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Helpers\\obj\\",
+        "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\Helpers\\Orion.Helpers.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\Helpers\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -66,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

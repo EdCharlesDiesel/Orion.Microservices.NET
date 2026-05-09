@@ -1,6 +1,6 @@
 ﻿{
   "profiles": {
-    "Orion.API.Person": {
+    "Orion.API.Persons": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -8,7 +8,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": true,
-      "applicationUrl": "http://localhost:9010"
+      "applicationUrl": "http://localhost:9200"
     }
   }
 }

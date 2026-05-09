@@ -1,0 +1,5 @@
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.MacroEngine\obj\Debug\net9.0\Orion.Core.MacroEngine.csproj.AssemblyReference.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.MacroEngine\obj\Debug\net9.0\Orion.Core.MacroEngine.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.MacroEngine\obj\Debug\net9.0\Orion.Core.MacroEngine.AssemblyInfoInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.MacroEngine\obj\Debug\net9.0\Orion.Core.MacroEngine.AssemblyInfo.cs
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.MacroEngine\obj\Debug\net9.0\Orion.Core.MacroEngine.csproj.CoreCompileInputs.cache

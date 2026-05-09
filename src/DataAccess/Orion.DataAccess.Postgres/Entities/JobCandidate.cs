@@ -1,10 +1,12 @@
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    [Table("JobCandidate",Schema = "HumanResources")]
+    [Table("HumanResources.JobCandidate")]
     [Description("Résumés submitted to Human Resources by job applicants.")]
     public class JobCandidate
     {
@@ -19,10 +21,10 @@ namespace Orion.DataAccess.Postgres.Entities
         [Display(Name = "Business Entity ID")]
         [Description("Employee identification number if applicant was hired. Foreign key to Employee.BusinessEntityID.")]
         public int? BusinessEntityID { get; set; } // int
-        [Column(name : "Resume")]
+        [Column(name : "Resume", TypeName = "xml")]
         [Display(Name = "Resume")]
         [Description("Résumé in XML format.")]
-        public string Resume { get; set; } 
+        public string Resume { get; set; } // XML(.)
         [Column(name : "ModifiedDate")]
         [Required(ErrorMessage = "Modified Date is required")]
         [Display(Name = "Modified Date")]

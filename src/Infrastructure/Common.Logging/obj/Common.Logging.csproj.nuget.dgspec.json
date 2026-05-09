@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\x\\KhotsoCBookStore.Microservices.NET\\src\\BuildingBlocks\\Common.Logging\\Common.Logging.csproj": {}
+    "C:\\x\\Orion.API.Microservices.NET.v1.0.1\\src\\Infrastructure\\Common.Logging\\Common.Logging.csproj": {}
   },
   "projects": {
-    "C:\\x\\KhotsoCBookStore.Microservices.NET\\src\\BuildingBlocks\\Common.Logging\\Common.Logging.csproj": {
+    "C:\\x\\Orion.API.Microservices.NET.v1.0.1\\src\\Infrastructure\\Common.Logging\\Common.Logging.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\KhotsoCBookStore.Microservices.NET\\src\\BuildingBlocks\\Common.Logging\\Common.Logging.csproj",
+        "projectUniqueName": "C:\\x\\Orion.API.Microservices.NET.v1.0.1\\src\\Infrastructure\\Common.Logging\\Common.Logging.csproj",
         "projectName": "Common.Logging",
-        "projectPath": "C:\\x\\KhotsoCBookStore.Microservices.NET\\src\\BuildingBlocks\\Common.Logging\\Common.Logging.csproj",
+        "projectPath": "C:\\x\\Orion.API.Microservices.NET.v1.0.1\\src\\Infrastructure\\Common.Logging\\Common.Logging.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\KhotsoCBookStore.Microservices.NET\\src\\BuildingBlocks\\Common.Logging\\obj\\",
+        "outputPath": "C:\\x\\Orion.API.Microservices.NET.v1.0.1\\src\\Infrastructure\\Common.Logging\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

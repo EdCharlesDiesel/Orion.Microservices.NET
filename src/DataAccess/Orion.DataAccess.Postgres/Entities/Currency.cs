@@ -14,6 +14,7 @@ namespace Orion.DataAccess.Postgres.Entities
             this.CurrencyRates = new List<CurrencyRate>();
             this.CurrencyRates1 = new List<CurrencyRate>();
         }
+
         [Key]
         [Column(name : "CurrencyCode", TypeName = "nchar")]
         [MaxLength(3)]

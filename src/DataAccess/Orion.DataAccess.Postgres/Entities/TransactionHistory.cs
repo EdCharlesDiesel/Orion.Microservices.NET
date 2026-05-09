@@ -6,8 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-   
-    [Table("Production.TransactionHistory", Schema = "Production")]
+    [Table("Production.TransactionHistory")]
     [Description("Record of each purchase order, sales order, or work order transaction year to date.")]
     public class TransactionHistory
     {

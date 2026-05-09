@@ -1,37 +1,36 @@
 {
   "format": 1,
   "restore": {
-    "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj": {}
+    "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj": {}
   },
   "projects": {
-    "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj": {
+    "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj",
+        "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj",
         "projectName": "Orion.API.HumanResources",
-        "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\obj\\",
+        "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\Orion.API.HumanResources.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.HumanResources\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj": {
-                "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj"
+              "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj": {
+                "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj"
               },
-              "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
-                "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj"
+              "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
+                "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj"
               }
             }
           }
@@ -98,35 +97,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj": {
+    "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj",
+        "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj",
         "projectName": "Orion.Services.TradingEconomics.API",
-        "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\obj\\",
+        "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\Orion.API.TradingEconomics.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\API\\Orion.API.TradingEconomics\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
-                "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj"
+              "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
+                "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj"
               }
             }
           }
@@ -151,13 +149,17 @@
               "target": "Package",
               "version": "[15.0.1, )"
             },
-            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+            "Marten": {
               "target": "Package",
-              "version": "[12.0.1, )"
+              "version": "[8.32.1, )"
             },
-            "FastEndpoints.MediatR": {
+            "Marten.AspNetCore": {
               "target": "Package",
-              "version": "[2.0.6, )"
+              "version": "[8.32.1, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[12.4.1, )"
             },
             "Microsoft.AspNetCore.Authentication.Negotiate": {
               "target": "Package",
@@ -167,9 +169,33 @@
               "target": "Package",
               "version": "[1.22.1, )"
             },
+            "Polly": {
+              "target": "Package",
+              "version": "[7.2.4, )"
+            },
+            "Polly.Extensions.Http": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Quartz": {
+              "target": "Package",
+              "version": "[3.18.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "Weasel.Core": {
+              "target": "Package",
+              "version": "[8.14.1, )"
+            },
+            "YahooFinanceApi": {
+              "target": "Package",
+              "version": "[2.3.3, )"
+            },
+            "YahooQuotesApi": {
+              "target": "Package",
+              "version": "[7.0.7, )"
             }
           },
           "imports": [
@@ -191,35 +217,34 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
+    "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj",
+        "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj",
         "projectName": "Orion.DataAccess.Postgres",
-        "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\obj\\",
+        "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\Orion.DataAccess.Postgres.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\DataAccess\\Orion.DataAccess.Postgres\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj": {
-                "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj"
+              "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj": {
+                "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj"
               }
             }
           }
@@ -251,7 +276,7 @@
             "Microsoft.DotNet.ILCompiler": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.7, )",
+              "version": "[9.0.15, )",
               "autoReferenced": true
             },
             "Microsoft.EntityFrameworkCore": {
@@ -275,7 +300,7 @@
             "Microsoft.NET.ILLink.Tasks": {
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.7, )",
+              "version": "[9.0.15, )",
               "autoReferenced": true
             },
             "Microsoft.SqlServer.Types": {
@@ -313,7 +338,7 @@
           "downloadDependencies": [
             {
               "name": "runtime.win-x64.Microsoft.DotNet.ILCompiler",
-              "version": "[9.0.7, 9.0.7]"
+              "version": "[9.0.15, 9.0.15]"
             }
           ],
           "frameworkReferences": {
@@ -324,27 +349,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj": {
+    "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj",
+        "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj",
         "projectName": "Orion.Domain",
-        "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\obj\\",
+        "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\Orion.Domain.csproj",
+        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+        "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\Domain\\Orion.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -410,7 +434,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

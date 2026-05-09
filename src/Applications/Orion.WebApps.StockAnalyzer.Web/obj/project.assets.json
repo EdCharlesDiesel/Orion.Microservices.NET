@@ -8,25 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\PC\\.nuget\\packages\\": {}
+    "C:\\Users\\LENOVO\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj",
+      "projectUniqueName": "C:\\x\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj",
       "projectName": "Orion.WebApps.StockAnalyzer.Web",
-      "projectPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj",
-      "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\x\\RealWorld\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\obj\\",
+      "projectPath": "C:\\x\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\Orion.WebApps.StockAnalyzer.Web.csproj",
+      "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
+      "outputPath": "C:\\x\\Orion.Microservices.NET\\src\\Applications\\Orion.WebApps.StockAnalyzer.Web\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -87,16 +86,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\LENOVO\\.dotnet\\sdk\\9.0.313\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1900",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://api.nuget.org/v3/index.json."
-    }
-  ]
+  }
 }

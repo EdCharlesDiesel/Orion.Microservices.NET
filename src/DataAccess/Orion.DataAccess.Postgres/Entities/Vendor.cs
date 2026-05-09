@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    
-    [Table("Purchasing.Vendor", Schema = "Purchasing")]
+    [Table("Purchasing.Vendor")]
     [Description("Companies from whom Adventure Works Cycles purchases parts or other goods.")]
     public class Vendor
     {

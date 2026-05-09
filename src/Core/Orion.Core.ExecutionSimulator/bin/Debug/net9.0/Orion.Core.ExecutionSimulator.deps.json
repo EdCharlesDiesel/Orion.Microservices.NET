@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Orion.Core.ExecutionSimulator/1.0.0": {
+        "runtime": {
+          "Orion.Core.ExecutionSimulator.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Orion.Core.ExecutionSimulator/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

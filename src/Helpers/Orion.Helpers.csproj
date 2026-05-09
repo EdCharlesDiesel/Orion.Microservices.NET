@@ -11,4 +11,8 @@
       <PackageReference Include="Elasticsearch.Net" Version="7.17.5" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Anaysis\" />
+    </ItemGroup>
+
 </Project>

@@ -5,6 +5,8 @@ using Orion.DataAccess.Postgres.IRepositories;
 
 namespace Orion.DataAccess.Postgres.Repositories;
 
+
+
 public class ShiftsRepository(OrionDbContext context) : IShiftsRepository
 {
     public async Task<IEnumerable<Shift>> GetAllAsync() =>

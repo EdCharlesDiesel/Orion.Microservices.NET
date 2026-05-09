@@ -10,9 +10,7 @@ public static class DatabaseServiceCollectionExtensions
     {
         // add the DbContext
         services.AddDbContext<OrionDbContext>(options =>
-            options.UseNpgsql(config.GetConnectionString("DefaultConnection"))
-                .EnableSensitiveDataLogging()
-                .EnableDetailedErrors());
+            options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

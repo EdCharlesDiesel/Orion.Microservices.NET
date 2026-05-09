@@ -101,13 +101,17 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
+builder.Services.AddCors(options =>
+    options.AddPolicy("CorsPolicy", policy =>
+        policy.WithOrigins(allowedOrigins)
+            .AllowAnyMethod()
+            .AllowAnyHeader()));
+
 builder.Services.AddAuthorization();
 var app = builder.Build();
 
-app.UseCors(builder => 
-    builder.WithOrigins("http://localhost:4200")
-        .AllowAnyMethod()
-        .AllowAnyHeader());
+app.UseCors("CorsPolicy");
 
 // ✅ Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())

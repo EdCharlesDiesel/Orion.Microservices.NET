@@ -95,7 +95,7 @@ namespace Orion.DataAccess.Postgres.Entities
         public DateTime? ModifiedDate { get; set; } // datetime
 
         // Person.Person.BusinessEntityID -> Person.BusinessEntity.BusinessEntityID (FK_Person_BusinessEntity_BusinessEntityID)
-        // [ForeignKey("BusinessEntityID")]
+        [ForeignKey("BusinessEntityID")]
         public BusinessEntity BusinessEntity { get; set; }
         // HumanResources.Employee.BusinessEntityID -> Person.Person.BusinessEntityID (FK_Employee_Person_BusinessEntityID)
         public Employee? Employee { get; set; }

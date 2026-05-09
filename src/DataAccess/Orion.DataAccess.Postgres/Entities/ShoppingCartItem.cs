@@ -6,8 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Orion.DataAccess.Postgres.Entities
 {
-    
-    [Table("Sales.ShoppingCartItem", Schema = "Sales")]
+    [Table("Sales.ShoppingCartItem")]
     [Description("Contains online customer orders until the order is submitted or cancelled.")]
     public class ShoppingCartItem
     {

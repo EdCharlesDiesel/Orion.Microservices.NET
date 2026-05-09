@@ -133,7 +133,6 @@ namespace Orion.API.HumanResources.Controllers
 
                 var error = new ErrorLog()
                 {
-                    ErrorLogID = 22,
                     ErrorTime = DateTimeOffset.UtcNow,
                     UserName = HttpContext?.User?.Identity?.Name ?? "System",
                     ErrorMessage = exception.Message,
@@ -147,5 +146,8 @@ namespace Orion.API.HumanResources.Controllers
                 return StatusCode(500, "An internal error occurred while deleting the record.");
             }
         }
+
+        
+        
     }
 }

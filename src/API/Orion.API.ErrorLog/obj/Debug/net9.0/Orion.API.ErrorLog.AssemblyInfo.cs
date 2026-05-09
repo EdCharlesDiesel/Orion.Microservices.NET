@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Orion.API.ErrorLog")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ac185cd09fc5085e25b902ef60f298f625bf4f4f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa8e665fec3e325157fee29da4e1d77afcd01eeb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Orion.API.ErrorLog")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Orion.API.ErrorLog")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

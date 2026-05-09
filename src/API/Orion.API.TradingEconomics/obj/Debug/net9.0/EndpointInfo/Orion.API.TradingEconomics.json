@@ -1,0 +1,1903 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Orion TradingEconomics API",
+    "description": "An API for economic events and stock analysis.",
+    "contact": {
+      "name": "Khotso Mokhethi",
+      "url": "https://github.com/EdCharlesDiesel",
+      "email": "Mokhetkc@hotmail.com"
+    },
+    "license": {
+      "name": "MIT License",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "v1"
+  },
+  "paths": {
+    "/api/MacroData": {
+      "get": {
+        "tags": [
+          "MacroData"
+        ],
+        "summary": "Get macroeconomic data (GDP, Inflation, Rates, Unemployment) for all currencies",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MacroData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MacroData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MacroData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MacroData/{currency}": {
+      "get": {
+        "tags": [
+          "MacroData"
+        ],
+        "summary": "Get macro data for a specific currency",
+        "parameters": [
+          {
+            "name": "currency",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "apiKey",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrencyMacroData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrencyMacroData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrencyMacroData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MacroData/series": {
+      "get": {
+        "tags": [
+          "MacroData"
+        ],
+        "summary": "Get available FRED series mappings",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MacroData/fallback": {
+      "get": {
+        "tags": [
+          "MacroData"
+        ],
+        "summary": "Get fallback/static macro data",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/CurrencyMacroData"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/CurrencyMacroData"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/CurrencyMacroData"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MacroData/status": {
+      "get": {
+        "tags": [
+          "MacroData"
+        ],
+        "summary": "Check if FRED API is configured and working",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/FredStatusResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FredStatusResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FredStatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MacroData/refresh": {
+      "post": {
+        "tags": [
+          "MacroData"
+        ],
+        "summary": "Refresh macro data cache",
+        "parameters": [
+          {
+            "name": "apiKey",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MacroData"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MacroData"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MacroData"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MarketData/fetch": {
+      "get": {
+        "tags": [
+          "MarketData"
+        ],
+        "parameters": [
+          {
+            "name": "pair",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "interval",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "1d"
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "default": "3mo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarketDataResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarketDataResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarketDataResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MarketData/kpis": {
+      "get": {
+        "tags": [
+          "MarketData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KpiData"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KpiData"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/KpiData"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/MarketData/fetch-all": {
+      "post": {
+        "tags": [
+          "MarketData"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchAllRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchAllRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/FetchAllRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/MarketDataResponse"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/MarketDataResponse"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "$ref": "#/components/schemas/MarketDataResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TechnicalAnalysis/calculate": {
+      "post": {
+        "tags": [
+          "TechnicalAnalysis"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OHLCVData"
+                }
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OHLCVData"
+                }
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/OHLCVData"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TechnicalIndicators"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TechnicalIndicators"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TechnicalIndicators"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TechnicalAnalysis/entry-signal": {
+      "get": {
+        "tags": [
+          "TechnicalAnalysis"
+        ],
+        "parameters": [
+          {
+            "name": "pair",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bias",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntrySignalResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntrySignalResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntrySignalResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TechnicalAnalysis/trading-ideas": {
+      "get": {
+        "tags": [
+          "TechnicalAnalysis"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TradingIdea"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TradingIdea"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TradingIdea"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TechnicalAnalysis/swing-ideas": {
+      "get": {
+        "tags": [
+          "TechnicalAnalysis"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SwingTradingIdea"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SwingTradingIdea"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SwingTradingIdea"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TechnicalAnalysis/bias-dashboard": {
+      "get": {
+        "tags": [
+          "TechnicalAnalysis"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BiasAnalysisResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BiasAnalysisResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BiasAnalysisResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/generate": {
+      "post": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Generate trading ideas based on multi-timeframe analysis",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateIdeasRequest"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateIdeasRequest"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GenerateIdeasRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradingIdeasResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradingIdeasResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradingIdeasResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Get previously generated trading ideas (cached)",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradingIdeasResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradingIdeasResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradingIdeasResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/ideas": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Get only trading ideas (not swing)",
+        "parameters": [
+          {
+            "name": "conviction",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bias",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TradingIdea"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TradingIdea"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TradingIdea"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/swing": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Get only swing trading ideas",
+        "parameters": [
+          {
+            "name": "conviction",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bias",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SwingTradingIdea"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SwingTradingIdea"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SwingTradingIdea"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/pair/{pair}": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Get trading idea for a specific pair",
+        "parameters": [
+          {
+            "name": "pair",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradingIdea"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradingIdea"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TradingIdea"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/swing/pair/{pair}": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Get swing idea for a specific pair",
+        "parameters": [
+          {
+            "name": "pair",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/SwingTradingIdea"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SwingTradingIdea"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SwingTradingIdea"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/high-conviction": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Get high-conviction ideas only",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/HighConvictionResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HighConvictionResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HighConvictionResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/export/csv": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Export trading ideas as CSV",
+        "parameters": [
+          {
+            "name": "includeSwing",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/export/json": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Export trading ideas as JSON",
+        "parameters": [
+          {
+            "name": "includeSwing",
+            "in": "query",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/cache": {
+      "delete": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Clear cached ideas",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/bias": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Get bias analysis for all pairs",
+        "parameters": [
+          {
+            "name": "pairs",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BiasAnalysisResult"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BiasAnalysisResult"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/BiasAnalysisResult"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/entry-signal/{pair}": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Get entry signal for a specific pair",
+        "parameters": [
+          {
+            "name": "pair",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "bias",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntrySignalResult"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntrySignalResult"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EntrySignalResult"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/TradingIdeas/analysis/{pair}": {
+      "get": {
+        "tags": [
+          "TradingIdeas"
+        ],
+        "summary": "Get multi-timeframe analysis for a single pair",
+        "parameters": [
+          {
+            "name": "pair",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/PairAnalysisResponse"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PairAnalysisResponse"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PairAnalysisResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BiasAnalysisResult": {
+        "type": "object",
+        "properties": {
+          "pair": {
+            "type": "string",
+            "nullable": true
+          },
+          "overallBias": {
+            "type": "string",
+            "nullable": true
+          },
+          "confidence": {
+            "type": "number",
+            "format": "double"
+          },
+          "timeframes": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TimeframeBiasData"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CurrencyMacroData": {
+        "type": "object",
+        "properties": {
+          "gdp": {
+            "type": "number",
+            "format": "double"
+          },
+          "inflation": {
+            "type": "number",
+            "format": "double"
+          },
+          "rates": {
+            "type": "number",
+            "format": "double"
+          },
+          "unemployment": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EntrySignalResult": {
+        "type": "object",
+        "properties": {
+          "signal": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "confidence": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "stochK": {
+            "type": "number",
+            "format": "double"
+          },
+          "stochD": {
+            "type": "number",
+            "format": "double"
+          },
+          "rsi": {
+            "type": "number",
+            "format": "double"
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FetchAllRequest": {
+        "type": "object",
+        "properties": {
+          "pair": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FredStatusResponse": {
+        "type": "object",
+        "properties": {
+          "isConfigured": {
+            "type": "boolean"
+          },
+          "isConnected": {
+            "type": "boolean"
+          },
+          "apiKeyProvided": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "checkedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "seriesAvailability": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "boolean"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "FRED API status response"
+      },
+      "GenerateIdeasRequest": {
+        "type": "object",
+        "properties": {
+          "pairs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "includeSwing": {
+            "type": "boolean"
+          },
+          "forceRefresh": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "HighConvictionResponse": {
+        "type": "object",
+        "properties": {
+          "tradingIdeas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TradingIdea"
+            },
+            "nullable": true
+          },
+          "swingIdeas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SwingTradingIdea"
+            },
+            "nullable": true
+          },
+          "totalHighConviction": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "generatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "IdeasSummary": {
+        "type": "object",
+        "properties": {
+          "totalTradingIdeas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "longIdeas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "shortIdeas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "highConviction": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "mediumConviction": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "totalSwingIdeas": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "swingHighConviction": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "KpiData": {
+        "type": "object",
+        "properties": {
+          "pair": {
+            "type": "string",
+            "nullable": true
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "changePercent": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MacroData": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/CurrencyMacroData"
+            },
+            "nullable": true
+          },
+          "isLive": {
+            "type": "boolean"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "MarketDataResponse": {
+        "type": "object",
+        "properties": {
+          "pair": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeframe": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/OHLCVData"
+            },
+            "nullable": true
+          },
+          "indicators": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "number",
+                "format": "double"
+              }
+            },
+            "nullable": true
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OHLCVData": {
+        "type": "object",
+        "properties": {
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "open": {
+            "type": "number",
+            "format": "double"
+          },
+          "high": {
+            "type": "number",
+            "format": "double"
+          },
+          "low": {
+            "type": "number",
+            "format": "double"
+          },
+          "close": {
+            "type": "number",
+            "format": "double"
+          },
+          "volume": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PairAnalysisResponse": {
+        "type": "object",
+        "properties": {
+          "pair": {
+            "type": "string",
+            "nullable": true
+          },
+          "timeframes": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/TimeframeAnalysis"
+            },
+            "nullable": true
+          },
+          "tradingIdea": {
+            "$ref": "#/components/schemas/TradingIdea"
+          },
+          "swingIdea": {
+            "$ref": "#/components/schemas/SwingTradingIdea"
+          },
+          "entrySignal": {
+            "$ref": "#/components/schemas/EntrySignalResult"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SwingTradingIdea": {
+        "type": "object",
+        "properties": {
+          "pair": {
+            "type": "string",
+            "nullable": true
+          },
+          "bias": {
+            "type": "string",
+            "nullable": true
+          },
+          "conviction": {
+            "type": "string",
+            "nullable": true
+          },
+          "strengthScore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "thesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "entry": {
+            "type": "number",
+            "format": "double"
+          },
+          "takeProfit1": {
+            "type": "number",
+            "format": "double"
+          },
+          "takeProfit2": {
+            "type": "number",
+            "format": "double"
+          },
+          "tp1Method": {
+            "type": "string",
+            "nullable": true
+          },
+          "tp2Method": {
+            "type": "string",
+            "nullable": true
+          },
+          "tp1Valid": {
+            "type": "boolean"
+          },
+          "tp2Valid": {
+            "type": "boolean"
+          },
+          "stopLoss": {
+            "type": "number",
+            "format": "double"
+          },
+          "stopLossMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "stopLossPips": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskReward1": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskReward2": {
+            "type": "number",
+            "format": "double"
+          },
+          "atr": {
+            "type": "number",
+            "format": "double"
+          },
+          "entrySignal": {
+            "$ref": "#/components/schemas/EntrySignalResult"
+          },
+          "invalidation": {
+            "type": "string",
+            "nullable": true
+          },
+          "weeklyTrend": {
+            "type": "string",
+            "nullable": true
+          },
+          "dailyTrend": {
+            "type": "string",
+            "nullable": true
+          },
+          "h4Confirmation": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TechnicalIndicators": {
+        "type": "object",
+        "properties": {
+          "rsi": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "macd": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "macdSignal": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "macdHistogram": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "smA20": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "smA50": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "emA20": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "emA50": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "bbUpper": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "bbMiddle": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "bbLower": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "atr": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "stochK": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "stochD": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "adx": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "adxPos": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "adxNeg": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "support20": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          },
+          "resistance20": {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "format": "double"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeframeAnalysis": {
+        "type": "object",
+        "properties": {
+          "latestPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "latestClose": {
+            "type": "number",
+            "format": "double"
+          },
+          "rsi": {
+            "type": "number",
+            "format": "double"
+          },
+          "adx": {
+            "type": "number",
+            "format": "double"
+          },
+          "trend": {
+            "type": "string",
+            "nullable": true
+          },
+          "dataPoints": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TimeframeBiasData": {
+        "type": "object",
+        "properties": {
+          "bias": {
+            "type": "string",
+            "nullable": true
+          },
+          "strength": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "price": {
+            "type": "number",
+            "format": "double"
+          },
+          "trend": {
+            "type": "string",
+            "nullable": true
+          },
+          "rsi": {
+            "type": "number",
+            "format": "double"
+          },
+          "adx": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TradingIdea": {
+        "type": "object",
+        "properties": {
+          "pair": {
+            "type": "string",
+            "nullable": true
+          },
+          "bias": {
+            "type": "string",
+            "nullable": true
+          },
+          "conviction": {
+            "type": "string",
+            "nullable": true
+          },
+          "strengthScore": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "thesis": {
+            "type": "string",
+            "nullable": true
+          },
+          "entry": {
+            "type": "number",
+            "format": "double"
+          },
+          "takeProfit1": {
+            "type": "number",
+            "format": "double"
+          },
+          "takeProfit2": {
+            "type": "number",
+            "format": "double"
+          },
+          "tp1Method": {
+            "type": "string",
+            "nullable": true
+          },
+          "tp2Method": {
+            "type": "string",
+            "nullable": true
+          },
+          "tp1Valid": {
+            "type": "boolean"
+          },
+          "tp2Valid": {
+            "type": "boolean"
+          },
+          "stopLoss": {
+            "type": "number",
+            "format": "double"
+          },
+          "stopLossMethod": {
+            "type": "string",
+            "nullable": true
+          },
+          "stopLossPips": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskReward1": {
+            "type": "number",
+            "format": "double"
+          },
+          "riskReward2": {
+            "type": "number",
+            "format": "double"
+          },
+          "atr": {
+            "type": "number",
+            "format": "double"
+          },
+          "entrySignal": {
+            "$ref": "#/components/schemas/EntrySignalResult"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TradingIdeasResponse": {
+        "type": "object",
+        "properties": {
+          "tradingIdeas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TradingIdea"
+            },
+            "nullable": true
+          },
+          "swingIdeas": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SwingTradingIdea"
+            },
+            "nullable": true
+          },
+          "generatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "totalPairsAnalyzed": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "skippedPairs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
+          },
+          "summary": {
+            "$ref": "#/components/schemas/IdeasSummary"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

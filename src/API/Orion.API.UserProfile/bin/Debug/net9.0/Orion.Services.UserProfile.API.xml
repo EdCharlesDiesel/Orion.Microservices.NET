@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Orion.Services.UserProfile.API</name>
+    </assembly>
+    <members>
+        <member name="M:Orion.Services.UserProfile.API.Controllers.UserProfileController.GetAllEvents">
+            <summary>
+            Get all comtrade categories
+            </summary>
+        </member>
+        <member name="T:Orion.Services.UserProfile.API.Data.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Data.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Data.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Data.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Orion.Services.UserProfile.API.Data.Migrations.RemovedLastName">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Data.Migrations.RemovedLastName.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Data.Migrations.RemovedLastName.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Data.Migrations.RemovedLastName.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Orion.Services.UserProfile.API.Data.Migrations.WorkingOnCreate">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Data.Migrations.WorkingOnCreate.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Data.Migrations.WorkingOnCreate.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Data.Migrations.WorkingOnCreate.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="F:Orion.Services.UserProfile.API.Helper.HttpRequesterClass._clientKey">
+            <summary>
+            Store the client key to be used through the program
+            </summary>
+        </member>
+        <member name="M:Orion.Services.UserProfile.API.Helper.HttpRequesterClass.HttpRequester(System.String,System.String)">
+            <summary>
+            Method to make HTTP calls to TradingEconomics API
+            </summary>
+            <param name="url">The URL to fetch</param>
+            <param name="baseUrl">The base path, the default is 'https://api.tradingeconomics.com/'</param>
+            <returns>A task tha will be resolved in a string with the content of the response</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,11 @@
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\bin\Debug\net9.0\Orion.Core.BacktestingEngine.deps.json
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\bin\Debug\net9.0\Orion.Core.BacktestingEngine.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\bin\Debug\net9.0\Orion.Core.BacktestingEngine.pdb
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\obj\Debug\net9.0\Orion.Core.BacktestingEngine.GeneratedMSBuildEditorConfig.editorconfig
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\obj\Debug\net9.0\Orion.Core.BacktestingEngine.AssemblyInfoInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\obj\Debug\net9.0\Orion.Core.BacktestingEngine.AssemblyInfo.cs
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\obj\Debug\net9.0\Orion.Core.BacktestingEngine.csproj.CoreCompileInputs.cache
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\obj\Debug\net9.0\Orion.Core.BacktestingEngine.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\obj\Debug\net9.0\refint\Orion.Core.BacktestingEngine.dll
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\obj\Debug\net9.0\Orion.Core.BacktestingEngine.pdb
+C:\x\Practice\Orion.API.Microservices.NET\src\Core\Orion.Core.BacktestingEngine\obj\Debug\net9.0\ref\Orion.Core.BacktestingEngine.dll

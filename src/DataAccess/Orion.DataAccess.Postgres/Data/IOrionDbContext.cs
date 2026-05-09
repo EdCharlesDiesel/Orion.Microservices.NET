@@ -2,18 +2,16 @@
 
 using Microsoft.EntityFrameworkCore;
 using Orion.DataAccess.Postgres.Entities;
-using Orion.DataAccess.Postgres.Entities.Shared;
-using Orion.DataAccess.Postgres.Entities.TradingEconomics;
+using Orion.DataAccess.Postgres.Entities.Common;
+using Orion.DataAccess.Postgres.Tools;
 
 namespace Orion.DataAccess.Postgres.Data
 {
     public interface IOrionDbContext
     {
-        DbSet<RefreshToken> RefreshTokens { get; set; }
-        DbSet<UserProfile> UserProfiles { get; set; }
         DbSet<Address> Addresses { get; set; }
         DbSet<AddressType> AddressTypes { get; set; }
-        DbSet<BuildVersion> BuildVersions { get; set; }
+        DbSet<AWBuildVersion> AwbuildVersions { get; set; }
         DbSet<BillOfMaterials> BillOfMaterials { get; set; }
         DbSet<Contact> Contacts { get; set; }
         DbSet<ContactCreditCard> ContactCreditCards { get; set; }
@@ -80,7 +78,7 @@ namespace Orion.DataAccess.Postgres.Data
         DbSet<VendorAddress> VendorAddresses { get; set; }
         DbSet<VendorContact> VendorContacts { get; set; }
         DbSet<WorkOrder> WorkOrders { get; set; }
-        DbSet<WorkOrderRouting> WorkOrderRoutings{ get; set; }
+        DbSet<WorkOrderRouting> WorkOrderRouting { get; set; }
         DbSet<TradingEconomicsCalendar> TradingEconomicsCalendars { get; set; }
         DbSet<OrionCalendarEvent> OrionCalendarEvents { get; set; }
         DbSet<OrderDetail> Orders { get; set; }
@@ -88,7 +86,6 @@ namespace Orion.DataAccess.Postgres.Data
         DbSet<ChatRequest> ChatRequests  { get; set; }
         DbSet<Coupon> Coupons  { get; set; }
         DbSet<CompetitionMatch> CompetitionMatches  { get; set; }
-        public DbSet<PersonPhone>  PersonPhones { get; set; }
         
         DbSet<Course> Courses { get; set; }
    
@@ -98,5 +95,33 @@ namespace Orion.DataAccess.Postgres.Data
         DbSet<Forecast> Forecasts  { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    }
+
+    public class ContactCreditCard: Entity<int>
+    {
+    }
+
+    public class CustomerAddress: Entity<int>
+    {
+    }
+
+    public class StoreContact: Entity<int>
+    {
+    }
+
+    public class VendorContact: Entity<int>
+    {
+    }
+
+    public class VendorAddress: Entity<int>
+    {
+    }
+
+    public class Individual: Entity<int>
+    {
+    }
+
+    public class Contact: Entity<int>
+    {
     }
 }

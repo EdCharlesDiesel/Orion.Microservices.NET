@@ -1,6 +1,6 @@
 using Orion.DataAccess.Postgres.Data;
 using Orion.DataAccess.Postgres.Entities;
-using Orion.DataAccess.Postgres.Entities.Shared;
+using Orion.DataAccess.Postgres.Entities.Common;
 
 namespace Orion.DataAccess.Postgres.Repositories;
 
