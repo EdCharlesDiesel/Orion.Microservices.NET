@@ -1,11 +1,12 @@
 using Azure.AI.Projects;
 using Azure.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Orion.DataAccess.Postgres.Tools;
 
 namespace Orion.API.Apps.Controllers;
 
-// [Authorize]
+[Authorize]
 [ApiController]
 [Route("[controller]")]
 public class RevenueStreamWidgetController(IUnitOfWork unitOfWork) : ControllerBase

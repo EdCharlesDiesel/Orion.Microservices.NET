@@ -40,6 +40,10 @@
       <ProjectReference Include="..\..\Domain\Orion.Domain\Orion.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Include="appsettings.Production.json" />
+    </ItemGroup>
+
 
 
 

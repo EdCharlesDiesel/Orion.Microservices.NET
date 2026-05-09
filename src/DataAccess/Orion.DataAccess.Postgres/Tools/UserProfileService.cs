@@ -7,32 +7,22 @@ using Orion.DataAccess.Postgres.Services;
 
 namespace Orion.DataAccess.Postgres.Tools;
 
-public class UserProfileService : IUserProfileService
+public class UserProfileService(
+    OrionDbContext context,
+    ILogger<UserProfileService> logger,
+    UserManager<IdentityUser> userManager)
+    : IUserProfileService
 {
-    private readonly OrionDbContext _context;
-    private readonly ILogger<UserProfileService> _logger;
-    private readonly UserManager<IdentityUser> _userManager;
-
-    public UserProfileService(
-        OrionDbContext context,
-        ILogger<UserProfileService> logger,
-        UserManager<IdentityUser> userManager)
-    {
-        _context = context;
-        _logger = logger;
-        _userManager = userManager;
-    }
-
     public async Task<UserProfile?> GetUserProfileAsync(string userId)
     {
         try
         {
-            return await _context.UserProfiles
+            return await context.UserProfiles
                 .FirstOrDefaultAsync(p => p.UserId == userId);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving user profile for user {UserId}", userId);
+            logger.LogError(ex, "Error retrieving user profile for user {UserId}", userId);
             throw;
         }
     }
@@ -44,15 +34,15 @@ public class UserProfileService : IUserProfileService
             profile.CreatedAt = DateTime.UtcNow;
             profile.UpdatedAt = DateTime.UtcNow;
 
-            _context.UserProfiles.Add(profile);
-            await _context.SaveChangesAsync();
+            context.UserProfiles.Add(profile);
+            await context.SaveChangesAsync();
 
-            _logger.LogInformation("User profile created for user {UserId}", profile.UserId);
+            logger.LogInformation("User profile created for user {UserId}", profile.UserId);
             return profile;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error creating user profile for user {UserId}", profile.UserId);
+            logger.LogError(ex, "Error creating user profile for user {UserId}", profile.UserId);
             throw;
         }
     }
@@ -61,7 +51,7 @@ public class UserProfileService : IUserProfileService
     {
         try
         {
-            var existingProfile = await GetUserProfileAsync(profile.UserId);
+            UserProfile existingProfile = await GetUserProfileAsync(profile.UserId);
             
             if (existingProfile == null)
             {
@@ -82,15 +72,15 @@ public class UserProfileService : IUserProfileService
             existingProfile.PrivacySettings = profile.PrivacySettings ?? existingProfile.PrivacySettings;
             existingProfile.UpdatedAt = DateTime.UtcNow;
 
-            _context.UserProfiles.Update(existingProfile);
-            await _context.SaveChangesAsync();
+            context.UserProfiles.Update(existingProfile);
+            await context.SaveChangesAsync();
 
-            _logger.LogInformation("User profile updated for user {UserId}", profile.UserId);
+            logger.LogInformation("User profile updated for user {UserId}", profile.UserId);
             return existingProfile;
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error updating user profile for user {UserId}", profile.UserId);
+            logger.LogError(ex, "Error updating user profile for user {UserId}", profile.UserId);
             throw;
         }
     }
@@ -102,14 +92,14 @@ public class UserProfileService : IUserProfileService
             var profile = await GetUserProfileAsync(userId);
             if (profile != null)
             {
-                _context.UserProfiles.Remove(profile);
-                await _context.SaveChangesAsync();
-                _logger.LogInformation("User profile deleted for user {UserId}", userId);
+                context.UserProfiles.Remove(profile);
+                await context.SaveChangesAsync();
+                logger.LogInformation("User profile deleted for user {UserId}", userId);
             }
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error deleting user profile for user {UserId}", userId);
+            logger.LogError(ex, "Error deleting user profile for user {UserId}", userId);
             throw;
         }
     }
@@ -119,9 +109,9 @@ public class UserProfileService : IUserProfileService
     {
         try
         {
-            var user = await _userManager.FindByIdAsync(userId);
+            var user = await userManager.FindByIdAsync(userId);
             var profile = await GetUserProfileAsync(userId);
-            var roles = user != null ? await _userManager.GetRolesAsync(user) : new List<string>();
+            var roles = user != null ? await userManager.GetRolesAsync(user) : new List<string>();
 
             var exportData = new
             {
@@ -130,9 +120,7 @@ public class UserProfileService : IUserProfileService
                     user?.Id,
                     user?.UserName,
                     user?.Email,
-                    // user?.CreatedAt,
-                    // user?.LastLoginAt,
-                    // user?.LoginCount,
+                    user?.AccessFailedCount,
                     EmailConfirmed = user?.EmailConfirmed ?? false,
                     Roles = roles
                 },
@@ -161,12 +149,12 @@ public class UserProfileService : IUserProfileService
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
             });
 
-            _logger.LogInformation("User data exported for user {UserId}", userId);
+            logger.LogInformation("User data exported for user {UserId}", userId);
             return System.Text.Encoding.UTF8.GetBytes(json);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error exporting user data for user {UserId}", userId);
+            logger.LogError(ex, "Error exporting user data for user {UserId}", userId);
             throw;
         }
     }
@@ -175,16 +163,16 @@ public class UserProfileService : IUserProfileService
     {
         try
         {
-            var usersInRole = await _userManager.GetUsersInRoleAsync(role);
+            var usersInRole = await userManager.GetUsersInRoleAsync(role);
             var userIds = usersInRole.Select(u => u.Id).ToList();
 
-            return await _context.UserProfiles
+            return await context.UserProfiles
                 .Where(p => userIds.Contains(p.UserId))
                 .ToListAsync();
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error retrieving user profiles for role {Role}", role);
+            logger.LogError(ex, "Error retrieving user profiles for role {Role}", role);
             throw;
         }
     }
@@ -193,12 +181,12 @@ public class UserProfileService : IUserProfileService
     {
         try
         {
-            return await _context.UserProfiles
+            return await context.UserProfiles
                 .AnyAsync(p => p.UserId == userId);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error checking if user profile exists for user {UserId}", userId);
+            logger.LogError(ex, "Error checking if user profile exists for user {UserId}", userId);
             throw;
         }
     }

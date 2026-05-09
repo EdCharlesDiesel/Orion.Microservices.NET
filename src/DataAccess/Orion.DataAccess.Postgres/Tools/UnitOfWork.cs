@@ -11,9 +11,11 @@ namespace Orion.DataAccess.Postgres.Tools
     {
         private readonly OrionDbContext _context;
 
-        public UnitOfWork(OrionDbContext context)
+        public UnitOfWork(OrionDbContext context, IAwBuildVersionRepository awBuildVersions, IRevenueStreamsRepository revenueStreams)
         {
             _context = context;
+            AwBuildVersions = awBuildVersions;
+            RevenueStreams = revenueStreams;
             BuildVersions = new BuildVersionRepository(_context);
             DatabaseLogs = new DatabaseLogRepository(_context);
             TransactionHistoryArchives = new TransactionHistoryArchivesRepository(_context);
@@ -89,6 +91,7 @@ namespace Orion.DataAccess.Postgres.Tools
         }
 
         public IBuildVersionRepository BuildVersions { get; set; }
+        public IAwBuildVersionRepository AwBuildVersions { get; }
         public IDatabaseLogRepository DatabaseLogs { get; set; }
         public ITransactionHistoryArchivesRepository TransactionHistoryArchives { get; set; }
         public IErrorLogsRepository ErrorLogs { get; set; }
@@ -196,5 +199,7 @@ namespace Orion.DataAccess.Postgres.Tools
         
         public void Dispose() => _context.Dispose();
     }
+
+
 }
 

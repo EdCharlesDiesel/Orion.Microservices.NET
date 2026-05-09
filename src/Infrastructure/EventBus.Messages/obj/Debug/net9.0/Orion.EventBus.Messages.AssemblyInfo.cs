@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Orion.EventBus.Messages")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa8e665fec3e325157fee29da4e1d77afcd01eeb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4e6d21d2e6fca5e516484ffc496fd98eabb5269")]
 [assembly: System.Reflection.AssemblyProductAttribute("Orion.EventBus.Messages")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Orion.EventBus.Messages")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

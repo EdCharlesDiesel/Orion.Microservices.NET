@@ -1,18 +1,17 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.SqlServer.Types;
 using Orion.DataAccess.Postgres.Entities;
 using Orion.DataAccess.Postgres.Entities.Common;
+using OrderDetail = Orion.DataAccess.Postgres.Entities.OrderDetail;
+using UserProfile = Orion.DataAccess.Postgres.Entities.Shared.UserProfile;
 
 namespace Orion.DataAccess.Postgres.Data
 {
-    // Inherit from IdentityDbContext instead of DbContext
     public class OrionDbContext(
         DbContextOptions<OrionDbContext> options)
         : IdentityDbContext<IdentityUser, IdentityRole, string>(options), IOrionDbContext
     {
-        // Your DbSets
         public DbSet<Address> Addresses { get; set; }
         public DbSet<AddressType> AddressTypes { get; set; }
         public DbSet<AWBuildVersion> AwbuildVersions { get; set; }
@@ -87,8 +86,7 @@ namespace Orion.DataAccess.Postgres.Data
         public DbSet<Course> Courses { get; set; }
         public DbSet<Person> Persons { get; set; }
 
-        // Common Entities.
-
+        // Common Entities
         public DbSet<ComtradeCategories> ComtradeCategories { get; set; }
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<Forecast> Forecasts { get; set; }
@@ -99,11 +97,18 @@ namespace Orion.DataAccess.Postgres.Data
         public DbSet<Feature> Features { get; set; }
         public DbSet<OrderDetail> Orders { get; set; }
         public DbSet<TradingEconomicsCalendar> TradingEconomicsCalendars { get; set; }
+        public DbSet<PersonCreditCard> PersonCreditCards { get; set; }
+        public DbSet<PersonPhone> PersonPhones { get; set; }
+        public DbSet<PhoneNumberType> PhoneNumberTypes { get; set; }
+        public DbSet<EmailAddress> EmailAddresses { get; set; }
+        public DbSet<WorkOrderRouting> WorkOrderRoutings { get; set; }
+        public DbSet<UserProfile> UserProfiles { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder); // 👈 keep Identity configuration
-            
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<AWBuildVersion>()
                 .ToTable("AWBuildVersion", "public")
                 .HasKey(x => x.SystemInformationID);
@@ -126,7 +131,6 @@ namespace Orion.DataAccess.Postgres.Data
 
             modelBuilder.Entity<EmployeeDepartmentHistory>()
                 .HasKey(bea => new { bea.BusinessEntityID, bea.DepartmentID, bea.StartDate });
-            
 
             modelBuilder.Entity<EmployeePayHistory>()
                 .HasKey(bea => new { bea.BusinessEntityID, bea.RateChangeDate });
@@ -151,11 +155,9 @@ namespace Orion.DataAccess.Postgres.Data
 
             modelBuilder.Entity<ProductModelIllustration>()
                 .HasKey(bea => new { bea.ProductModelID, bea.IllustrationID });
-            
 
             modelBuilder.Entity<ProductModelProductDescriptionCulture>()
                 .HasKey(bea => new { bea.ProductModelID, bea.ProductDescriptionID, bea.CultureID });
-            
 
             modelBuilder.Entity<ProductProductPhoto>()
                 .HasKey(bea => new { bea.ProductID, bea.ProductPhotoID });
@@ -165,7 +167,7 @@ namespace Orion.DataAccess.Postgres.Data
 
             modelBuilder.Entity<PurchaseOrderDetail>()
                 .HasKey(bea => new { bea.ProductID, bea.PurchaseOrderDetailID });
-            
+
             modelBuilder.Entity<SalesOrderDetail>()
                 .HasKey(d => new { d.SalesOrderID, d.SalesOrderDetailID });
 
@@ -174,7 +176,6 @@ namespace Orion.DataAccess.Postgres.Data
 
             modelBuilder.Entity<SalesPersonQuotaHistory>()
                 .HasKey(bea => new { bea.BusinessEntityID, bea.QuotaDate });
-            
 
             modelBuilder.Entity<SalesTerritoryHistory>()
                 .HasKey(bea => new { bea.BusinessEntityID, bea.TerritoryID });
@@ -185,23 +186,19 @@ namespace Orion.DataAccess.Postgres.Data
             modelBuilder.Entity<SalesOrderDetail>()
                 .HasOne(sod => sod.SpecialOfferProduct)
                 .WithMany(sop => sop.SalesOrderDetails)
-                .HasForeignKey(sod => new { sod.SpecialOfferID, sod.ProductID }); 
-            // 👆 Needs both FKs, not just ProductID
+                .HasForeignKey(sod => new { sod.SpecialOfferID, sod.ProductID });
 
             modelBuilder.Entity<WorkOrderRouting>()
                 .HasKey(bea => new { bea.WorkOrderID, bea.ProductID });
 
-            // ✅ Fix for PostgreSQL: store hierarchyid as string/text
+
             modelBuilder.Entity<ProductDocument>()
                 .Property(p => p.DocumentNode)
-                .HasConversion(
-                    v => v.ToString(),
-                    v => SqlHierarchyId.Parse(v)
-                )
                 .HasColumnType("text");
-            
+
+
             modelBuilder.Entity<Person>()
-                .ToTable("Person");
+                .ToTable("Person", "Person");
 
             modelBuilder.Entity<Store>()
                 .ToTable("Store");
@@ -210,378 +207,146 @@ namespace Orion.DataAccess.Postgres.Data
                 .ToTable("Vendor");
 
             modelBuilder.Entity<BusinessEntity>()
-                .ToTable("BusinessEntity"); // 👈 only if it has a table
-            
-            // ✅ Seed data
+                .ToTable("BusinessEntity", "Person");
+
+            // ✅ Seed Department data
             modelBuilder.Entity<Department>(entity =>
             {
                 entity.ToTable("Department", "HumanResources");
-
                 entity.HasKey(e => e.DepartmentID);
+                entity.Property(e => e.Name).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.GroupName).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.ModifiedDate).IsRequired();
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.GroupName)
-                    .IsRequired()
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.ModifiedDate)
-                    .IsRequired();
-
-                // ✅ Seed data
                 entity.HasData(
-                    new Department
-                    {
-                        DepartmentID = 1,
-                        Name = "Engineering",
-                        GroupName = "Research and Development",
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 2,
-                        Name = "Tool Design",
-                        GroupName = "Research and Development",
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 3,
-                        Name = "Sales",
-                        GroupName = "Sales and Marketing",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 4,
-                        Name = "Marketing",
-                        GroupName = "Sales and Marketing",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 5,
-                        Name = "Purchasing",
-                        GroupName = "Inventory Management",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 6,
-                        Name = "Research and Development",
-                        GroupName = "Research and Development",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 7,
-                        Name = "Production",
-                        GroupName = "Manufacturing",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 8,
-                        Name = "Production Control",
-                        GroupName = "Manufacturing",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 9,
-                        Name = "Human Resources",
-                        GroupName = "Executive General and Administration",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 10,
-                        Name = "Finance",
-                        GroupName = "Executive General and Administration",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 11,
-                        Name = "Information Services",
-                        GroupName = "Executive General and Administration",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 12,
-                        Name = "Sales",
-                        GroupName = "Quality Assurance",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 13,
-                        Name = "Quality Assurance",
-                        GroupName = "Quality Assurance",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 14,
-                        Name = "Facilities and Maintenance",
-                        GroupName = "Executive General and Administration",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 15,
-                        Name = "Shipping and Receiving",
-                        GroupName = "Sales and Inventory Management",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Department
-                    {
-                        DepartmentID = 16,
-                        Name = "Executive",
-                        GroupName = "Executive General and Administration",
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    }
-                    
+                    new Department { DepartmentID = 1,  Name = "Engineering",              GroupName = "Research and Development",             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 2,  Name = "Tool Design",              GroupName = "Research and Development",             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 3,  Name = "Sales",                    GroupName = "Sales and Marketing",                  ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 4,  Name = "Marketing",                GroupName = "Sales and Marketing",                  ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 5,  Name = "Purchasing",               GroupName = "Inventory Management",                 ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 6,  Name = "Research and Development", GroupName = "Research and Development",             ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 7,  Name = "Production",               GroupName = "Manufacturing",                        ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 8,  Name = "Production Control",       GroupName = "Manufacturing",                        ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 9,  Name = "Human Resources",          GroupName = "Executive General and Administration", ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 10, Name = "Finance",                  GroupName = "Executive General and Administration", ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 11, Name = "Information Services",     GroupName = "Executive General and Administration", ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 12, Name = "Document Control",         GroupName = "Quality Assurance",                    ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 13, Name = "Quality Assurance",        GroupName = "Quality Assurance",                    ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 14, Name = "Facilities and Maintenance", GroupName = "Executive General and Administration", ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 15, Name = "Shipping and Receiving",   GroupName = "Sales and Inventory Management",       ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Department { DepartmentID = 16, Name = "Executive",                GroupName = "Executive General and Administration", ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) }
                 );
-            }); 
- 
-            
-            modelBuilder.Entity<ProductDocument>()
-                .Property(p => p.DocumentNode)
-                .HasConversion(
-                    v => v.ToString(),
-                    v => SqlHierarchyId.Parse(v)
-                )
-                .HasColumnType("text");
-            
-                modelBuilder.Entity<Person>()
-                     .ToTable("Person");
+            });
 
-                modelBuilder.Entity<Store>()
-                    .ToTable("Store");
-
-                modelBuilder.Entity<Vendor>()
-                    .ToTable("Vendor");
-
-                modelBuilder.Entity<BusinessEntity>()
-                    .ToTable("BusinessEntity"); // 👈 only if it has a table
-                
-                
-            // ✅ Seed default BusinessEntity data 
             modelBuilder.Entity<BusinessEntity>(entity =>
             {
                 entity.ToTable("BusinessEntity", "Person");
-        
                 entity.HasKey(e => e.BusinessEntityID);
-        
-                // ✅ Seed data
+
                 entity.HasData(
-                    new BusinessEntity( )
+                    new BusinessEntity
                     {
                         BusinessEntityID = 1,
-                        Rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
-                        BusinessEntityContact = new List<BusinessEntityContact>(){},
-                        BusinessEntityAddress = new List<BusinessEntityAddress>(){}
+                        Rowguid = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567801"),
+                        ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                     }
                 );
             });
-            
-            // ✅ Seed AddressType data
+
+
             modelBuilder.Entity<AddressType>(entity =>
             {
                 entity.ToTable("AddressType", "Person");
-
                 entity.HasKey(e => e.AddressTypeId);
+                entity.Property(e => e.Name).IsRequired().HasMaxLength(50);
+                entity.Property(e => e.Rowguid).IsRequired();
+                entity.Property(e => e.ModifiedDate).IsRequired();
 
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(50);
 
-                entity.Property(e => e.Rowguid)
-                    .IsRequired();
-
-                entity.Property(e => e.ModifiedDate)
-                    .IsRequired();
-
-                // ✅ Seed data
                 entity.HasData(
-                    new AddressType("Billing")
-                    {
-                        AddressTypeId = 1,
-                        Name = "Billing",
-                        Rowguid = Guid.NewGuid(), // <-- add this
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new AddressType("Home")
-                    {
-                        AddressTypeId = 2,
-                        Name = "Home",
-                        Rowguid = Guid.NewGuid(), // <-- add this
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new AddressType("Main Office")
-                    {
-                        AddressTypeId = 3,
-                        Name = "Main Office",
-                        Rowguid = Guid.NewGuid(), // <-- add this
-                         ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new AddressType("Primary")
-                    {
-                        AddressTypeId = 4,
-                        Name = "Primary",
-                        Rowguid = Guid.NewGuid(), // <-- add this
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new AddressType("Shipping")
-                    {
-                        AddressTypeId = 5,
-                        Name = "Shipping",
-                        Rowguid = Guid.NewGuid(), // <-- add this
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new AddressType("Archive")
-                    {
-                        AddressTypeId = 6,
-                        Name = "Archive",
-                        Rowguid = Guid.NewGuid(), // <-- add this
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    }
+                    new AddressType("Billing")    { AddressTypeId = 1, Name = "Billing",     Rowguid = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567810"), ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new AddressType("Home")       { AddressTypeId = 2, Name = "Home",         Rowguid = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567811"), ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new AddressType("Main Office"){ AddressTypeId = 3, Name = "Main Office",  Rowguid = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567812"), ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new AddressType("Primary")    { AddressTypeId = 4, Name = "Primary",      Rowguid = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567813"), ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new AddressType("Shipping")   { AddressTypeId = 5, Name = "Shipping",     Rowguid = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567814"), ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new AddressType("Archive")    { AddressTypeId = 6, Name = "Archive",      Rowguid = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567815"), ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) }
                 );
             });
-            
-            // ✅ Seed Shift data 
+
+
             modelBuilder.Entity<Shift>(entity =>
             {
                 entity.ToTable("Shift", "HumanResources");
-
                 entity.HasKey(e => e.ShiftID);
+                entity.Property(e => e.StartTime).IsRequired();
+                entity.Property(e => e.EndTime).IsRequired();
+                entity.Property(e => e.ModifiedDate).IsRequired();
 
-                entity.Property(e => e.StartTime)
-                    .IsRequired();
-
-                entity.Property(e => e.EndTime)
-                    .IsRequired();
-
-                entity.Property(e => e.ModifiedDate)
-                    .IsRequired();
-
-                // ✅ Seed data
                 entity.HasData(
-                    new Shift()
-                    {
-                        ShiftID = 1,
-                        Name = "Day",
-                        StartTime = TimeSpan.Parse("07:00:00.0000000"),
-                        EndTime = TimeSpan.Parse("15:00:00.0000000"),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Shift()
-                    {
-                        ShiftID = 2,
-                        Name = "Evening",
-                        StartTime = TimeSpan.Parse("15:00:00.0000000"),
-                        EndTime = TimeSpan.Parse("23:00:00.0000000"),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    },
-                    new Shift()
-                    {
-                        ShiftID = 3,
-                        Name = "Night",
-                        StartTime = TimeSpan.Parse("23:00:00.0000000"),
-                        EndTime = TimeSpan.Parse("07:00:00.0000000"),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc)
-                    }
+                    new Shift { ShiftID = 1, Name = "Day",     StartTime = TimeSpan.Parse("07:00:00"), EndTime = TimeSpan.Parse("15:00:00"), ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Shift { ShiftID = 2, Name = "Evening", StartTime = TimeSpan.Parse("15:00:00"), EndTime = TimeSpan.Parse("23:00:00"), ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) },
+                    new Shift { ShiftID = 3, Name = "Night",   StartTime = TimeSpan.Parse("23:00:00"), EndTime = TimeSpan.Parse("07:00:00"), ModifiedDate = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc) }
                 );
             });
-            
-            // ✅ Seed default person data 
+
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.ToTable("Employee", "HumanResources");
-            
                 entity.HasKey(e => e.BusinessEntityID);
-                entity.Property(e => e.ModifiedDate)
-                    .IsRequired();
-            
-                // ✅ Seed data
+                entity.Property(e => e.ModifiedDate).IsRequired();
+
                 entity.HasData(
-                        new Employee()
-                        {
-                            BusinessEntityID = 1,
-                            AttendedCourses = new List<Course>(),
-                            NationalIDNumber = "8898086267098",
-                            BirthDate = DateTime.MaxValue,
-                            JobTitle = "Developer",
-                            Documents = new  List<Document>(),
-                            JobLevel = 8,
-                            Salary = 20000000,
-                            Gender = "M",
-                            YearsInService = 10,
-                            LoginID = "Batman",
-                            CurrentFlag = true,
-                            EntityVersion = Int32.MaxValue,
-                            HireDate = new  DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
-                            JobCandidates = new   List<JobCandidate>(),
-                            SalariedFlag = false,
-                            MinimumRaiseGiven = true,
-                            MaritalStatus = "M",
-                            SuggestedBonus = 120000000,
-                            ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
-                            SickLeaveHours = 21,
-                            VacationHours = 199,
-                            rowguid = Guid.NewGuid(),
-                            
-                        }
+                    new Employee
+                    {
+                        BusinessEntityID  = 1,
+                        NationalIDNumber  = "8898086267098",
+                        BirthDate         = DateTime.MaxValue,
+                        JobTitle          = "Developer",
+                        JobLevel          = 8,
+                        Salary            = 20000000,
+                        Gender            = "M",
+                        YearsInService    = 10,
+                        LoginID           = "Batman",
+                        CurrentFlag       = true,
+                        EntityVersion     = int.MaxValue,
+                        HireDate          = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc),
+                        SalariedFlag      = false,
+                        MinimumRaiseGiven = true,
+                        MaritalStatus     = "M",
+                        SuggestedBonus    = 120000000,
+                        SickLeaveHours    = 21,
+                        VacationHours     = 199,
+                        rowguid           = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567820"),
+                        ModifiedDate      = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+                    }
                 );
             });
-            
-            // ✅ Seed default person data 
+
+
             modelBuilder.Entity<Person>(entity =>
             {
                 entity.ToTable("Person", "Person");
-            
                 entity.HasKey(e => e.BusinessEntityID);
-            
-                entity.Property(e => e.FirstName)
-                    .IsRequired();
-            
-                entity.Property(e => e.LastName)
-                    .IsRequired();
-            
-                entity.Property(e => e.ModifiedDate)
-                    .IsRequired();
-            
-                // ✅ Seed data
+                entity.Property(e => e.FirstName).IsRequired();
+                entity.Property(e => e.LastName).IsRequired();
+                entity.Property(e => e.ModifiedDate).IsRequired();
+
                 entity.HasData(
-                    new Person( )
+                    new Person
                     {
-                        BusinessEntityID = 4,
-                        PersonType = "E",
-                        FirstName = "Khotso",
-                        LastName = "Mokhethi",
-                        NameStyle = true,
-                        Title = "Mr",
-                        MiddleName = "Ed",
-                        Suffix = "ADMIN",
-                        EmailPromotion = 1,
+                        BusinessEntityID     = 4,
+                        PersonType           = "E",
+                        FirstName            = "Khotso",
+                        LastName             = "Mokhethi",
+                        NameStyle            = true,
+                        Title                = "Mr",
+                        MiddleName           = "Ed",
+                        Suffix               = "ADMIN",
+                        EmailPromotion       = 1,
                         AdditionalContactInfo = "Ckhotso@gmail.com",
-                        Demographics = "",
-                        rowguid = Guid.NewGuid(),
-                        ModifiedDate = new DateTime(2025, 01, 01, 0, 0, 0, DateTimeKind.Utc),
-                        Employee = null,
-                        BusinessEntityContact = new List<BusinessEntityContact>(){},
-                        Customers = new  List<Customer>(){},
-                        PersonPhones = new List<PersonPhone>(){},
-                        Password = null,
-                        EmailAddresses = new List<EmailAddress>(){},
-                        PersonCreditCards = new  List<PersonCreditCard>(){},
-                        
-                        
+                        Demographics         = "",
+                        rowguid              = new Guid("a1b2c3d4-e5f6-7890-abcd-ef1234567830"),
+                        ModifiedDate         = new DateTime(2025, 1, 1, 0, 0, 0, DateTimeKind.Utc)
                     }
                 );
             });

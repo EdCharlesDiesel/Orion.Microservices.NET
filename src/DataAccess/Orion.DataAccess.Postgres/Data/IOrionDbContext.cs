@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Orion.DataAccess.Postgres.Entities;
 using Orion.DataAccess.Postgres.Entities.Common;
 using Orion.DataAccess.Postgres.Tools;
+using OrderDetail = Orion.DataAccess.Postgres.Entities.OrderDetail;
 
 namespace Orion.DataAccess.Postgres.Data
 {

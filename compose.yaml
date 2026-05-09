@@ -1,26 +1,7 @@
 ﻿services:
-
-  orion.access.postgres:
-    image: orion.access.postgres
-    build:
-      context: .
-      dockerfile: Orion.Access.Postgres/Dockerfile
-
-  orion.api.awbuildversion:
-    image: orion.api.awbuildversion
-    build:
-      context: .
-      dockerfile: src/API/Orion.API.AWBuildVersion/Dockerfile
-
-  orion.api.databaselog:
-    image: orion.api.databaselog
-    build:
-      context: .
-      dockerfile: src/API/Orion.API.DatabaseLog/Dockerfile
-      
   postgres:
     image: postgres:17
-    container_name: OrionProductionDatabase
+    container_name: orion-postgres
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: $ta99Ath0
@@ -29,14 +10,392 @@
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - orion-net
 
-  api:
-      build: .
-      container_name: Orion.API.AWBuildVersion
-      environment:
-        # Use service name 'postgres' as host
-        ConnectionStrings__DefaultConnection: "Host=localhost;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0"
-      depends_on:
-        - postgres
-      ports:
-        - "8080:5000"
+  redis:
+    image: redis:alpine
+    container_name: orion-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - orion-net
+
+  # ==================== KAFKA ====================
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.6.0
+    container_name: zookeeper
+    restart: unless-stopped
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    volumes:
+      - zookeeper-data:/var/lib/zookeeper/data
+      - zookeeper-logs:/var/lib/zookeeper/log
+    networks:
+      - orion-net
+
+  kafka:
+    image: confluentinc/cp-kafka:7.6.0
+    container_name: kafka
+    restart: unless-stopped
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT_INTERNAL://0.0.0.0:9093,PLAINTEXT_EXTERNAL://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT_INTERNAL://kafka:9093,PLAINTEXT_EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT_INTERNAL:PLAINTEXT,PLAINTEXT_EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_LOG_RETENTION_HOURS: 168
+      KAFKA_LOG_SEGMENT_BYTES: 1073741824
+      KAFKA_NUM_PARTITIONS: 3
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    networks:
+      - orion-net
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    restart: unless-stopped
+    depends_on:
+      - kafka
+    ports:
+      - "9000:8080"     # ✅ Changed from 8090 — conflicts with orion.api.transactionhistoryarchive
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9093
+      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
+    networks:
+      - orion-net
+
+  schema-registry:
+    image: confluentinc/cp-schema-registry:7.6.0
+    container_name: schema-registry
+    restart: unless-stopped
+    depends_on:
+      - kafka
+    ports:
+      - "8099:8081"     # ✅ Changed from 8081 — conflicts with orion.api.awbuildversion
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: kafka:9093
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8081
+    networks:
+      - orion-net
+
+  # ==================== ORION APIs ====================
+
+  orion.api.awbuildversion:
+    image: orion.api.awbuildversion
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/API/Orion.API.AWBuildVersion/Orion.API.AWBuildVersion.csproj
+        APP_DLL: Orion.API.AWBuildVersion.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8081:5000"
+    networks:
+      - orion-net
+
+  orion.api.databaselog:
+    image: orion.api.databaselog
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/API/Orion.API.DatabaseLog/Orion.API.DatabaseLog.csproj
+        APP_DLL: Orion.API.DatabaseLog.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8082:5000"
+    networks:
+      - orion-net
+
+  orion.api.apps:
+    image: orion.api.apps
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/API/Orion.API.Apps/Orion.API.Apps.csproj
+        APP_DLL: Orion.API.Apps.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8083:5000"
+    networks:
+      - orion-net
+
+  orion.api.tradingeconomics:
+    image: orion.api.tradingeconomics
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/API/Orion.API.TradingEconomics/Orion.API.TradingEconomics.csproj
+        APP_DLL: Orion.API.TradingEconomics.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8084:5000"
+    networks:
+      - orion-net
+
+  orion.api.userprofile:
+    image: orion.api.userprofile
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/API/Orion.API.UserProfile/Orion.API.UserProfile.csproj
+        APP_DLL: Orion.API.UserProfile.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8085:5000"
+    networks:
+      - orion-net
+
+  orion.api.person:
+    image: orion.api.person
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/API/Orion.API.Person/Orion.API.Person.csproj
+        APP_DLL: Orion.API.Person.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8086:5000"
+    networks:
+      - orion-net
+
+  orion.api.humanresources:
+    image: orion.api.humanresources
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/API/Orion.API.HumanResources/Orion.API.HumanResources.csproj
+        APP_DLL: Orion.API.HumanResources.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8087:5000"
+    networks:
+      - orion-net
+
+  orion.api.errorlog:
+    image: orion.api.errorlog
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/API/Orion.API.ErrorLog/Orion.API.ErrorLog.csproj
+        APP_DLL: Orion.API.ErrorLog.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8088:5000"
+    networks:
+      - orion-net
+
+  orion.api.transactionhistoryarchive:
+    image: orion.api.transactionhistoryarchive
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/API/Orion.API.TransactionHistoryArchive/Orion.API.TransactionHistoryArchive.csproj
+        APP_DLL: Orion.API.TransactionHistoryArchive.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      ConnectionStrings__DefaultConnection: Host=postgres;Port=5432;Database=OrionProductionDatabase;Username=postgres;Password=$ta99Ath0
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - postgres
+      - kafka
+    ports:
+      - "8089:5000"
+    networks:
+      - orion-net
+
+  # ==================== GATEWAYS & APPS ====================
+
+  orion.external.paymentgateway:
+    image: orion.external.paymentgateway
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/ApiGateways/External.PaymentGateway/Orion.External.PaymentGateway.csproj
+        APP_DLL: Orion.External.PaymentGateway.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      Kafka__BootstrapServers: kafka:9093
+    depends_on:
+      - redis
+      - kafka
+    ports:
+      - "8090:5000"
+    networks:
+      - orion-net
+
+  orion.shopping.aggregator:
+    image: orion.shopping.aggregator
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/ApiGateways/Shopping.Aggregator/Orion.Shopping.Aggregator.csproj
+        APP_DLL: Orion.Shopping.Aggregator.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+    ports:
+      - "8091:5000"
+    networks:
+      - orion-net
+
+  orion.ocelot.gateway:
+    image: orion.ocelot.gateway
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/ApiGateways/OcelotApiGw/Orion.OcelotApiGw.csproj
+        APP_DLL: Orion.OcelotApiGw.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+    depends_on:
+      - orion.api.awbuildversion
+      - orion.api.databaselog
+      - orion.api.apps
+    ports:
+      - "8092:5000"
+    networks:
+      - orion-net
+
+  orion.webapps.web:
+    image: orion.webapps.web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/Applications/Orion.WebApps.Web/Orion.WebApps.Web.csproj
+        APP_DLL: Orion.WebApps.Web.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+    depends_on:
+      - orion.ocelot.gateway
+    ports:
+      - "8093:5000"
+    networks:
+      - orion-net
+
+  orion.webapps.healthcheckui:
+    image: orion.webapps.healthcheckui
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/Applications/Orion.WebApps.HealthCheckUI/Orion.WebApps.HealthCheckUI.csproj
+        APP_DLL: Orion.WebApps.HealthCheckUI.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+      HealthChecksUI__HealthChecks__0__Name: AWBuildVersion API
+      HealthChecksUI__HealthChecks__0__Uri: http://orion.api.awbuildversion:5000/health
+      HealthChecksUI__HealthChecks__1__Name: DatabaseLog API
+      HealthChecksUI__HealthChecks__1__Uri: http://orion.api.databaselog:5000/health
+      HealthChecksUI__HealthChecks__2__Name: Ocelot Gateway
+      HealthChecksUI__HealthChecks__2__Uri: http://orion.ocelot.gateway:5000/health
+    depends_on:
+      - orion.api.awbuildversion
+      - orion.api.databaselog
+      - orion.ocelot.gateway
+    ports:
+      - "8094:5000"
+    networks:
+      - orion-net
+
+  orion.webapps.stockanalyzer.web:
+    image: orion.webapps.stockanalyzer.web
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        PROJECT_PATH: src/Applications/Orion.WebApps.StockAnalyzer.Web/Orion.WebApps.StockAnalyzer.Web.csproj
+        APP_DLL: Orion.WebApps.StockAnalyzer.Web.dll
+    environment:
+      ASPNETCORE_URLS: http://+:5000
+    ports:
+      - "8095:5000"
+    networks:
+      - orion-net
+
+volumes:
+  postgres_data:
+  zookeeper-data:
+  zookeeper-logs:
+  kafka-data:
+
+networks:
+  orion-net:
+    driver: bridge

@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DataAccess\Orion.DataAccess.Postgres\Orion.DataAccess.Postgres.csproj" />
     <ProjectReference Include="..\..\Infrastructure\Common.Logging\Orion.Common.Logging.csproj" />
   </ItemGroup>
 

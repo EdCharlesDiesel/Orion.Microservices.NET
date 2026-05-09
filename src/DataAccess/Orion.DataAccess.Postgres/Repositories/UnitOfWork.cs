@@ -1,12 +1,9 @@
-
-
 using Orion.DataAccess.Postgres.Data;
 using Orion.DataAccess.Postgres.Entities;
 using Orion.DataAccess.Postgres.IRepositories;
+using Orion.DataAccess.Postgres.Services;
 using Orion.DataAccess.Postgres.Tools;
 using Serilog;
-
-
 
 namespace Orion.DataAccess.Postgres.Repositories
 {
@@ -17,18 +14,29 @@ namespace Orion.DataAccess.Postgres.Repositories
         public UnitOfWork(OrionDbContext context)
         {
             _context = context;
-            AwBuildVersions = new AwBuildVersionRepository(_context);
-            DatabaseLogs = new DatabaseLogRepository(_context);
+
+            // ✅ All repositories initialized — previously missing ones caused NullReferenceException
+            AwBuildVersions           = new AwBuildVersionRepository(_context);
+            DatabaseLogs              = new DatabaseLogRepository(_context);
             TransactionHistoryArchives = new TransactionHistoryArchivesRepository(_context);
-            ErrorLogs = new ErrorLogsRepository(_context);
-            Shifts = new ShiftsRepository(_context);
-            Departments = new DepartmentsRepository(_context);
-            JobCandidates = new  JobCandidatesRepository(_context);
-            EmployeePayHistories = new EmployeePayHistoriesRepository(_context);
-            EmployeeDepartmentHistories = new  EmployeeDepartmentHistoriesRepository(_context);
-            Persons = new  PersonsRepository(_context);
-            Addresses = new  AddressesRepository(_context); 
-            AddressTypes = new  AddressTypesRepository(_context); 
+            ErrorLogs                 = new ErrorLogsRepository(_context);
+            Shifts                    = new ShiftsRepository(_context);
+            Departments               = new DepartmentsRepository(_context);
+            JobCandidates             = new JobCandidatesRepository(_context);
+            EmployeePayHistories      = new EmployeePayHistoriesRepository(_context);
+            EmployeeDepartmentHistories = new EmployeeDepartmentHistoriesRepository(_context);
+            Persons                   = new PersonsRepository(_context);
+            Addresses                 = new AddressesRepository(_context);
+            AddressTypes              = new AddressTypesRepository(_context);
+
+            // ✅ FIX: These were declared but never initialized
+            RevenueStreams            = new RevenueStreamsRepository(_context);
+            ContactTypes              = new ContactTypesRepository(_context);
+            CountryRegions            = new CountryRegionsRepository(_context);
+            EmailAddresses            = new EmailAddressesRepository(_context);
+            PersonPhones              = new PersonPhonesRepository(_context);
+            PhoneNumberTypes          = new PhoneNumberTypesRepository(_context);
+            StateProvinces            = new StateProvincesRepository(_context);
         }
 
         public IAwBuildVersionRepository AwBuildVersions { get; set; }
@@ -43,41 +51,42 @@ namespace Orion.DataAccess.Postgres.Repositories
         public IPersonsRepository Persons { get; set; }
         public IAddressesRepository Addresses { get; set; }
         public IAddressTypesRepository AddressTypes { get; set; }
+        public IRevenueStreamsRepository RevenueStreams { get; set; }
+        public IContactTypesRepository ContactTypes { get; set; }
+        public ICountryRegionsRepository CountryRegions { get; set; }
+        public IEmailAddressesRepository EmailAddresses { get; set; }
+        public IPersonPhonesRepository PersonPhones { get; set; }
+        public IPhoneNumberTypesRepository PhoneNumberTypes { get; set; }
+        public IStateProvincesRepository StateProvinces { get; set; }
+
         public Task StartAsync() => Task.CompletedTask;
-
         public Task CommitAsync() => Task.CompletedTask;
-
         public Task RollbackAsync() => Task.CompletedTask;
-        
+
         public async Task<bool> SaveEntitiesAsync()
         {
             return await _context.SaveChangesAsync() > 0;
         }
-        
+
         public async Task<bool> SaveErrorsAsync(ErrorLog errorLog)
         {
             try
             {
                 await _context.ErrorLogs.AddAsync(errorLog);
                 var result = await _context.SaveChangesAsync();
-
-                // Log with Serilog
                 Log.Error("Database ErrorLog saved: {@ErrorLog}", errorLog);
-
                 return result > 0;
             }
             catch (Exception ex)
             {
-                // Log failure with Serilog
                 Log.Error(ex, "Failed to save ErrorLog: {@ErrorLog}", errorLog);
                 return false;
             }
         }
 
-
         public async Task<int> CompleteAsync() =>
             await _context.SaveChangesAsync();
-        
+
         public void Dispose() => _context.Dispose();
     }
 

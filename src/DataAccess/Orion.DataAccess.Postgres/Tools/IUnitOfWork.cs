@@ -1,5 +1,6 @@
 ﻿using Orion.DataAccess.Postgres.Entities;
 using Orion.DataAccess.Postgres.IRepositories;
+using Orion.DataAccess.Postgres.Services;
 
 namespace Orion.DataAccess.Postgres.Tools
 {
@@ -17,7 +18,14 @@ namespace Orion.DataAccess.Postgres.Tools
         IPersonsRepository Persons { get; set; }
         IAddressesRepository Addresses { get; set; }
         IAddressTypesRepository AddressTypes { get; set; }
-       
+        IRevenueStreamsRepository RevenueStreams { get; set; }
+        IContactTypesRepository ContactTypes { get; set; }
+        ICountryRegionsRepository CountryRegions { get; set; }
+        IEmailAddressesRepository EmailAddresses { get; set; }
+        IPersonPhonesRepository PersonPhones { get; set; }
+        IPhoneNumberTypesRepository PhoneNumberTypes { get; set; }
+        IStateProvincesRepository StateProvinces { get; set; }
+
         Task<bool> SaveEntitiesAsync();
         Task<bool> SaveErrorsAsync(ErrorLog errorLogDto);
         Task StartAsync();

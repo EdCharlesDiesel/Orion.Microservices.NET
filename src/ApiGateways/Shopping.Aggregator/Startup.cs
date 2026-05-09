@@ -83,13 +83,6 @@ namespace Orion.Shopping.Aggregator
 
         private static IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
         {
-            // In this case will wait for
-            //  2 ^ 1 = 2 seconds then
-            //  2 ^ 2 = 4 seconds then
-            //  2 ^ 3 = 8 seconds then
-            //  2 ^ 4 = 16 seconds then
-            //  2 ^ 5 = 32 seconds
-
             return HttpPolicyExtensions
                 .HandleTransientHttpError()
                 .WaitAndRetryAsync(

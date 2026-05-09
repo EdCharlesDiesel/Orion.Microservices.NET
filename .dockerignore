@@ -1,0 +1,12 @@
+.git
+.idea
+.vs
+**/bin
+**/obj
+**/*.user
+**/*.suo
+**/*.cache
+**/TestResults
+out
+README.md
+DockerFile.txt
